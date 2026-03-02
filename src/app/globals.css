@@ -1,3 +1,6 @@
+@import "katex/dist/katex.min.css";
+@import "github-markdown-css/github-markdown-dark.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -63,5 +66,45 @@
 
   .landing-panel {
     @apply rounded-3xl border border-primary/30 bg-gradient-to-br from-[#2d1b08]/85 via-[#1a130d]/90 to-[#121212] shadow-[0_24px_80px_-40px_rgba(247,147,26,0.65)];
+  }
+
+  .concept-nav-card {
+    @apply rounded-xl border border-dark-border bg-gradient-to-b from-[#1a1a1a] to-[#131313] p-3 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-[0_10px_30px_-16px_rgba(247,147,26,0.6)];
+  }
+
+  .concept-section-card {
+    @apply rounded-2xl border border-dark-border bg-gradient-to-b from-[#151515] to-[#111111] p-4 md:p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)];
+  }
+
+  .concept-diagram-frame {
+    @apply overflow-hidden rounded-2xl border border-dark-border/80 bg-[#0f0f0f] p-2;
+  }
+
+  .whitepaper-markdown {
+    @apply rounded-2xl border border-dark-border bg-dark-surface/70 p-6 md:p-10;
+  }
+
+  .whitepaper-markdown.markdown-body {
+    background-color: transparent;
+    color: #d1d5db;
+  }
+
+  .whitepaper-markdown.markdown-body pre {
+    background-color: #0f0f0f;
+    border: 1px solid #2a2a2a;
+  }
+
+  .whitepaper-markdown.markdown-body code {
+    background-color: #151515;
+  }
+
+  .whitepaper-markdown .mermaid {
+    @apply my-6 overflow-x-auto rounded-xl border border-dark-border bg-dark-bg p-4;
+  }
+
+  .whitepaper-markdown.markdown-body h1,
+  .whitepaper-markdown.markdown-body h2,
+  .whitepaper-markdown.markdown-body h3 {
+    scroll-margin-top: 6rem;
   }
 }

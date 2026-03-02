@@ -246,12 +246,12 @@ export function ConceptSections() {
             <a
               key={concept.id}
               href={`#concept-${concept.id}`}
-              className="p-3 rounded-lg bg-dark-bg border border-dark-border hover:border-primary/50 transition-all text-center"
+              className="concept-nav-card"
             >
-              <span className="mx-auto mb-2 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-primary/35 bg-primary/10 text-primary">
+              <span className="mx-auto mb-2 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-primary/35 bg-primary/10 text-primary shadow-[0_8px_20px_-14px_rgba(247,147,26,0.9)]">
                 <Icon className="h-4 w-4" />
               </span>
-              <div className="font-semibold text-sm">{concept.title}</div>
+              <div className="text-sm font-semibold">{concept.title}</div>
             </a>
           );
         })}
@@ -264,10 +264,10 @@ export function ConceptSections() {
           <section
             key={concept.id}
             id={`concept-${concept.id}`}
-            className="rounded-2xl border border-dark-border bg-dark-bg/70 p-4 md:p-6"
+            className="concept-section-card"
           >
             <div className="grid gap-6 md:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] items-center">
-              <div>
+              <div className="concept-diagram-frame">
                 <Diagram />
               </div>
               <div>
@@ -275,7 +275,7 @@ export function ConceptSections() {
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-primary/35 bg-primary/10 text-primary">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <h3 className="text-2xl font-bold">{concept.subtitle}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold">{concept.subtitle}</h3>
                 </div>
                 <p className="text-gray-300 leading-relaxed mb-4">{concept.helper}</p>
                 <div className="flex flex-wrap gap-2">

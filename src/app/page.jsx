@@ -4,6 +4,57 @@ import { Github, Terminal, ArrowDown } from "lucide-react";
 import { ComparisonSvg } from "@/components/svgs";
 import { ConceptSections } from "@/components/concept-sections";
 
+function AgentNetworkSvg() {
+  return (
+    <svg viewBox="0 0 920 340" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+      <defs>
+        <linearGradient id="agentCore" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#2e1d0a" />
+          <stop offset="100%" stopColor="#171717" />
+        </linearGradient>
+      </defs>
+      <rect width="920" height="340" rx="18" fill="#0f0f0f" />
+
+      <circle cx="460" cy="170" r="64" fill="url(#agentCore)" stroke="#F7931A" strokeWidth="2.5" />
+      <text x="460" y="164" textAnchor="middle" fill="#FBBF24" fontSize="15" fontWeight="700">Your Node</text>
+      <text x="460" y="184" textAnchor="middle" fill="#FDE68A" fontSize="11">Social Agent</text>
+
+      <rect x="120" y="64" width="182" height="82" rx="12" fill="#151515" stroke="#3a3a3a" />
+      <text x="211" y="95" textAnchor="middle" fill="#E5E7EB" fontSize="12" fontWeight="600">Connect</text>
+      <text x="211" y="116" textAnchor="middle" fill="#9CA3AF" fontSize="10">Mutual follow handshake</text>
+
+      <rect x="120" y="194" width="182" height="82" rx="12" fill="#151515" stroke="#3a3a3a" />
+      <text x="211" y="225" textAnchor="middle" fill="#E5E7EB" fontSize="12" fontWeight="600">Store</text>
+      <text x="211" y="246" textAnchor="middle" fill="#9CA3AF" fontSize="10">Your posts + social graph</text>
+
+      <rect x="618" y="64" width="182" height="82" rx="12" fill="#151515" stroke="#3a3a3a" />
+      <text x="709" y="95" textAnchor="middle" fill="#E5E7EB" fontSize="12" fontWeight="600">Publish</text>
+      <text x="709" y="116" textAnchor="middle" fill="#9CA3AF" fontSize="10">Signed content (PoS)</text>
+
+      <rect x="618" y="194" width="182" height="82" rx="12" fill="#151515" stroke="#3a3a3a" />
+      <text x="709" y="225" textAnchor="middle" fill="#E5E7EB" fontSize="12" fontWeight="600">AI Interface</text>
+      <text x="709" y="246" textAnchor="middle" fill="#9CA3AF" fontSize="10">Agent-driven social actions</text>
+
+      <path d="M302 105 L396 149" stroke="#F7931A" strokeWidth="2" />
+      <polygon points="396,149 386,141 383,153" fill="#F7931A" />
+      <path d="M302 235 L396 191" stroke="#F7931A" strokeWidth="2" />
+      <polygon points="396,191 383,187 388,199" fill="#F7931A" />
+      <path d="M524 149 L618 105" stroke="#F7931A" strokeWidth="2" />
+      <polygon points="618,105 608,112 613,124" fill="#F7931A" />
+      <path d="M524 191 L618 235" stroke="#F7931A" strokeWidth="2" />
+      <polygon points="618,235 605,230 610,242" fill="#F7931A" />
+
+      <circle cx="842" cy="100" r="30" fill="#121f16" stroke="#34D399" />
+      <text x="842" y="105" textAnchor="middle" fill="#6EE7B7" fontSize="10">User A</text>
+      <circle cx="842" cy="238" r="30" fill="#122031" stroke="#60A5FA" />
+      <text x="842" y="243" textAnchor="middle" fill="#93C5FD" fontSize="10">User B</text>
+
+      <path d="M800 100 L812 100" stroke="#6EE7B7" strokeWidth="2" />
+      <path d="M800 238 L812 238" stroke="#93C5FD" strokeWidth="2" />
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
@@ -19,9 +70,12 @@ export default function Home() {
             />
           </Link>
 
-          <div className="flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6">
             <Link href="/docs" className="btn-ghost">
               Docs
+            </Link>
+            <Link href="/whitepaper" className="btn-ghost">
+              Whitepaper
             </Link>
             <Link href="/community" className="btn-ghost">
               Community
@@ -37,6 +91,15 @@ export default function Home() {
             >
               <Github className="w-5 h-5" />
             </a>
+          </div>
+
+          <div className="flex items-center gap-3 md:hidden">
+            <Link href="/docs" className="btn-ghost px-3">
+              Docs
+            </Link>
+            <Link href="/whitepaper" className="btn-ghost px-3">
+              Whitepaper
+            </Link>
           </div>
         </nav>
       </header>
@@ -65,7 +128,7 @@ export default function Home() {
               A truly decentralized social network built on self-hosting.
               Your data, your identity, your rules - take back your digital sovereignty.
             </p>
-            <div className="flex gap-4 justify-center">
+            <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/docs/getting-started" className="btn-primary">
                 <Terminal className="w-5 h-5 mr-2" />
                 Get Started
@@ -79,6 +142,11 @@ export default function Home() {
                 <Github className="w-5 h-5 mr-2" />
                 View on GitHub
               </a>
+            </div>
+            <div className="mt-4">
+              <Link href="/whitepaper" className="text-sm text-primary hover:text-primary-300 transition-colors">
+                Read the Whitepaper
+              </Link>
             </div>
             <Link
               href="#learn-more"
@@ -99,6 +167,16 @@ export default function Home() {
             </p>
 
             <ComparisonSvg />
+
+            <div className="mt-10 rounded-2xl border border-dark-border bg-dark-surface/70 p-6">
+              <h3 className="text-2xl font-bold mb-3 text-center">Your Node Is Your Social Agent</h3>
+              <div className="rounded-xl border border-dark-border bg-dark-bg/60 p-3 md:p-4">
+                <AgentNetworkSvg />
+              </div>
+              <p className="mt-4 text-gray-300 text-center max-w-3xl mx-auto">
+                In the AI era, this node works as your personal social agent: it connects, stores, and publishes for you on an open network.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -129,6 +207,9 @@ export default function Home() {
             <a href="https://github.com/epressworld/epress" className="text-dark-muted hover:text-dark-text transition-colors">
               GitHub
             </a>
+            <Link href="/whitepaper" className="text-dark-muted hover:text-dark-text transition-colors">
+              Whitepaper
+            </Link>
             <Link href="/docs" className="text-dark-muted hover:text-dark-text transition-colors">
               Docs
             </Link>
