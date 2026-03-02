@@ -3,17 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --font-inter: "Inter", system-ui, sans-serif;
-  --font-jetbrains: "JetBrains Mono", monospace;
-  
-  --color-primary: #F7931A;
+  --color-primary: #f7931a;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply antialiased;
   }
@@ -23,16 +20,48 @@
   .container-custom {
     @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
-  
+
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-dark-bg;
+    @apply inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-bg;
   }
-  
+
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-lg border border-dark-border bg-transparent px-6 py-3 font-semibold text-dark-text transition-colors hover:bg-dark-surface dark:bg-transparent dark:text-dark-text dark:hover:bg-dark-surface;
+    @apply inline-flex items-center justify-center rounded-xl border border-dark-border bg-transparent px-6 py-3 font-semibold text-dark-text transition-colors hover:border-primary/60 hover:bg-dark-surface;
   }
-  
+
   .btn-ghost {
-    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium text-dark-muted transition-colors hover:text-dark-text dark:text-dark-muted dark:hover:text-dark-text;
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium text-dark-muted transition-colors hover:text-dark-text;
+  }
+
+  .landing-grid {
+    @apply pointer-events-none absolute inset-0 -z-10 opacity-40;
+    background-image: linear-gradient(to right, rgba(247, 147, 26, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(247, 147, 26, 0.06) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(circle at top, black 20%, transparent 80%);
+  }
+
+  .landing-orb {
+    @apply pointer-events-none absolute -z-10 rounded-full blur-3xl;
+  }
+
+  .landing-orb-1 {
+    @apply left-[-12rem] top-16 h-72 w-72 bg-primary/20;
+  }
+
+  .landing-orb-2 {
+    @apply right-[-10rem] top-[26rem] h-80 w-80 bg-orange-700/20;
+  }
+
+  .landing-badge {
+    @apply inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.14em] text-primary;
+  }
+
+  .landing-card {
+    @apply rounded-2xl border border-dark-border/80 bg-dark-surface/70 p-6 backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-primary/45 hover:bg-dark-surface;
+  }
+
+  .landing-panel {
+    @apply rounded-3xl border border-primary/30 bg-gradient-to-br from-[#2d1b08]/85 via-[#1a130d]/90 to-[#121212] shadow-[0_24px_80px_-40px_rgba(247,147,26,0.65)];
   }
 }
