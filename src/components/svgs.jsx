@@ -35,8 +35,9 @@ export function ComparisonSvg() {
         <text x="130" y="235" textAnchor="middle" fill="#888" fontSize="13" fontWeight="600">or be banned</text>
         
         {/* Badges */}
-        <circle cx="30" cy="300" r="12" fill="#e95420"/>
-        <path d="M24 300 L28 304 L36 296" stroke="white" strokeWidth="2" fill="none"/>
+        <circle cx="130" cy="300" r="12" fill="#ef4444"/>
+        <path d="M125 295 L135 305" stroke="white" strokeWidth="2" />
+        <path d="M135 295 L125 305" stroke="white" strokeWidth="2" />
       </g>
       
       {/* VS */}

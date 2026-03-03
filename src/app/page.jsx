@@ -1,56 +1,66 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Github, Terminal, ArrowDown } from "lucide-react";
+import { Github, Terminal } from "lucide-react";
 import { ComparisonSvg } from "@/components/svgs";
 import { ConceptSections } from "@/components/concept-sections";
 
-function AgentNetworkSvg() {
+function BeforeEraSvg() {
   return (
-    <svg viewBox="0 0 920 340" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-      <defs>
-        <linearGradient id="agentCore" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#2e1d0a" />
-          <stop offset="100%" stopColor="#171717" />
-        </linearGradient>
-      </defs>
-      <rect width="920" height="340" rx="18" fill="#0f0f0f" />
+    <svg viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+      <rect width="340" height="180" rx="14" fill="#0f0f0f" />
+      <circle cx="74" cy="90" r="28" fill="#1f1f1f" stroke="#7dd3fc" strokeWidth="2" />
+      <text x="74" y="95" textAnchor="middle" fill="#bae6fd" fontSize="10">Person</text>
+      <path d="M102 90 L144 90" stroke="#7dd3fc" strokeWidth="2" />
+      <polygon points="144,90 134,84 134,96" fill="#7dd3fc" />
+      <rect x="144" y="52" width="128" height="76" rx="12" fill="#161616" stroke="#3b3b3b" />
+      <text x="208" y="81" textAnchor="middle" fill="#d4d4d8" fontSize="10">Centralized Platform</text>
+      <rect x="172" y="92" width="72" height="20" rx="6" fill="#222" />
+      <text x="208" y="106" textAnchor="middle" fill="#a1a1aa" fontSize="9">Account</text>
+      <text x="170" y="146" fill="#71717a" fontSize="9">Identity depends on platform account</text>
+    </svg>
+  );
+}
 
-      <circle cx="460" cy="170" r="64" fill="url(#agentCore)" stroke="#F7931A" strokeWidth="2.5" />
-      <text x="460" y="164" textAnchor="middle" fill="#FBBF24" fontSize="15" fontWeight="700">Your Node</text>
-      <text x="460" y="184" textAnchor="middle" fill="#FDE68A" fontSize="11">Social Agent</text>
+function NodeEraSvg() {
+  return (
+    <svg viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+      <rect width="340" height="180" rx="14" fill="#0f0f0f" />
+      <rect x="48" y="38" width="150" height="104" rx="12" fill="#171717" stroke="#3b3b3b" />
+      <rect x="60" y="52" width="126" height="14" rx="5" fill="#222" />
+      <rect x="60" y="75" width="86" height="12" rx="4" fill="#2d2d2d" />
+      <rect x="60" y="94" width="124" height="10" rx="4" fill="#262626" />
+      <rect x="60" y="110" width="106" height="10" rx="4" fill="#262626" />
+      <text x="123" y="135" textAnchor="middle" fill="#fbbf24" fontSize="9">your-node.site</text>
+      <circle cx="256" cy="90" r="30" fill="#1f1f1f" stroke="#f7931a" strokeWidth="2" />
+      <text x="256" y="86" textAnchor="middle" fill="#fbbf24" fontSize="9">Your</text>
+      <text x="256" y="100" textAnchor="middle" fill="#fbbf24" fontSize="9">Identity</text>
+      <path d="M198 90 L226 90" stroke="#f7931a" strokeWidth="2" />
+      <polygon points="226,90 216,84 216,96" fill="#f7931a" />
+      <text x="56" y="159" fill="#71717a" fontSize="9">Self-hosted node becomes your social presence</text>
+    </svg>
+  );
+}
 
-      <rect x="120" y="64" width="182" height="82" rx="12" fill="#151515" stroke="#3a3a3a" />
-      <text x="211" y="95" textAnchor="middle" fill="#E5E7EB" fontSize="12" fontWeight="600">Connect</text>
-      <text x="211" y="116" textAnchor="middle" fill="#9CA3AF" fontSize="10">Mutual follow handshake</text>
-
-      <rect x="120" y="194" width="182" height="82" rx="12" fill="#151515" stroke="#3a3a3a" />
-      <text x="211" y="225" textAnchor="middle" fill="#E5E7EB" fontSize="12" fontWeight="600">Store</text>
-      <text x="211" y="246" textAnchor="middle" fill="#9CA3AF" fontSize="10">Your posts + social graph</text>
-
-      <rect x="618" y="64" width="182" height="82" rx="12" fill="#151515" stroke="#3a3a3a" />
-      <text x="709" y="95" textAnchor="middle" fill="#E5E7EB" fontSize="12" fontWeight="600">Publish</text>
-      <text x="709" y="116" textAnchor="middle" fill="#9CA3AF" fontSize="10">Signed content (PoS)</text>
-
-      <rect x="618" y="194" width="182" height="82" rx="12" fill="#151515" stroke="#3a3a3a" />
-      <text x="709" y="225" textAnchor="middle" fill="#E5E7EB" fontSize="12" fontWeight="600">AI Interface</text>
-      <text x="709" y="246" textAnchor="middle" fill="#9CA3AF" fontSize="10">Agent-driven social actions</text>
-
-      <path d="M302 105 L396 149" stroke="#F7931A" strokeWidth="2" />
-      <polygon points="396,149 386,141 383,153" fill="#F7931A" />
-      <path d="M302 235 L396 191" stroke="#F7931A" strokeWidth="2" />
-      <polygon points="396,191 383,187 388,199" fill="#F7931A" />
-      <path d="M524 149 L618 105" stroke="#F7931A" strokeWidth="2" />
-      <polygon points="618,105 608,112 613,124" fill="#F7931A" />
-      <path d="M524 191 L618 235" stroke="#F7931A" strokeWidth="2" />
-      <polygon points="618,235 605,230 610,242" fill="#F7931A" />
-
-      <circle cx="842" cy="100" r="30" fill="#121f16" stroke="#34D399" />
-      <text x="842" y="105" textAnchor="middle" fill="#6EE7B7" fontSize="10">User A</text>
-      <circle cx="842" cy="238" r="30" fill="#122031" stroke="#60A5FA" />
-      <text x="842" y="243" textAnchor="middle" fill="#93C5FD" fontSize="10">User B</text>
-
-      <path d="M800 100 L812 100" stroke="#6EE7B7" strokeWidth="2" />
-      <path d="M800 238 L812 238" stroke="#93C5FD" strokeWidth="2" />
+function AIAgentEraSvg() {
+  return (
+    <svg viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+      <rect width="340" height="180" rx="14" fill="#0f0f0f" />
+      <circle cx="82" cy="90" r="24" fill="#1c1c1c" stroke="#60a5fa" strokeWidth="2" />
+      <text x="82" y="95" textAnchor="middle" fill="#93c5fd" fontSize="10">You</text>
+      <rect x="134" y="60" width="80" height="60" rx="10" fill="#1a130a" stroke="#f7931a" />
+      <text x="174" y="84" textAnchor="middle" fill="#fbbf24" fontSize="9">epress</text>
+      <text x="174" y="98" textAnchor="middle" fill="#fbbf24" fontSize="9">Node</text>
+      <rect x="244" y="46" width="64" height="34" rx="8" fill="#10281a" stroke="#34d399" />
+      <text x="276" y="67" textAnchor="middle" fill="#6ee7b7" fontSize="9">AI Agent</text>
+      <rect x="244" y="98" width="64" height="34" rx="8" fill="#0f2238" stroke="#60a5fa" />
+      <text x="276" y="119" textAnchor="middle" fill="#93c5fd" fontSize="9">APIs</text>
+      <path d="M106 90 L134 90" stroke="#f7931a" strokeWidth="2" />
+      <polygon points="134,90 124,84 124,96" fill="#f7931a" />
+      <path d="M214 78 L244 63" stroke="#34d399" strokeWidth="2" />
+      <polygon points="244,63 233,61 238,71" fill="#34d399" />
+      <path d="M214 102 L244 115" stroke="#60a5fa" strokeWidth="2" />
+      <polygon points="244,115 233,107 229,117" fill="#60a5fa" />
+      <text x="38" y="159" fill="#71717a" fontSize="9">AI can operate your social interactions via open interfaces</text>
     </svg>
   );
 }
@@ -76,12 +86,6 @@ export default function Home() {
             </Link>
             <Link href="/whitepaper" className="btn-ghost">
               Whitepaper
-            </Link>
-            <Link href="/community" className="btn-ghost">
-              Community
-            </Link>
-            <Link href="/download" className="btn-ghost">
-              Download
             </Link>
             <a
               href="https://github.com/epressworld/epress"
@@ -125,8 +129,9 @@ export default function Home() {
               in the AI & Decentralized Era
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-              A truly decentralized social network built on self-hosting.
-              Your data, your identity, your rules - take back your digital sovereignty.
+              Your self-hosted epress node is your social agent:
+              it connects, stores, and publishes for you on an open network,
+              and plugs directly into your AI workflows.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/docs/getting-started" className="btn-primary">
@@ -143,18 +148,39 @@ export default function Home() {
                 View on GitHub
               </a>
             </div>
-            <div className="mt-4">
-              <Link href="/whitepaper" className="text-sm text-primary hover:text-primary-300 transition-colors">
-                Read the Whitepaper
-              </Link>
+          </div>
+        </section>
+
+        <section id="why-agent" className="py-14 border-t border-dark-border bg-dark-surface/40">
+          <div className="container-custom">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-3">Why “Social Network Agent”</h2>
+            <p className="text-gray-400 text-center max-w-3xl mx-auto mb-8">
+              The role shifts from platform account to self-hosted agent.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <article className="rounded-xl border border-dark-border bg-dark-bg/70 p-4">
+                <div className="rounded-lg border border-dark-border bg-dark-surface/60 p-2 mb-3">
+                  <BeforeEraSvg />
+                </div>
+                <h3 className="font-semibold mb-1">Before</h3>
+                <p className="text-sm text-gray-400">One person, one platform account. Identity is controlled by the platform.</p>
+              </article>
+              <article className="rounded-xl border border-dark-border bg-dark-bg/70 p-4">
+                <div className="rounded-lg border border-dark-border bg-dark-surface/60 p-2 mb-3">
+                  <NodeEraSvg />
+                </div>
+                <h3 className="font-semibold mb-1">Now</h3>
+                <p className="text-sm text-gray-400">One person, one self-hosted node. Identity and data are controlled by you.</p>
+              </article>
+              <article className="rounded-xl border border-dark-border bg-dark-bg/70 p-4">
+                <div className="rounded-lg border border-dark-border bg-dark-surface/60 p-2 mb-3">
+                  <AIAgentEraSvg />
+                </div>
+                <h3 className="font-semibold mb-1">AI Era</h3>
+                <p className="text-sm text-gray-400">Your node becomes a programmable social interface for your own AI agent.</p>
+              </article>
             </div>
-            <Link
-              href="#learn-more"
-              className="inline-flex items-center gap-2 mt-6 text-gray-400 hover:text-primary transition-colors"
-            >
-              <ArrowDown className="w-4 h-4" />
-              Learn More
-            </Link>
           </div>
         </section>
 
@@ -169,22 +195,24 @@ export default function Home() {
             <ComparisonSvg />
 
             <div className="mt-10 rounded-2xl border border-dark-border bg-dark-surface/70 p-6">
-              <h3 className="text-2xl font-bold mb-3 text-center">Your Node Is Your Social Agent</h3>
-              <div className="rounded-xl border border-dark-border bg-dark-bg/60 p-3 md:p-4">
-                <AgentNetworkSvg />
-              </div>
-              <p className="mt-4 text-gray-300 text-center max-w-3xl mx-auto">
-                In the AI era, this node works as your personal social agent: it connects, stores, and publishes for you on an open network.
+              <h3 className="text-xl md:text-2xl font-bold text-center mb-3">Run Your Node in One Command</h3>
+              <p className="text-gray-400 text-center max-w-3xl mx-auto mb-5">
+                Start a self-hosted epress node with Docker.
               </p>
+              <div className="rounded-xl border border-dark-border bg-dark-bg p-4 overflow-x-auto">
+                <code className="text-primary text-sm break-all">
+                  docker run -d -p 8543:8543 -p 8544:8544 -v epress-data:/app/data --name my-epress-node ghcr.io/epressworld/epress
+                </code>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="py-20 bg-dark-surface">
+        <section id="core-concepts" className="py-20 bg-dark-surface">
           <div className="container-custom">
-            <h2 className="text-3xl font-bold text-center mb-4">5 Core Concepts</h2>
+            <h2 className="text-3xl font-bold text-center mb-4">How Your Social Agent Works</h2>
             <p className="text-gray-400 text-center mb-10 max-w-3xl mx-auto">
-              Simple visuals of how epress works.
+              Five mechanisms turn this idea into a working epress network.
             </p>
             <ConceptSections />
           </div>
@@ -195,7 +223,7 @@ export default function Home() {
         <div className="container-custom flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Image
-              src="/logo-light.svg"
+              src="/icon.svg"
               alt="epress"
               width={24}
               height={24}
