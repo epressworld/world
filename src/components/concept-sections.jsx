@@ -1,298 +1,296 @@
 "use client";
 
-import { useRef } from "react";
+import {
+  CalendarClock,
+  FileCheck2,
+  Handshake,
+  House,
+  KeyRound,
+} from "lucide-react";
 
 const concepts = [
   {
     id: "identity",
+    icon: KeyRound,
     title: "Identity",
-    icon: "🔑",
     subtitle: "Your Identity = Your Ethereum Address",
-    desc: "In epress, you don't create an account on a platform. Your identity IS your Ethereum address — controlled by your private key. No username, no password, no platform can ban you or take it away.",
-    align: "left"
+    helper:
+      "In epress, you do not create a platform account. Your Ethereum address is your identity, controlled by your private key. No platform can take it away.",
+    points: ["No username/password lock-in", "Portable and self-owned identity"],
   },
   {
     id: "node",
+    icon: House,
     title: "Node",
-    icon: "🌐",
     subtitle: "Your Node = Your Personal Website",
-    desc: "Every user runs their own node — a personal website you fully control. Think of it as your digital home. You publish posts, manage pages, and interact with visitors. But unlike Twitter or Facebook, this website belongs entirely to YOU.",
-    align: "right"
+    helper:
+      "Every user runs a node as a personal social website. Your posts, pages, and settings live on your node under your control.",
+    points: ["Self-hosted digital home", "Your data stays with you"],
   },
   {
     id: "connection",
+    icon: Handshake,
     title: "Connection",
-    icon: "🔗",
     subtitle: "Follow = Mutual Agreement",
-    desc: "When you follow someone on epress, you're creating a direct peer-to-peer connection. But here's the key: both parties must confirm. This 'synchronous handshake' ensures the relationship exists on BOTH nodes simultaneously. No fake followers, no unilateral decisions.",
-    align: "left"
+    helper:
+      "A follow is created only after both nodes confirm it. This synchronous handshake keeps social relationships consistent on both sides.",
+    points: ["No unilateral follow records", "Both nodes store the same relationship"],
   },
   {
     id: "content",
+    icon: FileCheck2,
     title: "Content",
-    icon: "📄",
     subtitle: "Content = Cryptographically Signed",
-    desc: "When you publish content on epress, it's cryptographically signed with your private key, creating a 'Proof of Source' (PoS). This proves WHO created it, WHEN it was published, and that it hasn't been tampered with. Anyone can verify — but no one can forge or alter.",
-    align: "right",
-    isKey: true
+    helper:
+      "Signed publication creates Proof of Source (PoS), so anyone can verify who published the content, when it was published, and whether it changed.",
+    points: ["Verifiable source", "Tamper-evident integrity"],
   },
   {
     id: "timeline",
+    icon: CalendarClock,
     title: "Timeline",
-    icon: "📅",
-    subtitle: "Timeline = Your Local View",
-    desc: "Your timeline is generated entirely on YOUR node. It combines your posts with posts from everyone you follow, sorted by timestamp. No algorithm decides what you see. No one can manipulate your feed. It's your personal view of the network, generated locally, controlled by you.",
-    align: "left"
-  }
+    subtitle: "Timeline = Your Local Aggregation",
+    helper:
+      "Your timeline is generated on your own node from your posts and content from people you follow, sorted by timestamp.",
+    points: ["No opaque ranking algorithm", "Your timeline, your control"],
+  },
 ];
 
-function IdentitySvg() {
+function IdentityDiagram() {
   return (
-    <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <svg viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
       <defs>
-        <linearGradient id="ethGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#627EEA"/>
-          <stop offset="100%" stopColor="#3c3c3d"/>
+        <linearGradient id="idGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#2a1a09" />
+          <stop offset="100%" stopColor="#171717" />
         </linearGradient>
       </defs>
-      
-      {/* Background */}
-      <rect width="300" height="200" fill="#0f0f0f" rx="12"/>
-      
-      {/* User Icon */}
-      <circle cx="150" cy="50" r="25" fill="#2a2a2a" stroke="#F7931A" strokeWidth="2"/>
-      <circle cx="150" cy="42" r="10" fill="#F7931A"/>
-      <path d="M130 65 Q150 80 170 65" stroke="#F7931A" strokeWidth="2" fill="none"/>
-      
-      {/* Arrow Down */}
-      <path d="M150 85 L150 105" stroke="#444" strokeWidth="2"/>
-      <polygon points="145,100 150,110 155,100" fill="#444"/>
-      
-      {/* Wallet */}
-      <rect x="110" y="110" width="80" height="50" rx="8" fill="url(#ethGrad)"/>
-      <text x="150" y="140" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">Wallet</text>
-      
-      {/* Key */}
-      <circle cx="200" cy="135" r="15" fill="#F7931A"/>
-      <text x="200" y="140" textAnchor="middle" fill="white" fontSize="14">🔑</text>
-      
-      {/* Address */}
-      <rect x="80" y="170" width="140" height="20" rx="4" fill="#1a1a1a"/>
-      <text x="150" y="184" textAnchor="middle" fill="#627EEA" fontSize="10" fontFamily="monospace">0x7a2...f9</text>
+      <rect width="560" height="300" rx="18" fill="#101010" />
+      <rect x="26" y="26" width="160" height="248" rx="14" fill="#171717" stroke="#333" />
+      <circle cx="106" cy="86" r="30" fill="#212121" stroke="#F7931A" strokeWidth="2" />
+      <text x="106" y="92" textAnchor="middle" fill="#FBBF24" fontSize="12">You</text>
+      <rect x="48" y="132" width="116" height="36" rx="10" fill="#101010" stroke="#393939" />
+      <text x="106" y="154" textAnchor="middle" fill="#9CA3AF" fontSize="10">Private Key</text>
+      <rect x="40" y="184" width="132" height="44" rx="10" fill="#0e2238" stroke="#3B82F6" />
+      <text x="106" y="210" textAnchor="middle" fill="#93C5FD" fontSize="11">0x7a2...f9</text>
+
+      <rect x="224" y="56" width="148" height="78" rx="12" fill="url(#idGrad)" stroke="#F7931A" />
+      <text x="298" y="84" textAnchor="middle" fill="#FBBF24" fontSize="11">Sign Message</text>
+      <text x="298" y="104" textAnchor="middle" fill="#FDE68A" fontSize="10">SIWE / EIP-712</text>
+
+      <path d="M186 150 L224 95" stroke="#F7931A" strokeWidth="2" strokeDasharray="5 4" />
+      <path d="M372 95 L416 95" stroke="#F7931A" strokeWidth="2" />
+      <polygon points="416,95 406,89 406,101" fill="#F7931A" />
+
+      <rect x="416" y="42" width="120" height="110" rx="12" fill="#171717" stroke="#3f3f46" />
+      <text x="476" y="70" textAnchor="middle" fill="#D4D4D8" fontSize="10">Node Auth</text>
+      <circle cx="476" cy="108" r="20" fill="#10281a" stroke="#34D399" />
+      <text x="476" y="114" textAnchor="middle" fill="#34D399" fontSize="16">✓</text>
+
+      <rect x="224" y="172" width="312" height="82" rx="12" fill="#151515" stroke="#2f2f2f" />
+      <text x="244" y="198" fill="#A1A1AA" fontSize="10">What this means</text>
+      <text x="244" y="220" fill="#E5E7EB" fontSize="11">Your identity is self-owned and verifiable.</text>
+      <text x="244" y="238" fill="#E5E7EB" fontSize="11">No platform can freeze or revoke it.</text>
     </svg>
   );
 }
 
-function NodeSvg() {
+function NodeDiagram() {
   return (
-    <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-      <rect width="300" height="200" fill="#0f0f0f" rx="12"/>
-      
-      {/* Globe */}
-      <circle cx="150" cy="40" r="25" fill="none" stroke="#F7931A" strokeWidth="2"/>
-      <ellipse cx="150" cy="40" rx="25" ry="8" fill="none" stroke="#F7931A" strokeWidth="1"/>
-      <line x1="125" y1="40" x2="175" y2="40" stroke="#F7931A" strokeWidth="1"/>
-      <line x1="150" y1="15" x2="150" y2="65" stroke="#F7931A" strokeWidth="1"/>
-      
-      {/* Server */}
-      <rect x="75" y="75" width="150" height="90" rx="8" fill="#1a1a1a" stroke="#333" strokeWidth="2"/>
-      
-      {/* Screen */}
-      <rect x="85" y="85" width="130" height="40" rx="4" fill="#0a0a0a"/>
-      <circle cx="100" cy="105" r="3" fill="#00ff00"/>
-      <circle cx="115" cy="105" r="3" fill="#00ff00"/>
-      <circle cx="130" cy="105" r="3" fill="#ff0000"/>
-      
-      {/* Content blocks */}
-      <rect x="85" y="130" width="40" height="25" rx="2" fill="#2a2a2a"/>
-      <rect x="130" y="130" width="40" height="25" rx="2" fill="#2a2a2a"/>
-      <rect x="175" y="130" width="40" height="25" rx="2" fill="#2a2a2a"/>
-      
-      <text x="150" y="185" textAnchor="middle" fill="#888" fontSize="11">your-domain.com</text>
+    <svg viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+      <rect width="560" height="300" rx="18" fill="#101010" />
+      <rect x="28" y="32" width="302" height="210" rx="14" fill="#171717" stroke="#343434" />
+      <rect x="44" y="50" width="270" height="20" rx="6" fill="#212121" />
+      <circle cx="58" cy="60" r="3" fill="#ef4444" />
+      <circle cx="69" cy="60" r="3" fill="#f59e0b" />
+      <circle cx="80" cy="60" r="3" fill="#22c55e" />
+      <rect x="44" y="84" width="170" height="28" rx="8" fill="#23180a" stroke="#F7931A" />
+      <text x="129" y="102" textAnchor="middle" fill="#FBBF24" fontSize="10">your-node.example</text>
+      <rect x="44" y="124" width="270" height="98" rx="10" fill="#121212" stroke="#2e2e2e" />
+      <rect x="58" y="140" width="88" height="14" rx="4" fill="#303030" />
+      <rect x="58" y="162" width="238" height="10" rx="3" fill="#252525" />
+      <rect x="58" y="178" width="208" height="10" rx="3" fill="#252525" />
+      <rect x="58" y="194" width="224" height="10" rx="3" fill="#252525" />
+
+      <path d="M330 138 L382 138" stroke="#F7931A" strokeWidth="2" />
+      <polygon points="382,138 372,132 372,144" fill="#F7931A" />
+
+      <rect x="382" y="52" width="150" height="190" rx="14" fill="#151515" stroke="#353535" />
+      <text x="457" y="80" textAnchor="middle" fill="#D4D4D8" fontSize="10">What your node stores</text>
+      <rect x="402" y="96" width="110" height="34" rx="10" fill="#10281a" stroke="#34D399" />
+      <text x="457" y="117" textAnchor="middle" fill="#6EE7B7" fontSize="10">Your Content</text>
+      <rect x="402" y="138" width="110" height="34" rx="10" fill="#0e2238" stroke="#60A5FA" />
+      <text x="457" y="159" textAnchor="middle" fill="#93C5FD" fontSize="10">Connections</text>
+      <rect x="402" y="180" width="110" height="34" rx="10" fill="#23180a" stroke="#F7931A" />
+      <text x="457" y="201" textAnchor="middle" fill="#FBBF24" fontSize="10">Profile & Config</text>
     </svg>
   );
 }
 
-function ConnectionSvg() {
+function ConnectionDiagram() {
   return (
-    <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-      <rect width="300" height="200" fill="#0f0f0f" rx="12"/>
-      
-      {/* Alice */}
-      <circle cx="70" cy="80" r="25" fill="#2a2a2a" stroke="#F7931A" strokeWidth="2"/>
-      <text x="70" y="85" textAnchor="middle" fill="white" fontSize="18" fontWeight="bold">A</text>
-      <text x="70" y="120" textAnchor="middle" fill="#888" fontSize="10">Alice</text>
-      
-      {/* Bob */}
-      <circle cx="230" cy="80" r="25" fill="#2a2a2a" stroke="#4a9" strokeWidth="2"/>
-      <text x="230" y="85" textAnchor="middle" fill="white" fontSize="18" fontWeight="bold">B</text>
-      <text x="230" y="120" textAnchor="middle" fill="#888" fontSize="10">Bob</text>
-      
-      {/* Follow Arrow */}
-      <path d="M100 80 Q150 50 200 80" stroke="#F7931A" strokeWidth="2" fill="none" markerEnd="url(#arrow)"/>
-      
-      {/* Sync */}
-      <path d="M180 120 Q150 140 120 120" stroke="#4a9" strokeWidth="2" fill="none"/>
-      
-      {/* Confirmed badges */}
-      <circle cx="70" cy="150" r="12" fill="#1a3a1a" stroke="#4a9"/>
-      <text x="70" y="154" textAnchor="middle" fill="#4a9" fontSize="12">✓</text>
-      
-      <circle cx="150" cy="150" r="12" fill="#1a3a1a" stroke="#4a9"/>
-      <text x="150" y="154" textAnchor="middle" fill="#4a9" fontSize="12">✓</text>
-      
-      <circle cx="230" cy="150" r="12" fill="#1a3a1a" stroke="#4a9"/>
-      <text x="230" y="154" textAnchor="middle" fill="#4a9" fontSize="12">✓</text>
-      
-      <text x="150" y="185" textAnchor="middle" fill="#4a9" fontSize="10">Both nodes confirmed</text>
+    <svg viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+      <rect width="560" height="300" rx="18" fill="#101010" />
+      <circle cx="110" cy="98" r="34" fill="#1b1b1b" stroke="#F7931A" strokeWidth="2" />
+      <text x="110" y="103" textAnchor="middle" fill="#FBBF24" fontSize="13">Alice</text>
+
+      <circle cx="450" cy="98" r="34" fill="#1b1b1b" stroke="#60A5FA" strokeWidth="2" />
+      <text x="450" y="103" textAnchor="middle" fill="#93C5FD" fontSize="13">Bob</text>
+
+      <rect x="206" y="48" width="148" height="44" rx="10" fill="#23180a" stroke="#F7931A" />
+      <text x="280" y="75" textAnchor="middle" fill="#FBBF24" fontSize="10">Signed Follow Intent</text>
+
+      <path d="M144 98 L206 70" stroke="#F7931A" strokeWidth="2" />
+      <polygon points="206,70 195,68 200,78" fill="#F7931A" />
+      <path d="M354 70 L416 98" stroke="#60A5FA" strokeWidth="2" />
+      <polygon points="416,98 405,90 402,101" fill="#60A5FA" />
+
+      <rect x="78" y="174" width="178" height="78" rx="12" fill="#151515" stroke="#343434" />
+      <text x="167" y="202" textAnchor="middle" fill="#D4D4D8" fontSize="10">Alice Node</text>
+      <text x="167" y="224" textAnchor="middle" fill="#6EE7B7" fontSize="11">I follow Bob  ✓</text>
+
+      <rect x="304" y="174" width="178" height="78" rx="12" fill="#151515" stroke="#343434" />
+      <text x="393" y="202" textAnchor="middle" fill="#D4D4D8" fontSize="10">Bob Node</text>
+      <text x="393" y="224" textAnchor="middle" fill="#6EE7B7" fontSize="11">Alice follows me  ✓</text>
+
+      <path d="M256 214 L304 214" stroke="#34D399" strokeWidth="2" strokeDasharray="4 4" />
+      <text x="280" y="200" textAnchor="middle" fill="#34D399" fontSize="9">synchronous confirmation</text>
     </svg>
   );
 }
 
-function ContentSvg() {
+function ContentDiagram() {
   return (
-    <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-      <rect width="300" height="200" fill="#0f0f0f" rx="12"/>
-      
-      {/* Content */}
-      <rect x="20" y="60" width="100" height="60" rx="4" fill="#1a1a1a" stroke="#444"/>
-      <text x="70" y="85" textAnchor="middle" fill="#666" fontSize="9">Content</text>
-      <text x="70" y="105" textAnchor="middle" fill="#fff" fontSize="11">"Hello World"</text>
-      
-      {/* Hash */}
-      <path d="M130 90 L170 90" stroke="#F7931A" strokeWidth="2"/>
-      <rect x="175" y="70" width="50" height="40" rx="4" fill="#1a1a1a" stroke="#F7931A"/>
-      <text x="200" y="95" textAnchor="middle" fill="#F7931A" fontSize="8">SHA-256</text>
-      
-      {/* Sign */}
-      <path d="M235 90 L255 90" stroke="#F7931A" strokeWidth="2"/>
-      <rect x="260" y="50" width="30" height="80" rx="4" fill="#0f1a0f" stroke="#00ff00" strokeWidth="2"/>
-      <text x="275" y="95" textAnchor="middle" fill="#00ff00" fontSize="9" fontWeight="bold">PoS</text>
-      
-      {/* PoS Details */}
-      <rect x="20" y="140" width="260" height="45" rx="4" fill="#1a1a1a"/>
-      <text x="30" y="155" fill="#00ff00" fontSize="8">✓ Owner: 0x7a2...f9</text>
-      <text x="30" y="170" fill="#00ff00" fontSize="8">✓ Time: 2025-03-02</text>
-      <text x="150" y="170" fill="#00ff00" fontSize="8">✓ Hash verified</text>
+    <svg viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+      <rect width="560" height="300" rx="18" fill="#101010" />
+
+      <rect x="28" y="92" width="128" height="118" rx="12" fill="#171717" stroke="#353535" />
+      <text x="92" y="118" textAnchor="middle" fill="#D4D4D8" fontSize="10">Content</text>
+      <rect x="44" y="136" width="96" height="10" rx="3" fill="#2d2d2d" />
+      <rect x="44" y="152" width="78" height="10" rx="3" fill="#2d2d2d" />
+      <rect x="44" y="168" width="90" height="10" rx="3" fill="#2d2d2d" />
+
+      <path d="M156 152 L210 152" stroke="#F7931A" strokeWidth="2" />
+      <polygon points="210,152 200,146 200,158" fill="#F7931A" />
+
+      <rect x="210" y="114" width="138" height="76" rx="12" fill="#23180a" stroke="#F7931A" />
+      <text x="279" y="142" textAnchor="middle" fill="#FBBF24" fontSize="10">SoS</text>
+      <text x="279" y="160" textAnchor="middle" fill="#FDE68A" fontSize="9">hash + publisher + time</text>
+
+      <path d="M348 152 L392 152" stroke="#F7931A" strokeWidth="2" />
+      <polygon points="392,152 382,146 382,158" fill="#F7931A" />
+
+      <rect x="392" y="96" width="140" height="112" rx="12" fill="#111f16" stroke="#34D399" />
+      <text x="462" y="126" textAnchor="middle" fill="#6EE7B7" fontSize="10">Proof of Source</text>
+      <text x="462" y="145" textAnchor="middle" fill="#6EE7B7" fontSize="9">SoS + signature</text>
+      <circle cx="462" cy="170" r="16" fill="#10281a" stroke="#34D399" />
+      <text x="462" y="176" textAnchor="middle" fill="#34D399" fontSize="14">✓</text>
+
+      <rect x="28" y="226" width="504" height="46" rx="10" fill="#151515" stroke="#303030" />
+      <text x="46" y="253" fill="#E5E7EB" fontSize="10">Every signed post can be verified before it enters someone else&apos;s timeline.</text>
     </svg>
   );
 }
 
-function TimelineSvg() {
+function TimelineDiagram() {
   return (
-    <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-      <rect width="300" height="200" fill="#0f0f0f" rx="12"/>
-      
-      {/* Phone/Frame */}
-      <rect x="80" y="20" width="140" height="160" rx="12" fill="#1a1a1a" stroke="#333"/>
-      
-      {/* Header */}
-      <rect x="80" y="20" width="140" height="25" rx="12" fill="#F7931A"/>
-      <text x="150" y="38" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Timeline</text>
-      
-      {/* Posts */}
-      <rect x="90" y="55" width="120" height="30" rx="4" fill="#2a2a2a"/>
-      <circle cx="105" cy="70" r="8" fill="#4a9"/>
-      <text x="117" y="73" fill="#888" fontSize="8">Bob</text>
-      <text x="117" y="81" fill="#fff" fontSize="7">Hello!</text>
-      
-      <rect x="90" y="90" width="120" height="30" rx="4" fill="#2a2a2a"/>
-      <circle cx="105" cy="105" r="8" fill="#F7931A"/>
-      <text x="117" y="108" fill="#888" fontSize="8">You</text>
-      <text x="117" y="116" fill="#fff" fontSize="7">Hi there</text>
-      
-      <rect x="90" y="125" width="120" height="30" rx="4" fill="#2a2a2a"/>
-      <circle cx="105" cy="140" r="8" fill="#4a9"/>
-      <text x="117" y="143" fill="#888" fontSize="8">Alice</text>
-      <text x="117" y="151" fill="#fff" fontSize="7">Hey guys</text>
-      
-      {/* Timeline icon */}
-      <line x1="260" y1="50" x2="260" y2="160" stroke="#F7931A" strokeWidth="2"/>
-      <circle cx="260" cy="55" r="3" fill="#F7931A"/>
-      <circle cx="260" cy="95" r="3" fill="#F7931A"/>
-      <circle cx="260" cy="135" r="3" fill="#F7931A"/>
+    <svg viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+      <rect width="560" height="300" rx="18" fill="#101010" />
+
+      <rect x="26" y="44" width="156" height="206" rx="12" fill="#151515" stroke="#343434" />
+      <text x="104" y="68" textAnchor="middle" fill="#D4D4D8" fontSize="10">Stored Locally</text>
+      <rect x="42" y="84" width="124" height="30" rx="8" fill="#10281a" stroke="#34D399" />
+      <text x="104" y="103" textAnchor="middle" fill="#6EE7B7" fontSize="9">Your posts</text>
+      <rect x="42" y="122" width="124" height="30" rx="8" fill="#0e2238" stroke="#60A5FA" />
+      <text x="104" y="141" textAnchor="middle" fill="#93C5FD" fontSize="9">Followed content</text>
+      <rect x="42" y="160" width="124" height="30" rx="8" fill="#23180a" stroke="#F7931A" />
+      <text x="104" y="179" textAnchor="middle" fill="#FBBF24" fontSize="9">Timestamps</text>
+
+      <path d="M182 146 L236 146" stroke="#F7931A" strokeWidth="2" />
+      <polygon points="236,146 226,140 226,152" fill="#F7931A" />
+
+      <rect x="236" y="54" width="298" height="196" rx="12" fill="#171717" stroke="#363636" />
+      <rect x="252" y="74" width="266" height="24" rx="8" fill="#23180a" stroke="#F7931A" />
+      <text x="385" y="90" textAnchor="middle" fill="#FBBF24" fontSize="10">Your Timeline (newest first)</text>
+
+      <rect x="252" y="108" width="266" height="34" rx="8" fill="#202020" />
+      <text x="266" y="129" fill="#E5E7EB" fontSize="10">12:08  Bob published a signed post</text>
+
+      <rect x="252" y="148" width="266" height="34" rx="8" fill="#202020" />
+      <text x="266" y="169" fill="#E5E7EB" fontSize="10">11:55  Your local draft was updated</text>
+
+      <rect x="252" y="188" width="266" height="34" rx="8" fill="#202020" />
+      <text x="266" y="209" fill="#E5E7EB" fontSize="10">11:26  Alice&apos;s content passed PoS check</text>
+
+      <rect x="430" y="20" width="104" height="24" rx="12" fill="#2a1616" stroke="#ef4444" />
+      <text x="482" y="36" textAnchor="middle" fill="#fca5a5" fontSize="9">No hidden feed ranking</text>
     </svg>
   );
 }
 
-const svgComponents = {
-  identity: IdentitySvg,
-  node: NodeSvg,
-  connection: ConnectionSvg,
-  content: ContentSvg,
-  timeline: TimelineSvg
+const diagrams = {
+  identity: IdentityDiagram,
+  node: NodeDiagram,
+  connection: ConnectionDiagram,
+  content: ContentDiagram,
+  timeline: TimelineDiagram,
 };
 
 export function ConceptSections() {
-  const containerRef = useRef(null);
-
-  const handleCardClick = (id) => {
-    const element = document.getElementById(`concept-${id}`);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
-  };
-
   return (
-    <div ref={containerRef}>
-      {/* Navigation Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-12">
-        {concepts.map((concept) => (
-          <button
-            key={concept.id}
-            onClick={() => handleCardClick(concept.id)}
-            className="p-3 rounded-lg bg-dark-surface border border-dark-border hover:border-primary/50 transition-all text-center"
-          >
-            <div className="text-xl mb-1">{concept.icon}</div>
-            <div className="font-semibold text-sm">{concept.title}</div>
-          </button>
-        ))}
+    <div className="space-y-5">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        {concepts.map((concept) => {
+          const Icon = concept.icon;
+          return (
+            <a
+              key={concept.id}
+              href={`#concept-${concept.id}`}
+              className="concept-nav-card"
+            >
+              <span className="mx-auto mb-2 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-primary/35 bg-primary/10 text-primary shadow-[0_8px_20px_-14px_rgba(247,147,26,0.9)]">
+                <Icon className="h-4 w-4" />
+              </span>
+              <div className="text-sm font-semibold">{concept.title}</div>
+            </a>
+          );
+        })}
       </div>
 
-      {/* Concept Details */}
-      {concepts.map((concept, index) => {
-        const SvgComponent = svgComponents[concept.id];
-        const isLeft = concept.align === "left";
-        
+      {concepts.map((concept) => {
+        const Icon = concept.icon;
+        const Diagram = diagrams[concept.id];
         return (
-          <div 
+          <section
             key={concept.id}
             id={`concept-${concept.id}`}
-            className="py-12 border-t border-dark-border first:border-t-0"
+            className="concept-section-card"
           >
-            <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${concept.isKey ? 'bg-gradient-to-r from-primary/5 to-transparent p-6 rounded-xl -mx-4' : ''}`}>
-              
-              {/* Text */}
-              <div className={`order-2 ${isLeft ? 'md:order-1' : 'md:order-2'}`}>
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl">{concept.icon}</span>
-                  <h3 className="text-2xl font-bold">{concept.subtitle}</h3>
-                </div>
-                <p className="text-gray-400 leading-relaxed">
-                  {concept.desc}
-                </p>
-                {concept.isKey && (
-                  <div className="mt-4 p-3 bg-primary/10 border border-primary/30 rounded-lg">
-                    <p className="text-primary text-sm font-semibold">
-                      💡 Proof of Source (PoS) is what makes epress different. 
-                      Your content carries cryptographic proof that you created it — 
-                      verifiable by anyone, forgeable by no one.
-                    </p>
-                  </div>
-                )}
+            <div className="grid gap-6 md:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] items-center">
+              <div className="concept-diagram-frame">
+                <Diagram />
               </div>
-              
-              {/* SVG */}
-              <div className={`order-1 ${isLeft ? 'md:order-2' : 'md:order-1'}`}>
-                <div className="relative">
-                  <SvgComponent />
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-primary/35 bg-primary/10 text-primary">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold">{concept.subtitle}</h3>
+                </div>
+                <p className="text-gray-300 leading-relaxed mb-4">{concept.helper}</p>
+                <div className="flex flex-wrap gap-2">
+                  {concept.points.map((point) => (
+                    <span
+                      key={point}
+                      className="inline-flex rounded-full border border-primary/35 bg-primary/10 px-3 py-1 text-xs text-primary"
+                    >
+                      {point}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         );
       })}
     </div>
