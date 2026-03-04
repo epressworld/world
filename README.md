@@ -1,36 +1,167 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# epress world
 
-## Getting Started
+Official website and documentation hub for the epress ecosystem.
 
-First, run the development server:
+- Website: [https://epress.world](https://epress.world)
+- Whitepaper page: [https://epress.world/whitepaper](https://epress.world/whitepaper)
+- epress node repository: [https://github.com/epressworld/epress](https://github.com/epressworld/epress)
+- world repository: [https://github.com/epressworld/world](https://github.com/epressworld/world)
+
+## Canonical terminology
+
+Use these terms consistently across pages and docs:
+
+- `epress world`: the decentralized social network
+- `epress world protocol`: the interoperability protocol (EWP)
+- `epress node`: the node software implementation
+
+## What this repository contains
+
+- Landing page and narrative for epress world
+- Whitepaper rendering page with TOC
+- Two-lane docs:
+  - Node Operator Docs
+  - Developer Docs
+    - epress world protocol track
+    - epress node developer track
+- Developer docs snapshot pipeline synced from `../epress`
+
+## Tech stack
+
+- Next.js 16 (App Router)
+- React 19
+- Tailwind CSS
+- Static JSON content snapshots for developer references
+
+## Quick start (5 minutes)
+
+### 1. Prerequisites
+
+- Node.js 22+
+- npm 10+
+
+### 2. Install and run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Production build check
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+## Repository map
 
-To learn more about Next.js, take a look at the following resources:
+```text
+src/app/
+  page.jsx                         # Landing page
+  whitepaper/page.jsx              # Whitepaper renderer
+  docs/                            # Docs routes
+    page.jsx                       # Node Operator overview
+    developer/                     # Developer docs entry
+    developer/ewp/                 # epress world protocol docs
+    developer/node/                # epress node developer docs
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+src/components/
+  docs-*                           # Docs navigation UI
+  whitepaper-renderer.jsx          # Markdown + math + diagram rendering
+  developer/                       # Reusable developer-doc components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+src/content/developer/             # Generated documentation snapshots
+scripts/sync-epress-docs.mjs       # Snapshot generator from ../epress
+WHITEPAPER.md                      # Whitepaper source in this repo
+public/WHITEPAPER.md               # Public static whitepaper source
+```
 
-## Deploy on Vercel
+## Update developer docs from epress node implementation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Developer API and protocol reference pages are snapshot-driven.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Requirement
+
+This repo expects the sibling path below to exist:
+
+```text
+../epress
+```
+
+Resolved absolute path in local setup:
+
+```text
+/Users/garbin/Documents/projects/epressworld/epress
+```
+
+### Sync command
+
+```bash
+npm run docs:sync:epress
+```
+
+### What it generates
+
+Under `src/content/developer/`, including:
+
+- `ewp-endpoints.json`
+- `node-rest-endpoints.json`
+- `graphql-operations.json`
+- `graphql-operation-details.json`
+- `protocol-mapping.json`
+- `eip712-types.json`
+- `eip712-verification.json`
+- `eip712-errors.json`
+
+After sync, always run:
+
+```bash
+npm run build
+```
+
+## Contribution workflow (human collaborators)
+
+1. Read [`CONTRIBUTING.md`](./CONTRIBUTING.md)
+2. Align work with an issue
+3. Create a branch from `main`
+4. Implement changes
+5. Run `npm run build`
+6. Open PR to `main`
+
+## Contribution workflow (AI collaborators)
+
+1. Read [`AGENTS.md`](./AGENTS.md) and [`CONTRIBUTING.md`](./CONTRIBUTING.md) first
+2. Keep docs and user-facing text in English by default
+3. Use canonical terminology exactly (`epress world`, `epress world protocol`, `epress node`)
+4. Prefer updating source logic rather than patching generated JSON by hand
+5. If developer docs depend on implementation state, run `npm run docs:sync:epress`
+6. Run `npm run build` before finalizing changes
+
+## Content editing guide
+
+- Landing page: `src/app/page.jsx`
+- Whitepaper page: `src/app/whitepaper/page.jsx`
+- Node Operator Docs: `src/app/docs/*`
+- Developer Docs:
+  - Protocol: `src/app/docs/developer/ewp/*`
+  - Node: `src/app/docs/developer/node/*`
+
+## Deployment
+
+- Production is deployed on Vercel and aliased to `epress.world`
+- Main branch is the production branch
+
+Manual deployment command:
+
+```bash
+npx vercel --prod
+```
+
+## First tasks for a new collaborator
+
+1. Run local project and verify `/`, `/docs`, `/docs/developer`, `/whitepaper`
+2. Read docs navigation structure in `src/app/docs/config.js`
+3. Pick one page and improve clarity or visuals
+4. Run build and open a PR

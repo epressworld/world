@@ -15,34 +15,41 @@
     "domainFields": [
       {
         "name": "name",
-        "type": "string"
+        "type": "string",
+        "note": "Protocol signing domain name. It binds signatures to epress world and prevents cross-app reuse."
       },
       {
         "name": "version",
-        "type": "string"
+        "type": "string",
+        "note": "Typed-data schema version. Verifiers must match this value to avoid cross-version ambiguity."
       },
       {
         "name": "chainId",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Chain context in the EIP-712 domain separator. It adds replay isolation across chain environments."
       }
     ],
     "primaryType": "CreateConnection",
     "messageFields": [
       {
         "name": "followeeAddress",
-        "type": "address"
+        "type": "address",
+        "note": "Address of the node being followed. Receiver validates this as its own identity anchor."
       },
       {
         "name": "followeeUrl",
-        "type": "string"
+        "type": "string",
+        "note": "Canonical URL of the followee node used during follow handshake and profile verification flow."
       },
       {
         "name": "followerUrl",
-        "type": "string"
+        "type": "string",
+        "note": "Canonical URL of the follower node. Receiver fetches /ewp/profile from this origin to bind signer and endpoint."
       },
       {
         "name": "timestamp",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Unix timestamp used for freshness checks (one-hour window) to resist replay attacks."
       }
     ],
     "routes": [
@@ -65,30 +72,36 @@
     "domainFields": [
       {
         "name": "name",
-        "type": "string"
+        "type": "string",
+        "note": "Protocol signing domain name. It binds signatures to epress world and prevents cross-app reuse."
       },
       {
         "name": "version",
-        "type": "string"
+        "type": "string",
+        "note": "Typed-data schema version. Verifiers must match this value to avoid cross-version ambiguity."
       },
       {
         "name": "chainId",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Chain context in the EIP-712 domain separator. It adds replay isolation across chain environments."
       }
     ],
     "primaryType": "DeleteConnection",
     "messageFields": [
       {
         "name": "followeeAddress",
-        "type": "address"
+        "type": "address",
+        "note": "Address of the followed node in the relationship to be removed."
       },
       {
         "name": "followerAddress",
-        "type": "address"
+        "type": "address",
+        "note": "Address of the follower authorizing unfollow. Must match recovered signer."
       },
       {
         "name": "timestamp",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Unix timestamp used for freshness checks (one-hour window) to prevent replay."
       }
     ],
     "routes": [
@@ -111,38 +124,46 @@
     "domainFields": [
       {
         "name": "name",
-        "type": "string"
+        "type": "string",
+        "note": "Protocol signing domain name. It binds signatures to epress world and prevents cross-app reuse."
       },
       {
         "name": "version",
-        "type": "string"
+        "type": "string",
+        "note": "Typed-data schema version. Verifiers must match this value to avoid cross-version ambiguity."
       },
       {
         "name": "chainId",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Chain context in the EIP-712 domain separator. It adds replay isolation across chain environments."
       }
     ],
     "primaryType": "NodeProfileUpdate",
     "messageFields": [
       {
         "name": "publisherAddress",
-        "type": "address"
+        "type": "address",
+        "note": "Owner address of the profile being updated. Must match path address and recovered signer."
       },
       {
         "name": "url",
-        "type": "string"
+        "type": "string",
+        "note": "Updated canonical node URL propagated to peers for future protocol interactions."
       },
       {
         "name": "title",
-        "type": "string"
+        "type": "string",
+        "note": "Updated public node title replicated across peer caches."
       },
       {
         "name": "description",
-        "type": "string"
+        "type": "string",
+        "note": "Updated public node description replicated across peer caches."
       },
       {
         "name": "timestamp",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Monotonic profile version timestamp. Peers apply update only when newer than local copy."
       }
     ],
     "routes": [
@@ -165,30 +186,36 @@
     "domainFields": [
       {
         "name": "name",
-        "type": "string"
+        "type": "string",
+        "note": "Protocol signing domain name. It binds signatures to epress world and prevents cross-app reuse."
       },
       {
         "name": "version",
-        "type": "string"
+        "type": "string",
+        "note": "Typed-data schema version. Verifiers must match this value to avoid cross-version ambiguity."
       },
       {
         "name": "chainId",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Chain context in the EIP-712 domain separator. It adds replay isolation across chain environments."
       }
     ],
     "primaryType": "StatementOfSource",
     "messageFields": [
       {
         "name": "contentHash",
-        "type": "bytes32"
+        "type": "bytes32",
+        "note": "Content hash of the original publication. Followers use it to request the exact source payload."
       },
       {
         "name": "publisherAddress",
-        "type": "address"
+        "type": "address",
+        "note": "Publisher identity that signs source authenticity for network-wide verification."
       },
       {
         "name": "timestamp",
-        "type": "uint64"
+        "type": "uint64",
+        "note": "Publication timestamp used for deterministic ordering and replication request context."
       }
     ],
     "routes": [
@@ -211,38 +238,46 @@
     "domainFields": [
       {
         "name": "name",
-        "type": "string"
+        "type": "string",
+        "note": "Protocol signing domain name. It binds signatures to epress world and prevents cross-app reuse."
       },
       {
         "name": "version",
-        "type": "string"
+        "type": "string",
+        "note": "Typed-data schema version. Verifiers must match this value to avoid cross-version ambiguity."
       },
       {
         "name": "chainId",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Chain context in the EIP-712 domain separator. It adds replay isolation across chain environments."
       }
     ],
     "primaryType": "CommentSignature",
     "messageFields": [
       {
         "name": "nodeAddress",
-        "type": "address"
+        "type": "address",
+        "note": "Target node address where the comment exists. Prevents signature reuse across nodes."
       },
       {
         "name": "commenterAddress",
-        "type": "address"
+        "type": "address",
+        "note": "Wallet address expected to own and confirm this comment."
       },
       {
         "name": "publicationId",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Publication identifier that scopes the comment confirmation intent."
       },
       {
         "name": "commentBodyHash",
-        "type": "bytes32"
+        "type": "bytes32",
+        "note": "Hash of stored comment body. Server recomputes and compares to prevent payload tampering."
       },
       {
         "name": "timestamp",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Comment creation timestamp used with short validity window for anti-replay protection."
       }
     ],
     "routes": [
@@ -265,30 +300,36 @@
     "domainFields": [
       {
         "name": "name",
-        "type": "string"
+        "type": "string",
+        "note": "Protocol signing domain name. It binds signatures to epress world and prevents cross-app reuse."
       },
       {
         "name": "version",
-        "type": "string"
+        "type": "string",
+        "note": "Typed-data schema version. Verifiers must match this value to avoid cross-version ambiguity."
       },
       {
         "name": "chainId",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Chain context in the EIP-712 domain separator. It adds replay isolation across chain environments."
       }
     ],
     "primaryType": "DATA",
     "messageFields": [
       {
         "name": "node",
-        "type": "Node"
+        "type": "Node",
+        "note": "Install-time node profile payload (address, URL, title, description, avatar) used to seed self identity."
       },
       {
         "name": "settings",
-        "type": "Settings"
+        "type": "Settings",
+        "note": "Install-time settings payload used to bootstrap default runtime configuration."
       },
       {
         "name": "timestamp",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Installation request timestamp validated in a bounded window to prevent replay."
       }
     ],
     "routes": [
@@ -311,30 +352,36 @@
     "domainFields": [
       {
         "name": "name",
-        "type": "string"
+        "type": "string",
+        "note": "Protocol signing domain name. It binds signatures to epress world and prevents cross-app reuse."
       },
       {
         "name": "version",
-        "type": "string"
+        "type": "string",
+        "note": "Typed-data schema version. Verifiers must match this value to avoid cross-version ambiguity."
       },
       {
         "name": "chainId",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Chain context in the EIP-712 domain separator. It adds replay isolation across chain environments."
       }
     ],
     "primaryType": "DeleteComment",
     "messageFields": [
       {
         "name": "nodeAddress",
-        "type": "address"
+        "type": "address",
+        "note": "Target node address where deletion is authorized."
       },
       {
         "name": "commentId",
-        "type": "uint256"
+        "type": "uint256",
+        "note": "Comment identifier requested for deletion."
       },
       {
         "name": "commenterAddress",
-        "type": "address"
+        "type": "address",
+        "note": "Wallet address that must match both comment author and recovered signer."
       }
     ],
     "routes": [

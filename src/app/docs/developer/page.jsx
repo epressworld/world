@@ -33,6 +33,25 @@ export default function DeveloperDocsPage() {
       </article>
 
       <div className="grid gap-4 md:grid-cols-2">
+        <article className="rounded-xl border border-primary/35 bg-primary/10 p-5">
+          <h2 className="text-lg font-semibold text-white">If You Build on Protocol</h2>
+          <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm text-gray-200">
+            <li>Read protocol overview and architecture.</li>
+            <li>Validate handshake and replication flows.</li>
+            <li>Implement against EWP API and EIP-712 rules.</li>
+          </ol>
+        </article>
+        <article className="rounded-xl border border-primary/35 bg-primary/10 p-5">
+          <h2 className="text-lg font-semibold text-white">If You Build on Node</h2>
+          <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm text-gray-200">
+            <li>Set up local development and configuration.</li>
+            <li>Understand architecture and auth model.</li>
+            <li>Use GraphQL and REST references for integration.</li>
+          </ol>
+        </article>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
         <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-5">
           <h2 className="text-xl font-semibold text-white">Build on epress world protocol</h2>
           <p className="mt-2 text-sm text-dark-muted">

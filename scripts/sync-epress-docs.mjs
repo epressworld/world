@@ -945,6 +945,75 @@ async function writeJson(fileName, data) {
   await fs.writeFile(filePath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
 }
 
+const eip712DomainFieldNotes = {
+  name: "Protocol signing domain name. It binds signatures to epress world and prevents cross-app reuse.",
+  version: "Typed-data schema version. Verifiers must match this value to avoid cross-version ambiguity.",
+  chainId: "Chain context in the EIP-712 domain separator. It adds replay isolation across chain environments.",
+};
+
+const eip712MessageFieldNotes = {
+  CreateConnection: {
+    followeeAddress: "Address of the node being followed. Receiver validates this as its own identity anchor.",
+    followeeUrl: "Canonical URL of the followee node used during follow handshake and profile verification flow.",
+    followerUrl: "Canonical URL of the follower node. Receiver fetches /ewp/profile from this origin to bind signer and endpoint.",
+    timestamp: "Unix timestamp used for freshness checks (one-hour window) to resist replay attacks.",
+  },
+  DeleteConnection: {
+    followeeAddress: "Address of the followed node in the relationship to be removed.",
+    followerAddress: "Address of the follower authorizing unfollow. Must match recovered signer.",
+    timestamp: "Unix timestamp used for freshness checks (one-hour window) to prevent replay.",
+  },
+  StatementOfSource: {
+    contentHash: "Content hash of the original publication. Followers use it to request the exact source payload.",
+    publisherAddress: "Publisher identity that signs source authenticity for network-wide verification.",
+    timestamp: "Publication timestamp used for deterministic ordering and replication request context.",
+  },
+  NodeProfileUpdate: {
+    publisherAddress: "Owner address of the profile being updated. Must match path address and recovered signer.",
+    url: "Updated canonical node URL propagated to peers for future protocol interactions.",
+    title: "Updated public node title replicated across peer caches.",
+    description: "Updated public node description replicated across peer caches.",
+    timestamp: "Monotonic profile version timestamp. Peers apply update only when newer than local copy.",
+  },
+  CommentSignature: {
+    nodeAddress: "Target node address where the comment exists. Prevents signature reuse across nodes.",
+    commenterAddress: "Wallet address expected to own and confirm this comment.",
+    publicationId: "Publication identifier that scopes the comment confirmation intent.",
+    commentBodyHash: "Hash of stored comment body. Server recomputes and compares to prevent payload tampering.",
+    timestamp: "Comment creation timestamp used with short validity window for anti-replay protection.",
+  },
+  DeleteComment: {
+    nodeAddress: "Target node address where deletion is authorized.",
+    commentId: "Comment identifier requested for deletion.",
+    commenterAddress: "Wallet address that must match both comment author and recovered signer.",
+  },
+  DATA: {
+    node: "Install-time node profile payload (address, URL, title, description, avatar) used to seed self identity.",
+    settings: "Install-time settings payload used to bootstrap default runtime configuration.",
+    timestamp: "Installation request timestamp validated in a bounded window to prevent replay.",
+  },
+};
+
+function annotateEip712Fields(primaryType, domainFields, messageFields) {
+  const typedNotes = eip712MessageFieldNotes[primaryType] || {};
+  const annotatedDomainFields = (domainFields || []).map((field) => ({
+    ...field,
+    note:
+      eip712DomainFieldNotes[field.name] ||
+      `Domain field ${field.name} participates in EIP-712 domain separation.`,
+  }));
+  const annotatedMessageFields = (messageFields || []).map((field) => ({
+    ...field,
+    note:
+      typedNotes[field.name] ||
+      `Field ${field.name} is included in ${primaryType} typed-data digest for signer verification.`,
+  }));
+  return {
+    annotatedDomainFields,
+    annotatedMessageFields,
+  };
+}
+
 async function extractEip712Types() {
   const helperPath = path.join(epressRoot, "client/utils/helpers/eip712.js");
   const helperModule = await import(pathToFileURL(helperPath).href);
@@ -1068,6 +1137,11 @@ async function extractEip712Types() {
     const typedData = builder(...meta.args);
     const primaryType = typedData.primaryType;
     const primaryFields = typedData.types?.[primaryType] || [];
+    const { annotatedDomainFields, annotatedMessageFields } = annotateEip712Fields(
+      primaryType,
+      typedData.types?.EIP712Domain || [],
+      primaryFields,
+    );
     records.push({
       id: primaryType,
       functionName: fnName,
@@ -1077,9 +1151,9 @@ async function extractEip712Types() {
       producer: meta.producer,
       consumer: meta.consumer,
       domain: typedData.domain,
-      domainFields: typedData.types?.EIP712Domain || [],
+      domainFields: annotatedDomainFields,
       primaryType,
-      messageFields: primaryFields,
+      messageFields: annotatedMessageFields,
       routes: meta.routes,
     });
   }

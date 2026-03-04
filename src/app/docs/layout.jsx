@@ -31,8 +31,17 @@ export default function DocsLayout({ children }) {
       </header>
 
       <main className="container-custom py-10">
+        <details className="mb-6 rounded-xl border border-dark-border bg-dark-surface/70 p-4 lg:hidden">
+          <summary className="cursor-pointer text-sm font-semibold text-white">
+            Page Navigation
+          </summary>
+          <div className="mt-4">
+            <DocsSidebar />
+          </div>
+        </details>
+
         <div className="grid gap-8 lg:grid-cols-[260px_minmax(0,1fr)]">
-          <aside className="lg:sticky lg:top-8 lg:self-start">
+          <aside className="hidden lg:sticky lg:top-8 lg:block lg:self-start">
             <DocsSidebar />
           </aside>
           <section className="min-w-0">{children}</section>
