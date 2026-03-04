@@ -4,8 +4,19 @@ export default function FaqPage() {
       <article className="rounded-2xl border border-dark-border bg-dark-surface/70 p-6 md:p-8">
         <h1 className="text-3xl font-bold text-white">FAQ</h1>
         <p className="mt-3 leading-7 text-gray-300">
-          Common installation and operation questions for regular users.
+          Common epress node installation and operation questions for regular users.
         </p>
+      </article>
+
+      <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
+        <h2 className="text-lg font-semibold text-white">
+          What is the difference between epress world, epress world protocol, and epress node?
+        </h2>
+        <ul className="mt-3 list-disc space-y-2 pl-6 text-gray-300">
+          <li><span className="text-white">epress world</span> is the decentralized social network as a whole.</li>
+          <li><span className="text-white">epress world protocol</span> is the interoperability protocol used by nodes.</li>
+          <li><span className="text-white">epress node</span> is the node software you install and operate.</li>
+        </ul>
       </article>
 
       <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">

@@ -129,8 +129,8 @@ export default function Home() {
               in the AI & Decentralized Era
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-              Your self-hosted epress node is your social agent:
-              it connects, stores, and publishes for you on an open network,
+              Your self-hosted epress node is your social agent inside epress world.
+              It follows the epress world protocol to connect, store, and publish on the network,
               and plugs directly into your AI workflows.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
@@ -186,10 +186,18 @@ export default function Home() {
 
         <section id="learn-more" className="py-20">
           <div className="container-custom">
-            <h2 className="text-3xl font-bold text-center mb-4">What is epress?</h2>
+            <h2 className="text-3xl font-bold text-center mb-4">What is epress world?</h2>
             <p className="text-lg text-gray-400 text-center max-w-3xl mx-auto mb-12">
-              epress gives you a personal social node you control, then connects it to an open network.
+              epress world is a decentralized social network where each participant runs an epress node.
+              Nodes interoperate through the epress world protocol, so the network can run without centralized platform ownership.
               It keeps the ease of social publishing, but replaces platform trust with cryptographic proof.
+            </p>
+
+            <p className="text-center text-sm text-gray-300 mb-8">
+              Want to run your own epress node first?{" "}
+              <Link href="/docs/getting-started" className="text-primary hover:text-primary-300">
+                Start with the Node Operator Docs.
+              </Link>
             </p>
 
             <ComparisonSvg />
@@ -212,7 +220,7 @@ export default function Home() {
           <div className="container-custom">
             <h2 className="text-3xl font-bold text-center mb-4">How Your Social Agent Works</h2>
             <p className="text-gray-400 text-center mb-10 max-w-3xl mx-auto">
-              Five mechanisms turn this idea into a working epress network.
+              Five mechanisms turn this idea into a working epress world network.
             </p>
             <ConceptSections />
           </div>

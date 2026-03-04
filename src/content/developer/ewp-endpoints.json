@@ -1,0 +1,111 @@
+[
+  {
+    "method": "GET",
+    "path": "/ewp/avatar",
+    "stability": "Public/Protocol",
+    "auth": "None",
+    "summary": "Return node avatar binary.",
+    "errorCodes": [
+      "500 Internal Server Error"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/ewp/connections",
+    "stability": "Public/Protocol",
+    "auth": "Typed-data signature",
+    "summary": "Handle follow handshake and create connection.",
+    "errorCodes": [
+      "400 INVALID_PAYLOAD",
+      "400 INVALID_SIGNATURE",
+      "400 INVALID_TIMESTAMP",
+      "400 INVALID_URL_FORMAT",
+      "401 FOLLOWEE_IDENTITY_MISMATCH",
+      "409 CONNECTION_ALREADY_EXISTS",
+      "500 INTERNAL_ERROR"
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "/ewp/connections",
+    "stability": "Public/Protocol",
+    "auth": "Typed-data signature",
+    "summary": "Handle unfollow handshake and remove connection.",
+    "errorCodes": [
+      "400 INVALID_PAYLOAD",
+      "400 INVALID_SIGNATURE",
+      "400 INVALID_TIMESTAMP",
+      "400 INVALID_URL_FORMAT",
+      "401 FOLLOWEE_IDENTITY_MISMATCH",
+      "409 CONNECTION_ALREADY_EXISTS",
+      "500 INTERNAL_ERROR"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/ewp/contents/:content_hash",
+    "stability": "Public/Protocol",
+    "auth": "None",
+    "summary": "Fetch publication content by content hash.",
+    "errorCodes": [
+      "400 INVALID_TIMESTAMP",
+      "404 PUBLICATION_NOT_FOUND",
+      "404 CONTENT_NOT_FOUND",
+      "500 INTERNAL_ERROR",
+      "400 INVALID_THUMBNAIL_SIZE"
+    ]
+  },
+  {
+    "method": "PATCH",
+    "path": "/ewp/nodes/:address",
+    "stability": "Public/Protocol",
+    "auth": "Typed-data signature",
+    "summary": "Apply signed remote node profile updates.",
+    "errorCodes": [
+      "400 INVALID_PAYLOAD",
+      "400 ADDRESS_MISMATCH",
+      "400 INVALID_ADDRESS",
+      "400 INVALID_SIGNATURE"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/ewp/profile",
+    "stability": "Public/Protocol",
+    "auth": "None",
+    "summary": "Return self node profile for protocol identity discovery.",
+    "errorCodes": [
+      "404 NODE_NOT_FOUND",
+      "500 INTERNAL_ERROR"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/ewp/publications",
+    "stability": "Public/Protocol",
+    "auth": "None",
+    "summary": "List publication metadata for synchronization.",
+    "errorCodes": [
+      "400 INVALID_LIMIT",
+      "400 INVALID_PAGE",
+      "400 INVALID_SINCE_FORMAT",
+      "500 INTERNAL_ERROR"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "/ewp/replications",
+    "stability": "Public/Protocol",
+    "auth": "Connection relationship + signature",
+    "summary": "Accept and verify replication pushes from followed nodes.",
+    "errorCodes": [
+      "400 INVALID_PAYLOAD",
+      "401 NOT_FOLLOWING",
+      "409 REPLICATION_ALREADY_EXISTS",
+      "400 CONTENT_HASH_MISMATCH",
+      "400 CONTENT_DESCRIPTION_MISSING",
+      "400 INVALID_SIGNATURE",
+      "500 INTERNAL_ERROR"
+    ]
+  }
+]

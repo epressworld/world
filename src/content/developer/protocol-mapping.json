@@ -1,0 +1,52 @@
+[
+  {
+    "concept": "Identity",
+    "definition": "Node identity is rooted in Ethereum address ownership and signature verification.",
+    "routes": [
+      "GET /ewp/profile",
+      "POST /api/graphql (getSiweMessage/signInWithEthereum)"
+    ]
+  },
+  {
+    "concept": "Node",
+    "definition": "A node exposes profile, avatar, settings, and APIs as an autonomous social endpoint.",
+    "routes": [
+      "GET /ewp/profile",
+      "GET /ewp/avatar",
+      "PATCH /ewp/nodes/:address"
+    ]
+  },
+  {
+    "concept": "Connection",
+    "definition": "Follow relationships are created and removed through signed handshakes.",
+    "routes": [
+      "POST /ewp/connections",
+      "DELETE /ewp/connections"
+    ]
+  },
+  {
+    "concept": "Publication",
+    "definition": "Publications bind author identity to content hash and optional signature.",
+    "routes": [
+      "GET /ewp/publications",
+      "GET /ewp/contents/:content_hash"
+    ]
+  },
+  {
+    "concept": "Replication",
+    "definition": "Follower nodes replicate signed content from followed publishers.",
+    "routes": [
+      "POST /ewp/replications"
+    ]
+  },
+  {
+    "concept": "Proof/Signature",
+    "definition": "Typed-data signatures and timestamp validation enforce authenticity and replay resistance.",
+    "routes": [
+      "POST /ewp/connections",
+      "DELETE /ewp/connections",
+      "PATCH /ewp/nodes/:address",
+      "POST /ewp/replications"
+    ]
+  }
+]

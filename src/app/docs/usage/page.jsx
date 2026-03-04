@@ -6,8 +6,16 @@ export default function UsagePage() {
       <article className="rounded-2xl border border-dark-border bg-dark-surface/70 p-6 md:p-8">
         <h1 className="text-3xl font-bold text-white">Usage Guide</h1>
         <p className="mt-3 leading-7 text-gray-300">
-          After installation, your node becomes your personal publishing and social hub. This guide covers the typical
-          first workflow for regular users.
+          After installation, your epress node becomes your personal publishing and social hub. This guide covers the
+          typical first workflow for regular users.
+        </p>
+      </article>
+
+      <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
+        <h2 className="text-xl font-semibold text-white">How This Relates to Network and Protocol</h2>
+        <p className="mt-3 text-gray-300 leading-7">
+          Daily actions below are performed on epress node software. Signed and connected actions are then propagated
+          in epress world through the epress world protocol.
         </p>
       </article>
 
@@ -47,8 +55,8 @@ export default function UsagePage() {
       <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h2 className="text-xl font-semibold text-white">5. Use RSS for External Apps</h2>
         <p className="mt-2 text-gray-300">
-          epress supports RSS feeds. You can subscribe to content in RSS readers and connect timeline feeds to external
-          tools, including AI workflows.
+          epress node software supports RSS feeds. You can subscribe to content in RSS readers and connect timeline
+          feeds to external tools, including AI workflows.
         </p>
       </article>
 

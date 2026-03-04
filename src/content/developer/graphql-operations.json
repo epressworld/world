@@ -1,0 +1,202 @@
+[
+  {
+    "operationType": "MUTATION",
+    "name": "broadcastProfileUpdate",
+    "stability": "Public/App",
+    "auth": "Owner JWT + signature",
+    "summary": "Broadcast profile update over EWP.",
+    "source": "server/graphql/mutations/profile.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "confirmComment",
+    "stability": "Public/App",
+    "auth": "Public token/signature flow",
+    "summary": "Confirm pending comment.",
+    "source": "server/graphql/mutations/comment.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "confirmCommentDeletion",
+    "stability": "Public/App",
+    "auth": "Public token flow",
+    "summary": "Confirm deletion for email-auth comment.",
+    "source": "server/graphql/mutations/comment.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "createComment",
+    "stability": "Public/App",
+    "auth": "Public",
+    "summary": "Create pending comment with EMAIL or ETHEREUM flow.",
+    "source": "server/graphql/mutations/comment.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "createConnection",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Follow another node and establish connection.",
+    "source": "server/graphql/mutations/connection.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "createPublication",
+    "stability": "Public/App",
+    "auth": "Owner JWT + permission",
+    "summary": "Create publication record and content.",
+    "source": "server/graphql/mutations/publication.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "destroyComment",
+    "stability": "Public/App",
+    "auth": "Owner or commenter flow",
+    "summary": "Request comment deletion.",
+    "source": "server/graphql/mutations/comment.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "destroyConnection",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Unfollow node and remove connection.",
+    "source": "server/graphql/mutations/connection.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "destroyPublication",
+    "stability": "Public/App",
+    "auth": "Owner JWT + permission",
+    "summary": "Delete publication.",
+    "source": "server/graphql/mutations/publication.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "generateIntegrationToken",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Create scoped integration token.",
+    "source": "server/graphql/mutations/auth.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "signInWithEthereum",
+    "stability": "Public/App",
+    "auth": "SIWE signature",
+    "summary": "Authenticate owner and issue JWT.",
+    "source": "server/graphql/mutations/auth.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "signPublication",
+    "stability": "Public/App",
+    "auth": "Owner JWT + signature",
+    "summary": "Sign publication and trigger replication.",
+    "source": "server/graphql/mutations/publication.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "subscribeNotification",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Store web push subscription.",
+    "source": "server/graphql/mutations/settings.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "unsubscribeNotification",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Remove web push subscription.",
+    "source": "server/graphql/mutations/settings.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "updateProfile",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Update node profile metadata and assets.",
+    "source": "server/graphql/mutations/profile.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "updatePublication",
+    "stability": "Public/App",
+    "auth": "Owner JWT + permission",
+    "summary": "Update publication metadata.",
+    "source": "server/graphql/mutations/publication.mjs"
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "updateSettings",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Update node settings transactionally.",
+    "source": "server/graphql/mutations/settings.mjs"
+  },
+  {
+    "operationType": "QUERY",
+    "name": "fetch",
+    "stability": "Public/App",
+    "auth": "Permission aware",
+    "summary": "Generic fetch for NODE, PUBLICATION, COMMENT models.",
+    "source": "server/graphql/queries/fetch.mjs"
+  },
+  {
+    "operationType": "QUERY",
+    "name": "getSiweMessage",
+    "stability": "Public/App",
+    "auth": "None",
+    "summary": "Generate SIWE challenge with nonce JWT.",
+    "source": "server/graphql/queries/auth.mjs"
+  },
+  {
+    "operationType": "QUERY",
+    "name": "nodeStatus",
+    "stability": "Public/App",
+    "auth": "None",
+    "summary": "Fetch node version and uptime start time.",
+    "source": "server/graphql/queries/nodeStatus.mjs"
+  },
+  {
+    "operationType": "QUERY",
+    "name": "profile",
+    "stability": "Public/App",
+    "auth": "None",
+    "summary": "Fetch self profile metadata.",
+    "source": "server/graphql/queries/profile.mjs"
+  },
+  {
+    "operationType": "QUERY",
+    "name": "search",
+    "stability": "Public/App",
+    "auth": "Permission aware",
+    "summary": "Search nodes, publications, and comments.",
+    "source": "server/graphql/queries/search.mjs"
+  },
+  {
+    "operationType": "QUERY",
+    "name": "settings",
+    "stability": "Public/App",
+    "auth": "Optional JWT",
+    "summary": "Fetch node settings with auth-aware sensitive fields.",
+    "source": "server/graphql/queries/settings.mjs"
+  },
+  {
+    "operationType": "QUERY",
+    "name": "suggestions",
+    "stability": "Public/App",
+    "auth": "None",
+    "summary": "Get mention and hashtag suggestions.",
+    "source": "server/graphql/queries/suggestion.mjs"
+  },
+  {
+    "operationType": "QUERY",
+    "name": "visitor",
+    "stability": "Public/App",
+    "auth": "None",
+    "summary": "Resolve relationship between self node and visitor node.",
+    "source": "server/graphql/queries/visitor.mjs"
+  }
+]

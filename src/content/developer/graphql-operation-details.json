@@ -1,0 +1,1856 @@
+[
+  {
+    "operationType": "MUTATION",
+    "name": "broadcastProfileUpdate",
+    "signature": "broadcastProfileUpdate(typedData: JSON!, signature: String!)",
+    "stability": "Public/App",
+    "auth": "Owner JWT + signature",
+    "summary": "Broadcast profile update over EWP.",
+    "source": "server/graphql/mutations/profile.mjs",
+    "returnType": "Boolean!",
+    "args": [
+      {
+        "name": "typedData",
+        "type": "JSON!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      },
+      {
+        "name": "signature",
+        "type": "String!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "SCALAR",
+      "fields": [],
+      "values": []
+    },
+    "errorCodes": [
+      "UNAUTHENTICATED",
+      "INVALID_SIGNATURE"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "confirmComment",
+    "signature": "confirmComment(id: ID, tokenOrSignature: String!)",
+    "stability": "Public/App",
+    "auth": "Public token/signature flow",
+    "summary": "Confirm pending comment.",
+    "source": "server/graphql/mutations/comment.mjs",
+    "returnType": "Comment!",
+    "args": [
+      {
+        "name": "id",
+        "type": "ID",
+        "required": false,
+        "inputType": null,
+        "inputFields": []
+      },
+      {
+        "name": "tokenOrSignature",
+        "type": "String!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "MODEL",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "publication_id",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "body",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "auth_type",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "author_name",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "author_id",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "credential",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "created_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "updated_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "INVALID_SIGNATURE",
+      "NOT_FOUND",
+      "FORBIDDEN",
+      "VALIDATION_FAILED",
+      "EXPIRED_SIGNATURE"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "confirmCommentDeletion",
+    "signature": "confirmCommentDeletion(token: String!)",
+    "stability": "Public/App",
+    "auth": "Public token flow",
+    "summary": "Confirm deletion for email-auth comment.",
+    "source": "server/graphql/mutations/comment.mjs",
+    "returnType": "Comment!",
+    "args": [
+      {
+        "name": "token",
+        "type": "String!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "MODEL",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "publication_id",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "body",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "auth_type",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "author_name",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "author_id",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "credential",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "created_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "updated_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "INVALID_SIGNATURE",
+      "NOT_FOUND",
+      "FORBIDDEN"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "createComment",
+    "signature": "createComment(input: CreateCommentInput!)",
+    "stability": "Public/App",
+    "auth": "Public",
+    "summary": "Create pending comment with EMAIL or ETHEREUM flow.",
+    "source": "server/graphql/mutations/comment.mjs",
+    "returnType": "Comment!",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreateCommentInput!",
+        "required": true,
+        "inputType": "CreateCommentInput",
+        "inputFields": [
+          {
+            "name": "publication_id",
+            "type": "ID!",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "body",
+            "type": "String!",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "author_name",
+            "type": "String!",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "auth_type",
+            "type": "String!",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "author_id",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          }
+        ]
+      }
+    ],
+    "response": {
+      "kind": "MODEL",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "publication_id",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "body",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "auth_type",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "author_name",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "author_id",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "credential",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "created_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "updated_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "COMMENT_DISABLED",
+      "VALIDATION_FAILED",
+      "NOT_FOUND",
+      "MAIL_NOT_CONFIGURED"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "createConnection",
+    "signature": "createConnection(typedData: JSON!, signature: String!)",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Follow another node and establish connection.",
+    "source": "server/graphql/mutations/connection.mjs",
+    "returnType": "Node!",
+    "args": [
+      {
+        "name": "typedData",
+        "type": "JSON!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      },
+      {
+        "name": "signature",
+        "type": "String!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "MODEL",
+      "fields": [
+        {
+          "name": "address",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "url",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "is_self",
+          "type": "Boolean",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "created_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "updated_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "FOLLOW_DISABLED",
+      "VALIDATION_FAILED",
+      "INVALID_SIGNATURE",
+      "INTERNAL_SERVER_ERROR",
+      "FOLLOWEE_IDENTITY_MISMATCH",
+      "SIGNER_MISMATCH",
+      "CONNECTION_ALREADY_EXISTS"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "createPublication",
+    "signature": "createPublication(input: CreatePublicationInput!)",
+    "stability": "Public/App",
+    "auth": "Owner JWT + permission",
+    "summary": "Create publication record and content.",
+    "source": "server/graphql/mutations/publication.mjs",
+    "returnType": "Publication!",
+    "args": [
+      {
+        "name": "input",
+        "type": "CreatePublicationInput!",
+        "required": true,
+        "inputType": "CreatePublicationInput",
+        "inputFields": [
+          {
+            "name": "type",
+            "type": "String!",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "body",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "file",
+            "type": "GraphQLUpload",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "description",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "slug",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          }
+        ]
+      }
+    ],
+    "response": {
+      "kind": "MODEL",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "content_hash",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "author_address",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "signature",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "comment_count",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "created_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "updated_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "UNAUTHENTICATED",
+      "FORBIDDEN",
+      "VALIDATION_FAILED",
+      "INTERNAL_SERVER_ERROR"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "destroyComment",
+    "signature": "destroyComment(id: ID!, signature: String, email: String)",
+    "stability": "Public/App",
+    "auth": "Owner or commenter flow",
+    "summary": "Request comment deletion.",
+    "source": "server/graphql/mutations/comment.mjs",
+    "returnType": "Comment!",
+    "args": [
+      {
+        "name": "id",
+        "type": "ID!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      },
+      {
+        "name": "signature",
+        "type": "String",
+        "required": false,
+        "inputType": null,
+        "inputFields": []
+      },
+      {
+        "name": "email",
+        "type": "String",
+        "required": false,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "MODEL",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "publication_id",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "body",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "auth_type",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "author_name",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "author_id",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "credential",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "created_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "updated_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "NOT_FOUND",
+      "INTERNAL_SERVER_ERROR",
+      "VALIDATION_FAILED",
+      "FORBIDDEN",
+      "INVALID_SIGNATURE"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "destroyConnection",
+    "signature": "destroyConnection(typedData: JSON!, signature: String!)",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Unfollow node and remove connection.",
+    "source": "server/graphql/mutations/connection.mjs",
+    "returnType": "Node!",
+    "args": [
+      {
+        "name": "typedData",
+        "type": "JSON!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      },
+      {
+        "name": "signature",
+        "type": "String!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "MODEL",
+      "fields": [
+        {
+          "name": "address",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "url",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "is_self",
+          "type": "Boolean",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "created_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "updated_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "VALIDATION_FAILED",
+      "INVALID_SIGNATURE",
+      "INTERNAL_SERVER_ERROR",
+      "FOLLOWEE_IDENTITY_MISMATCH",
+      "SIGNER_MISMATCH",
+      "NOT_FOUND"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "destroyPublication",
+    "signature": "destroyPublication(id: ID!)",
+    "stability": "Public/App",
+    "auth": "Owner JWT + permission",
+    "summary": "Delete publication.",
+    "source": "server/graphql/mutations/publication.mjs",
+    "returnType": "Publication!",
+    "args": [
+      {
+        "name": "id",
+        "type": "ID!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "MODEL",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "content_hash",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "author_address",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "signature",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "comment_count",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "created_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "updated_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "UNAUTHENTICATED",
+      "FORBIDDEN",
+      "NOT_FOUND"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "generateIntegrationToken",
+    "signature": "generateIntegrationToken(scope: [String]!, expiresIn: String)",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Create scoped integration token.",
+    "source": "server/graphql/mutations/auth.mjs",
+    "returnType": "String!",
+    "args": [
+      {
+        "name": "scope",
+        "type": "[String]!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      },
+      {
+        "name": "expiresIn",
+        "type": "String",
+        "required": false,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "SCALAR",
+      "fields": [],
+      "values": []
+    },
+    "errorCodes": [
+      "UNAUTHENTICATED",
+      "INTERNAL_SERVER_ERROR"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "signInWithEthereum",
+    "signature": "signInWithEthereum(message: String!, signature: String!)",
+    "stability": "Public/App",
+    "auth": "SIWE signature",
+    "summary": "Authenticate owner and issue JWT.",
+    "source": "server/graphql/mutations/auth.mjs",
+    "returnType": "String!",
+    "args": [
+      {
+        "name": "message",
+        "type": "String!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      },
+      {
+        "name": "signature",
+        "type": "String!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "SCALAR",
+      "fields": [],
+      "values": []
+    },
+    "errorCodes": [
+      "INVALID_SIGNATURE",
+      "INVALID_NONCE",
+      "EXPIRED_NONCE",
+      "UNAUTHENTICATED",
+      "INTERNAL_SERVER_ERROR"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "signPublication",
+    "signature": "signPublication(id: ID!, signature: String!)",
+    "stability": "Public/App",
+    "auth": "Owner JWT + signature",
+    "summary": "Sign publication and trigger replication.",
+    "source": "server/graphql/mutations/publication.mjs",
+    "returnType": "Publication!",
+    "args": [
+      {
+        "name": "id",
+        "type": "ID!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      },
+      {
+        "name": "signature",
+        "type": "String!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "MODEL",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "content_hash",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "author_address",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "signature",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "comment_count",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "created_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "updated_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "UNAUTHENTICATED",
+      "NOT_FOUND",
+      "FORBIDDEN",
+      "INVALID_SIGNATURE"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "subscribeNotification",
+    "signature": "subscribeNotification(subscription: PushSubscriptionInput!)",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Store web push subscription.",
+    "source": "server/graphql/mutations/settings.mjs",
+    "returnType": "SaveSubscriptionResult!",
+    "args": [
+      {
+        "name": "subscription",
+        "type": "PushSubscriptionInput!",
+        "required": true,
+        "inputType": "PushSubscriptionInput",
+        "inputFields": [
+          {
+            "name": "endpoint",
+            "type": "String!",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "keys",
+            "type": "PushSubscriptionKeys!",
+            "inputType": "PushSubscriptionKeys",
+            "inputFields": [
+              {
+                "name": "p256dh",
+                "type": "String!",
+                "inputType": null,
+                "inputFields": []
+              },
+              {
+                "name": "auth",
+                "type": "String!",
+                "inputType": null,
+                "inputFields": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "response": {
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "success",
+          "type": "Boolean!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "message",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "UNAUTHENTICATED",
+      "INTERNAL_SERVER_ERROR"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "unsubscribeNotification",
+    "signature": "unsubscribeNotification(endpoint: String!)",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Remove web push subscription.",
+    "source": "server/graphql/mutations/settings.mjs",
+    "returnType": "SaveSubscriptionResult!",
+    "args": [
+      {
+        "name": "endpoint",
+        "type": "String!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "success",
+          "type": "Boolean!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "message",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "UNAUTHENTICATED",
+      "INTERNAL_SERVER_ERROR"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "updateProfile",
+    "signature": "updateProfile(input: UpdateProfileInput!)",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Update node profile metadata and assets.",
+    "source": "server/graphql/mutations/profile.mjs",
+    "returnType": "Profile",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateProfileInput!",
+        "required": true,
+        "inputType": "UpdateProfileInput",
+        "inputFields": [
+          {
+            "name": "title",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "description",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "url",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "avatar",
+            "type": "GraphQLUpload",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "background",
+            "type": "GraphQLUpload",
+            "inputType": null,
+            "inputFields": []
+          }
+        ]
+      }
+    ],
+    "response": {
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "address",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "url",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "created_at",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "updated_at",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "UNAUTHENTICATED",
+      "VALIDATION_FAILED"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "updatePublication",
+    "signature": "updatePublication(input: UpdatePublicationInput!)",
+    "stability": "Public/App",
+    "auth": "Owner JWT + permission",
+    "summary": "Update publication metadata.",
+    "source": "server/graphql/mutations/publication.mjs",
+    "returnType": "Publication!",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdatePublicationInput!",
+        "required": true,
+        "inputType": "UpdatePublicationInput",
+        "inputFields": [
+          {
+            "name": "id",
+            "type": "ID!",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "body",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "description",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "slug",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          }
+        ]
+      }
+    ],
+    "response": {
+      "kind": "MODEL",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "content_hash",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "author_address",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "signature",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "comment_count",
+          "type": "Int",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "created_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "updated_at",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "UNAUTHENTICATED",
+      "FORBIDDEN",
+      "NOT_FOUND",
+      "VALIDATION_FAILED",
+      "INTERNAL_SERVER_ERROR"
+    ]
+  },
+  {
+    "operationType": "MUTATION",
+    "name": "updateSettings",
+    "signature": "updateSettings(input: UpdateSettingsInput!)",
+    "stability": "Public/App",
+    "auth": "Owner JWT",
+    "summary": "Update node settings transactionally.",
+    "source": "server/graphql/mutations/settings.mjs",
+    "returnType": "Settings!",
+    "args": [
+      {
+        "name": "input",
+        "type": "UpdateSettingsInput!",
+        "required": true,
+        "inputType": "UpdateSettingsInput",
+        "inputFields": [
+          {
+            "name": "enableRSS",
+            "type": "Boolean",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "allowFollow",
+            "type": "Boolean",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "allowComment",
+            "type": "Boolean",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "defaultLanguage",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "defaultTheme",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "walletConnectProjectId",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "pwaAppName",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "mailTransport",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          },
+          {
+            "name": "mailFrom",
+            "type": "String",
+            "inputType": null,
+            "inputFields": []
+          }
+        ]
+      }
+    ],
+    "response": {
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "enableRSS",
+          "type": "Boolean!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "allowFollow",
+          "type": "Boolean!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "allowComment",
+          "type": "Boolean!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "defaultLanguage",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "defaultTheme",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "walletConnectProjectId",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "pwaAppName",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "mail",
+          "type": "Mail!",
+          "responseType": "Mail",
+          "responseFields": [
+            {
+              "name": "enabled",
+              "type": "Boolean!",
+              "responseType": null,
+              "responseFields": []
+            },
+            {
+              "name": "mailTransport",
+              "type": "String",
+              "responseType": null,
+              "responseFields": []
+            },
+            {
+              "name": "mailFrom",
+              "type": "String",
+              "responseType": null,
+              "responseFields": []
+            }
+          ]
+        },
+        {
+          "name": "vapidPublicKey",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "UNAUTHENTICATED"
+    ]
+  },
+  {
+    "operationType": "QUERY",
+    "name": "fetch",
+    "signature": "fetch",
+    "stability": "Public/App",
+    "auth": "Permission aware",
+    "summary": "Generic fetch for NODE, PUBLICATION, COMMENT models.",
+    "source": "server/graphql/queries/fetch.mjs",
+    "returnType": "Unknown",
+    "args": [],
+    "response": {
+      "kind": "UNKNOWN",
+      "fields": [],
+      "values": []
+    },
+    "errorCodes": []
+  },
+  {
+    "operationType": "QUERY",
+    "name": "getSiweMessage",
+    "signature": "getSiweMessage(address: String!)",
+    "stability": "Public/App",
+    "auth": "None",
+    "summary": "Generate SIWE challenge with nonce JWT.",
+    "source": "server/graphql/queries/auth.mjs",
+    "returnType": "String!",
+    "args": [
+      {
+        "name": "address",
+        "type": "String!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "SCALAR",
+      "fields": [],
+      "values": []
+    },
+    "errorCodes": [
+      "VALIDATION_FAILED"
+    ]
+  },
+  {
+    "operationType": "QUERY",
+    "name": "nodeStatus",
+    "signature": "nodeStatus",
+    "stability": "Public/App",
+    "auth": "None",
+    "summary": "Fetch node version and uptime start time.",
+    "source": "server/graphql/queries/nodeStatus.mjs",
+    "returnType": "NodeStatus",
+    "args": [],
+    "response": {
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "version",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "startedAt",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": []
+  },
+  {
+    "operationType": "QUERY",
+    "name": "profile",
+    "signature": "profile",
+    "stability": "Public/App",
+    "auth": "None",
+    "summary": "Fetch self profile metadata.",
+    "source": "server/graphql/queries/profile.mjs",
+    "returnType": "Profile",
+    "args": [],
+    "response": {
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "address",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "url",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "created_at",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "updated_at",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": []
+  },
+  {
+    "operationType": "QUERY",
+    "name": "search",
+    "signature": "search",
+    "stability": "Public/App",
+    "auth": "Permission aware",
+    "summary": "Search nodes, publications, and comments.",
+    "source": "server/graphql/queries/search.mjs",
+    "returnType": "Unknown",
+    "args": [],
+    "response": {
+      "kind": "UNKNOWN",
+      "fields": [],
+      "values": []
+    },
+    "errorCodes": []
+  },
+  {
+    "operationType": "QUERY",
+    "name": "settings",
+    "signature": "settings",
+    "stability": "Public/App",
+    "auth": "Optional JWT",
+    "summary": "Fetch node settings with auth-aware sensitive fields.",
+    "source": "server/graphql/queries/settings.mjs",
+    "returnType": "Settings",
+    "args": [],
+    "response": {
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "enableRSS",
+          "type": "Boolean!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "allowFollow",
+          "type": "Boolean!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "allowComment",
+          "type": "Boolean!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "defaultLanguage",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "defaultTheme",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "walletConnectProjectId",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "pwaAppName",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "mail",
+          "type": "Mail!",
+          "responseType": "Mail",
+          "responseFields": [
+            {
+              "name": "enabled",
+              "type": "Boolean!",
+              "responseType": null,
+              "responseFields": []
+            },
+            {
+              "name": "mailTransport",
+              "type": "String",
+              "responseType": null,
+              "responseFields": []
+            },
+            {
+              "name": "mailFrom",
+              "type": "String",
+              "responseType": null,
+              "responseFields": []
+            }
+          ]
+        },
+        {
+          "name": "vapidPublicKey",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": []
+  },
+  {
+    "operationType": "QUERY",
+    "name": "suggestions",
+    "signature": "suggestions(query: String, type: String!, limit: Int)",
+    "stability": "Public/App",
+    "auth": "None",
+    "summary": "Get mention and hashtag suggestions.",
+    "source": "server/graphql/queries/suggestion.mjs",
+    "returnType": "[Suggestion]!",
+    "args": [
+      {
+        "name": "query",
+        "type": "String",
+        "required": false,
+        "inputType": null,
+        "inputFields": []
+      },
+      {
+        "name": "type",
+        "type": "String!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      },
+      {
+        "name": "limit",
+        "type": "Int",
+        "required": false,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "id",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "label",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "type",
+          "type": "String!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "url",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "hashtag",
+          "type": "String",
+          "responseType": null,
+          "responseFields": []
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": [
+      "INVALID_SUGGESITION_TYPE"
+    ]
+  },
+  {
+    "operationType": "QUERY",
+    "name": "visitor",
+    "signature": "visitor(address: String!)",
+    "stability": "Public/App",
+    "auth": "None",
+    "summary": "Resolve relationship between self node and visitor node.",
+    "source": "server/graphql/queries/visitor.mjs",
+    "returnType": "Visitor",
+    "args": [
+      {
+        "name": "address",
+        "type": "String!",
+        "required": true,
+        "inputType": null,
+        "inputFields": []
+      }
+    ],
+    "response": {
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "isFollower",
+          "type": "Boolean!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "isFollowing",
+          "type": "Boolean!",
+          "responseType": null,
+          "responseFields": []
+        },
+        {
+          "name": "node",
+          "type": "Node",
+          "responseType": "Node",
+          "responseFields": [
+            {
+              "name": "address",
+              "type": "String",
+              "responseType": null,
+              "responseFields": []
+            },
+            {
+              "name": "url",
+              "type": "String",
+              "responseType": null,
+              "responseFields": []
+            },
+            {
+              "name": "title",
+              "type": "String",
+              "responseType": null,
+              "responseFields": []
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "responseType": null,
+              "responseFields": []
+            },
+            {
+              "name": "is_self",
+              "type": "Boolean",
+              "responseType": null,
+              "responseFields": []
+            },
+            {
+              "name": "created_at",
+              "type": "String",
+              "responseType": null,
+              "responseFields": []
+            },
+            {
+              "name": "updated_at",
+              "type": "String",
+              "responseType": null,
+              "responseFields": []
+            }
+          ]
+        }
+      ],
+      "values": []
+    },
+    "errorCodes": []
+  }
+]

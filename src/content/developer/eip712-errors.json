@@ -1,0 +1,74 @@
+[
+  {
+    "id": "CreateConnection",
+    "target": "POST /ewp/connections",
+    "errors": [
+      "400 INVALID_PAYLOAD",
+      "400 INVALID_SIGNATURE",
+      "400 INVALID_TIMESTAMP",
+      "400 INVALID_URL_FORMAT",
+      "401 FOLLOWEE_IDENTITY_MISMATCH",
+      "409 CONNECTION_ALREADY_EXISTS"
+    ]
+  },
+  {
+    "id": "DeleteConnection",
+    "target": "DELETE /ewp/connections",
+    "errors": [
+      "400 INVALID_PAYLOAD",
+      "400 INVALID_TIMESTAMP",
+      "400 INVALID_SIGNATURE"
+    ]
+  },
+  {
+    "id": "StatementOfSource",
+    "target": "POST /ewp/replications",
+    "errors": [
+      "400 INVALID_PAYLOAD",
+      "400 INVALID_SIGNATURE",
+      "400 CONTENT_HASH_MISMATCH",
+      "400 CONTENT_DESCRIPTION_MISSING",
+      "401 NOT_FOLLOWING",
+      "409 REPLICATION_ALREADY_EXISTS"
+    ]
+  },
+  {
+    "id": "NodeProfileUpdate",
+    "target": "PATCH /ewp/nodes/:address",
+    "errors": [
+      "400 INVALID_PAYLOAD",
+      "400 ADDRESS_MISMATCH",
+      "400 INVALID_ADDRESS",
+      "400 INVALID_SIGNATURE"
+    ]
+  },
+  {
+    "id": "CommentSignature",
+    "target": "GraphQL confirmComment",
+    "errors": [
+      "VALIDATION_FAILED",
+      "NOT_FOUND",
+      "FORBIDDEN",
+      "EXPIRED_SIGNATURE",
+      "INVALID_SIGNATURE"
+    ]
+  },
+  {
+    "id": "DeleteComment",
+    "target": "GraphQL destroyComment",
+    "errors": [
+      "NOT_FOUND",
+      "FORBIDDEN",
+      "INVALID_SIGNATURE"
+    ]
+  },
+  {
+    "id": "DATA",
+    "target": "POST /api/install",
+    "errors": [
+      "preCheck failure",
+      "initialSchema failure",
+      "initialData failure"
+    ]
+  }
+]

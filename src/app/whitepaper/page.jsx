@@ -31,8 +31,8 @@ function extractToc(content) {
 }
 
 export const metadata = {
-  title: "epress Whitepaper",
-  description: "Read the epress whitepaper with proper markdown, math, and diagram rendering.",
+  title: "epress world protocol Whitepaper",
+  description: "Read the epress world protocol whitepaper with proper markdown, math, and diagram rendering.",
 };
 
 export default async function WhitepaperPage() {

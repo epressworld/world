@@ -6,8 +6,16 @@ export default function GettingStartedPage() {
       <article className="rounded-2xl border border-dark-border bg-dark-surface/70 p-6 md:p-8">
         <h1 className="text-3xl font-bold text-white">Getting Started</h1>
         <p className="mt-3 leading-7 text-gray-300">
-          The fastest way to launch your epress node is Docker. Run one command, open your browser, and complete the
-          installation wizard.
+          The fastest way to launch epress node software is Docker. Run one command, open your browser, and complete
+          the installation wizard.
+        </p>
+      </article>
+
+      <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
+        <h2 className="text-xl font-semibold text-white">How This Relates to Network and Protocol</h2>
+        <p className="mt-3 text-gray-300 leading-7">
+          In this guide you operate epress node software. Once configured, your node participates in epress world and
+          exchanges data with other nodes through the epress world protocol.
         </p>
       </article>
 

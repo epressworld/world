@@ -4,8 +4,16 @@ export default function InstallationPage() {
       <article className="rounded-2xl border border-dark-border bg-dark-surface/70 p-6 md:p-8">
         <h1 className="text-3xl font-bold text-white">Installation</h1>
         <p className="mt-3 leading-7 text-gray-300">
-          epress supports two installation methods. Docker is recommended for standard self-hosting. Running from
-          source is available for advanced users.
+          epress node software supports two installation methods. Docker is recommended for standard self-hosting.
+          Running from source is available for advanced users.
+        </p>
+      </article>
+
+      <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
+        <h2 className="text-xl font-semibold text-white">How This Relates to Network and Protocol</h2>
+        <p className="mt-3 text-gray-300 leading-7">
+          Installation here is for epress node software only. After startup, your node joins epress world and follows
+          the epress world protocol for identity, connection, and content exchange.
         </p>
       </article>
 

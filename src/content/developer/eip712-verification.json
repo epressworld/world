@@ -1,0 +1,74 @@
+[
+  {
+    "id": "CreateConnection",
+    "scope": "Cross-node",
+    "target": "POST /ewp/connections",
+    "checks": [
+      "typedData and signature payload shape must be complete",
+      "verifyTypedData must pass for expected signer address",
+      "timestamp must be within one-hour window",
+      "followee identity in message must match fetched profile identity"
+    ]
+  },
+  {
+    "id": "DeleteConnection",
+    "scope": "Cross-node",
+    "target": "DELETE /ewp/connections",
+    "checks": [
+      "typedData.message requires followeeAddress, followerAddress, timestamp",
+      "timestamp must be integer and in one-hour window",
+      "recoverTypedDataAddress must equal followerAddress",
+      "local node role must match follower or followee orientation"
+    ]
+  },
+  {
+    "id": "StatementOfSource",
+    "scope": "Cross-node",
+    "target": "POST /ewp/replications",
+    "checks": [
+      "publisher must be in follow relationship state",
+      "verifyTypedData must pass for publisherAddress",
+      "content hash recalculation must equal message.contentHash",
+      "publisherAddress in message must equal synced node address"
+    ]
+  },
+  {
+    "id": "NodeProfileUpdate",
+    "scope": "Cross-node",
+    "target": "PATCH /ewp/nodes/:address",
+    "checks": [
+      "path address must match typedData.message.publisherAddress",
+      "recoverTypedDataAddress must equal publisherAddress",
+      "incoming timestamp must be newer than local updated_at to patch"
+    ]
+  },
+  {
+    "id": "CommentSignature",
+    "scope": "Node-local",
+    "target": "GraphQL confirmComment",
+    "checks": [
+      "server-side typedData is rebuilt to prevent client tampering",
+      "recoverTypedDataAddress must equal comment.author_id",
+      "signature validity window is 600 seconds from comment timestamp"
+    ]
+  },
+  {
+    "id": "DeleteComment",
+    "scope": "Node-local",
+    "target": "GraphQL destroyComment",
+    "checks": [
+      "server-side typedData is rebuilt from stored comment fields",
+      "recoverTypedDataAddress must equal requester/comment author"
+    ]
+  },
+  {
+    "id": "DATA",
+    "scope": "Node-local",
+    "target": "POST /api/install",
+    "checks": [
+      "typedData payload shape includes node/settings/timestamp",
+      "verifyTypedData must pass for node address signer",
+      "timestamp must be within one-hour window"
+    ]
+  }
+]

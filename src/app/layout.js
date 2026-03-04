@@ -17,6 +17,9 @@ export const metadata = {
   title: "epress - Your Home on the Decentralized Web",
   description:
     "A decentralized content and social network built on self-hosting. Take back your digital sovereignty.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {

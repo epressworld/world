@@ -1,0 +1,344 @@
+[
+  {
+    "id": "CreateConnection",
+    "functionName": "createConnectionTypedData",
+    "stability": "Public/Protocol",
+    "scope": "Cross-node",
+    "purpose": "Signed follow intent payload between peer nodes.",
+    "producer": "Node owner wallet through node UI",
+    "consumer": "Remote peer node",
+    "domain": {
+      "name": "epress world",
+      "version": "1",
+      "chainId": 1
+    },
+    "domainFields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "version",
+        "type": "string"
+      },
+      {
+        "name": "chainId",
+        "type": "uint256"
+      }
+    ],
+    "primaryType": "CreateConnection",
+    "messageFields": [
+      {
+        "name": "followeeAddress",
+        "type": "address"
+      },
+      {
+        "name": "followeeUrl",
+        "type": "string"
+      },
+      {
+        "name": "followerUrl",
+        "type": "string"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256"
+      }
+    ],
+    "routes": [
+      "POST /ewp/connections"
+    ]
+  },
+  {
+    "id": "DeleteConnection",
+    "functionName": "deleteConnectionTypedData",
+    "stability": "Public/Protocol",
+    "scope": "Cross-node",
+    "purpose": "Signed unfollow intent payload between peer nodes.",
+    "producer": "Node owner wallet through node UI",
+    "consumer": "Remote peer node",
+    "domain": {
+      "name": "epress world",
+      "version": "1",
+      "chainId": 1
+    },
+    "domainFields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "version",
+        "type": "string"
+      },
+      {
+        "name": "chainId",
+        "type": "uint256"
+      }
+    ],
+    "primaryType": "DeleteConnection",
+    "messageFields": [
+      {
+        "name": "followeeAddress",
+        "type": "address"
+      },
+      {
+        "name": "followerAddress",
+        "type": "address"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256"
+      }
+    ],
+    "routes": [
+      "DELETE /ewp/connections"
+    ]
+  },
+  {
+    "id": "NodeProfileUpdate",
+    "functionName": "nodeProfileUpdateTypedData",
+    "stability": "Public/Protocol",
+    "scope": "Cross-node",
+    "purpose": "Signed profile update payload broadcast to connected peers.",
+    "producer": "Node owner wallet",
+    "consumer": "Connected peer nodes",
+    "domain": {
+      "name": "epress world",
+      "version": "1",
+      "chainId": 1
+    },
+    "domainFields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "version",
+        "type": "string"
+      },
+      {
+        "name": "chainId",
+        "type": "uint256"
+      }
+    ],
+    "primaryType": "NodeProfileUpdate",
+    "messageFields": [
+      {
+        "name": "publisherAddress",
+        "type": "address"
+      },
+      {
+        "name": "url",
+        "type": "string"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256"
+      }
+    ],
+    "routes": [
+      "PATCH /ewp/nodes/:address"
+    ]
+  },
+  {
+    "id": "StatementOfSource",
+    "functionName": "statementOfSourceTypedData",
+    "stability": "Public/Protocol",
+    "scope": "Cross-node",
+    "purpose": "Signed proof of source for publication replication.",
+    "producer": "Publishing node owner wallet",
+    "consumer": "Follower node sync pipeline",
+    "domain": {
+      "name": "epress world",
+      "version": "1",
+      "chainId": 1
+    },
+    "domainFields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "version",
+        "type": "string"
+      },
+      {
+        "name": "chainId",
+        "type": "uint256"
+      }
+    ],
+    "primaryType": "StatementOfSource",
+    "messageFields": [
+      {
+        "name": "contentHash",
+        "type": "bytes32"
+      },
+      {
+        "name": "publisherAddress",
+        "type": "address"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint64"
+      }
+    ],
+    "routes": [
+      "POST /ewp/replications"
+    ]
+  },
+  {
+    "id": "CommentSignature",
+    "functionName": "commentSignatureTypedData",
+    "stability": "Public/App",
+    "scope": "Node-local",
+    "purpose": "Signed comment confirmation payload for Ethereum-auth comments.",
+    "producer": "Commenter wallet",
+    "consumer": "Comment confirm mutation",
+    "domain": {
+      "name": "epress world",
+      "version": "1",
+      "chainId": 1
+    },
+    "domainFields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "version",
+        "type": "string"
+      },
+      {
+        "name": "chainId",
+        "type": "uint256"
+      }
+    ],
+    "primaryType": "CommentSignature",
+    "messageFields": [
+      {
+        "name": "nodeAddress",
+        "type": "address"
+      },
+      {
+        "name": "commenterAddress",
+        "type": "address"
+      },
+      {
+        "name": "publicationId",
+        "type": "uint256"
+      },
+      {
+        "name": "commentBodyHash",
+        "type": "bytes32"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256"
+      }
+    ],
+    "routes": [
+      "GraphQL mutation confirmComment"
+    ]
+  },
+  {
+    "id": "DATA",
+    "functionName": "installTypedData",
+    "stability": "Internal/Operational",
+    "scope": "Node-local",
+    "purpose": "Signed installation payload used by web installer bootstrap.",
+    "producer": "Installer wallet",
+    "consumer": "Install API endpoint",
+    "domain": {
+      "name": "epress world",
+      "version": "1",
+      "chainId": 1
+    },
+    "domainFields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "version",
+        "type": "string"
+      },
+      {
+        "name": "chainId",
+        "type": "uint256"
+      }
+    ],
+    "primaryType": "DATA",
+    "messageFields": [
+      {
+        "name": "node",
+        "type": "Node"
+      },
+      {
+        "name": "settings",
+        "type": "Settings"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256"
+      }
+    ],
+    "routes": [
+      "POST /api/install"
+    ]
+  },
+  {
+    "id": "DeleteComment",
+    "functionName": "deleteCommentTypedData",
+    "stability": "Public/App",
+    "scope": "Node-local",
+    "purpose": "Signed comment deletion request payload for Ethereum-auth comments.",
+    "producer": "Commenter wallet",
+    "consumer": "Comment deletion mutation",
+    "domain": {
+      "name": "epress world",
+      "version": "1",
+      "chainId": 1
+    },
+    "domainFields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "version",
+        "type": "string"
+      },
+      {
+        "name": "chainId",
+        "type": "uint256"
+      }
+    ],
+    "primaryType": "DeleteComment",
+    "messageFields": [
+      {
+        "name": "nodeAddress",
+        "type": "address"
+      },
+      {
+        "name": "commentId",
+        "type": "uint256"
+      },
+      {
+        "name": "commenterAddress",
+        "type": "address"
+      }
+    ],
+    "routes": [
+      "GraphQL mutation destroyComment"
+    ]
+  }
+]
