@@ -1,54 +1,61 @@
-import fs from "node:fs/promises";
-import path from "node:path";
-import Link from "next/link";
-import GithubSlugger from "github-slugger";
-import { WhitepaperRenderer } from "@/components/whitepaper-renderer";
+import fs from "node:fs/promises"
+import path from "node:path"
+import GithubSlugger from "github-slugger"
+import Link from "next/link"
+import { WhitepaperRenderer } from "@/components/whitepaper-renderer"
 
 function extractToc(content) {
-  const lines = content.replace(/\r/g, "").split("\n");
-  const items = [];
-  const slugger = new GithubSlugger();
-  let inFence = false;
+  const lines = content.replace(/\r/g, "").split("\n")
+  const items = []
+  const slugger = new GithubSlugger()
+  let inFence = false
 
   for (const line of lines) {
     if (line.startsWith("```")) {
-      inFence = !inFence;
-      continue;
+      inFence = !inFence
+      continue
     }
     if (inFence) {
-      continue;
+      continue
     }
-    const match = line.match(/^(#{1,3})\s+(.+)$/);
+    const match = line.match(/^(#{1,3})\s+(.+)$/)
     if (!match) {
-      continue;
+      continue
     }
-    const level = match[1].length;
-    const text = match[2].replace(/\\\./g, ".").trim();
-    const id = slugger.slug(text);
-    items.push({ level, text, id });
+    const level = match[1].length
+    const text = match[2].replace(/\\\./g, ".").trim()
+    const id = slugger.slug(text)
+    items.push({ level, text, id })
   }
-  return items;
+  return items
 }
 
 export const metadata = {
   title: "epress world protocol Whitepaper",
-  description: "Read the epress world protocol whitepaper with proper markdown, math, and diagram rendering.",
-};
+  description:
+    "Read the epress world protocol whitepaper with proper markdown, math, and diagram rendering.",
+}
 
 export default async function WhitepaperPage() {
-  const whitepaperPath = path.join(process.cwd(), "WHITEPAPER.md");
-  const content = await fs.readFile(whitepaperPath, "utf8");
-  const toc = extractToc(content);
+  const whitepaperPath = path.join(process.cwd(), "WHITEPAPER.md")
+  const content = await fs.readFile(whitepaperPath, "utf8")
+  const toc = extractToc(content)
 
   return (
     <div className="min-h-screen bg-dark-bg text-dark-text">
       <header className="border-b border-dark-border">
         <div className="container-custom flex min-h-16 flex-wrap items-center justify-between gap-3 py-2">
-          <Link href="/" className="text-sm text-dark-muted hover:text-dark-text">
+          <Link
+            href="/"
+            className="text-sm text-dark-muted hover:text-dark-text"
+          >
             Back to Home
           </Link>
           <div className="flex flex-wrap items-center gap-4 text-sm">
-            <a href="/WHITEPAPER.md" className="text-primary hover:text-primary-300">
+            <a
+              href="/WHITEPAPER.md"
+              className="text-primary hover:text-primary-300"
+            >
               Source Markdown
             </a>
             <a
@@ -66,8 +73,13 @@ export default async function WhitepaperPage() {
       <main className="container-custom py-12">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
           <aside className="lg:sticky lg:top-8 lg:h-[calc(100vh-4rem)] lg:overflow-auto">
-            <details className="rounded-xl border border-dark-border bg-dark-surface/70 p-4 lg:hidden" open>
-              <summary className="cursor-pointer text-sm font-semibold text-white">Table of Contents</summary>
+            <details
+              className="rounded-xl border border-dark-border bg-dark-surface/70 p-4 lg:hidden"
+              open
+            >
+              <summary className="cursor-pointer text-sm font-semibold text-white">
+                Table of Contents
+              </summary>
               <nav className="mt-3 space-y-1 text-sm">
                 {toc.map((item) => (
                   <a
@@ -82,7 +94,9 @@ export default async function WhitepaperPage() {
             </details>
 
             <div className="hidden rounded-xl border border-dark-border bg-dark-surface/70 p-4 lg:block">
-              <p className="mb-3 text-sm font-semibold text-white">Table of Contents</p>
+              <p className="mb-3 text-sm font-semibold text-white">
+                Table of Contents
+              </p>
               <nav className="space-y-1 text-sm">
                 {toc.map((item) => (
                   <a
@@ -98,10 +112,10 @@ export default async function WhitepaperPage() {
           </aside>
 
           <div className="min-w-0">
-          <WhitepaperRenderer content={content} />
+            <WhitepaperRenderer content={content} />
           </div>
         </div>
       </main>
     </div>
-  );
+  )
 }

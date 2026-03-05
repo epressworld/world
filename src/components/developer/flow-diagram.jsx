@@ -16,5 +16,5 @@ export function FlowDiagram({ title, steps }) {
         ))}
       </div>
     </article>
-  );
+  )
 }

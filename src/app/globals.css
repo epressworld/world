@@ -38,7 +38,8 @@
 
   .landing-grid {
     @apply pointer-events-none absolute inset-0 -z-10 opacity-40;
-    background-image: linear-gradient(to right, rgba(247, 147, 26, 0.06) 1px, transparent 1px),
+    background-image:
+      linear-gradient(to right, rgba(247, 147, 26, 0.06) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(247, 147, 26, 0.06) 1px, transparent 1px);
     background-size: 42px 42px;
     mask-image: radial-gradient(circle at top, black 20%, transparent 80%);

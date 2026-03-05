@@ -1,6 +1,6 @@
-import eip712Errors from "@/content/developer/eip712-errors.json";
-import eip712Verification from "@/content/developer/eip712-verification.json";
-import { VerificationChecklist } from "@/components/developer/verification-checklist";
+import { VerificationChecklist } from "@/components/developer/verification-checklist"
+import eip712Errors from "@/content/developer/eip712-errors.json"
+import eip712Verification from "@/content/developer/eip712-verification.json"
 
 function ErrorCard({ item }) {
   return (
@@ -24,27 +24,38 @@ function ErrorCard({ item }) {
         ))}
       </ul>
     </article>
-  );
+  )
 }
 
 export default function Eip712VerificationRulesPage() {
-  const crossNode = eip712Verification.filter((item) => item.scope === "Cross-node");
-  const nodeLocal = eip712Verification.filter((item) => item.scope === "Node-local");
+  const crossNode = eip712Verification.filter(
+    (item) => item.scope === "Cross-node",
+  )
+  const nodeLocal = eip712Verification.filter(
+    (item) => item.scope === "Node-local",
+  )
 
   return (
     <div className="space-y-6">
       <article className="rounded-2xl border border-dark-border bg-dark-surface/70 p-6 md:p-8">
-        <h1 className="text-3xl font-bold text-white">EIP-712 Verification Rules</h1>
+        <h1 className="text-3xl font-bold text-white">
+          EIP-712 Verification Rules
+        </h1>
         <p className="mt-3 leading-7 text-gray-300">
-          This chapter documents the acceptance checks executed by <span className="text-white">epress node</span> when receiving
-          signed typed-data payloads in <span className="text-white">epress world protocol</span>.
+          This chapter documents the acceptance checks executed by{" "}
+          <span className="text-white">epress node</span> when receiving signed
+          typed-data payloads in{" "}
+          <span className="text-white">epress world protocol</span>.
         </p>
       </article>
 
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-white">Cross-node Verification</h2>
+        <h2 className="text-xl font-semibold text-white">
+          Cross-node Verification
+        </h2>
         <p className="text-sm text-dark-muted">
-          These rules gate protocol transitions between peer nodes in <span className="text-white">epress world protocol</span>.
+          These rules gate protocol transitions between peer nodes in{" "}
+          <span className="text-white">epress world protocol</span>.
         </p>
         <div className="grid gap-4 xl:grid-cols-2">
           {crossNode.map((item) => (
@@ -54,9 +65,12 @@ export default function Eip712VerificationRulesPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold text-white">Node-local Verification</h2>
+        <h2 className="text-xl font-semibold text-white">
+          Node-local Verification
+        </h2>
         <p className="text-sm text-dark-muted">
-          These rules apply to application-side workflows running inside one <span className="text-white">epress node</span>.
+          These rules apply to application-side workflows running inside one{" "}
+          <span className="text-white">epress node</span>.
         </p>
         <div className="grid gap-4 xl:grid-cols-2">
           {nodeLocal.map((item) => (
@@ -67,7 +81,9 @@ export default function Eip712VerificationRulesPage() {
 
       <section className="space-y-4">
         <h2 className="text-xl font-semibold text-white">Error Matrix</h2>
-        <p className="text-sm text-dark-muted">Observed error outcomes mapped to each verification target.</p>
+        <p className="text-sm text-dark-muted">
+          Observed error outcomes mapped to each verification target.
+        </p>
         <div className="grid gap-4 xl:grid-cols-2">
           {eip712Errors.map((item) => (
             <ErrorCard key={`err-${item.id}`} item={item} />
@@ -75,5 +91,5 @@ export default function Eip712VerificationRulesPage() {
         </div>
       </section>
     </div>
-  );
+  )
 }

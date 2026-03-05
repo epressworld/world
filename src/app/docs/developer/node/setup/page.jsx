@@ -2,9 +2,12 @@ export default function NodeSetupPage() {
   return (
     <div className="space-y-6">
       <article className="rounded-2xl border border-dark-border bg-dark-surface/70 p-6 md:p-8">
-        <h1 className="text-3xl font-bold text-white">epress node Development Setup</h1>
+        <h1 className="text-3xl font-bold text-white">
+          epress node Development Setup
+        </h1>
         <p className="mt-3 leading-7 text-gray-300">
-          Local setup for developing and validating <span className="text-white">epress node</span> implementation.
+          Local setup for developing and validating{" "}
+          <span className="text-white">epress node</span> implementation.
         </p>
       </article>
 
@@ -36,19 +39,27 @@ export default function NodeSetupPage() {
             </thead>
             <tbody className="text-gray-300">
               <tr className="border-b border-dark-border/60">
-                <td className="px-2 py-2 font-mono text-primary">npm run dev</td>
+                <td className="px-2 py-2 font-mono text-primary">
+                  npm run dev
+                </td>
                 <td className="px-2 py-2">Run development server</td>
               </tr>
               <tr className="border-b border-dark-border/60">
-                <td className="px-2 py-2 font-mono text-primary">npm run build</td>
+                <td className="px-2 py-2 font-mono text-primary">
+                  npm run build
+                </td>
                 <td className="px-2 py-2">Build client app</td>
               </tr>
               <tr className="border-b border-dark-border/60">
-                <td className="px-2 py-2 font-mono text-primary">npm run start</td>
+                <td className="px-2 py-2 font-mono text-primary">
+                  npm run start
+                </td>
                 <td className="px-2 py-2">Run production server</td>
               </tr>
               <tr className="border-b border-dark-border/60">
-                <td className="px-2 py-2 font-mono text-primary">npm run migrate</td>
+                <td className="px-2 py-2 font-mono text-primary">
+                  npm run migrate
+                </td>
                 <td className="px-2 py-2">Apply database migrations</td>
               </tr>
               <tr>
@@ -60,5 +71,5 @@ export default function NodeSetupPage() {
         </div>
       </article>
     </div>
-  );
+  )
 }

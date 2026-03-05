@@ -29,10 +29,7 @@
       "fields": [],
       "values": []
     },
-    "errorCodes": [
-      "UNAUTHENTICATED",
-      "INVALID_SIGNATURE"
-    ]
+    "errorCodes": ["UNAUTHENTICATED", "INVALID_SIGNATURE"]
   },
   {
     "operationType": "MUTATION",
@@ -217,11 +214,7 @@
       ],
       "values": []
     },
-    "errorCodes": [
-      "INVALID_SIGNATURE",
-      "NOT_FOUND",
-      "FORBIDDEN"
-    ]
+    "errorCodes": ["INVALID_SIGNATURE", "NOT_FOUND", "FORBIDDEN"]
   },
   {
     "operationType": "MUTATION",
@@ -810,11 +803,7 @@
       ],
       "values": []
     },
-    "errorCodes": [
-      "UNAUTHENTICATED",
-      "FORBIDDEN",
-      "NOT_FOUND"
-    ]
+    "errorCodes": ["UNAUTHENTICATED", "FORBIDDEN", "NOT_FOUND"]
   },
   {
     "operationType": "MUTATION",
@@ -846,10 +835,7 @@
       "fields": [],
       "values": []
     },
-    "errorCodes": [
-      "UNAUTHENTICATED",
-      "INTERNAL_SERVER_ERROR"
-    ]
+    "errorCodes": ["UNAUTHENTICATED", "INTERNAL_SERVER_ERROR"]
   },
   {
     "operationType": "MUTATION",
@@ -1043,10 +1029,7 @@
       ],
       "values": []
     },
-    "errorCodes": [
-      "UNAUTHENTICATED",
-      "INTERNAL_SERVER_ERROR"
-    ]
+    "errorCodes": ["UNAUTHENTICATED", "INTERNAL_SERVER_ERROR"]
   },
   {
     "operationType": "MUTATION",
@@ -1084,10 +1067,7 @@
       ],
       "values": []
     },
-    "errorCodes": [
-      "UNAUTHENTICATED",
-      "INTERNAL_SERVER_ERROR"
-    ]
+    "errorCodes": ["UNAUTHENTICATED", "INTERNAL_SERVER_ERROR"]
   },
   {
     "operationType": "MUTATION",
@@ -1180,10 +1160,7 @@
       ],
       "values": []
     },
-    "errorCodes": [
-      "UNAUTHENTICATED",
-      "VALIDATION_FAILED"
-    ]
+    "errorCodes": ["UNAUTHENTICATED", "VALIDATION_FAILED"]
   },
   {
     "operationType": "MUTATION",
@@ -1448,9 +1425,7 @@
       ],
       "values": []
     },
-    "errorCodes": [
-      "UNAUTHENTICATED"
-    ]
+    "errorCodes": ["UNAUTHENTICATED"]
   },
   {
     "operationType": "QUERY",
@@ -1492,9 +1467,7 @@
       "fields": [],
       "values": []
     },
-    "errorCodes": [
-      "VALIDATION_FAILED"
-    ]
+    "errorCodes": ["VALIDATION_FAILED"]
   },
   {
     "operationType": "QUERY",
@@ -1762,9 +1735,7 @@
       ],
       "values": []
     },
-    "errorCodes": [
-      "INVALID_SUGGESITION_TYPE"
-    ]
+    "errorCodes": ["INVALID_SUGGESITION_TYPE"]
   },
   {
     "operationType": "QUERY",

@@ -56,11 +56,7 @@
   {
     "id": "DeleteComment",
     "target": "GraphQL destroyComment",
-    "errors": [
-      "NOT_FOUND",
-      "FORBIDDEN",
-      "INVALID_SIGNATURE"
-    ]
+    "errors": ["NOT_FOUND", "FORBIDDEN", "INVALID_SIGNATURE"]
   },
   {
     "id": "DATA",

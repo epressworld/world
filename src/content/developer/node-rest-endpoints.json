@@ -6,9 +6,7 @@
     "auth": "Operation dependent",
     "summary": "GraphQL transport endpoint for queries and mutations.",
     "source": "server/graphql/index.mjs",
-    "errorCodes": [
-      "503 NOT_INSTALLED"
-    ]
+    "errorCodes": ["503 NOT_INSTALLED"]
   },
   {
     "method": "GET",
@@ -17,9 +15,7 @@
     "auth": "None",
     "summary": "Read installation lock and status.",
     "source": "server/routes/api/install.mjs",
-    "errorCodes": [
-      "500 Failed to check installation status"
-    ]
+    "errorCodes": ["500 Failed to check installation status"]
   },
   {
     "method": "POST",
@@ -40,10 +36,7 @@
     "auth": "None",
     "summary": "Validate SMTP transport string.",
     "source": "server/routes/api/smtp_check.mjs",
-    "errorCodes": [
-      "400 validation failed",
-      "500 server error"
-    ]
+    "errorCodes": ["400 validation failed", "500 server error"]
   },
   {
     "method": "GET",
@@ -52,9 +45,7 @@
     "auth": "None",
     "summary": "List current online visitors from memory state.",
     "source": "server/routes/api/visitors.mjs",
-    "errorCodes": [
-      "500 Internal server error"
-    ]
+    "errorCodes": ["500 Internal server error"]
   },
   {
     "method": "POST",

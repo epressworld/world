@@ -1,5 +1,5 @@
 export function TypedDataTable({ title, fields }) {
-  if (!fields || fields.length === 0) return null;
+  if (!fields || fields.length === 0) return null
 
   return (
     <div className="overflow-x-auto rounded-lg border border-dark-border bg-dark-bg/60">
@@ -13,14 +13,21 @@ export function TypedDataTable({ title, fields }) {
         </thead>
         <tbody>
           {fields.map((field) => (
-            <tr key={`${title}-${field.name}`} className="border-b border-dark-border/60 text-gray-300 last:border-b-0">
+            <tr
+              key={`${title}-${field.name}`}
+              className="border-b border-dark-border/60 text-gray-300 last:border-b-0"
+            >
               <td className="px-3 py-2 font-mono text-primary">{field.name}</td>
-              <td className="px-3 py-2 font-mono text-xs text-gray-200">{field.type}</td>
-              <td className="px-3 py-2 text-xs text-dark-muted">{field.note || "-"}</td>
+              <td className="px-3 py-2 font-mono text-xs text-gray-200">
+                {field.type}
+              </td>
+              <td className="px-3 py-2 text-xs text-dark-muted">
+                {field.note || "-"}
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
-  );
+  )
 }

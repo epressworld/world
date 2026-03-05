@@ -10,18 +10,25 @@ export function VerificationChecklist({ item }) {
         </span>
       </div>
 
-      <p className="mt-3 text-xs uppercase tracking-wide text-dark-muted">Target</p>
+      <p className="mt-3 text-xs uppercase tracking-wide text-dark-muted">
+        Target
+      </p>
       <p className="mt-1 font-mono text-xs text-gray-200">{item.target}</p>
 
-      <p className="mt-4 text-xs uppercase tracking-wide text-dark-muted">Verification Checklist</p>
+      <p className="mt-4 text-xs uppercase tracking-wide text-dark-muted">
+        Verification Checklist
+      </p>
       <ul className="mt-2 space-y-2">
         {item.checks.map((check) => (
-          <li key={`${item.id}-${check}`} className="flex gap-2 rounded-md border border-dark-border bg-dark-bg/50 p-2 text-sm text-gray-300">
+          <li
+            key={`${item.id}-${check}`}
+            className="flex gap-2 rounded-md border border-dark-border bg-dark-bg/50 p-2 text-sm text-gray-300"
+          >
             <span className="mt-0.5 inline-block h-4 w-4 rounded-full border border-emerald-500/40 bg-emerald-500/10" />
             <span>{check}</span>
           </li>
         ))}
       </ul>
     </article>
-  );
+  )
 }

@@ -4,7 +4,7 @@ export const nodeOperatorDocsNav = [
   { href: "/docs/installation", label: "Installation" },
   { href: "/docs/usage", label: "Usage Guide" },
   { href: "/docs/faq", label: "FAQ" },
-];
+]
 
 export const ewpDocsNavGroups = [
   {
@@ -20,21 +20,33 @@ export const ewpDocsNavGroups = [
     label: "EIP-712 Signing Layer",
     items: [
       { href: "/docs/developer/ewp/eip712", label: "Signing Spec" },
-      { href: "/docs/developer/ewp/eip712/typed-data-catalog", label: "Typed Data Catalog" },
-      { href: "/docs/developer/ewp/eip712/verification-rules", label: "Verification Rules" },
-      { href: "/docs/developer/ewp/eip712/security-model", label: "Security Model" },
+      {
+        href: "/docs/developer/ewp/eip712/typed-data-catalog",
+        label: "Typed Data Catalog",
+      },
+      {
+        href: "/docs/developer/ewp/eip712/verification-rules",
+        label: "Verification Rules",
+      },
+      {
+        href: "/docs/developer/ewp/eip712/security-model",
+        label: "Security Model",
+      },
     ],
   },
-];
+]
 
-export const ewpDocsNav = ewpDocsNavGroups.flatMap((group) => group.items);
+export const ewpDocsNav = ewpDocsNavGroups.flatMap((group) => group.items)
 
 export const nodeDeveloperDocsNav = [
   { href: "/docs/developer/node", label: "Overview" },
   { href: "/docs/developer/node/setup", label: "Dev Setup" },
   { href: "/docs/developer/node/configuration", label: "Configuration" },
   { href: "/docs/developer/node/architecture", label: "Architecture" },
-  { href: "/docs/developer/node/auth-permissions", label: "Auth and Permissions" },
+  {
+    href: "/docs/developer/node/auth-permissions",
+    label: "Auth and Permissions",
+  },
   { href: "/docs/developer/node/api/graphql", label: "GraphQL API" },
   { href: "/docs/developer/node/api/rest", label: "REST API" },
-];
+]

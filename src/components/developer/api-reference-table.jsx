@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "next/link"
 
 export function ApiReferenceTable({ items }) {
   return (
@@ -15,7 +15,10 @@ export function ApiReferenceTable({ items }) {
         </thead>
         <tbody>
           {items.map((item) => (
-            <tr key={`${item.method}-${item.path}`} className="border-b border-dark-border/60 text-dark-muted last:border-b-0">
+            <tr
+              key={`${item.method}-${item.path}`}
+              className="border-b border-dark-border/60 text-dark-muted last:border-b-0"
+            >
               <td className="px-4 py-3">
                 <span className="inline-flex rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 font-mono text-xs text-primary">
                   {item.method}
@@ -44,5 +47,5 @@ export function ApiReferenceTable({ items }) {
         </tbody>
       </table>
     </div>
-  );
+  )
 }

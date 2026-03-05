@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 export function DocsPrimaryNav() {
-  const pathname = usePathname();
-  const isDeveloper = pathname.startsWith("/docs/developer");
+  const pathname = usePathname()
+  const isDeveloper = pathname.startsWith("/docs/developer")
 
   return (
     <div className="flex w-full items-center gap-2 overflow-x-auto rounded-lg border border-dark-border bg-dark-surface/70 p-1 sm:w-auto">
@@ -22,5 +22,5 @@ export function DocsPrimaryNav() {
         Developer Docs
       </Link>
     </div>
-  );
+  )
 }

@@ -1,17 +1,17 @@
-import { Inter, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Analytics } from "@vercel/analytics/next";
+import { Inter, JetBrains_Mono } from "next/font/google"
+import "./globals.css"
+import { Analytics } from "@vercel/analytics/next"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-});
+})
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
   subsets: ["latin"],
-});
+})
 
 export const metadata = {
   title: "epress - Your Home on the Decentralized Web",
@@ -20,7 +20,7 @@ export const metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-};
+}
 
 export default function RootLayout({ children }) {
   return (
@@ -39,5 +39,5 @@ export default function RootLayout({ children }) {
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

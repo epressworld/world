@@ -1,19 +1,22 @@
-import Link from "next/link";
-import { DocsSidebar } from "@/components/docs-sidebar";
-import { DocsPrimaryNav } from "@/components/docs-primary-nav";
+import Link from "next/link"
+import { DocsPrimaryNav } from "@/components/docs-primary-nav"
+import { DocsSidebar } from "@/components/docs-sidebar"
 
 export const metadata = {
   title: "epress world Docs",
   description:
     "Documentation for epress world with Node Operator Docs and Developer Docs.",
-};
+}
 
 export default function DocsLayout({ children }) {
   return (
     <div className="min-h-screen bg-dark-bg text-dark-text">
       <header className="border-b border-dark-border">
         <div className="container-custom flex min-h-16 flex-wrap items-center justify-between gap-3 py-2">
-          <Link href="/" className="text-sm text-dark-muted hover:text-dark-text">
+          <Link
+            href="/"
+            className="text-sm text-dark-muted hover:text-dark-text"
+          >
             Back to Home
           </Link>
           <div className="flex flex-wrap items-center gap-3 text-sm">
@@ -48,5 +51,5 @@ export default function DocsLayout({ children }) {
         </div>
       </main>
     </div>
-  );
+  )
 }

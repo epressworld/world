@@ -5,9 +5,7 @@
     "stability": "Public/Protocol",
     "auth": "None",
     "summary": "Return node avatar binary.",
-    "errorCodes": [
-      "500 Internal Server Error"
-    ]
+    "errorCodes": ["500 Internal Server Error"]
   },
   {
     "method": "POST",
@@ -74,10 +72,7 @@
     "stability": "Public/Protocol",
     "auth": "None",
     "summary": "Return self node profile for protocol identity discovery.",
-    "errorCodes": [
-      "404 NODE_NOT_FOUND",
-      "500 INTERNAL_ERROR"
-    ]
+    "errorCodes": ["404 NODE_NOT_FOUND", "500 INTERNAL_ERROR"]
   },
   {
     "method": "GET",

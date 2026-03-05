@@ -52,9 +52,7 @@
         "note": "Unix timestamp used for freshness checks (one-hour window) to resist replay attacks."
       }
     ],
-    "routes": [
-      "POST /ewp/connections"
-    ]
+    "routes": ["POST /ewp/connections"]
   },
   {
     "id": "DeleteConnection",
@@ -104,9 +102,7 @@
         "note": "Unix timestamp used for freshness checks (one-hour window) to prevent replay."
       }
     ],
-    "routes": [
-      "DELETE /ewp/connections"
-    ]
+    "routes": ["DELETE /ewp/connections"]
   },
   {
     "id": "NodeProfileUpdate",
@@ -166,9 +162,7 @@
         "note": "Monotonic profile version timestamp. Peers apply update only when newer than local copy."
       }
     ],
-    "routes": [
-      "PATCH /ewp/nodes/:address"
-    ]
+    "routes": ["PATCH /ewp/nodes/:address"]
   },
   {
     "id": "StatementOfSource",
@@ -218,9 +212,7 @@
         "note": "Publication timestamp used for deterministic ordering and replication request context."
       }
     ],
-    "routes": [
-      "POST /ewp/replications"
-    ]
+    "routes": ["POST /ewp/replications"]
   },
   {
     "id": "CommentSignature",
@@ -280,9 +272,7 @@
         "note": "Comment creation timestamp used with short validity window for anti-replay protection."
       }
     ],
-    "routes": [
-      "GraphQL mutation confirmComment"
-    ]
+    "routes": ["GraphQL mutation confirmComment"]
   },
   {
     "id": "DATA",
@@ -332,9 +322,7 @@
         "note": "Installation request timestamp validated in a bounded window to prevent replay."
       }
     ],
-    "routes": [
-      "POST /api/install"
-    ]
+    "routes": ["POST /api/install"]
   },
   {
     "id": "DeleteComment",
@@ -384,8 +372,6 @@
         "note": "Wallet address that must match both comment author and recovered signer."
       }
     ],
-    "routes": [
-      "GraphQL mutation destroyComment"
-    ]
+    "routes": ["GraphQL mutation destroyComment"]
   }
 ]

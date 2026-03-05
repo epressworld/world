@@ -19,25 +19,17 @@
   {
     "concept": "Connection",
     "definition": "Follow relationships are created and removed through signed handshakes.",
-    "routes": [
-      "POST /ewp/connections",
-      "DELETE /ewp/connections"
-    ]
+    "routes": ["POST /ewp/connections", "DELETE /ewp/connections"]
   },
   {
     "concept": "Publication",
     "definition": "Publications bind author identity to content hash and optional signature.",
-    "routes": [
-      "GET /ewp/publications",
-      "GET /ewp/contents/:content_hash"
-    ]
+    "routes": ["GET /ewp/publications", "GET /ewp/contents/:content_hash"]
   },
   {
     "concept": "Replication",
     "definition": "Follower nodes replicate signed content from followed publishers.",
-    "routes": [
-      "POST /ewp/replications"
-    ]
+    "routes": ["POST /ewp/replications"]
   },
   {
     "concept": "Proof/Signature",
