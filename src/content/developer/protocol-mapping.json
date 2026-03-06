@@ -2,10 +2,7 @@
   {
     "concept": "Identity",
     "definition": "Node identity is rooted in Ethereum address ownership and signature verification.",
-    "routes": [
-      "GET /ewp/profile",
-      "POST /api/graphql (getSiweMessage/signInWithEthereum)"
-    ]
+    "routes": ["GET /ewp/profile"]
   },
   {
     "concept": "Node",
