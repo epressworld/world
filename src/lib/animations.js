@@ -39,7 +39,7 @@ export function useStaggeredReveal(itemCount, staggerDelay = 0.1) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          const items = []
+          const _items = []
           for (let i = 0; i < itemCount; i++) {
             setTimeout(
               () => {

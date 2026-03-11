@@ -17,6 +17,7 @@ export function Timeline({ items }) {
             className="flex flex-col items-center flex-1 relative"
             onMouseEnter={() => setHoveredIndex(idx)}
             onMouseLeave={() => setHoveredIndex(null)}
+            aria-hidden="true"
           >
             <div className="text-2xl mb-2">{item.icon}</div>
 
