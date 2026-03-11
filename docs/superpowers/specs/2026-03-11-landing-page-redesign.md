@@ -143,16 +143,18 @@ Secondary links: Read Whitepaper · How It Works · Deploy a Node
 
 ## Component Specifications
 
-### NetworkDiagram Component
+### HeroNetwork Component (hero-network.jsx)
 
 **Props**: None (self-contained animation)
 
 **Implementation**:
-1. `NetworkDiagramSvg.jsx` - Static SVG structure with nodes and connections
-2. `NetworkDiagramCanvas.jsx` - Client-side Canvas overlay for particle animation
-3. Parent component composites both with absolute positioning
+1. Static SVG structure with nodes and connections (inline in component)
+2. Canvas overlay for particle animation (client-side only via "use client")
+3. Both layered with absolute positioning
 
 **Node positions**: Pre-calculated for consistent layout across SSR/CSR
+
+**Error handling**: Canvas initialization wrapped in try-catch, falls back to static SVG if Canvas fails
 
 ### ComparisonCard Component
 
@@ -179,6 +181,13 @@ Secondary links: Read Whitepaper · How It Works · Deploy a Node
 - `points`: string[]
 
 **Layout**: Diagram takes 60% width on desktop, stacks on mobile
+
+### MiniDiagram Component
+
+**Props**:
+- `children`: ReactNode (SVG diagram content)
+
+**Purpose**: Simple wrapper that provides consistent padding, border, and background for embedded diagrams. No additional logic.
 
 ### ComparisonTable Component
 
@@ -261,7 +270,7 @@ src/
 
 ### Phase 1 (Current Focus)
 
-1. Update fonts in `layout.js`
+1. Update fonts in `layout.js` (add Playfair Display + IBM Plex Mono via next/font/google)
 2. Create Hero section with network animation
 3. Create Era Comparison section
 4. Create AI Agent Era section
@@ -269,7 +278,8 @@ src/
 6. Create Tech Cards section
 7. Create Solution Comparison section
 8. Create CTA section
-9. Update navigation and footer
+9. Update navigation: add "Vision" and "How It Works" links, keep existing "Docs", "Whitepaper", "Blog", "GitHub"
+10. Update footer: add link to How It Works, ensure consistent styling with new fonts
 
 ### Phase 2 (After Homepage)
 
