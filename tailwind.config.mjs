@@ -38,8 +38,8 @@ const config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        mono: ["var(--font-jetbrains)", "monospace"],
+        sans: ["var(--font-playfair)", "Georgia", "serif"],
+        mono: ["var(--font-ibm-plex)", "monospace"],
       },
       container: {
         center: true,
