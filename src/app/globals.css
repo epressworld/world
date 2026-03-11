@@ -108,4 +108,32 @@
   .whitepaper-markdown.markdown-body h3 {
     scroll-margin-top: 6rem;
   }
+
+  .landing-section {
+    @apply py-16 md:py-24;
+  }
+
+  .landing-heading {
+    @apply font-sans text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight;
+  }
+
+  .landing-subheading {
+    @apply text-lg md:text-xl text-dark-muted max-w-2xl;
+  }
+
+  .landing-card-warning {
+    @apply rounded-2xl border border-red-500/30 bg-gradient-to-br from-red-950/30 to-dark-surface/70 p-6;
+  }
+
+  .landing-card-success {
+    @apply rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-dark-surface/70 p-6;
+  }
+
+  .diagram-frame {
+    @apply rounded-xl border border-dark-border bg-dark-bg p-4 overflow-hidden;
+  }
+
+  .section-label {
+    @apply text-xs font-mono uppercase tracking-widest text-dark-muted mb-4;
+  }
 }
