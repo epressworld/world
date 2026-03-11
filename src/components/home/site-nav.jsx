@@ -7,7 +7,7 @@ import { useState } from "react"
 
 const NAV_LINKS = [
   { href: "/vision", label: "Vision" },
-  { href: "/docs", label: "How It Works" },
+  { href: "/how-it-works", label: "How It Works" },
   { href: "/whitepaper", label: "Whitepaper" },
   { href: "/docs", label: "Docs" },
   { href: "https://blog.epress.world", label: "Blog", external: true },
