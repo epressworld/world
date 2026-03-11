@@ -553,7 +553,7 @@ git commit -m "feat: add HeroNetworkSvg static component"
 
 ---
 
-### Task 7: Create Hero Network Canvas Animation
+### Task 8: Create Hero Network Canvas Animation
 
 **Files:**
 - Create: `src/components/home/hero-network-canvas.jsx`
@@ -661,7 +661,7 @@ git commit -m "feat: add HeroNetworkCanvas particle animation"
 
 ---
 
-### Task 8: Create Hero Section Component
+### Task 9: Create Hero Section Component
 
 **Files:**
 - Create: `src/components/home/hero-section.jsx`
@@ -730,7 +730,7 @@ git commit -m "feat: add HeroSection with network animation background"
 
 ---
 
-### Task 9: Create Era Comparison Diagram SVG
+### Task 10: Create Era Comparison Diagram SVG
 
 **Files:**
 - Create: `src/components/home/era-comparison-svg.jsx`
@@ -806,7 +806,7 @@ git commit -m "feat: add AIContentFlood and ProofOfSource SVG diagrams"
 
 ---
 
-### Task 10: Create Era Comparison Section
+### Task 11: Create Era Comparison Section
 
 **Files:**
 - Create: `src/components/home/era-comparison.jsx`
@@ -860,7 +860,7 @@ git commit -m "feat: add EraComparison section"
 
 ## Chunk 3: AI Agent Era and Lifetime Timeline
 
-### Task 11: Create AI Agent Era Diagram
+### Task 12: Create AI Agent Era Diagram
 
 **Files:**
 - Create: `src/components/home/agent-era-svg.jsx`
@@ -949,7 +949,7 @@ git commit -m "feat: add AgentEraSvg comparison diagram"
 
 ---
 
-### Task 12: Create AI Agent Era Section
+### Task 13: Create AI Agent Era Section
 
 **Files:**
 - Create: `src/components/home/agent-era.jsx`
@@ -992,7 +992,7 @@ git commit -m "feat: add AgentEra section"
 
 ---
 
-### Task 13: Create Shared Timeline Component
+### Task 14: Create Shared Timeline Component
 
 **Files:**
 - Create: `src/components/shared/timeline.jsx`
@@ -1072,7 +1072,7 @@ git commit -m "feat: add Timeline component with pulse animation and hover expan
 
 ---
 
-### Task 14: Create Lifetime Timeline Section
+### Task 15: Create Lifetime Timeline Section
 
 **Files:**
 - Create: `src/components/home/lifetime-timeline.jsx`
@@ -1140,7 +1140,7 @@ git commit -m "feat: add LifetimeTimeline section"
 
 ## Chunk 4: Tech Cards, Solution Comparison, CTA
 
-### Task 15: Create Tech Card Diagrams
+### Task 16: Create Tech Card Diagrams
 
 **Files:**
 - Create: `src/components/home/tech-card-diagrams.jsx`
@@ -1239,7 +1239,7 @@ git commit -m "feat: add ProofOfSource, OpenProtocol, SelfHosted diagrams"
 
 ---
 
-### Task 16: Create Tech Cards Section
+### Task 17: Create Tech Cards Section
 
 **Files:**
 - Create: `src/components/home/tech-cards.jsx`
@@ -1323,7 +1323,7 @@ git commit -m "feat: add TechCards section with three mechanism cards"
 
 ---
 
-### Task 17: Create Solution Comparison Table
+### Task 18: Create Solution Comparison Table
 
 **Files:**
 - Create: `src/components/home/solution-comparison.jsx`
@@ -1461,7 +1461,7 @@ git commit -m "feat: add SolutionComparison table component"
 
 ---
 
-### Task 18: Create CTA Section
+### Task 19: Create CTA Section
 
 **Files:**
 - Create: `src/components/home/cta-section.jsx`
@@ -1532,7 +1532,7 @@ git commit -m "feat: add CTASection with GitHub star button"
 
 ## Chunk 5: Navigation, Footer, and Page Assembly
 
-### Task 19: Update Navigation Component
+### Task 20: Update Navigation Component
 
 **Files:**
 - Create: `src/components/home/site-nav.jsx`
@@ -1664,7 +1664,7 @@ git commit -m "feat: add SiteNav component with mobile menu"
 
 ---
 
-### Task 20: Update Footer Component
+### Task 21: Update Footer Component
 
 **Files:**
 - Create: `src/components/home/site-footer.jsx`
@@ -1743,7 +1743,7 @@ git commit -m "feat: add SiteFooter component"
 
 ---
 
-### Task 21: Update Homepage to Use New Components
+### Task 22: Update Homepage to Use New Components
 
 **Files:**
 - Modify: `src/app/page.jsx`
@@ -1799,7 +1799,7 @@ git commit -m "feat: replace homepage with redesigned 7-section layout"
 
 ---
 
-### Task 22: Run Lint and Fix Issues
+### Task 23: Run Lint and Fix Issues
 
 **Files:**
 - Various
@@ -1828,7 +1828,7 @@ git commit -m "fix: resolve lint issues"
 
 ---
 
-### Task 23: Final Build Verification
+### Task 24: Final Build Verification
 
 **Files:**
 - All
