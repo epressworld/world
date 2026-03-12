@@ -1,7 +1,7 @@
 export function HomeServerSvg() {
   return (
     <svg
-      viewBox="0 0 600 320"
+      viewBox="0 0 600 280"
       className="w-full h-auto"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -12,10 +12,9 @@ export function HomeServerSvg() {
         </linearGradient>
       </defs>
 
-      {}
       <text
         x="300"
-        y="25"
+        y="20"
         textAnchor="middle"
         fill="#a0a0a0"
         fontSize="11"
@@ -27,9 +26,9 @@ export function HomeServerSvg() {
       {}
       <rect
         x="200"
-        y="50"
+        y="45"
         width="200"
-        height="180"
+        height="150"
         rx="12"
         fill="#151515"
         stroke="#F7931A"
@@ -37,13 +36,13 @@ export function HomeServerSvg() {
       />
 
       {}
-      <ellipse cx="300" cy="30" rx="80" ry="20" fill="url(#serverGlow)" />
+      <ellipse cx="300" cy="25" rx="80" ry="20" fill="url(#serverGlow)" />
 
       {}
-      <rect x="220" y="70" width="160" height="25" rx="4" fill="#1a1a1a" />
-      <circle cx="235" cy="82" r="4" fill="#34D399" />
-      <circle cx="248" cy="82" r="4" fill="#34D399" />
-      <circle cx="261" cy="82" r="4" fill="#F7931A">
+      <rect x="220" y="60" width="160" height="25" rx="4" fill="#1a1a1a" />
+      <circle cx="235" cy="72" r="4" fill="#34D399" />
+      <circle cx="248" cy="72" r="4" fill="#34D399" />
+      <circle cx="261" cy="72" r="4" fill="#F7931A">
         <animate
           attributeName="opacity"
           values="1;0.3;1"
@@ -53,7 +52,7 @@ export function HomeServerSvg() {
       </circle>
       <text
         x="320"
-        y="86"
+        y="76"
         textAnchor="middle"
         fill="#a0a0a0"
         fontSize="8"
@@ -65,7 +64,7 @@ export function HomeServerSvg() {
       {}
       <text
         x="300"
-        y="115"
+        y="110"
         textAnchor="middle"
         fill="#F7931A"
         fontSize="14"
@@ -76,7 +75,7 @@ export function HomeServerSvg() {
       </text>
       <text
         x="300"
-        y="130"
+        y="125"
         textAnchor="middle"
         fill="#34D399"
         fontSize="9"
@@ -88,7 +87,7 @@ export function HomeServerSvg() {
       {}
       <rect
         x="220"
-        y="145"
+        y="140"
         width="70"
         height="35"
         rx="4"
@@ -98,7 +97,7 @@ export function HomeServerSvg() {
       />
       <text
         x="255"
-        y="160"
+        y="155"
         textAnchor="middle"
         fill="#6EE7B7"
         fontSize="8"
@@ -108,7 +107,7 @@ export function HomeServerSvg() {
       </text>
       <text
         x="255"
-        y="172"
+        y="167"
         textAnchor="middle"
         fill="#6EE7B7"
         fontSize="8"
@@ -119,7 +118,7 @@ export function HomeServerSvg() {
 
       <rect
         x="310"
-        y="145"
+        y="140"
         width="70"
         height="35"
         rx="4"
@@ -129,7 +128,7 @@ export function HomeServerSvg() {
       />
       <text
         x="345"
-        y="160"
+        y="155"
         textAnchor="middle"
         fill="#93C5FD"
         fontSize="8"
@@ -139,7 +138,7 @@ export function HomeServerSvg() {
       </text>
       <text
         x="345"
-        y="172"
+        y="167"
         textAnchor="middle"
         fill="#93C5FD"
         fontSize="8"
@@ -150,34 +149,20 @@ export function HomeServerSvg() {
 
       {}
       <rect
-        x="220"
-        y="190"
-        width="160"
-        height="30"
-        rx="4"
-        fill="#0f0f0f"
-        stroke="#3a3a3a"
-      />
-      <text x="240" y="210" fill="#a0a0a0" fontSize="8" fontFamily="monospace">
-        Your data. Your rules.
-      </text>
-
-      {}
-      <rect
         x="50"
-        y="260"
+        y="210"
         width="90"
         height="50"
         rx="8"
         fill="#1a1a1a"
         stroke="#3a3a3a"
       />
-      <text x="95" y="285" textAnchor="middle" fill="#a0a0a0" fontSize="10">
+      <text x="95" y="235" textAnchor="middle" fill="#a0a0a0" fontSize="10">
         📱
       </text>
       <text
         x="95"
-        y="300"
+        y="250"
         textAnchor="middle"
         fill="#6b7280"
         fontSize="7"
@@ -188,19 +173,19 @@ export function HomeServerSvg() {
 
       <rect
         x="160"
-        y="260"
+        y="210"
         width="90"
         height="50"
         rx="8"
         fill="#1a1a1a"
         stroke="#3a3a3a"
       />
-      <text x="205" y="285" textAnchor="middle" fill="#a0a0a0" fontSize="10">
+      <text x="205" y="235" textAnchor="middle" fill="#a0a0a0" fontSize="10">
         💻
       </text>
       <text
         x="205"
-        y="300"
+        y="250"
         textAnchor="middle"
         fill="#6b7280"
         fontSize="7"
@@ -211,19 +196,19 @@ export function HomeServerSvg() {
 
       <rect
         x="350"
-        y="260"
+        y="210"
         width="90"
         height="50"
         rx="8"
         fill="#1a1a1a"
         stroke="#3a3a3a"
       />
-      <text x="395" y="285" textAnchor="middle" fill="#a0a0a0" fontSize="10">
+      <text x="395" y="235" textAnchor="middle" fill="#a0a0a0" fontSize="10">
         ⌚
       </text>
       <text
         x="395"
-        y="300"
+        y="250"
         textAnchor="middle"
         fill="#6b7280"
         fontSize="7"
@@ -234,19 +219,19 @@ export function HomeServerSvg() {
 
       <rect
         x="460"
-        y="260"
+        y="210"
         width="90"
         height="50"
         rx="8"
         fill="#1a1a1a"
         stroke="#3a3a3a"
       />
-      <text x="505" y="285" textAnchor="middle" fill="#a0a0a0" fontSize="10">
+      <text x="505" y="235" textAnchor="middle" fill="#a0a0a0" fontSize="10">
         🖥️
       </text>
       <text
         x="505"
-        y="300"
+        y="250"
         textAnchor="middle"
         fill="#6b7280"
         fontSize="7"
@@ -257,28 +242,28 @@ export function HomeServerSvg() {
 
       {}
       <path
-        d="M95 260 L200 230"
+        d="M95 210 L220 195"
         stroke="#F7931A"
         strokeWidth="1.5"
         strokeOpacity="0.5"
         strokeDasharray="3,3"
       />
       <path
-        d="M205 260 L220 230"
+        d="M205 210 L280 195"
         stroke="#F7931A"
         strokeWidth="1.5"
         strokeOpacity="0.5"
         strokeDasharray="3,3"
       />
       <path
-        d="M395 260 L380 230"
+        d="M395 210 L320 195"
         stroke="#F7931A"
         strokeWidth="1.5"
         strokeOpacity="0.5"
         strokeDasharray="3,3"
       />
       <path
-        d="M505 260 L400 230"
+        d="M505 210 L380 195"
         stroke="#F7931A"
         strokeWidth="1.5"
         strokeOpacity="0.5"
@@ -288,13 +273,13 @@ export function HomeServerSvg() {
       {}
       <text
         x="300"
-        y="245"
+        y="275"
         textAnchor="middle"
         fill="#a0a0a0"
         fontSize="8"
         fontFamily="monospace"
       >
-        Access your node from any device
+        Access your node from any device — your data, your rules
       </text>
     </svg>
   )
