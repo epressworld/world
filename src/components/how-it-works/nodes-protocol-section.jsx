@@ -268,7 +268,7 @@ export function NodesProtocolSection() {
           <FollowHandshakeDiagram />
         </MiniDiagram>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
           <div className="p-6 rounded-xl border border-dark-border bg-dark-surface/50">
             <h3 className="text-lg font-semibold text-white mb-3">
               EWP Interfaces
@@ -300,35 +300,6 @@ export function NodesProtocolSection() {
                 <span>
                   <strong className="text-dark-text">Pull</strong> — Fetch
                   content from peer nodes
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="p-6 rounded-xl border border-dark-border bg-dark-surface/50">
-            <h3 className="text-lg font-semibold text-white mb-3">
-              Node Types
-            </h3>
-            <ul className="space-y-2 text-sm text-dark-muted">
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span>
-                  <strong className="text-dark-text">Home Node</strong> — Your
-                  personal server, stores your data
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span>
-                  <strong className="text-dark-text">Public Node</strong> — Open
-                  relay for content discovery
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span>
-                  <strong className="text-dark-text">Browser Client</strong> —
-                  Light client for reading only
                 </span>
               </li>
             </ul>

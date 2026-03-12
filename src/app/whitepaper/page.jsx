@@ -48,8 +48,8 @@ export default async function WhitepaperPage() {
       <SiteNav />
 
       <main className="flex-1 py-12">
-        <div className="container-custom">
-          <div className="mb-8">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 max-w-5xl mx-auto">
             <h1 className="text-2xl font-bold text-white mb-2">Whitepaper</h1>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-dark-muted">
               <span>Version 1.0</span>
@@ -70,7 +70,7 @@ export default async function WhitepaperPage() {
             </div>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
+          <div className="max-w-5xl mx-auto grid gap-8 lg:grid-cols-[240px_minmax(0,1fr)]">
             <aside className="lg:sticky lg:top-24 lg:h-[calc(100vh-8rem)] lg:overflow-auto">
               <details
                 className="rounded-xl border border-dark-border bg-dark-surface/70 p-4 lg:hidden"
