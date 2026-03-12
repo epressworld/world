@@ -1,0 +1,349 @@
+export function InternetOriginsSvg() {
+  return (
+    <svg
+      viewBox="0 0 600 280"
+      className="w-full h-auto"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient id="peerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#0f1a12" />
+          <stop offset="100%" stopColor="#1a2a1a" />
+        </linearGradient>
+        <linearGradient id="centralGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#2a1515" />
+          <stop offset="100%" stopColor="#1a0a0a" />
+        </linearGradient>
+      </defs>
+
+      <rect
+        x="20"
+        y="20"
+        width="260"
+        height="200"
+        rx="12"
+        fill="url(#peerGrad)"
+        stroke="#34D399"
+        strokeOpacity="0.3"
+      />
+      <text
+        x="150"
+        y="45"
+        textAnchor="middle"
+        fill="#34D399"
+        fontSize="11"
+        fontFamily="monospace"
+      >
+        1990s: Peer-to-Peer
+      </text>
+
+      <circle cx="80" cy="90" r="12" fill="#1a2a1a" stroke="#34D399" />
+      <circle cx="150" cy="70" r="12" fill="#1a2a1a" stroke="#34D399" />
+      <circle cx="220" cy="90" r="12" fill="#1a2a1a" stroke="#34D399" />
+      <circle cx="80" cy="150" r="12" fill="#1a2a1a" stroke="#34D399" />
+      <circle cx="150" cy="170" r="12" fill="#1a2a1a" stroke="#34D399" />
+      <circle cx="220" cy="150" r="12" fill="#1a2a1a" stroke="#34D399" />
+      <circle cx="150" cy="120" r="12" fill="#1a2a1a" stroke="#34D399" />
+
+      <line
+        x1="80"
+        y1="90"
+        x2="150"
+        y2="70"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="150"
+        y1="70"
+        x2="220"
+        y2="90"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="80"
+        y1="90"
+        x2="80"
+        y2="150"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="220"
+        y1="90"
+        x2="220"
+        y2="150"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="80"
+        y1="150"
+        x2="150"
+        y2="170"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="150"
+        y1="170"
+        x2="220"
+        y2="150"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="80"
+        y1="90"
+        x2="150"
+        y2="120"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="150"
+        y1="70"
+        x2="150"
+        y2="120"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="220"
+        y1="90"
+        x2="150"
+        y2="120"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="80"
+        y1="150"
+        x2="150"
+        y2="120"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="150"
+        y1="170"
+        x2="150"
+        y2="120"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="220"
+        y1="150"
+        x2="150"
+        y2="120"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="80"
+        y1="90"
+        x2="220"
+        y2="150"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.3"
+      />
+      <line
+        x1="220"
+        y1="90"
+        x2="80"
+        y2="150"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.3"
+      />
+
+      <text
+        x="150"
+        y="200"
+        textAnchor="middle"
+        fill="#34D399"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        Decentralized. Resilient. Open.
+      </text>
+
+      <rect
+        x="320"
+        y="20"
+        width="260"
+        height="200"
+        rx="12"
+        fill="url(#centralGrad)"
+        stroke="#ef4444"
+        strokeOpacity="0.3"
+      />
+      <text
+        x="450"
+        y="45"
+        textAnchor="middle"
+        fill="#fca5a5"
+        fontSize="11"
+        fontFamily="monospace"
+      >
+        Today: Centralized
+      </text>
+
+      <circle
+        cx="450"
+        cy="120"
+        r="35"
+        fill="#2a1515"
+        stroke="#ef4444"
+        strokeOpacity="0.5"
+      />
+      <text x="450" y="115" textAnchor="middle" fill="#fca5a5" fontSize="8">
+        Central
+      </text>
+      <text x="450" y="128" textAnchor="middle" fill="#fca5a5" fontSize="8">
+        Platform
+      </text>
+
+      <circle
+        cx="370"
+        cy="70"
+        r="10"
+        fill="#2a1515"
+        stroke="#fca5a5"
+        strokeOpacity="0.5"
+      />
+      <circle
+        cx="530"
+        cy="70"
+        r="10"
+        fill="#2a1515"
+        stroke="#fca5a5"
+        strokeOpacity="0.5"
+      />
+      <circle
+        cx="370"
+        cy="170"
+        r="10"
+        fill="#2a1515"
+        stroke="#fca5a5"
+        strokeOpacity="0.5"
+      />
+      <circle
+        cx="530"
+        cy="170"
+        r="10"
+        fill="#2a1515"
+        stroke="#fca5a5"
+        strokeOpacity="0.5"
+      />
+      <circle
+        cx="350"
+        cy="120"
+        r="10"
+        fill="#2a1515"
+        stroke="#fca5a5"
+        strokeOpacity="0.5"
+      />
+      <circle
+        cx="550"
+        cy="120"
+        r="10"
+        fill="#2a1515"
+        stroke="#fca5a5"
+        strokeOpacity="0.5"
+      />
+
+      <line
+        x1="380"
+        y1="70"
+        x2="420"
+        y2="100"
+        stroke="#ef4444"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="520"
+        y1="70"
+        x2="480"
+        y2="100"
+        stroke="#ef4444"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="380"
+        y1="170"
+        x2="420"
+        y2="140"
+        stroke="#ef4444"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="520"
+        y1="170"
+        x2="480"
+        y2="140"
+        stroke="#ef4444"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="360"
+        y1="120"
+        x2="415"
+        y2="120"
+        stroke="#ef4444"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+      <line
+        x1="540"
+        y1="120"
+        x2="485"
+        y2="120"
+        stroke="#ef4444"
+        strokeWidth="1"
+        strokeOpacity="0.4"
+      />
+
+      <text
+        x="450"
+        y="200"
+        textAnchor="middle"
+        fill="#ef4444"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        Single points of failure. Locked data.
+      </text>
+
+      <text
+        x="300"
+        y="260"
+        textAnchor="middle"
+        fill="#F7931A"
+        fontSize="11"
+        fontFamily="monospace"
+      >
+        epress returns to the original vision: peer-to-peer, decentralized, open
+      </text>
+    </svg>
+  )
+}

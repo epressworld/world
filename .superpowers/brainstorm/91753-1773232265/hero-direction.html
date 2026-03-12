@@ -1,0 +1,48 @@
+<h2>Hero 区设计方向</h2>
+<p class="subtitle">提示词要求"图示优先"，Hero 区需要 60% 面积为动态网络图。哪种实现方式？</p>
+
+<div class="options">
+  <div class="option" data-choice="canvas" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Canvas 动态网络图</h3>
+      <p>8-12个节点实时漂移动画，无中心节点，鼠标悬停高亮。性能好，但SEO不友好。</p>
+    </div>
+  </div>
+  <div class="option" data-choice="svg" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>SVG + CSS 动画</h3>
+      <p>静态SVG结构，CSS做节点pulse和连线动画。可缩放，可被搜索引擎索引，但动态性较弱。</p>
+    </div>
+  </div>
+  <div class="option" data-choice="hybrid" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>混合方案</h3>
+      <p>静态SVG作为背景（SEO友好），叠加少量Canvas粒子效果增加生命感。平衡性能和视觉效果。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 2rem;">
+  <h3>字体选择</h3>
+  <p class="subtitle">提示词要求 Playfair Display + IBM Plex Mono，但当前项目用的是 Inter + JetBrains Mono</p>
+</div>
+
+<div class="options">
+  <div class="option" data-choice="prompt-fonts" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>按提示词更换字体</h3>
+      <p>Playfair Display（标题）+ IBM Plex Mono（正文）。更editorial风格，有手工感。</p>
+    </div>
+  </div>
+  <div class="option" data-choice="keep-fonts" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>保留现有字体</h3>
+      <p>Inter + JetBrains Mono。更现代技术感，与现有设计一致。</p>
+    </div>
+  </div>
+</div>
