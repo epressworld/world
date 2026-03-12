@@ -31,7 +31,7 @@ echo "  Decentralized blog and social network"
 echo ""
 
 # Check Node.js
-NODE_MIN_VERSION=18
+NODE_MIN_VERSION=20
 check_node() {
   if command -v node &> /dev/null; then
     NODE_VERSION=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
@@ -114,16 +114,15 @@ build_epress() {
 start_epress() {
   info "Starting epress node..."
 
-  # Check if PM2 is available globally, if not use npx
-  if command -v pm2 &> /dev/null; then
-    pm2 start ecosystem.config.cjs
-    pm2 save
-  else
-    npx pm2 start ecosystem.config.cjs
-    npx pm2 save
-  fi
+  npm start &
+  NODE_PID=$!
+  sleep 3
 
-  success "epress node started"
+  if kill -0 $NODE_PID 2>/dev/null; then
+    success "epress node started"
+  else
+    warn "Node may have failed to start. Check logs at ~/epress"
+  fi
 }
 
 # Print success message
@@ -136,10 +135,12 @@ print_success() {
   echo -e "  Open your browser: \${BLUE}http://localhost:8543\${NC}"
   echo ""
   echo -e "  \${YELLOW}Common commands:\${NC}"
-  echo "    View logs:    cd ~/epress && npm run logs"
-  echo "    Stop node:    cd ~/epress && npm run stop"
-  echo "    Start node:   cd ~/epress && npm run start"
-  echo "    Check status: cd ~/epress && npm run status"
+  echo "    Stop node:    cd ~/epress && Ctrl+C"
+  echo "    Start node:   cd ~/epress && npm start"
+  echo "    Development:  cd ~/epress && npm run dev"
+  echo ""
+  echo -e "  For production, consider using systemd:"
+  echo -e "  \${BLUE}https://epress.world/docs/installation\${NC}"
   echo ""
   echo -e "  Data directory: \${BLUE}~/epress/data\${NC}"
   echo ""

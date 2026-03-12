@@ -53,11 +53,11 @@ function CurlTab() {
       <div className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h3 className="text-lg font-semibold text-white">What This Does</h3>
         <ul className="mt-3 list-disc space-y-2 pl-6 text-gray-300">
-          <li>Checks for Node.js v18+ (installs via nvm if needed)</li>
+          <li>Checks for Node.js v20+ (installs via nvm if needed)</li>
           <li>Checks for Git (prompts to install if missing)</li>
           <li>Clones epress to ~/epress directory</li>
           <li>Installs dependencies and builds the application</li>
-          <li>Starts the node with PM2 for automatic restarts</li>
+          <li>Starts the node (use systemd for production)</li>
         </ul>
       </div>
 
@@ -112,7 +112,8 @@ function DockerTab() {
         <pre className="mt-4 overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary">
           <code>
             docker run -d -p 8543:8543 -p 8544:8544 -v epress-data:/app/data
-            --name my-epress-node ghcr.io/epressworld/epress
+            --restart unless-stopped --name my-epress-node
+            ghcr.io/epressworld/epress:latest
           </code>
         </pre>
       </div>
@@ -134,8 +135,11 @@ function DockerTab() {
       <div className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h3 className="text-lg font-semibold text-white">Upgrade</h3>
         <pre className="mt-4 overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary">
-          <code>{`docker pull ghcr.io/epressworld/epress\ndocker stop my-epress-node\ndocker rm my-epress-node\ndocker run -d -p 8543:8543 -p 8544:8544 -v epress-data:/app/data --name my-epress-node ghcr.io/epressworld/epress`}</code>
+          <code>{`docker pull ghcr.io/epressworld/epress:latest\ndocker stop my-epress-node\ndocker rm my-epress-node\ndocker run -d -p 8543:8543 -p 8544:8544 -v epress-data:/app/data --restart unless-stopped --name my-epress-node ghcr.io/epressworld/epress:latest\ndocker exec my-epress-node npm run migrate`}</code>
         </pre>
+        <p className="mt-2 text-sm text-gray-300">
+          The migrate step applies any database schema updates.
+        </p>
       </div>
     </div>
   )
@@ -147,9 +151,9 @@ function SourceTab() {
       <div className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h3 className="text-lg font-semibold text-white">Prerequisites</h3>
         <ul className="mt-3 list-disc space-y-2 pl-6 text-gray-300">
-          <li>Node.js v18 or higher</li>
+          <li>Node.js v20 or higher</li>
           <li>Git</li>
-          <li>SQLite or PostgreSQL or MySQL</li>
+          <li>SQLite (default), PostgreSQL, or MySQL</li>
         </ul>
       </div>
 
@@ -169,23 +173,43 @@ function SourceTab() {
           <code className="rounded bg-dark-bg px-1.5 py-0.5 text-primary">
             .env.local
           </code>{" "}
-          to customize:
+          to customize ports or database:
         </p>
         <pre className="mt-4 overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary">
-          <code>{`DATABASE_URL=sqlite://./data/epress.db\nPORT=8543\nAPI_PORT=8544`}</code>
+          <code>{`EPRESS_CLIENT_PORT=8543\nEPRESS_SERVER_PORT=8544`}</code>
         </pre>
+        <p className="mt-3 text-sm text-gray-300">
+          For PostgreSQL:{" "}
+          <code className="rounded bg-dark-bg px-1.5 py-0.5 text-primary">
+            EPRESS_DATABASE_CLIENT=pg
+          </code>{" "}
+          and{" "}
+          <code className="rounded bg-dark-bg px-1.5 py-0.5 text-primary">
+            EPRESS_DATABASE_CONNECTION=postgres://...
+          </code>
+        </p>
       </div>
 
       <div className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h3 className="text-lg font-semibold text-white">Start</h3>
         <pre className="mt-4 overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary">
-          <code>npm run start</code>
+          <code>npm start</code>
         </pre>
         <p className="mt-2 text-sm text-gray-300">
           For development with auto-reload:{" "}
           <code className="rounded bg-dark-bg px-1.5 py-0.5 text-primary">
             npm run dev
           </code>
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
+        <h3 className="text-lg font-semibold text-white">Upgrade</h3>
+        <pre className="mt-4 overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary">
+          <code>{`git pull\nnpm install\nnpm run migrate\nnpm run build\nnpm start`}</code>
+        </pre>
+        <p className="mt-2 text-sm text-gray-300">
+          Run migrations after pulling updates to apply database schema changes.
         </p>
       </div>
     </div>
