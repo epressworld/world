@@ -138,9 +138,23 @@ export default function EwpDocsPage() {
         </div>
       </article>
 
+      <article className="rounded-xl border border-primary/35 bg-primary/10 p-6">
+        <h2 className="text-xl font-semibold text-white">
+          Quick Start: Implement EWP
+        </h2>
+        <p className="mt-2 text-sm text-gray-200">
+          Build a minimal EWP-compatible node in under an hour.
+        </p>
+        <div className="mt-4">
+          <Link href="/docs/developer/ewp/quick-start" className="btn-primary">
+            Start Tutorial
+          </Link>
+        </div>
+      </article>
+
       <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h2 className="text-xl font-semibold text-white">
-          Overview Chapter: Protocol at a Glance
+          Overview: Protocol at a Glance
         </h2>
         <p className="mt-2 text-sm leading-7 text-gray-300">
           EWP is the interoperability layer between autonomous nodes. It defines
@@ -170,6 +184,64 @@ export default function EwpDocsPage() {
             <p className="text-sm font-semibold text-white">Data Plane</p>
             <p className="mt-2 text-sm text-gray-300">
               Signed content and replication messages keep timelines consistent.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
+        <h2 className="text-xl font-semibold text-white">
+          Core Design Principles
+        </h2>
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <div className="rounded-lg border border-dark-border bg-dark-bg/60 p-4">
+            <h3 className="text-sm font-semibold text-white">Autonomy</h3>
+            <p className="mt-2 text-sm text-gray-300">
+              Each node operates independently. No central server or coordinator
+              required. Nodes choose who to follow and what to publish.
+            </p>
+          </div>
+          <div className="rounded-lg border border-dark-border bg-dark-bg/60 p-4">
+            <h3 className="text-sm font-semibold text-white">
+              Cryptographic Identity
+            </h3>
+            <p className="mt-2 text-sm text-gray-300">
+              Ethereum wallet addresses serve as persistent identities. EIP-712
+              signatures prove authorship without on-chain transactions.
+            </p>
+          </div>
+          <div className="rounded-lg border border-dark-border bg-dark-bg/60 p-4">
+            <h3 className="text-sm font-semibold text-white">
+              Content Integrity
+            </h3>
+            <p className="mt-2 text-sm text-gray-300">
+              Every signed publication includes a content hash. Content cannot
+              be modified without invalidating the signature.
+            </p>
+          </div>
+          <div className="rounded-lg border border-dark-border bg-dark-bg/60 p-4">
+            <h3 className="text-sm font-semibold text-white">
+              Replication on Demand
+            </h3>
+            <p className="mt-2 text-sm text-gray-300">
+              Content replicates to followers on publish. No flooding or
+              broadcast. Nodes pull only what they need.
+            </p>
+          </div>
+          <div className="rounded-lg border border-dark-border bg-dark-bg/60 p-4">
+            <h3 className="text-sm font-semibold text-white">
+              Timestamp Ordering
+            </h3>
+            <p className="mt-2 text-sm text-gray-300">
+              Signed timestamps establish publication order. Prevents replay
+              attacks and enables timeline consistency.
+            </p>
+          </div>
+          <div className="rounded-lg border border-dark-border bg-dark-bg/60 p-4">
+            <h3 className="text-sm font-semibold text-white">HTTP Transport</h3>
+            <p className="mt-2 text-sm text-gray-300">
+              All protocol operations use standard HTTP. Works through proxies,
+              CDNs, and firewalls without special configuration.
             </p>
           </div>
         </div>

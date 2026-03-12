@@ -1,12 +1,13 @@
+import { InstallTabs } from "@/components/docs/install-tabs"
+
 export default function InstallationPage() {
   return (
     <div className="space-y-6">
       <article className="rounded-2xl border border-dark-border bg-dark-surface/70 p-6 md:p-8">
         <h1 className="text-3xl font-bold text-white">Installation</h1>
         <p className="mt-3 leading-7 text-gray-300">
-          epress node software supports two installation methods. Docker is
-          recommended for standard self-hosting. Running from source is
-          available for advanced users.
+          Choose your preferred installation method. One-line install is
+          recommended for most users.
         </p>
       </article>
 
@@ -21,48 +22,77 @@ export default function InstallationPage() {
         </p>
       </article>
 
-      <article className="rounded-xl border border-primary/35 bg-primary/10 p-6">
+      <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h2 className="text-xl font-semibold text-white">
-          Option 1: Docker (Recommended)
+          Requirements Comparison
         </h2>
-        <div className="mt-4 space-y-3 text-sm text-gray-200">
-          <p>Start container:</p>
-          <pre className="overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary">
-            <code>
-              docker run -d -p 8543:8543 -p 8544:8544 -v epress-data:/app/data
-              --name my-epress-node ghcr.io/epressworld/epress
-            </code>
-          </pre>
-          <p>View logs:</p>
-          <pre className="overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary">
-            <code>docker logs -f my-epress-node</code>
-          </pre>
-          <p>Stop / start:</p>
-          <pre className="overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary">
-            <code>{`docker stop my-epress-node\ndocker start my-epress-node`}</code>
-          </pre>
+        <div className="mt-4 overflow-x-auto">
+          <table className="min-w-full text-sm">
+            <thead>
+              <tr className="border-b border-dark-border text-left text-gray-300">
+                <th className="px-3 py-2">Method</th>
+                <th className="px-3 py-2">Node.js</th>
+                <th className="px-3 py-2">Docker</th>
+                <th className="px-3 py-2">Git</th>
+                <th className="px-3 py-2">Best For</th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-300">
+              <tr className="border-b border-dark-border/60">
+                <td className="px-3 py-2 font-medium text-white">One-line</td>
+                <td className="px-3 py-2 text-primary">Auto-installed</td>
+                <td className="px-3 py-2 text-gray-500">Not needed</td>
+                <td className="px-3 py-2">Required</td>
+                <td className="px-3 py-2">Most users</td>
+              </tr>
+              <tr className="border-b border-dark-border/60">
+                <td className="px-3 py-2 font-medium text-white">Docker</td>
+                <td className="px-3 py-2 text-gray-500">Not needed</td>
+                <td className="px-3 py-2">Required</td>
+                <td className="px-3 py-2 text-gray-500">Not needed</td>
+                <td className="px-3 py-2">Container users</td>
+              </tr>
+              <tr>
+                <td className="px-3 py-2 font-medium text-white">Source</td>
+                <td className="px-3 py-2">Required</td>
+                <td className="px-3 py-2 text-gray-500">Not needed</td>
+                <td className="px-3 py-2">Required</td>
+                <td className="px-3 py-2">Developers</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </article>
 
       <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
-        <h2 className="text-xl font-semibold text-white">
-          Option 2: Run from Source
-        </h2>
-        <p className="mt-2 text-sm text-dark-muted">
-          Useful if you need custom changes or local source control.
-        </p>
-        <pre className="mt-4 overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary">
-          <code>{`git clone https://github.com/epressworld/epress.git\ncd epress\nnpm install\nnpm run build\nnpm run start`}</code>
-        </pre>
+        <h2 className="text-xl font-semibold text-white">Install Methods</h2>
+        <div className="mt-4">
+          <InstallTabs />
+        </div>
       </article>
 
       <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
-        <h2 className="text-xl font-semibold text-white">
-          Upgrade Docker Deployment
-        </h2>
-        <pre className="mt-4 overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary">
-          <code>{`docker pull ghcr.io/epressworld/epress\ndocker stop my-epress-node\ndocker rm my-epress-node\ndocker run -d -p 8543:8543 -p 8544:8544 -v epress-data:/app/data --name my-epress-node ghcr.io/epressworld/epress`}</code>
-        </pre>
+        <h2 className="text-xl font-semibold text-white">Default Ports</h2>
+        <div className="mt-3 overflow-x-auto">
+          <table className="min-w-full text-sm">
+            <thead>
+              <tr className="border-b border-dark-border text-left text-gray-300">
+                <th className="px-2 py-2">Port</th>
+                <th className="px-2 py-2">Purpose</th>
+              </tr>
+            </thead>
+            <tbody className="text-dark-muted">
+              <tr className="border-b border-dark-border/60">
+                <td className="px-2 py-2 font-mono text-primary">8543</td>
+                <td className="px-2 py-2">Web interface</td>
+              </tr>
+              <tr>
+                <td className="px-2 py-2 font-mono text-primary">8544</td>
+                <td className="px-2 py-2">API service</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </article>
     </div>
   )
