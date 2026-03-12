@@ -324,7 +324,7 @@ export function OpenProtocolDiagram() {
         fontSize="8"
         fontFamily="monospace"
       >
-        Ethereum Wire Protocol
+        epress world protocol
       </text>
     </svg>
   )

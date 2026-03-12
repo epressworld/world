@@ -54,7 +54,7 @@ function ProofOfSourceDiagram() {
         fontSize="10"
         fontFamily="monospace"
       >
-        Source of Source (SoS)
+        Statement of Source (SoS)
       </text>
 
       <rect
@@ -371,7 +371,7 @@ export function ProofOfSourceSection() {
         <h2 className="landing-heading mb-4">Proof of Source</h2>
         <p className="landing-subheading mb-12">
           Every piece of content on epress comes with cryptographic proof of its
-          origin. The Proof of Source (PoS) contains a Source of Source (SoS)
+          origin. The Proof of Source (PoS) contains a Statement of Source (SoS)
           structure that binds content to its publisher.
         </p>
 
@@ -382,7 +382,7 @@ export function ProofOfSourceSection() {
         <div className="grid md:grid-cols-2 gap-6">
           <div className="p-6 rounded-xl border border-dark-border bg-dark-surface/50">
             <h3 className="text-lg font-semibold text-white mb-3">
-              Source of Source (SoS)
+              Statement of Source (SoS)
             </h3>
             <ul className="space-y-2 text-sm text-dark-muted">
               <li className="flex items-start gap-2">

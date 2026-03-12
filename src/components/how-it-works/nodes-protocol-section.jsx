@@ -259,9 +259,9 @@ export function NodesProtocolSection() {
         <p className="section-label">Network</p>
         <h2 className="landing-heading mb-4">Nodes & Protocol</h2>
         <p className="landing-subheading mb-12">
-          epress nodes communicate via the Ethereum Wire Protocol (EWP) — an
-          open protocol for content distribution. Each node stores content,
-          manages follows, and syncs with peers.
+          epress nodes communicate via the epress world protocol (EWP) — an open
+          protocol for content distribution. Each node stores content, manages
+          follows, and syncs with peers.
         </p>
 
         <MiniDiagram className="mb-8">

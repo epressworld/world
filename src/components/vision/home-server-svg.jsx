@@ -6,70 +6,44 @@ export function HomeServerSvg() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="roomGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#1a1a1a" />
-          <stop offset="100%" stopColor="#0f0f0f" />
-        </linearGradient>
         <linearGradient id="serverGlow" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#F7931A" stopOpacity="0.3" />
+          <stop offset="0%" stopColor="#F7931A" stopOpacity="0.4" />
           <stop offset="100%" stopColor="#F7931A" stopOpacity="0" />
         </linearGradient>
       </defs>
 
-      <rect
-        x="50"
-        y="40"
-        width="500"
-        height="240"
-        rx="16"
-        fill="url(#roomGrad)"
-        stroke="#2a2a2a"
-      />
-
-      <line
-        x1="50"
-        y1="200"
-        x2="550"
-        y2="200"
-        stroke="#2a2a2a"
-        strokeWidth="1"
-      />
-
-      <rect
-        x="100"
-        y="160"
-        width="80"
-        height="35"
-        rx="4"
-        fill="#1a1a1a"
-        stroke="#3a3a3a"
-      />
+      {}
       <text
-        x="140"
-        y="182"
+        x="300"
+        y="25"
         textAnchor="middle"
-        fill="#6b7280"
-        fontSize="8"
+        fill="#a0a0a0"
+        fontSize="11"
         fontFamily="monospace"
       >
-        ROUTER
+        Your Digital Home Server
       </text>
 
+      {}
       <rect
-        x="430"
-        y="130"
-        width="100"
-        height="60"
-        rx="8"
-        fill="#0f1a12"
+        x="200"
+        y="50"
+        width="200"
+        height="180"
+        rx="12"
+        fill="#151515"
         stroke="#F7931A"
         strokeWidth="2"
       />
-      <ellipse cx="480" cy="100" rx="50" ry="30" fill="url(#serverGlow)" />
-      <rect x="440" y="140" width="80" height="8" rx="2" fill="#1a2a1a" />
-      <circle cx="450" cy="160" r="3" fill="#34D399" />
-      <circle cx="460" cy="160" r="3" fill="#34D399" />
-      <circle cx="470" cy="160" r="3" fill="#F7931A">
+
+      {}
+      <ellipse cx="300" cy="30" rx="80" ry="20" fill="url(#serverGlow)" />
+
+      {}
+      <rect x="220" y="70" width="160" height="25" rx="4" fill="#1a1a1a" />
+      <circle cx="235" cy="82" r="4" fill="#34D399" />
+      <circle cx="248" cy="82" r="4" fill="#34D399" />
+      <circle cx="261" cy="82" r="4" fill="#F7931A">
         <animate
           attributeName="opacity"
           values="1;0.3;1"
@@ -78,169 +52,249 @@ export function HomeServerSvg() {
         />
       </circle>
       <text
-        x="480"
-        y="178"
+        x="320"
+        y="86"
+        textAnchor="middle"
+        fill="#a0a0a0"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        RUNNING
+      </text>
+
+      {}
+      <text
+        x="300"
+        y="115"
         textAnchor="middle"
         fill="#F7931A"
-        fontSize="7"
+        fontSize="14"
+        fontFamily="sans-serif"
+        fontWeight="600"
+      >
+        epress Node
+      </text>
+      <text
+        x="300"
+        y="130"
+        textAnchor="middle"
+        fill="#34D399"
+        fontSize="9"
         fontFamily="monospace"
       >
-        epress node
+        your-node.example
+      </text>
+
+      {}
+      <rect
+        x="220"
+        y="145"
+        width="70"
+        height="35"
+        rx="4"
+        fill="#0f1a12"
+        stroke="#34D399"
+        strokeOpacity="0.5"
+      />
+      <text
+        x="255"
+        y="160"
+        textAnchor="middle"
+        fill="#6EE7B7"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        Posts
+      </text>
+      <text
+        x="255"
+        y="172"
+        textAnchor="middle"
+        fill="#6EE7B7"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        128 items
       </text>
 
       <rect
-        x="70"
-        y="220"
-        width="60"
-        height="55"
-        rx="6"
-        fill="#1a1a1a"
+        x="310"
+        y="145"
+        width="70"
+        height="35"
+        rx="4"
+        fill="#0f1a12"
+        stroke="#60A5FA"
+        strokeOpacity="0.5"
+      />
+      <text
+        x="345"
+        y="160"
+        textAnchor="middle"
+        fill="#93C5FD"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        Following
+      </text>
+      <text
+        x="345"
+        y="172"
+        textAnchor="middle"
+        fill="#93C5FD"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        42 nodes
+      </text>
+
+      {}
+      <rect
+        x="220"
+        y="190"
+        width="160"
+        height="30"
+        rx="4"
+        fill="#0f0f0f"
         stroke="#3a3a3a"
       />
-      <rect x="75" y="230" width="50" height="6" rx="2" fill="#2a2a2a" />
-      <rect x="75" y="240" width="50" height="6" rx="2" fill="#2a2a2a" />
-      <rect x="75" y="250" width="50" height="6" rx="2" fill="#2a2a2a" />
-      <text
-        x="100"
-        y="268"
-        textAnchor="middle"
-        fill="#6b7280"
-        fontSize="6"
-        fontFamily="monospace"
-      >
-        Books
+      <text x="240" y="210" fill="#a0a0a0" fontSize="8" fontFamily="monospace">
+        Your data. Your rules.
       </text>
 
+      {}
       <rect
-        x="150"
-        y="220"
-        width="60"
-        height="55"
-        rx="6"
-        fill="#1a1a1a"
-        stroke="#3a3a3a"
-      />
-      <rect x="155" y="230" width="50" height="6" rx="2" fill="#2a2a2a" />
-      <rect x="155" y="240" width="50" height="6" rx="2" fill="#2a2a2a" />
-      <rect x="155" y="250" width="50" height="6" rx="2" fill="#2a2a2a" />
-      <text
-        x="180"
-        y="268"
-        textAnchor="middle"
-        fill="#6b7280"
-        fontSize="6"
-        fontFamily="monospace"
-      >
-        Photos
-      </text>
-
-      <rect
-        x="250"
-        y="210"
-        width="100"
-        height="65"
+        x="50"
+        y="260"
+        width="90"
+        height="50"
         rx="8"
         fill="#1a1a1a"
         stroke="#3a3a3a"
       />
-      <rect x="260" y="220" width="80" height="45" rx="4" fill="#0f0f0f" />
-      <rect x="265" y="225" width="70" height="35" rx="2" fill="#1a2a1a" />
-      <text
-        x="300"
-        y="245"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="6"
-        fontFamily="monospace"
-      >
-        Your Blog
-      </text>
-      <text
-        x="300"
-        y="268"
-        textAnchor="middle"
-        fill="#6b7280"
-        fontSize="6"
-        fontFamily="monospace"
-      >
-        LAPTOP
-      </text>
-
-      <rect
-        x="380"
-        y="220"
-        width="70"
-        height="55"
-        rx="6"
-        fill="#1a1a1a"
-        stroke="#3a3a3a"
-      />
-      <circle cx="415" cy="245" r="15" fill="#2a2a2a" />
-      <text x="415" y="248" textAnchor="middle" fill="#6b7280" fontSize="8">
+      <text x="95" y="285" textAnchor="middle" fill="#a0a0a0" fontSize="10">
         📱
       </text>
       <text
-        x="415"
-        y="268"
+        x="95"
+        y="300"
         textAnchor="middle"
         fill="#6b7280"
-        fontSize="6"
+        fontSize="7"
         fontFamily="monospace"
       >
         Phone
       </text>
 
       <rect
-        x="470"
-        y="220"
-        width="70"
-        height="55"
-        rx="6"
+        x="160"
+        y="260"
+        width="90"
+        height="50"
+        rx="8"
         fill="#1a1a1a"
         stroke="#3a3a3a"
       />
-      <circle cx="505" cy="245" r="15" fill="#2a2a2a" />
-      <text x="505" y="248" textAnchor="middle" fill="#6b7280" fontSize="8">
+      <text x="205" y="285" textAnchor="middle" fill="#a0a0a0" fontSize="10">
+        💻
+      </text>
+      <text
+        x="205"
+        y="300"
+        textAnchor="middle"
+        fill="#6b7280"
+        fontSize="7"
+        fontFamily="monospace"
+      >
+        Laptop
+      </text>
+
+      <rect
+        x="350"
+        y="260"
+        width="90"
+        height="50"
+        rx="8"
+        fill="#1a1a1a"
+        stroke="#3a3a3a"
+      />
+      <text x="395" y="285" textAnchor="middle" fill="#a0a0a0" fontSize="10">
         ⌚
       </text>
       <text
-        x="505"
-        y="268"
+        x="395"
+        y="300"
         textAnchor="middle"
         fill="#6b7280"
-        fontSize="6"
+        fontSize="7"
         fontFamily="monospace"
       >
         Watch
       </text>
 
-      <path
-        d="M180 160 Q300 100 440 160"
-        stroke="#F7931A"
-        strokeWidth="2"
-        strokeOpacity="0.6"
-        strokeDasharray="4,4"
+      <rect
+        x="460"
+        y="260"
+        width="90"
+        height="50"
+        rx="8"
+        fill="#1a1a1a"
+        stroke="#3a3a3a"
       />
-      <polygon points="440,160 432,155 432,165" fill="#F7931A" />
+      <text x="505" y="285" textAnchor="middle" fill="#a0a0a0" fontSize="10">
+        🖥️
+      </text>
+      <text
+        x="505"
+        y="300"
+        textAnchor="middle"
+        fill="#6b7280"
+        fontSize="7"
+        fontFamily="monospace"
+      >
+        Desktop
+      </text>
 
+      {}
       <path
-        d="M300 210 L300 150 Q350 130 480 130"
+        d="M95 260 L200 230"
         stroke="#F7931A"
         strokeWidth="1.5"
         strokeOpacity="0.5"
         strokeDasharray="3,3"
       />
-      <polygon points="480,130 472,126 472,134" fill="#F7931A" />
+      <path
+        d="M205 260 L220 230"
+        stroke="#F7931A"
+        strokeWidth="1.5"
+        strokeOpacity="0.5"
+        strokeDasharray="3,3"
+      />
+      <path
+        d="M395 260 L380 230"
+        stroke="#F7931A"
+        strokeWidth="1.5"
+        strokeOpacity="0.5"
+        strokeDasharray="3,3"
+      />
+      <path
+        d="M505 260 L400 230"
+        stroke="#F7931A"
+        strokeWidth="1.5"
+        strokeOpacity="0.5"
+        strokeDasharray="3,3"
+      />
 
+      {}
       <text
         x="300"
-        y="305"
+        y="245"
         textAnchor="middle"
-        fill="#34D399"
-        fontSize="11"
+        fill="#a0a0a0"
+        fontSize="8"
         fontFamily="monospace"
       >
-        Your home server: as simple as a refrigerator
+        Access your node from any device
       </text>
     </svg>
   )
