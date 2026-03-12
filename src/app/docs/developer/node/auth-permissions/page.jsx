@@ -11,6 +11,53 @@ export default function NodeAuthPermissionsPage() {
         </p>
       </article>
 
+      <article className="rounded-xl border border-primary/35 bg-primary/10 p-6">
+        <h2 className="text-xl font-semibold text-white">
+          When to Use Which Auth
+        </h2>
+        <p className="mt-2 text-gray-300">
+          Different operations require different authentication mechanisms:
+        </p>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <div className="rounded-lg border border-dark-border bg-dark-bg/60 p-4">
+            <h3 className="text-sm font-semibold text-white">
+              Node Owner Operations
+            </h3>
+            <p className="mt-2 text-xs text-primary">
+              SIWE + JWT (aud: client)
+            </p>
+            <ul className="mt-2 list-disc space-y-1 pl-4 text-sm text-gray-300">
+              <li>Publishing content</li>
+              <li>Managing settings</li>
+              <li>Following/unfollowing</li>
+              <li>Deleting content</li>
+            </ul>
+          </div>
+          <div className="rounded-lg border border-dark-border bg-dark-bg/60 p-4">
+            <h3 className="text-sm font-semibold text-white">
+              Cross-Node Operations
+            </h3>
+            <p className="mt-2 text-xs text-primary">EIP-712 in Body</p>
+            <ul className="mt-2 list-disc space-y-1 pl-4 text-sm text-gray-300">
+              <li>Follow handshakes</li>
+              <li>Replication requests</li>
+              <li>Profile updates</li>
+              <li>Content verification</li>
+            </ul>
+          </div>
+          <div className="rounded-lg border border-dark-border bg-dark-bg/60 p-4">
+            <h3 className="text-sm font-semibold text-white">Public Content</h3>
+            <p className="mt-2 text-xs text-primary">No Auth Required</p>
+            <ul className="mt-2 list-disc space-y-1 pl-4 text-sm text-gray-300">
+              <li>Reading public posts</li>
+              <li>Fetching profiles</li>
+              <li>Avatar retrieval</li>
+              <li>RSS feeds</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
       <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h2 className="text-xl font-semibold text-white">SIWE Sign-In Flow</h2>
         <ol className="mt-3 list-decimal space-y-2 pl-6 text-gray-300">
@@ -100,6 +147,36 @@ export default function NodeAuthPermissionsPage() {
             Sensitive settings fields are conditionally exposed by auth context.
           </li>
         </ul>
+      </article>
+
+      <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
+        <h2 className="text-xl font-semibold text-white">
+          EIP-712 Signature Verification
+        </h2>
+        <p className="mt-2 text-gray-300">
+          Cross-node operations use EIP-712 typed data signatures embedded in
+          the request body:
+        </p>
+        <ol className="mt-3 list-decimal space-y-2 pl-6 text-gray-300">
+          <li>
+            Extract <span className="font-mono">typedData</span> and{" "}
+            <span className="font-mono">signature</span> from request body
+          </li>
+          <li>Verify domain matches Epress domain spec</li>
+          <li>Recover signer address from signature</li>
+          <li>Verify signer matches claimed address in message</li>
+          <li>Check timestamp is recent (typically within 5 minutes)</li>
+        </ol>
+        <p className="mt-3 text-sm text-dark-muted">
+          See{" "}
+          <a
+            href="/docs/developer/ewp/eip712"
+            className="text-primary hover:underline"
+          >
+            EIP-712 Signing Spec
+          </a>{" "}
+          for complete type definitions.
+        </p>
       </article>
     </div>
   )

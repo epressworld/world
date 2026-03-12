@@ -17,6 +17,14 @@ const operations = [
     ],
     errors: ["404 NODE_NOT_FOUND", "500 INTERNAL_ERROR"],
     example: "curl https://node.example.com/ewp/profile",
+    jsonResponse: `{
+  "address": "0x1234567890abcdef1234567890abcdef12345678",
+  "title": "My Epress Node",
+  "url": "https://mynode.example.com",
+  "description": "Personal blog and social hub",
+  "created_at": "2026-01-01T00:00:00.000Z",
+  "updated_at": "2026-03-01T12:00:00.000Z"
+}`,
   },
   {
     title: "Node Avatar",
@@ -53,6 +61,37 @@ const operations = [
     ],
     example:
       'curl -X POST https://node.example.com/ewp/connections -H \'Content-Type: application/json\' -d \'{"typedData":{},"signature":"0x..."}\'',
+    jsonRequest: `{
+  "typedData": {
+    "domain": {
+      "name": "Epress",
+      "version": "1",
+      "chainId": 1
+    },
+    "types": {
+      "Connection": [
+        { "name": "followerAddress", "type": "address" },
+        { "name": "followeeAddress", "type": "address" },
+        { "name": "timestamp", "type": "uint256" }
+      ]
+    },
+    "primaryType": "Connection",
+    "message": {
+      "followerAddress": "0xfollower...",
+      "followeeAddress": "0xfollowee...",
+      "timestamp": 1705312800
+    }
+  },
+  "signature": "0x3040..."
+}`,
+    jsonResponse: `{
+  "status": "created"
+}`,
+    errorExamples: {
+      "400 INVALID_PAYLOAD": `{"error": "INVALID_PAYLOAD", "message": "Missing required field: typedData"}`,
+      "400 INVALID_SIGNATURE": `{"error": "INVALID_SIGNATURE", "message": "Signature verification failed"}`,
+      "409 CONNECTION_ALREADY_EXISTS": `{"error": "CONNECTION_ALREADY_EXISTS", "message": "Connection already exists"}`,
+    },
   },
   {
     title: "Destroy Connection",
@@ -99,6 +138,32 @@ const operations = [
     ],
     example:
       "curl 'https://node.example.com/ewp/publications?since=2026-01-01T00:00:00.000Z&limit=50&page=1'",
+    jsonResponse: `{
+  "data": [
+    {
+      "content_hash": "0xabc123...",
+      "title": "My First Publication",
+      "description": "Introduction to my blog",
+      "created_at": "2026-01-15T10:30:00.000Z",
+      "updated_at": "2026-01-15T10:30:00.000Z"
+    },
+    {
+      "content_hash": "0xdef456...",
+      "title": "Second Post",
+      "description": "More thoughts",
+      "created_at": "2026-02-01T14:00:00.000Z",
+      "updated_at": "2026-02-01T14:00:00.000Z"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 50,
+    "total": 2,
+    "totalPages": 1,
+    "hasNextPage": false,
+    "hasPrevPage": false
+  }
+}`,
   },
   {
     title: "Content Fetch",
@@ -126,6 +191,11 @@ const operations = [
     ],
     example:
       "curl -L 'https://node.example.com/ewp/contents/0xCONTENT_HASH?thumb=md' --output content.bin",
+    responseHeaders: `Content-Type: text/markdown; charset=utf-8
+X-Content-Hash: 0xabc123...
+X-Created-At: 2026-01-15T10:30:00.000Z
+X-Updated-At: 2026-01-15T10:30:00.000Z
+Content-Length: 1234`,
   },
   {
     title: "Replication Ingest",
@@ -152,6 +222,36 @@ const operations = [
     ],
     example:
       'curl -X POST https://node.example.com/ewp/replications -H \'Content-Type: application/json\' -d \'{"typedData":{},"signature":"0x..."}\'',
+    jsonRequest: `{
+  "typedData": {
+    "domain": {
+      "name": "Epress",
+      "version": "1",
+      "chainId": 1
+    },
+    "types": {
+      "Replication": [
+        { "name": "contentHash", "type": "bytes32" },
+        { "name": "publisherAddress", "type": "address" },
+        { "name": "timestamp", "type": "uint256" }
+      ]
+    },
+    "primaryType": "Replication",
+    "message": {
+      "contentHash": "0xabc123...",
+      "publisherAddress": "0xpublisher...",
+      "timestamp": 1705312800
+    }
+  },
+  "signature": "0x3040..."
+}`,
+    jsonResponse: `{
+  "status": "replicated"
+}`,
+    errorExamples: {
+      "401 NOT_FOLLOWING": `{"error": "NOT_FOLLOWING", "message": "You must follow this node before replicating"}`,
+      "409 REPLICATION_ALREADY_EXISTS": `{"error": "REPLICATION_ALREADY_EXISTS", "message": "Content already replicated"}`,
+    },
   },
   {
     title: "Remote Node Profile Update",
@@ -175,6 +275,33 @@ const operations = [
     ],
     example:
       'curl -X PATCH https://node.example.com/ewp/nodes/0xPublisher -H \'Content-Type: application/json\' -d \'{"typedData":{},"signature":"0x..."}\'',
+    jsonRequest: `{
+  "typedData": {
+    "domain": {
+      "name": "Epress",
+      "version": "1",
+      "chainId": 1
+    },
+    "types": {
+      "ProfileUpdate": [
+        { "name": "publisherAddress", "type": "address" },
+        { "name": "url", "type": "string" },
+        { "name": "title", "type": "string" },
+        { "name": "description", "type": "string" },
+        { "name": "timestamp", "type": "uint256" }
+      ]
+    },
+    "primaryType": "ProfileUpdate",
+    "message": {
+      "publisherAddress": "0x1234...",
+      "url": "https://updated.example.com",
+      "title": "Updated Node Title",
+      "description": "New description",
+      "timestamp": 1705312800
+    }
+  },
+  "signature": "0x3040..."
+}`,
   },
 ]
 
@@ -202,6 +329,21 @@ export default function EwpReferencePage() {
             Verification Rules
           </Link>
         </div>
+      </article>
+
+      <article className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
+        <h2 className="text-xl font-semibold text-white">
+          Error Response Format
+        </h2>
+        <p className="mt-2 text-sm text-gray-300">
+          All errors follow a consistent JSON structure:
+        </p>
+        <pre className="mt-4 overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary text-sm">
+          <code>{`{
+  "error": "ERROR_CODE",
+  "message": "Human-readable description"
+}`}</code>
+        </pre>
       </article>
 
       {operations.map((item) => (
