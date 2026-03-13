@@ -44,26 +44,14 @@ export function CopyableCode({ code, className = "" }) {
 }
 
 export function CopyableCodeBlock({ code, className = "" }) {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(code)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
   return (
     <div className={`relative group ${className}`}>
       <pre className="overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary">
         <code>{code}</code>
       </pre>
-      <button
-        type="button"
-        onClick={handleCopy}
-        className="absolute right-2 top-2 rounded bg-dark-surface/90 px-2 py-1 text-xs text-gray-400 opacity-0 transition-opacity hover:text-white group-hover:opacity-100"
-      >
-        {copied ? "Copied!" : "Copy"}
-      </button>
+      <div className="absolute right-2 top-2 opacity-0 transition-opacity group-hover:opacity-100">
+        <CopyButton text={code} className="!rounded !border-dark-border/50 !bg-dark-surface/90 !p-1.5" />
+      </div>
     </div>
   )
 }
