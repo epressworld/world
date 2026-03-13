@@ -4,8 +4,7 @@ import { ArrowRight, Github } from "lucide-react"
 import Link from "next/link"
 import { CopyableCode } from "@/components/shared/copy-button"
 
-const DOCKER_COMMAND =
-  "docker run -d -p 8543:8543 -p 8544:8544 -v epress-data:/app/data --restart unless-stopped --name my-epress-node ghcr.io/epressworld/epress:latest"
+const INSTALL_COMMAND = "curl -fsSL https://epress.world/install.sh | bash"
 
 export function PageFooterCTA() {
   return (
@@ -22,7 +21,7 @@ export function PageFooterCTA() {
             your rules.
           </p>
 
-          <CopyableCode code={DOCKER_COMMAND} className="mb-6" />
+          <CopyableCode code={INSTALL_COMMAND} className="mb-6" />
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <a
