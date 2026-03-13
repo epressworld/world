@@ -76,26 +76,22 @@ function CurlTab() {
         <h3 className="text-lg font-semibold text-white">Common Commands</h3>
         <div className="mt-3 space-y-2 text-sm">
           <div className="flex justify-between rounded-lg bg-dark-bg/50 p-2">
-            <span className="text-gray-300">View logs</span>
-            <code className="text-primary">cd ~/epress && npm run logs</code>
-          </div>
-          <div className="flex justify-between rounded-lg bg-dark-bg/50 p-2">
             <span className="text-gray-300">Stop node</span>
-            <code className="text-primary">cd ~/epress && npm run stop</code>
+            <code className="text-primary">Ctrl+C</code>
           </div>
           <div className="flex justify-between rounded-lg bg-dark-bg/50 p-2">
             <span className="text-gray-300">Start node</span>
-            <code className="text-primary">cd ~/epress && npm run start</code>
+            <code className="text-primary">cd ~/epress && npm start</code>
           </div>
           <div className="flex justify-between rounded-lg bg-dark-bg/50 p-2">
-            <span className="text-gray-300">Check status</span>
-            <code className="text-primary">cd ~/epress && npm run status</code>
+            <span className="text-gray-300">Development mode</span>
+            <code className="text-primary">cd ~/epress && npm run dev</code>
           </div>
           <div className="flex justify-between rounded-lg bg-dark-bg/50 p-2">
             <span className="text-gray-300">Update</span>
             <code className="text-primary">
-              cd ~/epress && git pull && npm install && npm run build && npm run
-              stop && npm run start
+              cd ~/epress && git pull && npm install && npm run build && npm
+              start
             </code>
           </div>
         </div>
