@@ -118,13 +118,7 @@ export function AIContentCrisisSvg() {
           opacity="0.4"
         />
       </g>
-      <text
-        x="60"
-        y="122"
-        fill="#34D399"
-        fontSize="9"
-        fontFamily="monospace"
-      >
+      <text x="60" y="122" fill="#34D399" fontSize="9" fontFamily="monospace">
         95% Human
       </text>
       <text
@@ -176,13 +170,7 @@ export function AIContentCrisisSvg() {
           />
         ))}
       </g>
-      <text
-        x="310"
-        y="122"
-        fill="#34D399"
-        fontSize="9"
-        fontFamily="monospace"
-      >
+      <text x="310" y="122" fill="#34D399" fontSize="9" fontFamily="monospace">
         70% Human
       </text>
       <text
@@ -234,13 +222,7 @@ export function AIContentCrisisSvg() {
           />
         ))}
       </g>
-      <text
-        x="560"
-        y="122"
-        fill="#34D399"
-        fontSize="9"
-        fontFamily="monospace"
-      >
+      <text x="560" y="122" fill="#34D399" fontSize="9" fontFamily="monospace">
         30% Human
       </text>
       <text
