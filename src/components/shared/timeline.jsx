@@ -8,8 +8,6 @@ export function Timeline({ items }) {
 
   return (
     <div className="relative max-w-4xl mx-auto">
-      <div className="absolute top-12 left-0 right-0 h-0.5 bg-primary/30" />
-
       <div className="flex justify-between relative">
         {items.map((item, idx) => (
           <div
@@ -23,7 +21,7 @@ export function Timeline({ items }) {
 
             <div
               className={cn(
-                "w-12 h-12 rounded-full border-2 border-primary bg-dark-bg flex items-center justify-center transition-all duration-300",
+                "w-12 h-12 rounded-full border-2 border-primary bg-dark-bg flex items-center justify-center transition-all duration-300 relative z-10",
                 hoveredIndex === idx &&
                   "scale-110 shadow-[0_0_20px_rgba(247,147,26,0.5)]",
                 "animate-pulse",

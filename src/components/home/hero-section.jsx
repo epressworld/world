@@ -25,7 +25,7 @@ export function HeroSection() {
             Not a platform account. A self-hosted node you own, inherit, and
             pass down — like property.
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 mb-4">
             <a
               href="https://github.com/epressworld/epress"
               target="_blank"
@@ -39,6 +39,18 @@ export function HeroSection() {
               Read the Vision →
             </Link>
           </div>
+          <p className="text-sm font-mono text-[#888] hover:text-[#aaa] transition-colors">
+            See it live →{" "}
+            <a
+              href="https://blog.epress.world"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#e8a04a] underline hover:text-[#f0b060] transition-colors"
+            >
+              blog.epress.world
+            </a>{" "}
+            is a real node on the network
+          </p>
         </div>
       </div>
     </section>

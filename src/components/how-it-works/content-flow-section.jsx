@@ -1,346 +1,182 @@
 import { MiniDiagram } from "@/components/shared/mini-diagram"
 
-function NotifyPullDiagram() {
+function ContentFlowDiagram() {
   return (
-    <svg
-      viewBox="0 0 700 300"
-      className="w-full h-auto"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#F7931A" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="#34D399" stopOpacity="0.15" />
-        </linearGradient>
-      </defs>
+    <div className="space-y-10">
+      <div className="relative">
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-full" />
+        <div className="pl-8">
+          <p className="text-xs font-mono text-primary uppercase tracking-wider mb-3">
+            Publish
+          </p>
+          <div className="flex flex-col md:flex-row items-start gap-4 md:gap-8">
+            <div className="flex-1">
+              <div className="p-4 rounded-lg border border-primary/30 bg-gradient-to-br from-primary/10 to-dark-surface/50">
+                <p className="text-sm font-mono text-primary font-semibold mb-2">
+                  Alice&apos;s Node
+                </p>
+                <p className="text-xs text-dark-muted">
+                  1. Write &amp; sign content
+                </p>
+                <p className="text-xs text-dark-muted">
+                  Generates PoS credential
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center justify-center px-4">
+              <svg
+                width="40"
+                height="20"
+                viewBox="0 0 40 20"
+                className="rotate-90 md:rotate-0"
+              >
+                <line
+                  x1="0"
+                  y1="10"
+                  x2="30"
+                  y2="10"
+                  stroke="#F7931A"
+                  strokeWidth="2"
+                />
+                <polygon points="40,10 30,5 30,15" fill="#F7931A" />
+              </svg>
+              <span className="text-xs font-mono text-primary ml-2">signs</span>
+            </div>
+            <div className="flex-1">
+              <div className="p-3 rounded-lg border border-[#34D399]/40 bg-gradient-to-br from-[#34D399]/10 to-dark-surface/50">
+                <p className="text-xs font-mono text-[#34D399] font-semibold mb-1">
+                  PoS Structure
+                </p>
+                <p className="text-[10px] font-mono text-dark-muted leading-relaxed">
+                  {"{"} contentHash, publisherAddress, timestamp, signature{" "}
+                  {"}"}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <rect
-        x="50"
-        y="40"
-        width="100"
-        height="60"
-        rx="8"
-        fill="#1a1a1a"
-        stroke="#F7931A"
-      />
-      <text
-        x="100"
-        y="65"
-        textAnchor="middle"
-        fill="#F7931A"
-        fontSize="10"
-        fontFamily="monospace"
-      >
-        Publisher
-      </text>
-      <text x="100" y="82" textAnchor="middle" fontSize="14">
-        ✍️
-      </text>
+      <div className="relative">
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#e8a04a] rounded-full" />
+        <div className="pl-8">
+          <p className="text-xs font-mono text-[#e8a04a] uppercase tracking-wider mb-3">
+            Notify
+          </p>
+          <div className="p-4 rounded-lg border border-[#e8a04a]/30 bg-gradient-to-br from-[#e8a04a]/10 to-dark-surface/50 mb-4">
+            <div className="flex flex-col items-center">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="p-2 rounded border border-primary/40 bg-dark-bg">
+                  <span className="text-xs font-mono text-primary">
+                    Alice&apos;s Node
+                  </span>
+                </div>
+                <span className="text-xs text-dark-muted italic">
+                  Sends proof, not content
+                </span>
+              </div>
+              <div className="flex flex-col md:flex-row items-center gap-4 w-full justify-center">
+                <div className="flex flex-col items-center gap-2">
+                  <svg width="60" height="40" viewBox="0 0 60 40">
+                    <line
+                      x1="0"
+                      y1="20"
+                      x2="50"
+                      y2="20"
+                      stroke="#e8a04a"
+                      strokeWidth="1.5"
+                      strokeDasharray="4 2"
+                    />
+                    <polygon points="60,20 50,15 50,25" fill="#e8a04a" />
+                  </svg>
+                  <div className="p-2 rounded border border-dark-border bg-dark-bg text-center">
+                    <p className="text-[10px] font-mono text-dark-muted">
+                      Follower 1
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <svg width="60" height="40" viewBox="0 0 60 40">
+                    <line
+                      x1="0"
+                      y1="20"
+                      x2="50"
+                      y2="20"
+                      stroke="#e8a04a"
+                      strokeWidth="1.5"
+                      strokeDasharray="4 2"
+                    />
+                    <polygon points="60,20 50,15 50,25" fill="#e8a04a" />
+                  </svg>
+                  <div className="p-2 rounded border border-dark-border bg-dark-bg text-center">
+                    <p className="text-[10px] font-mono text-dark-muted">
+                      Follower 2
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <svg width="60" height="40" viewBox="0 0 60 40">
+                    <line
+                      x1="0"
+                      y1="20"
+                      x2="50"
+                      y2="20"
+                      stroke="#e8a04a"
+                      strokeWidth="1.5"
+                      strokeDasharray="4 2"
+                    />
+                    <polygon points="60,20 50,15 50,25" fill="#e8a04a" />
+                  </svg>
+                  <div className="p-2 rounded border border-dark-border bg-dark-bg text-center">
+                    <p className="text-[10px] font-mono text-dark-muted">
+                      Follower 3
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-xs font-mono text-[#e8a04a] mt-3">
+                PoS only (lightweight) ~200 bytes each
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <rect
-        x="250"
-        y="20"
-        width="80"
-        height="50"
-        rx="6"
-        fill="#0f0f0f"
-        stroke="#666"
-      />
-      <text
-        x="290"
-        y="42"
-        textAnchor="middle"
-        fill="#888"
-        fontSize="9"
-        fontFamily="monospace"
-      >
-        Follower 1
-      </text>
-      <text x="290" y="58" textAnchor="middle" fontSize="10">
-        👤
-      </text>
-
-      <rect
-        x="250"
-        y="80"
-        width="80"
-        height="50"
-        rx="6"
-        fill="#0f0f0f"
-        stroke="#666"
-      />
-      <text
-        x="290"
-        y="102"
-        textAnchor="middle"
-        fill="#888"
-        fontSize="9"
-        fontFamily="monospace"
-      >
-        Follower 2
-      </text>
-      <text x="290" y="118" textAnchor="middle" fontSize="10">
-        👤
-      </text>
-
-      <rect
-        x="250"
-        y="140"
-        width="80"
-        height="50"
-        rx="6"
-        fill="#0f0f0f"
-        stroke="#666"
-      />
-      <text
-        x="290"
-        y="162"
-        textAnchor="middle"
-        fill="#888"
-        fontSize="9"
-        fontFamily="monospace"
-      >
-        Follower 3
-      </text>
-      <text x="290" y="178" textAnchor="middle" fontSize="10">
-        👤
-      </text>
-
-      <rect
-        x="400"
-        y="60"
-        width="90"
-        height="100"
-        rx="8"
-        fill="url(#flowGrad)"
-        stroke="#34D399"
-      />
-      <text
-        x="445"
-        y="95"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="9"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        Notify Only
-      </text>
-      <text
-        x="445"
-        y="115"
-        textAnchor="middle"
-        fill="#666"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        "New content
-      </text>
-      <text
-        x="445"
-        y="128"
-        textAnchor="middle"
-        fill="#666"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        available"
-      </text>
-      <text x="445" y="145" textAnchor="middle" fontSize="12">
-        🔔
-      </text>
-
-      <line
-        x1="155"
-        y1="70"
-        x2="245"
-        y2="45"
-        stroke="#F7931A"
-        strokeWidth="1.5"
-        strokeDasharray="4 2"
-      />
-      <line
-        x1="155"
-        y1="70"
-        x2="245"
-        y2="105"
-        stroke="#F7931A"
-        strokeWidth="1.5"
-        strokeDasharray="4 2"
-      />
-      <line
-        x1="155"
-        y1="70"
-        x2="245"
-        y2="165"
-        stroke="#F7931A"
-        strokeWidth="1.5"
-        strokeDasharray="4 2"
-      />
-
-      <line
-        x1="335"
-        y1="45"
-        x2="395"
-        y2="90"
-        stroke="#34D399"
-        strokeWidth="1.5"
-        strokeDasharray="4 2"
-      />
-      <line
-        x1="335"
-        y1="105"
-        x2="395"
-        y2="110"
-        stroke="#34D399"
-        strokeWidth="1.5"
-        strokeDasharray="4 2"
-      />
-      <line
-        x1="335"
-        y1="165"
-        x2="395"
-        y2="130"
-        stroke="#34D399"
-        strokeWidth="1.5"
-        strokeDasharray="4 2"
-      />
-
-      <text
-        x="200"
-        y="35"
-        textAnchor="middle"
-        fill="#F7931A"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        1. Publish
-      </text>
-      <text
-        x="370"
-        y="65"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        2. Notify
-      </text>
-
-      <rect
-        x="530"
-        y="60"
-        width="140"
-        height="100"
-        rx="8"
-        fill="#0f0f0f"
-        stroke="#666"
-      />
-      <text
-        x="600"
-        y="90"
-        textAnchor="middle"
-        fill="#888"
-        fontSize="9"
-        fontFamily="monospace"
-      >
-        Follower Nodes
-      </text>
-      <text
-        x="600"
-        y="110"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        3. Pull content
-      </text>
-      <text
-        x="600"
-        y="125"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        when ready
-      </text>
-      <text x="600" y="145" textAnchor="middle" fontSize="14">
-        ⬇️
-      </text>
-
-      <line
-        x1="495"
-        y1="110"
-        x2="525"
-        y2="110"
-        stroke="#666"
-        strokeWidth="1.5"
-      />
-      <polygon points="525,110 520,107 520,113" fill="#666" />
-
-      <rect
-        x="50"
-        y="220"
-        width="280"
-        height="60"
-        rx="8"
-        fill="#1a1a1a"
-        stroke="#ef4444"
-        strokeOpacity="0.5"
-      />
-      <text
-        x="190"
-        y="245"
-        textAnchor="middle"
-        fill="#ef4444"
-        fontSize="10"
-        fontFamily="monospace"
-      >
-        Push Model (Traditional)
-      </text>
-      <text
-        x="190"
-        y="265"
-        textAnchor="middle"
-        fill="#666"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        Full content pushed to ALL followers → High bandwidth
-      </text>
-
-      <rect
-        x="370"
-        y="220"
-        width="280"
-        height="60"
-        rx="8"
-        fill="url(#flowGrad)"
-        stroke="#34D399"
-      />
-      <text
-        x="510"
-        y="245"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="10"
-        fontFamily="monospace"
-      >
-        Notify-Pull Model (epress)
-      </text>
-      <text
-        x="510"
-        y="265"
-        textAnchor="middle"
-        fill="#666"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        Notify → Pull on demand → Low bandwidth
-      </text>
-    </svg>
+      <div className="relative">
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#34D399] rounded-full" />
+        <div className="pl-8">
+          <p className="text-xs font-mono text-[#34D399] uppercase tracking-wider mb-3">
+            Replicate
+          </p>
+          <div className="space-y-3">
+            {[1, 2, 3].map((num) => (
+              <div
+                key={num}
+                className="flex flex-col md:flex-row items-center gap-2 md:gap-3 text-xs font-mono"
+              >
+                <div className="p-2 rounded border border-dark-border bg-dark-bg">
+                  <span className="text-dark-muted">Follower {num}</span>
+                </div>
+                <span className="text-[#34D399]">→</span>
+                <span className="text-dark-muted">verify PoS</span>
+                <span className="text-[#34D399]">→</span>
+                <span className="text-dark-muted">pull content</span>
+                <span className="text-[#34D399]">→</span>
+                <span className="text-dark-muted">store replica</span>
+                <span className="text-[#34D399]">→</span>
+                <div className="p-2 rounded border border-[#34D399]/40 bg-[#34D399]/10">
+                  <span className="text-[#34D399]">Content + PoS ✓</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm font-mono text-[#34D399] mt-4 text-center md:text-left p-3 rounded-lg bg-[#34D399]/10 border border-[#34D399]/20">
+            Every replica carries the full PoS. Any node can verify the origin
+            independently — no need to contact Alice&apos;s node.
+          </p>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -350,65 +186,37 @@ export function ContentFlowSection() {
       <div className="container-custom">
         <p className="section-label">Distribution</p>
         <h2 className="landing-heading mb-4">Content Flow</h2>
-        <p className="landing-subheading mb-12">
-          epress uses a Notify-Pull model instead of Push. When you publish,
-          followers receive a notification and pull the content when
-          they&apos;re ready — saving bandwidth and enabling offline operation.
+        <p className="landing-subheading mb-12 max-w-3xl">
+          When you publish, content doesn&apos;t just reach your followers — it
+          becomes permanently distributed across the network, each copy carrying
+          its own cryptographic proof of origin.
         </p>
 
-        <MiniDiagram className="mb-8">
-          <NotifyPullDiagram />
+        <MiniDiagram className="mb-8 p-8 overflow-hidden">
+          <ContentFlowDiagram />
         </MiniDiagram>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-xl border border-red-500/30 bg-gradient-to-br from-red-950/20 to-dark-surface/50">
-            <h3 className="text-lg font-semibold text-red-400 mb-3">
-              Push Model (Traditional)
-            </h3>
-            <ul className="space-y-2 text-sm text-dark-muted">
-              <li className="flex items-start gap-2">
-                <span className="text-red-400">✗</span>
-                <span>Publisher bandwidth scales with follower count</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-red-400">✗</span>
-                <span>Offline followers miss content</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-red-400">✗</span>
-                <span>Requires central servers for delivery</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-red-400">✗</span>
-                <span>Expensive for high-traffic publishers</span>
-              </li>
-            </ul>
-          </div>
-
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           <div className="p-6 rounded-xl border border-primary/30 bg-gradient-to-br from-primary/10 to-dark-surface/50">
             <h3 className="text-lg font-semibold text-primary mb-3">
-              Notify-Pull (epress)
+              PoS Travels With Content
             </h3>
-            <ul className="space-y-2 text-sm text-dark-muted">
-              <li className="flex items-start gap-2">
-                <span className="text-primary">✓</span>
-                <span>
-                  Publisher bandwidth is constant, regardless of followers
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">✓</span>
-                <span>Followers pull when online — no missed content</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">✓</span>
-                <span>Fully peer-to-peer, no central servers needed</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">✓</span>
-                <span>Economical for any publisher size</span>
-              </li>
-            </ul>
+            <p className="text-sm text-dark-muted leading-relaxed">
+              Every copy of your content carries the original cryptographic
+              proof. Authenticity is verifiable anywhere in the network,
+              forever.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-xl border border-[#34D399]/30 bg-gradient-to-br from-[#34D399]/10 to-dark-surface/50">
+            <h3 className="text-lg font-semibold text-[#34D399] mb-3">
+              The More It Spreads, The Safer It Gets
+            </h3>
+            <p className="text-sm text-dark-muted leading-relaxed">
+              Each follower stores an independent replica. The more people
+              follow you, the more copies exist — making your content
+              increasingly resilient to loss.
+            </p>
           </div>
         </div>
       </div>

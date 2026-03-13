@@ -1,254 +1,539 @@
 import { MiniDiagram } from "@/components/shared/mini-diagram"
 
-function FollowHandshakeDiagram() {
+function NetworkTopologyDiagram() {
   return (
-    <svg
-      viewBox="0 0 700 280"
-      className="w-full h-auto"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#1a1a1a" />
-          <stop offset="100%" stopColor="#0f0f0f" />
-        </linearGradient>
-      </defs>
+    <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 w-full">
+      <div className="flex-1 w-full max-w-sm">
+        <p className="text-xs font-mono text-dark-muted uppercase tracking-wider mb-4 text-center">
+          Traditional Network
+        </p>
+        <svg
+          viewBox="0 0 300 260"
+          className="w-full h-auto"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <radialGradient id="centralGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#2a1a1a" />
+              <stop offset="100%" stopColor="#1a0a0a" />
+            </radialGradient>
+          </defs>
 
-      <rect
-        x="50"
-        y="30"
-        width="140"
-        height="50"
-        rx="8"
-        fill="url(#nodeGrad)"
-        stroke="#F7931A"
-      />
-      <text
-        x="120"
-        y="50"
-        textAnchor="middle"
-        fill="#F7931A"
-        fontSize="11"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        Alice Browser
-      </text>
-      <text
-        x="120"
-        y="68"
-        textAnchor="middle"
-        fill="#666"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        Follow Request
-      </text>
+          <line
+            x1="150"
+            y1="80"
+            x2="150"
+            y2="40"
+            stroke="#444"
+            strokeWidth="1.5"
+          />
+          <line
+            x1="150"
+            y1="80"
+            x2="75"
+            y2="110"
+            stroke="#444"
+            strokeWidth="1.5"
+          />
+          <line
+            x1="150"
+            y1="80"
+            x2="225"
+            y2="110"
+            stroke="#444"
+            strokeWidth="1.5"
+          />
+          <line
+            x1="150"
+            y1="80"
+            x2="100"
+            y2="190"
+            stroke="#444"
+            strokeWidth="1.5"
+          />
+          <line
+            x1="150"
+            y1="80"
+            x2="200"
+            y2="190"
+            stroke="#444"
+            strokeWidth="1.5"
+          />
 
-      <rect
-        x="280"
-        y="30"
-        width="140"
-        height="50"
-        rx="8"
-        fill="url(#nodeGrad)"
-        stroke="#34D399"
-      />
-      <text
-        x="350"
-        y="50"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="11"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        Bob Node
-      </text>
-      <text
-        x="350"
-        y="68"
-        textAnchor="middle"
-        fill="#666"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        Target Node
-      </text>
+          <circle
+            cx="150"
+            cy="80"
+            r="40"
+            fill="url(#centralGrad)"
+            stroke="#ef4444"
+            strokeWidth="2"
+          />
+          <text
+            x="150"
+            y="75"
+            textAnchor="middle"
+            fill="#ef4444"
+            fontSize="9"
+            fontFamily="monospace"
+            fontWeight="bold"
+          >
+            Central
+          </text>
+          <text
+            x="150"
+            y="88"
+            textAnchor="middle"
+            fill="#ef4444"
+            fontSize="9"
+            fontFamily="monospace"
+            fontWeight="bold"
+          >
+            Server
+          </text>
+          <text
+            x="150"
+            y="105"
+            textAnchor="middle"
+            fill="#666"
+            fontSize="7"
+            fontFamily="monospace"
+            fontStyle="italic"
+          >
+            owns your data
+          </text>
 
-      <rect
-        x="510"
-        y="30"
-        width="140"
-        height="50"
-        rx="8"
-        fill="url(#nodeGrad)"
-        stroke="#60a5fa"
-      />
-      <text
-        x="580"
-        y="50"
-        textAnchor="middle"
-        fill="#60a5fa"
-        fontSize="11"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        Alice Node
-      </text>
-      <text
-        x="580"
-        y="68"
-        textAnchor="middle"
-        fill="#666"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        Home Node
-      </text>
+          <circle
+            cx="150"
+            cy="30"
+            r="18"
+            fill="#0f0f0f"
+            stroke="#666"
+            strokeWidth="1.5"
+          />
+          <text
+            x="150"
+            y="34"
+            textAnchor="middle"
+            fill="#888"
+            fontSize="7"
+            fontFamily="monospace"
+          >
+            User
+          </text>
 
-      <line
-        x1="120"
-        y1="85"
-        x2="120"
-        y2="250"
-        stroke="#F7931A"
-        strokeWidth="1.5"
-        strokeDasharray="4 3"
-        strokeOpacity="0.5"
-      />
-      <line
-        x1="350"
-        y1="85"
-        x2="350"
-        y2="250"
-        stroke="#34D399"
-        strokeWidth="1.5"
-        strokeDasharray="4 3"
-        strokeOpacity="0.5"
-      />
-      <line
-        x1="580"
-        y1="85"
-        x2="580"
-        y2="250"
-        stroke="#60a5fa"
-        strokeWidth="1.5"
-        strokeDasharray="4 3"
-        strokeOpacity="0.5"
-      />
+          <circle
+            cx="60"
+            cy="115"
+            r="18"
+            fill="#0f0f0f"
+            stroke="#666"
+            strokeWidth="1.5"
+          />
+          <text
+            x="60"
+            y="119"
+            textAnchor="middle"
+            fill="#888"
+            fontSize="7"
+            fontFamily="monospace"
+          >
+            User
+          </text>
 
-      <line
-        x1="120"
-        y1="110"
-        x2="350"
-        y2="110"
-        stroke="#F7931A"
-        strokeWidth="2"
-      />
-      <polygon points="350,110 343,106 343,114" fill="#F7931A" />
-      <text
-        x="235"
-        y="100"
-        textAnchor="middle"
-        fill="#F7931A"
-        fontSize="9"
-        fontFamily="monospace"
-      >
-        1. Follow(Bob)
-      </text>
+          <circle
+            cx="240"
+            cy="115"
+            r="18"
+            fill="#0f0f0f"
+            stroke="#666"
+            strokeWidth="1.5"
+          />
+          <text
+            x="240"
+            y="119"
+            textAnchor="middle"
+            fill="#888"
+            fontSize="7"
+            fontFamily="monospace"
+          >
+            User
+          </text>
 
-      <line
-        x1="350"
-        y1="140"
-        x2="580"
-        y2="140"
-        stroke="#34D399"
-        strokeWidth="2"
-      />
-      <polygon points="580,140 573,136 573,144" fill="#34D399" />
-      <text
-        x="465"
-        y="130"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="9"
-        fontFamily="monospace"
-      >
-        2. Notify Alice Node
-      </text>
+          <circle
+            cx="90"
+            cy="200"
+            r="18"
+            fill="#0f0f0f"
+            stroke="#666"
+            strokeWidth="1.5"
+          />
+          <text
+            x="90"
+            y="204"
+            textAnchor="middle"
+            fill="#888"
+            fontSize="7"
+            fontFamily="monospace"
+          >
+            User
+          </text>
 
-      <line
-        x1="580"
-        y1="170"
-        x2="350"
-        y2="170"
-        stroke="#60a5fa"
-        strokeWidth="2"
-      />
-      <polygon points="350,170 357,166 357,174" fill="#60a5fa" />
-      <text
-        x="465"
-        y="160"
-        textAnchor="middle"
-        fill="#60a5fa"
-        fontSize="9"
-        fontFamily="monospace"
-      >
-        3. Request Follow
-      </text>
+          <circle
+            cx="210"
+            cy="200"
+            r="18"
+            fill="#0f0f0f"
+            stroke="#666"
+            strokeWidth="1.5"
+          />
+          <text
+            x="210"
+            y="204"
+            textAnchor="middle"
+            fill="#888"
+            fontSize="7"
+            fontFamily="monospace"
+          >
+            User
+          </text>
 
-      <line
-        x1="350"
-        y1="200"
-        x2="580"
-        y2="200"
-        stroke="#34D399"
-        strokeWidth="2"
-      />
-      <polygon points="580,200 573,196 573,204" fill="#34D399" />
-      <text
-        x="465"
-        y="190"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="9"
-        fontFamily="monospace"
-      >
-        4. Confirm/Reject
-      </text>
+          <text
+            x="150"
+            y="248"
+            textAnchor="middle"
+            fill="#666"
+            fontSize="8"
+            fontFamily="monospace"
+          >
+            All traffic routes through one point
+          </text>
+        </svg>
+      </div>
 
-      <line
-        x1="580"
-        y1="230"
-        x2="120"
-        y2="230"
-        stroke="#60a5fa"
-        strokeWidth="2"
-      />
-      <polygon points="120,230 127,226 127,234" fill="#60a5fa" />
-      <text
-        x="350"
-        y="220"
-        textAnchor="middle"
-        fill="#60a5fa"
-        fontSize="9"
-        fontFamily="monospace"
-      >
-        5. Sync Complete
-      </text>
+      <div className="flex flex-col items-center gap-2">
+        <div className="hidden md:block w-px h-20 bg-dark-border" />
+        <span className="text-xs font-mono text-dark-muted uppercase tracking-wider bg-dark-bg px-3 py-1 rounded">
+          VS
+        </span>
+        <div className="hidden md:block w-px h-20 bg-dark-border" />
+      </div>
 
-      <text
-        x="350"
-        y="270"
-        textAnchor="middle"
-        fill="#666"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        Synchronous confirmation — Alice knows immediately if Bob accepted
-      </text>
-    </svg>
+      <div className="flex-1 w-full max-w-sm">
+        <p className="text-xs font-mono text-dark-muted uppercase tracking-wider mb-4 text-center">
+          epress Network
+        </p>
+        <svg
+          viewBox="0 0 300 260"
+          className="w-full h-auto"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <radialGradient id="nodeGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#1a1508" />
+              <stop offset="100%" stopColor="#0f0f0f" />
+            </radialGradient>
+          </defs>
+
+          <line
+            x1="80"
+            y1="60"
+            x2="150"
+            y2="45"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+            opacity="0.6"
+          />
+          <text
+            x="115"
+            y="45"
+            fill="#F7931A"
+            fontSize="6"
+            fontFamily="monospace"
+          >
+            EWP
+          </text>
+
+          <line
+            x1="150"
+            y1="45"
+            x2="220"
+            y2="60"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+            opacity="0.6"
+          />
+          <text
+            x="185"
+            y="45"
+            fill="#F7931A"
+            fontSize="6"
+            fontFamily="monospace"
+          >
+            EWP
+          </text>
+
+          <line
+            x1="80"
+            y1="60"
+            x2="60"
+            y2="130"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+            opacity="0.6"
+          />
+          <text
+            x="58"
+            y="95"
+            fill="#F7931A"
+            fontSize="6"
+            fontFamily="monospace"
+          >
+            EWP
+          </text>
+
+          <line
+            x1="220"
+            y1="60"
+            x2="240"
+            y2="130"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+            opacity="0.6"
+          />
+          <text
+            x="235"
+            y="95"
+            fill="#F7931A"
+            fontSize="6"
+            fontFamily="monospace"
+          >
+            EWP
+          </text>
+
+          <line
+            x1="60"
+            y1="130"
+            x2="100"
+            y2="200"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+            opacity="0.6"
+          />
+          <text
+            x="70"
+            y="165"
+            fill="#F7931A"
+            fontSize="6"
+            fontFamily="monospace"
+          >
+            EWP
+          </text>
+
+          <line
+            x1="240"
+            y1="130"
+            x2="200"
+            y2="200"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+            opacity="0.6"
+          />
+          <text
+            x="225"
+            y="165"
+            fill="#F7931A"
+            fontSize="6"
+            fontFamily="monospace"
+          >
+            EWP
+          </text>
+
+          <line
+            x1="100"
+            y1="200"
+            x2="200"
+            y2="200"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+            opacity="0.6"
+          />
+          <text
+            x="150"
+            y="192"
+            fill="#F7931A"
+            fontSize="6"
+            fontFamily="monospace"
+          >
+            EWP
+          </text>
+
+          <line
+            x1="150"
+            y1="45"
+            x2="150"
+            y2="130"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+            opacity="0.4"
+          />
+
+          <circle
+            cx="80"
+            cy="60"
+            r="22"
+            fill="url(#nodeGrad)"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+          />
+          <text
+            x="80"
+            y="64"
+            textAnchor="middle"
+            fill="#F7931A"
+            fontSize="7"
+            fontFamily="monospace"
+          >
+            Node
+          </text>
+
+          <circle
+            cx="150"
+            cy="45"
+            r="26"
+            fill="url(#nodeGrad)"
+            stroke="#e8a04a"
+            strokeWidth="2"
+          />
+          <text
+            x="150"
+            y="42"
+            textAnchor="middle"
+            fill="#e8a04a"
+            fontSize="6"
+            fontFamily="monospace"
+          >
+            Your
+          </text>
+          <text
+            x="150"
+            y="52"
+            textAnchor="middle"
+            fill="#e8a04a"
+            fontSize="7"
+            fontFamily="monospace"
+            fontWeight="bold"
+          >
+            Node
+          </text>
+
+          <circle
+            cx="220"
+            cy="60"
+            r="22"
+            fill="url(#nodeGrad)"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+          />
+          <text
+            x="220"
+            y="64"
+            textAnchor="middle"
+            fill="#F7931A"
+            fontSize="7"
+            fontFamily="monospace"
+          >
+            Node
+          </text>
+
+          <circle
+            cx="60"
+            cy="130"
+            r="22"
+            fill="url(#nodeGrad)"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+          />
+          <text
+            x="60"
+            y="134"
+            textAnchor="middle"
+            fill="#F7931A"
+            fontSize="7"
+            fontFamily="monospace"
+          >
+            Node
+          </text>
+
+          <circle
+            cx="240"
+            cy="130"
+            r="22"
+            fill="url(#nodeGrad)"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+          />
+          <text
+            x="240"
+            y="134"
+            textAnchor="middle"
+            fill="#F7931A"
+            fontSize="7"
+            fontFamily="monospace"
+          >
+            Node
+          </text>
+
+          <circle
+            cx="100"
+            cy="200"
+            r="22"
+            fill="url(#nodeGrad)"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+          />
+          <text
+            x="100"
+            y="204"
+            textAnchor="middle"
+            fill="#F7931A"
+            fontSize="7"
+            fontFamily="monospace"
+          >
+            Node
+          </text>
+
+          <circle
+            cx="200"
+            cy="200"
+            r="22"
+            fill="url(#nodeGrad)"
+            stroke="#F7931A"
+            strokeWidth="1.5"
+          />
+          <text
+            x="200"
+            y="204"
+            textAnchor="middle"
+            fill="#F7931A"
+            fontSize="7"
+            fontFamily="monospace"
+          >
+            Node
+          </text>
+
+          <text
+            x="150"
+            y="248"
+            textAnchor="middle"
+            fill="#34D399"
+            fontSize="8"
+            fontFamily="monospace"
+          >
+            No single point of failure or control
+          </text>
+        </svg>
+      </div>
+    </div>
   )
 }
 
@@ -265,54 +550,37 @@ export function NodesProtocolSection() {
         </p>
 
         <MiniDiagram className="mb-8">
-          <FollowHandshakeDiagram />
+          <NetworkTopologyDiagram />
         </MiniDiagram>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           <div className="p-6 rounded-xl border border-dark-border bg-dark-surface/50">
             <h3 className="text-lg font-semibold text-white mb-3">
-              EWP Interfaces
+              No Central Server
             </h3>
-            <ul className="space-y-2 text-sm text-dark-muted">
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span>
-                  <strong className="text-dark-text">Follow</strong> — Subscribe
-                  to a publisher&apos;s content
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span>
-                  <strong className="text-dark-text">Unfollow</strong> —
-                  Unsubscribe from a publisher
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span>
-                  <strong className="text-dark-text">Publish</strong> —
-                  Broadcast new content to followers
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span>
-                  <strong className="text-dark-text">Pull</strong> — Fetch
-                  content from peer nodes
-                </span>
-              </li>
-            </ul>
+            <p className="text-sm text-dark-muted leading-relaxed">
+              Nodes communicate directly with each other. No company owns the
+              network infrastructure.
+            </p>
           </div>
 
           <div className="p-6 rounded-xl border border-dark-border bg-dark-surface/50">
             <h3 className="text-lg font-semibold text-white mb-3">
-              Synchronous Follow
+              Open Protocol
             </h3>
             <p className="text-sm text-dark-muted leading-relaxed">
-              When you follow someone, the protocol confirms success or failure
-              immediately. No uncertainty about whether your follow went through
-              — you&apos;ll know right away if they accepted.
+              EWP is public. Anyone can implement a compatible node in any
+              language.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-xl border border-dark-border bg-dark-surface/50">
+            <h3 className="text-lg font-semibold text-white mb-3">
+              Equal Peers
+            </h3>
+            <p className="text-sm text-dark-muted leading-relaxed">
+              Every node has identical capabilities. No privileged nodes, no
+              gatekeepers.
             </p>
           </div>
         </div>
