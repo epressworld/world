@@ -1,7 +1,7 @@
 export function AIContentCrisisSvg() {
   return (
     <svg
-      viewBox="0 0 700 320"
+      viewBox="0 0 800 360"
       className="w-full h-auto"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -20,47 +20,44 @@ export function AIContentCrisisSvg() {
         <filter id="blur2" x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" />
         </filter>
-        <filter id="blur3" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" />
-        </filter>
       </defs>
 
       <rect
         x="40"
-        y="40"
-        width="200"
-        height="250"
-        rx="8"
+        y="30"
+        width="220"
+        height="280"
+        rx="12"
         fill="#1a1a1a"
         stroke="#3a3a3a"
         strokeWidth="1"
       />
       <rect
-        x="250"
-        y="40"
-        width="200"
-        height="250"
-        rx="8"
+        x="290"
+        y="30"
+        width="220"
+        height="280"
+        rx="12"
         fill="#1a1a1a"
         stroke="#3a3a3a"
         strokeWidth="1"
       />
       <rect
-        x="460"
-        y="40"
-        width="200"
-        height="250"
-        rx="8"
+        x="540"
+        y="30"
+        width="220"
+        height="280"
+        rx="12"
         fill="#1a1a1a"
         stroke="#3a3a3a"
         strokeWidth="1"
       />
 
       <text
-        x="140"
-        y="70"
+        x="150"
+        y="65"
         fill="#F7931A"
-        fontSize="18"
+        fontSize="22"
         fontFamily="monospace"
         fontWeight="bold"
         textAnchor="middle"
@@ -68,10 +65,10 @@ export function AIContentCrisisSvg() {
         2020
       </text>
       <text
-        x="350"
-        y="70"
+        x="400"
+        y="65"
         fill="#F7931A"
-        fontSize="18"
+        fontSize="22"
         fontFamily="monospace"
         fontWeight="bold"
         textAnchor="middle"
@@ -79,10 +76,10 @@ export function AIContentCrisisSvg() {
         2023
       </text>
       <text
-        x="560"
-        y="70"
+        x="650"
+        y="65"
         fill="#F7931A"
-        fontSize="18"
+        fontSize="22"
         fontFamily="monospace"
         fontWeight="bold"
         textAnchor="middle"
@@ -93,16 +90,16 @@ export function AIContentCrisisSvg() {
       <rect
         x="60"
         y="90"
-        width="160"
-        height="24"
-        rx="4"
+        width="180"
+        height="28"
+        rx="6"
         fill="url(#humanGrad)"
       />
       <text
-        x="140"
-        y="107"
+        x="150"
+        y="110"
         fill="#fff"
-        fontSize="10"
+        fontSize="12"
         fontFamily="monospace"
         textAnchor="middle"
       >
@@ -111,45 +108,45 @@ export function AIContentCrisisSvg() {
 
       <rect
         x="60"
-        y="120"
-        width="8"
-        height="24"
-        rx="2"
+        y="125"
+        width="9"
+        height="28"
+        rx="4"
         fill="url(#aiGrad)"
         opacity="0.5"
       />
-      <text x="80" y="137" fill="#fca5a5" fontSize="9" fontFamily="monospace">
+      <text x="80" y="145" fill="#fca5a5" fontSize="11" fontFamily="monospace">
         5% AI
       </text>
 
-      <g transform="translate(60, 150)">
+      <g transform="translate(60, 170)">
         {[0, 1, 2, 3, 4].map((i) => (
           <rect
             key={`h2020-${i}`}
-            x={i * 33}
+            x={i * 36}
             y="0"
-            width="30"
-            height="30"
-            rx="4"
+            width="32"
+            height="32"
+            rx="6"
             fill="#34D399"
             opacity="0.9"
           />
         ))}
         <rect
-          x="165"
+          x="180"
           y="0"
-          width="30"
-          height="30"
-          rx="4"
+          width="32"
+          height="32"
+          rx="6"
           fill="#ef4444"
           opacity="0.3"
         />
       </g>
       <text
-        x="140"
-        y="205"
+        x="150"
+        y="230"
         fill="#34D399"
-        fontSize="9"
+        fontSize="10"
         fontFamily="monospace"
         textAnchor="middle"
       >
@@ -157,18 +154,18 @@ export function AIContentCrisisSvg() {
       </text>
 
       <rect
-        x="270"
+        x="310"
         y="90"
-        width="112"
-        height="24"
-        rx="4"
+        width="125"
+        height="28"
+        rx="6"
         fill="url(#humanGrad)"
       />
       <text
-        x="326"
-        y="107"
+        x="372"
+        y="110"
         fill="#fff"
-        fontSize="10"
+        fontSize="12"
         fontFamily="monospace"
         textAnchor="middle"
       >
@@ -176,34 +173,34 @@ export function AIContentCrisisSvg() {
       </text>
 
       <rect
-        x="382"
+        x="435"
         y="90"
-        width="48"
-        height="24"
-        rx="4"
+        width="55"
+        height="28"
+        rx="6"
         fill="url(#aiGrad)"
         opacity="0.7"
       />
       <text
-        x="406"
-        y="107"
+        x="462"
+        y="110"
         fill="#fff"
-        fontSize="10"
+        fontSize="12"
         fontFamily="monospace"
         textAnchor="middle"
       >
         30% AI
       </text>
 
-      <g transform="translate(270, 150)">
+      <g transform="translate(310, 170)">
         {[0, 1, 2, 3].map((i) => (
           <rect
             key={`h2023-${i}`}
-            x={i * 33}
+            x={i * 36}
             y="0"
-            width="30"
-            height="30"
-            rx="4"
+            width="32"
+            height="32"
+            rx="6"
             fill="#34D399"
             opacity="0.8"
           />
@@ -211,11 +208,11 @@ export function AIContentCrisisSvg() {
         {[0, 1].map((i) => (
           <rect
             key={`a2023-${i}`}
-            x={132 + i * 33}
+            x={144 + i * 36}
             y="0"
-            width="30"
-            height="30"
-            rx="4"
+            width="32"
+            height="32"
+            rx="6"
             fill="#ef4444"
             opacity="0.6"
             filter="url(#blur1)"
@@ -223,10 +220,10 @@ export function AIContentCrisisSvg() {
         ))}
       </g>
       <text
-        x="350"
-        y="205"
+        x="400"
+        y="230"
         fill="#fbbf24"
-        fontSize="9"
+        fontSize="10"
         fontFamily="monospace"
         textAnchor="middle"
       >
@@ -234,55 +231,55 @@ export function AIContentCrisisSvg() {
       </text>
 
       <rect
-        x="480"
+        x="560"
         y="90"
-        width="48"
-        height="24"
-        rx="4"
+        width="55"
+        height="28"
+        rx="6"
         fill="url(#humanGrad)"
         opacity="0.7"
       />
       <text
-        x="504"
-        y="107"
+        x="587"
+        y="110"
         fill="#fff"
-        fontSize="10"
+        fontSize="12"
         fontFamily="monospace"
         textAnchor="middle"
       >
         30%
       </text>
 
-      <rect x="528" y="90" width="112" height="24" rx="4" fill="url(#aiGrad)" />
+      <rect x="615" y="90" width="125" height="28" rx="6" fill="url(#aiGrad)" />
       <text
-        x="584"
-        y="107"
+        x="677"
+        y="110"
         fill="#fff"
-        fontSize="10"
+        fontSize="12"
         fontFamily="monospace"
         textAnchor="middle"
       >
         70% AI
       </text>
 
-      <g transform="translate(480, 150)">
+      <g transform="translate(560, 170)">
         <rect
           x="0"
           y="0"
-          width="30"
-          height="30"
-          rx="4"
+          width="32"
+          height="32"
+          rx="6"
           fill="#34D399"
           opacity="0.6"
         />
         {[0, 1, 2, 3].map((i) => (
           <rect
             key={`a2026-${i}`}
-            x={33 + i * 33}
+            x={36 + i * 36}
             y="0"
-            width="30"
-            height="30"
-            rx="4"
+            width="32"
+            height="32"
+            rx="6"
             fill="#ef4444"
             opacity="0.8"
             filter="url(#blur2)"
@@ -290,10 +287,10 @@ export function AIContentCrisisSvg() {
         ))}
       </g>
       <text
-        x="560"
-        y="205"
+        x="650"
+        y="230"
         fill="#ef4444"
-        fontSize="9"
+        fontSize="10"
         fontFamily="monospace"
         textAnchor="middle"
       >
@@ -302,32 +299,32 @@ export function AIContentCrisisSvg() {
 
       <rect
         x="60"
-        y="225"
-        width="160"
-        height="40"
-        rx="4"
+        y="250"
+        width="180"
+        height="45"
+        rx="6"
         fill="#1a2a1a"
         stroke="#34D399"
         strokeWidth="1"
         opacity="0.5"
       />
       <rect
-        x="270"
-        y="225"
-        width="160"
-        height="40"
-        rx="4"
+        x="310"
+        y="250"
+        width="180"
+        height="45"
+        rx="6"
         fill="#2a2518"
         stroke="#fbbf24"
         strokeWidth="1"
         opacity="0.5"
       />
       <rect
-        x="480"
-        y="225"
-        width="160"
-        height="40"
-        rx="4"
+        x="560"
+        y="250"
+        width="180"
+        height="45"
+        rx="6"
         fill="#2a1515"
         stroke="#ef4444"
         strokeWidth="1"
@@ -335,44 +332,44 @@ export function AIContentCrisisSvg() {
       />
 
       <text
-        x="140"
-        y="250"
+        x="150"
+        y="278"
         fill="#34D399"
-        fontSize="8"
+        fontSize="10"
         fontFamily="monospace"
         textAnchor="middle"
-        opacity="0.8"
+        opacity="0.9"
       >
         Easy to identify
       </text>
       <text
-        x="350"
-        y="250"
+        x="400"
+        y="278"
         fill="#fbbf24"
-        fontSize="8"
+        fontSize="10"
         fontFamily="monospace"
         textAnchor="middle"
-        opacity="0.8"
+        opacity="0.9"
       >
         Harder to distinguish
       </text>
       <text
-        x="560"
-        y="250"
+        x="650"
+        y="278"
         fill="#ef4444"
-        fontSize="8"
+        fontSize="10"
         fontFamily="monospace"
         textAnchor="middle"
-        opacity="0.8"
+        opacity="0.9"
       >
         Nearly impossible
       </text>
 
       <text
-        x="350"
-        y="305"
+        x="400"
+        y="345"
         fill="#888"
-        fontSize="10"
+        fontSize="12"
         fontFamily="monospace"
         textAnchor="middle"
       >

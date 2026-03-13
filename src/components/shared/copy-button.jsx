@@ -50,7 +50,10 @@ export function CopyableCodeBlock({ code, className = "" }) {
         <code>{code}</code>
       </pre>
       <div className="absolute right-2 top-2 opacity-0 transition-opacity group-hover:opacity-100">
-        <CopyButton text={code} className="!rounded !border-dark-border/50 !bg-dark-surface/90 !p-1.5" />
+        <CopyButton
+          text={code}
+          className="!rounded !border-dark-border/50 !bg-dark-surface/90 !p-1.5"
+        />
       </div>
     </div>
   )

@@ -1,378 +1,380 @@
 export function AgentEraVisionSvg() {
   return (
     <svg
-      viewBox="0 0 650 300"
+      viewBox="0 0 800 420"
       className="w-full h-auto max-w-4xl mx-auto"
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="agentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient id="closedGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#2a1515" />
+          <stop offset="100%" stopColor="#1a0f0f" />
+        </linearGradient>
+        <linearGradient id="openGrad" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="#1a2a1a" />
           <stop offset="100%" stopColor="#0f1a12" />
         </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
       </defs>
 
-      {}
-      <text
-        x="325"
-        y="25"
-        textAnchor="middle"
-        fill="#a0a0a0"
-        fontSize="11"
-        fontFamily="monospace"
-      >
-        How AI Agents Work with epress
-      </text>
-
-      {}
       <rect
-        x="30"
-        y="50"
-        width="180"
-        height="220"
-        rx="12"
-        fill="url(#agentGrad)"
-        stroke="#34D399"
-        strokeOpacity="0.5"
-      />
-      <text
-        x="120"
-        y="75"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="12"
-        fontFamily="sans-serif"
-        fontWeight="600"
-      >
-        Scenario 1: You Follow Bob
-      </text>
-
-      {}
-      <circle cx="70" cy="110" r="18" fill="#1a2a1a" stroke="#F7931A" />
-      <text x="70" y="115" textAnchor="middle" fill="#FBBF24" fontSize="9">
-        Alice
-      </text>
-      <circle cx="50" cy="150" r="14" fill="#0f1a12" stroke="#F7931A" />
-      <text x="50" y="154" textAnchor="middle" fill="#F7931A" fontSize="8">
-        Agent
-      </text>
-      <path d="M55 130 L55 135" stroke="#F7931A" strokeWidth="1.5" />
-      <polygon points="55,135 52,130 58,130" fill="#F7931A" />
-
-      {}
-      <rect
-        x="100"
-        y="130"
-        width="80"
-        height="60"
-        rx="6"
-        fill="#151515"
-        stroke="#34D399"
-        strokeOpacity="0.7"
-      />
-      <text
-        x="140"
-        y="155"
-        textAnchor="middle"
-        fill="#6EE7B7"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        Alice's
-      </text>
-      <text
-        x="140"
-        y="170"
-        textAnchor="middle"
-        fill="#6EE7B7"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        epress Node
-      </text>
-      <path
-        d="M70 150 L100 155"
-        stroke="#34D399"
-        strokeWidth="1.5"
-        strokeOpacity="0.7"
-      />
-      <polygon
-        points="100,155 92,152 95,158"
-        fill="#34D399"
-        fillOpacity="0.7"
-      />
-
-      {}
-      <rect
-        x="100"
-        y="210"
-        width="80"
-        height="40"
-        rx="6"
-        fill="#0f1a12"
-        stroke="#F7931A"
-        strokeOpacity="0.5"
-      />
-      <text
-        x="140"
-        y="225"
-        textAnchor="middle"
-        fill="#FBBF24"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        Bob's updates
-      </text>
-      <text
-        x="140"
-        y="238"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="7"
-        fontFamily="monospace"
-      >
-        (cached)
-      </text>
-      <path
-        d="M140 190 L140 210"
-        stroke="#34D399"
-        strokeWidth="1.5"
-        strokeOpacity="0.7"
-      />
-      <polygon
-        points="140,210 137,205 143,205"
-        fill="#34D399"
-        fillOpacity="0.7"
-      />
-
-      {}
-      <text
-        x="120"
-        y="280"
-        textAnchor="middle"
-        fill="#a0a0a0"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        Agent reads from YOUR node (Bob's content already cached)
-      </text>
-
-      {}
-      <rect
-        x="440"
-        y="50"
-        width="180"
-        height="220"
-        rx="12"
-        fill="url(#agentGrad)"
-        stroke="#F7931A"
-        strokeOpacity="0.5"
-      />
-      <text
-        x="530"
-        y="75"
-        textAnchor="middle"
-        fill="#F7931A"
-        fontSize="12"
-        fontFamily="sans-serif"
-        fontWeight="600"
-      >
-        Scenario 2: You Don't Follow Bob
-      </text>
-
-      {}
-      <circle cx="480" cy="110" r="18" fill="#1a2a1a" stroke="#F7931A" />
-      <text x="480" y="115" textAnchor="middle" fill="#FBBF24" fontSize="9">
-        Alice
-      </text>
-      <circle cx="460" cy="150" r="14" fill="#0f1a12" stroke="#F7931A" />
-      <text x="460" y="154" textAnchor="middle" fill="#F7931A" fontSize="8">
-        Agent
-      </text>
-      <path d="M465 130 L465 135" stroke="#F7931A" strokeWidth="1.5" />
-      <polygon points="465,135 462,130 468,130" fill="#F7931A" />
-
-      {}
-      <rect
-        x="510"
-        y="130"
-        width="80"
-        height="50"
-        rx="6"
-        fill="#151515"
-        stroke="#34D399"
-        strokeOpacity="0.7"
-      />
-      <text
-        x="550"
-        y="155"
-        textAnchor="middle"
-        fill="#6EE7B7"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        Alice's
-      </text>
-      <text
-        x="550"
-        y="168"
-        textAnchor="middle"
-        fill="#6EE7B7"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        epress Node
-      </text>
-      <path
-        d="M480 150 L510 155"
-        stroke="#34D399"
-        strokeWidth="1.5"
-        strokeOpacity="0.7"
-      />
-      <polygon
-        points="510,155 502,152 505,158"
-        fill="#34D399"
-        fillOpacity="0.7"
-      />
-
-      {}
-      <rect
-        x="510"
-        y="200"
-        width="80"
-        height="50"
-        rx="6"
-        fill="#1a1308"
-        stroke="#F7931A"
-        strokeOpacity="0.7"
-      />
-      <text
-        x="550"
-        y="220"
-        textAnchor="middle"
-        fill="#FBBF24"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        Bob's
-      </text>
-      <text
-        x="550"
-        y="233"
-        textAnchor="middle"
-        fill="#FBBF24"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        epress Node
-      </text>
-
-      {}
-      <path
-        d="M510 225 L475 225"
-        stroke="#F7931A"
+        x="40"
+        y="30"
+        width="320"
+        height="340"
+        rx="16"
+        fill="url(#closedGrad)"
+        stroke="#ef4444"
         strokeWidth="2"
-        strokeDasharray="4,4"
+        strokeOpacity="0.5"
       />
-      <polygon points="475,225 483,221 483,229" fill="#F7931A" />
       <text
-        x="492"
-        y="218"
+        x="200"
+        y="65"
         textAnchor="middle"
-        fill="#F7931A"
-        fontSize="7"
-        fontFamily="monospace"
+        fill="#ef4444"
+        fontSize="16"
+        fontFamily="sans-serif"
+        fontWeight="600"
       >
-        direct
-      </text>
-      <text
-        x="492"
-        y="235"
-        textAnchor="middle"
-        fill="#F7931A"
-        fontSize="7"
-        fontFamily="monospace"
-      >
-        access
+        Closed Platforms
       </text>
 
-      {}
-      <text
-        x="530"
-        y="280"
-        textAnchor="middle"
-        fill="#a0a0a0"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        Agent directly queries Bob's node (no cache)
-      </text>
-
-      {}
-      <text
-        x="325"
-        y="165"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="10"
-        fontFamily="monospace"
-      >
-        VS
-      </text>
-
-      {}
       <rect
-        x="280"
-        y="180"
-        width="90"
-        height="50"
-        rx="6"
-        fill="#0f0f0f"
-        stroke="#F7931A"
+        x="80"
+        y="90"
+        width="240"
+        height="40"
+        rx="8"
+        fill="#1a1a1a"
+        stroke="#ef4444"
         strokeOpacity="0.3"
       />
       <text
-        x="325"
-        y="200"
+        x="200"
+        y="115"
         textAnchor="middle"
-        fill="#FBBF24"
-        fontSize="7"
+        fill="#fca5a5"
+        fontSize="12"
         fontFamily="monospace"
       >
-        No Agent-to-Agent
-      </text>
-      <text
-        x="325"
-        y="215"
-        textAnchor="middle"
-        fill="#a0a0a0"
-        fontSize="7"
-        fontFamily="monospace"
-      >
-        communication
+        Your AI Agent
       </text>
 
-      {}
+      <line
+        x1="200"
+        y1="135"
+        x2="200"
+        y2="160"
+        stroke="#666"
+        strokeWidth="2"
+        strokeDasharray="4,4"
+      />
+      <polygon points="200,165 194,155 206,155" fill="#666" />
+
       <rect
-        x="20"
-        y="45"
-        width="610"
-        height="240"
-        rx="0"
-        fill="none"
-        stroke="#34D399"
-        strokeOpacity="0.2"
-        strokeDasharray="8,4"
+        x="80"
+        y="170"
+        width="240"
+        height="45"
+        rx="8"
+        fill="#151515"
+        stroke="#666"
+        strokeOpacity="0.5"
       />
       <text
-        x="325"
-        y="295"
+        x="200"
+        y="190"
         textAnchor="middle"
-        fill="#a0a0a0"
-        fontSize="8"
+        fill="#888"
+        fontSize="11"
         fontFamily="monospace"
       >
-        Agents act on behalf of owners, never interact with other Agents
+        Twitter / Instagram
+      </text>
+      <text
+        x="200"
+        y="205"
+        textAnchor="middle"
+        fill="#666"
+        fontSize="9"
+        fontFamily="monospace"
+      >
+        (walled gardens)
+      </text>
+
+      <line
+        x1="200"
+        y1="220"
+        x2="200"
+        y2="245"
+        stroke="#666"
+        strokeWidth="2"
+        strokeDasharray="4,4"
+      />
+      <polygon points="200,250 194,240 206,240" fill="#666" />
+
+      <g transform="translate(70, 255)">
+        <rect
+          x="0"
+          y="0"
+          width="260"
+          height="28"
+          rx="6"
+          fill="#1a0f0f"
+          stroke="#ef4444"
+          strokeOpacity="0.4"
+        />
+        <text x="15" y="18" fill="#ef4444" fontSize="12">
+          ✗
+        </text>
+        <text x="35" y="18" fill="#fca5a5" fontSize="10" fontFamily="monospace">
+          Rate Limited
+        </text>
+      </g>
+
+      <g transform="translate(70, 290)">
+        <rect
+          x="0"
+          y="0"
+          width="260"
+          height="28"
+          rx="6"
+          fill="#1a0f0f"
+          stroke="#ef4444"
+          strokeOpacity="0.4"
+        />
+        <text x="15" y="18" fill="#ef4444" fontSize="12">
+          ✗
+        </text>
+        <text x="35" y="18" fill="#fca5a5" fontSize="10" fontFamily="monospace">
+          Paywall / Subscription
+        </text>
+      </g>
+
+      <g transform="translate(70, 325)">
+        <rect
+          x="0"
+          y="0"
+          width="260"
+          height="28"
+          rx="6"
+          fill="#1a0f0f"
+          stroke="#ef4444"
+          strokeOpacity="0.4"
+        />
+        <text x="15" y="18" fill="#ef4444" fontSize="12">
+          ✗
+        </text>
+        <text x="35" y="18" fill="#fca5a5" fontSize="10" fontFamily="monospace">
+          API Access Blocked
+        </text>
+      </g>
+
+      <text
+        x="200"
+        y="385"
+        textAnchor="middle"
+        fill="#ef4444"
+        fontSize="12"
+        fontFamily="monospace"
+        opacity="0.9"
+      >
+        Agent cannot work freely
+      </text>
+
+      <rect
+        x="440"
+        y="30"
+        width="320"
+        height="340"
+        rx="16"
+        fill="url(#openGrad)"
+        stroke="#34D399"
+        strokeWidth="2"
+        strokeOpacity="0.5"
+      />
+      <text
+        x="600"
+        y="65"
+        textAnchor="middle"
+        fill="#34D399"
+        fontSize="16"
+        fontFamily="sans-serif"
+        fontWeight="600"
+      >
+        epress Network
+      </text>
+
+      <rect
+        x="480"
+        y="90"
+        width="240"
+        height="40"
+        rx="8"
+        fill="#1a2a1a"
+        stroke="#34D399"
+        strokeOpacity="0.3"
+      />
+      <text
+        x="600"
+        y="115"
+        textAnchor="middle"
+        fill="#6EE7B7"
+        fontSize="12"
+        fontFamily="monospace"
+      >
+        Your AI Agent
+      </text>
+
+      <line
+        x1="600"
+        y1="135"
+        x2="600"
+        y2="160"
+        stroke="#34D399"
+        strokeWidth="2"
+        filter="url(#glow)"
+      />
+      <polygon points="600,165 594,155 606,155" fill="#34D399" />
+
+      <rect
+        x="480"
+        y="170"
+        width="240"
+        height="45"
+        rx="8"
+        fill="#0f1a12"
+        stroke="#34D399"
+        strokeOpacity="0.5"
+      />
+      <text
+        x="600"
+        y="190"
+        textAnchor="middle"
+        fill="#6EE7B7"
+        fontSize="11"
+        fontFamily="monospace"
+      >
+        Any epress Node
+      </text>
+      <text
+        x="600"
+        y="205"
+        textAnchor="middle"
+        fill="#34D399"
+        fontSize="9"
+        fontFamily="monospace"
+      >
+        (self-hosted or public)
+      </text>
+
+      <line
+        x1="600"
+        y1="220"
+        x2="600"
+        y2="245"
+        stroke="#34D399"
+        strokeWidth="2"
+        filter="url(#glow)"
+      />
+      <polygon points="600,250 594,240 606,240" fill="#34D399" />
+
+      <g transform="translate(470, 255)">
+        <rect
+          x="0"
+          y="0"
+          width="260"
+          height="28"
+          rx="6"
+          fill="#0f1a12"
+          stroke="#34D399"
+          strokeOpacity="0.4"
+        />
+        <text x="15" y="18" fill="#34D399" fontSize="12">
+          ✓
+        </text>
+        <text x="35" y="18" fill="#6EE7B7" fontSize="10" fontFamily="monospace">
+          Open RSS Feeds
+        </text>
+      </g>
+
+      <g transform="translate(470, 290)">
+        <rect
+          x="0"
+          y="0"
+          width="260"
+          height="28"
+          rx="6"
+          fill="#0f1a12"
+          stroke="#34D399"
+          strokeOpacity="0.4"
+        />
+        <text x="15" y="18" fill="#34D399" fontSize="12">
+          ✓
+        </text>
+        <text x="35" y="18" fill="#6EE7B7" fontSize="10" fontFamily="monospace">
+          Open GraphQL API
+        </text>
+      </g>
+
+      <g transform="translate(470, 325)">
+        <rect
+          x="0"
+          y="0"
+          width="260"
+          height="28"
+          rx="6"
+          fill="#0f1a12"
+          stroke="#34D399"
+          strokeOpacity="0.4"
+        />
+        <text x="15" y="18" fill="#34D399" fontSize="12">
+          ✓
+        </text>
+        <text x="35" y="18" fill="#6EE7B7" fontSize="10" fontFamily="monospace">
+          No Rate Limits
+        </text>
+      </g>
+
+      <text
+        x="600"
+        y="385"
+        textAnchor="middle"
+        fill="#34D399"
+        fontSize="12"
+        fontFamily="monospace"
+        opacity="0.9"
+      >
+        Agent operates freely
+      </text>
+
+      <rect
+        x="370"
+        y="170"
+        width="60"
+        height="40"
+        rx="8"
+        fill="#1a1a1a"
+        stroke="#F7931A"
+        strokeWidth="2"
+      />
+      <text
+        x="400"
+        y="195"
+        textAnchor="middle"
+        fill="#F7931A"
+        fontSize="14"
+        fontFamily="monospace"
+        fontWeight="bold"
+      >
+        VS
       </text>
     </svg>
   )

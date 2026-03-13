@@ -194,9 +194,21 @@ export function OpenProtocolDiagram() {
         </filter>
       </defs>
 
+      <text
+        x="120"
+        y="12"
+        textAnchor="middle"
+        fill="#F7931A"
+        fontSize="10"
+        fontFamily="monospace"
+        fontWeight="bold"
+      >
+        epress world protocol
+      </text>
+
       <circle
         cx="50"
-        cy="45"
+        cy="50"
         r="25"
         fill="#1a1a1a"
         stroke="#F7931A"
@@ -205,7 +217,7 @@ export function OpenProtocolDiagram() {
       />
       <text
         x="50"
-        y="50"
+        y="55"
         textAnchor="middle"
         fill="#F7931A"
         fontSize="16"
@@ -217,7 +229,7 @@ export function OpenProtocolDiagram() {
 
       <circle
         cx="190"
-        cy="45"
+        cy="50"
         r="25"
         fill="#1a1a1a"
         stroke="#F7931A"
@@ -226,7 +238,7 @@ export function OpenProtocolDiagram() {
       />
       <text
         x="190"
-        y="50"
+        y="55"
         textAnchor="middle"
         fill="#F7931A"
         fontSize="16"
@@ -238,7 +250,7 @@ export function OpenProtocolDiagram() {
 
       <circle
         cx="120"
-        cy="105"
+        cy="110"
         r="25"
         fill="#1a1a1a"
         stroke="#F7931A"
@@ -247,7 +259,7 @@ export function OpenProtocolDiagram() {
       />
       <text
         x="120"
-        y="110"
+        y="115"
         textAnchor="middle"
         fill="#F7931A"
         fontSize="16"
@@ -258,74 +270,33 @@ export function OpenProtocolDiagram() {
       </text>
 
       <line
-        x1="72"
-        y1="35"
-        x2="168"
-        y2="35"
+        x1="75"
+        y1="50"
+        x2="165"
+        y2="50"
         stroke="#F7931A"
-        strokeWidth="1.5"
-        strokeOpacity="0.6"
-      />
-      <line
-        x1="72"
-        y1="55"
-        x2="168"
-        y2="55"
-        stroke="#F7931A"
-        strokeWidth="1.5"
+        strokeWidth="2"
         strokeOpacity="0.6"
       />
 
       <line
         x1="60"
-        y1="65"
+        y1="70"
         x2="105"
-        y2="90"
+        y2="95"
         stroke="#F7931A"
-        strokeWidth="1.5"
+        strokeWidth="2"
         strokeOpacity="0.6"
       />
       <line
         x1="180"
-        y1="65"
+        y1="70"
         x2="135"
-        y2="90"
+        y2="95"
         stroke="#F7931A"
-        strokeWidth="1.5"
+        strokeWidth="2"
         strokeOpacity="0.6"
       />
-
-      <rect
-        x="85"
-        y="55"
-        width="70"
-        height="20"
-        rx="4"
-        fill="#0f0f0f"
-        stroke="#F7931A"
-        strokeWidth="1"
-      />
-      <text
-        x="120"
-        y="69"
-        textAnchor="middle"
-        fill="#F7931A"
-        fontSize="9"
-        fontFamily="monospace"
-      >
-        EWP
-      </text>
-
-      <text
-        x="120"
-        y="8"
-        textAnchor="middle"
-        fill="#666"
-        fontSize="8"
-        fontFamily="monospace"
-      >
-        epress world protocol
-      </text>
     </svg>
   )
 }

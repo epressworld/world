@@ -4,7 +4,7 @@ import { MiniDiagram } from "@/components/shared/mini-diagram"
 function IdentityDiagram() {
   return (
     <svg
-      viewBox="0 0 600 200"
+      viewBox="0 0 700 280"
       className="w-full h-auto"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -16,172 +16,157 @@ function IdentityDiagram() {
       </defs>
 
       <rect
-        x="20"
-        y="60"
-        width="100"
-        height="80"
-        rx="8"
+        x="40"
+        y="50"
+        width="120"
+        height="90"
+        rx="10"
         fill="#1a1a1a"
         stroke="#444"
+        strokeWidth="1.5"
       />
       <text
-        x="70"
-        y="90"
+        x="100"
+        y="85"
         textAnchor="middle"
         fill="#888"
-        fontSize="10"
+        fontSize="12"
         fontFamily="monospace"
       >
         Private Key
       </text>
       <text
-        x="70"
-        y="110"
+        x="100"
+        y="105"
         textAnchor="middle"
         fill="#666"
-        fontSize="8"
+        fontSize="10"
         fontFamily="monospace"
       >
         (secret)
       </text>
-      <text x="70" y="125" textAnchor="middle" fontSize="16">
+      <text x="100" y="125" textAnchor="middle" fontSize="20">
         🔑
       </text>
 
       <line
-        x1="125"
-        y1="100"
-        x2="155"
-        y2="100"
+        x1="165"
+        y1="95"
+        x2="215"
+        y2="95"
         stroke="#F7931A"
-        strokeWidth="2"
+        strokeWidth="3"
       />
-      <polygon points="155,100 148,96 148,104" fill="#F7931A" />
+      <polygon points="215,95 205,89 205,101" fill="#F7931A" />
 
       <rect
-        x="160"
-        y="60"
-        width="120"
-        height="80"
-        rx="8"
+        x="220"
+        y="50"
+        width="160"
+        height="90"
+        rx="10"
         fill="#1a1a1a"
         stroke="#F7931A"
+        strokeWidth="1.5"
       />
       <text
-        x="220"
-        y="90"
+        x="300"
+        y="85"
         textAnchor="middle"
         fill="#F7931A"
-        fontSize="10"
+        fontSize="12"
         fontFamily="monospace"
       >
         Sign Message
       </text>
       <text
-        x="220"
-        y="110"
+        x="300"
+        y="105"
         textAnchor="middle"
         fill="#666"
-        fontSize="8"
+        fontSize="10"
         fontFamily="monospace"
       >
         SIWE
       </text>
-      <text x="220" y="125" textAnchor="middle" fontSize="16">
+      <text x="300" y="125" textAnchor="middle" fontSize="20">
         ✍️
       </text>
 
       <line
-        x1="285"
-        y1="100"
-        x2="315"
-        y2="100"
+        x1="385"
+        y1="95"
+        x2="435"
+        y2="95"
         stroke="#F7931A"
-        strokeWidth="2"
+        strokeWidth="3"
       />
-      <polygon points="315,100 308,96 308,104" fill="#F7931A" />
+      <polygon points="435,95 425,89 425,101" fill="#F7931A" />
 
       <rect
-        x="320"
-        y="60"
-        width="160"
-        height="80"
-        rx="8"
+        x="440"
+        y="40"
+        width="200"
+        height="110"
+        rx="12"
         fill="url(#identityGrad)"
         stroke="#F7931A"
-        strokeWidth="2"
+        strokeWidth="2.5"
       />
       <text
-        x="400"
-        y="85"
+        x="540"
+        y="75"
         textAnchor="middle"
         fill="#F7931A"
-        fontSize="10"
+        fontSize="13"
         fontFamily="monospace"
+        fontWeight="bold"
       >
         Ethereum Address
       </text>
       <text
-        x="400"
-        y="105"
+        x="540"
+        y="100"
         textAnchor="middle"
         fill="#34D399"
-        fontSize="9"
+        fontSize="11"
         fontFamily="monospace"
       >
         0x742d...f9
       </text>
-      <text x="400" y="125" textAnchor="middle" fontSize="16">
+      <text x="540" y="130" textAnchor="middle" fontSize="22">
         🆔
       </text>
 
       <text
-        x="510"
-        y="85"
+        x="540"
+        y="185"
         textAnchor="middle"
         fill="#34D399"
-        fontSize="14"
+        fontSize="22"
+        fontFamily="monospace"
         fontWeight="bold"
       >
-        =
-      </text>
-      <text
-        x="510"
-        y="105"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="11"
-        fontFamily="monospace"
-      >
-        Your
-      </text>
-      <text
-        x="510"
-        y="125"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="11"
-        fontFamily="monospace"
-      >
-        Identity
+        = Your Identity
       </text>
 
       <rect
-        x="160"
-        y="160"
-        width="320"
-        height="30"
-        rx="6"
+        x="40"
+        y="220"
+        width="620"
+        height="40"
+        rx="8"
         fill="transparent"
         stroke="#34D399"
-        strokeDasharray="4 2"
+        strokeWidth="1.5"
+        strokeDasharray="6 3"
       />
       <text
-        x="320"
-        y="180"
+        x="350"
+        y="245"
         textAnchor="middle"
         fill="#34D399"
-        fontSize="9"
+        fontSize="11"
         fontFamily="monospace"
       >
         No password required — just prove you own the private key
