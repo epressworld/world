@@ -291,22 +291,27 @@ export function AgentEraVisionSvg() {
       </text>
 
       <line
-        x1="230"
+        x1="225"
         y1="342"
-        x2="570"
+        x2="328"
         y2="342"
         stroke="#4af0d4"
         strokeWidth="3"
-        filter="url(#nodeGlow)"
       />
-      <polygon points="230,342 245,335 245,349" fill="#4af0d4" />
-      <polygon points="570,342 555,335 555,349" fill="#4af0d4" />
+      <line
+        x1="472"
+        y1="342"
+        x2="575"
+        y2="342"
+        stroke="#4af0d4"
+        strokeWidth="3"
+      />
 
       <rect
-        x="330"
-        y="318"
-        width="140"
-        height="28"
+        x="328"
+        y="325"
+        width="144"
+        height="34"
         rx="6"
         fill="#0f1a18"
         stroke="#4af0d4"
@@ -315,15 +320,18 @@ export function AgentEraVisionSvg() {
       />
       <text
         x="400"
-        y="337"
+        y="347"
         textAnchor="middle"
         fill="#4af0d4"
-        fontSize="10"
+        fontSize="9"
         fontFamily="monospace"
         fontWeight="500"
       >
-        EWP Protocol
+        epress world protocol
       </text>
+
+      <polygon points="225,342 238,336 238,348" fill="#4af0d4" />
+      <polygon points="575,342 562,336 562,348" fill="#4af0d4" />
 
       <text
         x="400"
@@ -503,47 +511,39 @@ export function AgentEraVisionSvgMobile() {
       </text>
 
       <line
-        x1="100"
-        y1="320"
-        x2="100"
-        y2="355"
+        x1="165"
+        y1="282"
+        x2="235"
+        y2="282"
         stroke="#4af0d4"
         strokeWidth="2"
-        strokeOpacity="0.5"
+        strokeOpacity="0.7"
       />
+      <polygon points="165,282 178,276 178,288" fill="#4af0d4" />
+      <polygon points="235,282 222,276 222,288" fill="#4af0d4" />
 
       <rect
-        x="30"
-        y="365"
-        width="140"
-        height="26"
-        rx="6"
+        x="170"
+        y="268"
+        width="60"
+        height="22"
+        rx="4"
         fill="#0f1a18"
         stroke="#4af0d4"
         strokeWidth="1"
         strokeOpacity="0.6"
       />
       <text
-        x="100"
-        y="383"
+        x="200"
+        y="283"
         textAnchor="middle"
         fill="#4af0d4"
-        fontSize="9"
+        fontSize="8"
         fontFamily="monospace"
         fontWeight="500"
       >
-        EWP Protocol
+        EWP
       </text>
-
-      <line
-        x1="300"
-        y1="320"
-        x2="300"
-        y2="355"
-        stroke="#4af0d4"
-        strokeWidth="2"
-        strokeOpacity="0.5"
-      />
 
       <rect
         x="235"
