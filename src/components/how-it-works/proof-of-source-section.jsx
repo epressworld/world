@@ -190,7 +190,7 @@ export function ProofOfSourceSection() {
           structure that binds content to its publisher.
         </p>
 
-        <div className="diagram-frame p-8 overflow-hidden">
+        <div className="diagram-frame p-8 overflow-hidden mb-8">
           <ProofOfSourceDiagramDesktop />
           <ProofOfSourceDiagramMobile />
         </div>
