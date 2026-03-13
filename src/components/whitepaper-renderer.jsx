@@ -7,7 +7,7 @@ import { MermaidDiagram } from "@/components/mermaid-diagram"
 
 export function WhitepaperRenderer({ content }) {
   return (
-    <div className="whitepaper-markdown markdown-body max-w-[42rem] leading-relaxed">
+    <div className="whitepaper-markdown markdown-body leading-relaxed">
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkMath]}
         rehypePlugins={[rehypeKatex, rehypeSlug]}
