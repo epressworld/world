@@ -79,11 +79,21 @@ export function ProofOfSourceSvg() {
         x="140"
         y="135"
         textAnchor="middle"
+        fill="#F7931A"
+        fontSize="11"
+        fontFamily="monospace"
+      >
+        "Proof of Source (PoS)
+      </text>
+      <text
+        x="140"
+        y="150"
+        textAnchor="middle"
         fill="#34D399"
         fontSize="11"
         fontFamily="monospace"
       >
-        "Cryptographically proven."
+        — Cryptographically proven."
       </text>
     </svg>
   )
