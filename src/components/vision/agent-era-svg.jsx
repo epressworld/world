@@ -1,21 +1,20 @@
 export function AgentEraVisionSvg() {
   return (
     <svg
-      viewBox="0 0 800 420"
-      className="w-full h-auto max-w-4xl mx-auto"
+      viewBox="0 0 800 480"
+      className="w-full h-auto max-w-4xl mx-auto hidden md:block"
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="closedGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#2a1515" />
-          <stop offset="100%" stopColor="#1a0f0f" />
-        </linearGradient>
-        <linearGradient id="openGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#1a2a1a" />
-          <stop offset="100%" stopColor="#0f1a12" />
-        </linearGradient>
-        <filter id="glow">
+        <filter id="agentGlow">
           <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="nodeGlow">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur" />
           <feMerge>
             <feMergeNode in="coloredBlur" />
             <feMergeNode in="SourceGraphic" />
@@ -23,358 +22,672 @@ export function AgentEraVisionSvg() {
         </filter>
       </defs>
 
-      <rect
-        x="40"
-        y="30"
-        width="320"
-        height="340"
-        rx="16"
-        fill="url(#closedGrad)"
-        stroke="#ef4444"
-        strokeWidth="2"
-        strokeOpacity="0.5"
-      />
-      <text
-        x="200"
-        y="65"
-        textAnchor="middle"
-        fill="#ef4444"
-        fontSize="16"
-        fontFamily="sans-serif"
-        fontWeight="600"
-      >
-        Closed Platforms
-      </text>
-
-      <rect
-        x="80"
-        y="90"
-        width="240"
-        height="40"
-        rx="8"
+      <circle
+        cx="150"
+        cy="60"
+        r="35"
         fill="#1a1a1a"
-        stroke="#ef4444"
-        strokeOpacity="0.3"
-      />
-      <text
-        x="200"
-        y="115"
-        textAnchor="middle"
-        fill="#fca5a5"
-        fontSize="12"
-        fontFamily="monospace"
-      >
-        Your AI Agent
-      </text>
-
-      <line
-        x1="200"
-        y1="135"
-        x2="200"
-        y2="160"
         stroke="#666"
         strokeWidth="2"
-        strokeDasharray="4,4"
       />
-      <polygon points="200,165 194,155 206,155" fill="#666" />
-
-      <rect
-        x="80"
-        y="170"
-        width="240"
-        height="45"
-        rx="8"
-        fill="#151515"
-        stroke="#666"
-        strokeOpacity="0.5"
-      />
+      <text x="150" y="67" textAnchor="middle" fontSize="24">
+        👤
+      </text>
       <text
-        x="200"
-        y="190"
+        x="150"
+        y="110"
         textAnchor="middle"
         fill="#888"
         fontSize="11"
         fontFamily="monospace"
       >
-        Twitter / Instagram
+        Alice
+      </text>
+
+      <circle
+        cx="650"
+        cy="60"
+        r="35"
+        fill="#1a1a1a"
+        stroke="#666"
+        strokeWidth="2"
+      />
+      <text x="650" y="67" textAnchor="middle" fontSize="24">
+        👤
       </text>
       <text
+        x="650"
+        y="110"
+        textAnchor="middle"
+        fill="#888"
+        fontSize="11"
+        fontFamily="monospace"
+      >
+        Bob
+      </text>
+
+      <line x1="150" y1="125" x2="150" y2="160" stroke="#555" strokeWidth="2" />
+      <polygon points="150,168 144,156 156,156" fill="#555" />
+
+      <text
+        x="110"
+        y="145"
+        textAnchor="end"
+        fill="#666"
+        fontSize="9"
+        fontFamily="monospace"
+      >
+        "Post this article"
+      </text>
+      <text
+        x="110"
+        y="158"
+        textAnchor="end"
+        fill="#666"
+        fontSize="9"
+        fontFamily="monospace"
+      >
+        "Filter my timeline"
+      </text>
+
+      <line x1="650" y1="125" x2="650" y2="160" stroke="#555" strokeWidth="2" />
+      <polygon points="650,168 644,156 656,156" fill="#555" />
+
+      <text
+        x="690"
+        y="145"
+        textAnchor="start"
+        fill="#666"
+        fontSize="9"
+        fontFamily="monospace"
+      >
+        "Notify me of updates"
+      </text>
+      <text
+        x="690"
+        y="158"
+        textAnchor="start"
+        fill="#666"
+        fontSize="9"
+        fontFamily="monospace"
+      >
+        "Summarize posts"
+      </text>
+
+      <rect
+        x="75"
+        y="180"
+        width="150"
+        height="55"
+        rx="12"
+        fill="#1a150f"
+        stroke="#e8a04a"
+        strokeWidth="2"
+        filter="url(#agentGlow)"
+      />
+      <text
+        x="150"
+        y="203"
+        textAnchor="middle"
+        fill="#e8a04a"
+        fontSize="12"
+        fontFamily="monospace"
+        fontWeight="600"
+      >
+        Alice's Agent
+      </text>
+      <text
+        x="150"
+        y="222"
+        textAnchor="middle"
+        fill="#a08050"
+        fontSize="9"
+        fontFamily="monospace"
+      >
+        AI Assistant
+      </text>
+
+      <rect
+        x="575"
+        y="180"
+        width="150"
+        height="55"
+        rx="12"
+        fill="#1a150f"
+        stroke="#e8a04a"
+        strokeWidth="2"
+        filter="url(#agentGlow)"
+      />
+      <text
+        x="650"
+        y="203"
+        textAnchor="middle"
+        fill="#e8a04a"
+        fontSize="12"
+        fontFamily="monospace"
+        fontWeight="600"
+      >
+        Bob's Agent
+      </text>
+      <text
+        x="650"
+        y="222"
+        textAnchor="middle"
+        fill="#a08050"
+        fontSize="9"
+        fontFamily="monospace"
+      >
+        AI Assistant
+      </text>
+
+      <line
+        x1="150"
+        y1="240"
+        x2="150"
+        y2="290"
+        stroke="#e8a04a"
+        strokeWidth="2"
+        strokeDasharray="6,4"
+        strokeOpacity="0.7"
+      />
+      <polygon points="150,298 144,286 156,286" fill="#e8a04a" />
+      <text
+        x="165"
+        y="270"
+        textAnchor="start"
+        fill="#a08050"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        operates
+      </text>
+
+      <line
+        x1="650"
+        y1="240"
+        x2="650"
+        y2="290"
+        stroke="#e8a04a"
+        strokeWidth="2"
+        strokeDasharray="6,4"
+        strokeOpacity="0.7"
+      />
+      <polygon points="650,298 644,286 656,286" fill="#e8a04a" />
+      <text
+        x="635"
+        y="270"
+        textAnchor="end"
+        fill="#a08050"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        operates
+      </text>
+
+      <rect
+        x="75"
+        y="310"
+        width="150"
+        height="65"
+        rx="12"
+        fill="#0f1a18"
+        stroke="#4af0d4"
+        strokeWidth="2"
+        filter="url(#nodeGlow)"
+      />
+      <text
+        x="150"
+        y="338"
+        textAnchor="middle"
+        fill="#4af0d4"
+        fontSize="12"
+        fontFamily="monospace"
+        fontWeight="600"
+      >
+        Alice's Node
+      </text>
+      <text
+        x="150"
+        y="358"
+        textAnchor="middle"
+        fill="#2a9080"
+        fontSize="9"
+        fontFamily="monospace"
+      >
+        epress Node
+      </text>
+
+      <rect
+        x="575"
+        y="310"
+        width="150"
+        height="65"
+        rx="12"
+        fill="#0f1a18"
+        stroke="#4af0d4"
+        strokeWidth="2"
+        filter="url(#nodeGlow)"
+      />
+      <text
+        x="650"
+        y="338"
+        textAnchor="middle"
+        fill="#4af0d4"
+        fontSize="12"
+        fontFamily="monospace"
+        fontWeight="600"
+      >
+        Bob's Node
+      </text>
+      <text
+        x="650"
+        y="358"
+        textAnchor="middle"
+        fill="#2a9080"
+        fontSize="9"
+        fontFamily="monospace"
+      >
+        epress Node
+      </text>
+
+      <line
+        x1="230"
+        y1="342"
+        x2="570"
+        y2="342"
+        stroke="#4af0d4"
+        strokeWidth="3"
+        filter="url(#nodeGlow)"
+      />
+      <polygon points="230,342 245,335 245,349" fill="#4af0d4" />
+      <polygon points="570,342 555,335 555,349" fill="#4af0d4" />
+
+      <rect
+        x="330"
+        y="318"
+        width="140"
+        height="28"
+        rx="6"
+        fill="#0f1a18"
+        stroke="#4af0d4"
+        strokeWidth="1"
+        strokeOpacity="0.6"
+      />
+      <text
+        x="400"
+        y="337"
+        textAnchor="middle"
+        fill="#4af0d4"
+        fontSize="10"
+        fontFamily="monospace"
+        fontWeight="500"
+      >
+        EWP Protocol
+      </text>
+
+      <text
+        x="400"
+        y="420"
+        textAnchor="middle"
+        fill="#666"
+        fontSize="10"
+        fontFamily="monospace"
+      >
+        Only open, decentralized networks can fully support this vision.
+      </text>
+
+      <rect
+        x="40"
+        y="25"
+        width="220"
+        height="360"
+        rx="12"
+        fill="none"
+        stroke="#333"
+        strokeWidth="1"
+        strokeDasharray="4,4"
+        strokeOpacity="0.3"
+      />
+      <rect
+        x="540"
+        y="25"
+        width="220"
+        height="360"
+        rx="12"
+        fill="none"
+        stroke="#333"
+        strokeWidth="1"
+        strokeDasharray="4,4"
+        strokeOpacity="0.3"
+      />
+    </svg>
+  )
+}
+
+export function AgentEraVisionSvgMobile() {
+  return (
+    <svg
+      viewBox="0 0 400 720"
+      className="w-full h-auto md:hidden"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <filter id="agentGlowMobile">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="nodeGlowMobile">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <circle
+        cx="100"
+        cy="40"
+        r="28"
+        fill="#1a1a1a"
+        stroke="#666"
+        strokeWidth="2"
+      />
+      <text x="100" y="46" textAnchor="middle" fontSize="18">
+        👤
+      </text>
+      <text
+        x="100"
+        y="82"
+        textAnchor="middle"
+        fill="#888"
+        fontSize="10"
+        fontFamily="monospace"
+      >
+        Alice
+      </text>
+
+      <line x1="100" y1="95" x2="100" y2="120" stroke="#555" strokeWidth="2" />
+      <polygon points="100,128 94,118 106,118" fill="#555" />
+
+      <text
+        x="130"
+        y="108"
+        textAnchor="start"
+        fill="#666"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        "Post this"
+      </text>
+
+      <rect
+        x="35"
+        y="140"
+        width="130"
+        height="50"
+        rx="10"
+        fill="#1a150f"
+        stroke="#e8a04a"
+        strokeWidth="2"
+        filter="url(#agentGlowMobile)"
+      />
+      <text
+        x="100"
+        y="162"
+        textAnchor="middle"
+        fill="#e8a04a"
+        fontSize="11"
+        fontFamily="monospace"
+        fontWeight="600"
+      >
+        Alice's Agent
+      </text>
+      <text
+        x="100"
+        y="178"
+        textAnchor="middle"
+        fill="#a08050"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        AI Assistant
+      </text>
+
+      <line
+        x1="100"
+        y1="195"
+        x2="100"
+        y2="235"
+        stroke="#e8a04a"
+        strokeWidth="2"
+        strokeDasharray="6,4"
+        strokeOpacity="0.7"
+      />
+      <polygon points="100,243 94,233 106,233" fill="#e8a04a" />
+
+      <rect
+        x="35"
+        y="255"
+        width="130"
+        height="55"
+        rx="10"
+        fill="#0f1a18"
+        stroke="#4af0d4"
+        strokeWidth="2"
+        filter="url(#nodeGlowMobile)"
+      />
+      <text
+        x="100"
+        y="280"
+        textAnchor="middle"
+        fill="#4af0d4"
+        fontSize="11"
+        fontFamily="monospace"
+        fontWeight="600"
+      >
+        Alice's Node
+      </text>
+      <text
+        x="100"
+        y="297"
+        textAnchor="middle"
+        fill="#2a9080"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        epress Node
+      </text>
+
+      <line
+        x1="100"
+        y1="320"
+        x2="100"
+        y2="355"
+        stroke="#4af0d4"
+        strokeWidth="2"
+        strokeOpacity="0.5"
+      />
+
+      <rect
+        x="30"
+        y="365"
+        width="140"
+        height="26"
+        rx="6"
+        fill="#0f1a18"
+        stroke="#4af0d4"
+        strokeWidth="1"
+        strokeOpacity="0.6"
+      />
+      <text
+        x="100"
+        y="383"
+        textAnchor="middle"
+        fill="#4af0d4"
+        fontSize="9"
+        fontFamily="monospace"
+        fontWeight="500"
+      >
+        EWP Protocol
+      </text>
+
+      <line
+        x1="300"
+        y1="320"
+        x2="300"
+        y2="355"
+        stroke="#4af0d4"
+        strokeWidth="2"
+        strokeOpacity="0.5"
+      />
+
+      <rect
+        x="235"
+        y="255"
+        width="130"
+        height="55"
+        rx="10"
+        fill="#0f1a18"
+        stroke="#4af0d4"
+        strokeWidth="2"
+        filter="url(#nodeGlowMobile)"
+      />
+      <text
+        x="300"
+        y="280"
+        textAnchor="middle"
+        fill="#4af0d4"
+        fontSize="11"
+        fontFamily="monospace"
+        fontWeight="600"
+      >
+        Bob's Node
+      </text>
+      <text
+        x="300"
+        y="297"
+        textAnchor="middle"
+        fill="#2a9080"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        epress Node
+      </text>
+
+      <line
+        x1="300"
+        y1="195"
+        x2="300"
+        y2="235"
+        stroke="#e8a04a"
+        strokeWidth="2"
+        strokeDasharray="6,4"
+        strokeOpacity="0.7"
+      />
+      <polygon points="300,243 294,233 306,233" fill="#e8a04a" />
+
+      <rect
+        x="235"
+        y="140"
+        width="130"
+        height="50"
+        rx="10"
+        fill="#1a150f"
+        stroke="#e8a04a"
+        strokeWidth="2"
+        filter="url(#agentGlowMobile)"
+      />
+      <text
+        x="300"
+        y="162"
+        textAnchor="middle"
+        fill="#e8a04a"
+        fontSize="11"
+        fontFamily="monospace"
+        fontWeight="600"
+      >
+        Bob's Agent
+      </text>
+      <text
+        x="300"
+        y="178"
+        textAnchor="middle"
+        fill="#a08050"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        AI Assistant
+      </text>
+
+      <line x1="300" y1="95" x2="300" y2="120" stroke="#555" strokeWidth="2" />
+      <polygon points="300,128 294,118 306,118" fill="#555" />
+
+      <text
+        x="270"
+        y="108"
+        textAnchor="end"
+        fill="#666"
+        fontSize="8"
+        fontFamily="monospace"
+      >
+        "Notify me"
+      </text>
+
+      <circle
+        cx="300"
+        cy="40"
+        r="28"
+        fill="#1a1a1a"
+        stroke="#666"
+        strokeWidth="2"
+      />
+      <text x="300" y="46" textAnchor="middle" fontSize="18">
+        👤
+      </text>
+      <text
+        x="300"
+        y="82"
+        textAnchor="middle"
+        fill="#888"
+        fontSize="10"
+        fontFamily="monospace"
+      >
+        Bob
+      </text>
+
+      <line
+        x1="170"
+        y1="378"
+        x2="230"
+        y2="378"
+        stroke="#4af0d4"
+        strokeWidth="2"
+        strokeOpacity="0.5"
+      />
+
+      <text
         x="200"
-        y="205"
+        y="430"
         textAnchor="middle"
         fill="#666"
         fontSize="9"
         fontFamily="monospace"
       >
-        (walled gardens)
+        Only open, decentralized networks
       </text>
-
-      <line
-        x1="200"
-        y1="220"
-        x2="200"
-        y2="245"
-        stroke="#666"
-        strokeWidth="2"
-        strokeDasharray="4,4"
-      />
-      <polygon points="200,250 194,240 206,240" fill="#666" />
-
-      <g transform="translate(70, 255)">
-        <rect
-          x="0"
-          y="0"
-          width="260"
-          height="28"
-          rx="6"
-          fill="#1a0f0f"
-          stroke="#ef4444"
-          strokeOpacity="0.4"
-        />
-        <text x="15" y="18" fill="#ef4444" fontSize="12">
-          ✗
-        </text>
-        <text x="35" y="18" fill="#fca5a5" fontSize="10" fontFamily="monospace">
-          Rate Limited
-        </text>
-      </g>
-
-      <g transform="translate(70, 290)">
-        <rect
-          x="0"
-          y="0"
-          width="260"
-          height="28"
-          rx="6"
-          fill="#1a0f0f"
-          stroke="#ef4444"
-          strokeOpacity="0.4"
-        />
-        <text x="15" y="18" fill="#ef4444" fontSize="12">
-          ✗
-        </text>
-        <text x="35" y="18" fill="#fca5a5" fontSize="10" fontFamily="monospace">
-          Paywall / Subscription
-        </text>
-      </g>
-
-      <g transform="translate(70, 325)">
-        <rect
-          x="0"
-          y="0"
-          width="260"
-          height="28"
-          rx="6"
-          fill="#1a0f0f"
-          stroke="#ef4444"
-          strokeOpacity="0.4"
-        />
-        <text x="15" y="18" fill="#ef4444" fontSize="12">
-          ✗
-        </text>
-        <text x="35" y="18" fill="#fca5a5" fontSize="10" fontFamily="monospace">
-          API Access Blocked
-        </text>
-      </g>
-
       <text
         x="200"
-        y="385"
+        y="445"
         textAnchor="middle"
-        fill="#ef4444"
-        fontSize="12"
-        fontFamily="monospace"
-        opacity="0.9"
-      >
-        Agent cannot work freely
-      </text>
-
-      <rect
-        x="440"
-        y="30"
-        width="320"
-        height="340"
-        rx="16"
-        fill="url(#openGrad)"
-        stroke="#34D399"
-        strokeWidth="2"
-        strokeOpacity="0.5"
-      />
-      <text
-        x="600"
-        y="65"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="16"
-        fontFamily="sans-serif"
-        fontWeight="600"
-      >
-        epress Network
-      </text>
-
-      <rect
-        x="480"
-        y="90"
-        width="240"
-        height="40"
-        rx="8"
-        fill="#1a2a1a"
-        stroke="#34D399"
-        strokeOpacity="0.3"
-      />
-      <text
-        x="600"
-        y="115"
-        textAnchor="middle"
-        fill="#6EE7B7"
-        fontSize="12"
-        fontFamily="monospace"
-      >
-        Your AI Agent
-      </text>
-
-      <line
-        x1="600"
-        y1="135"
-        x2="600"
-        y2="160"
-        stroke="#34D399"
-        strokeWidth="2"
-        filter="url(#glow)"
-      />
-      <polygon points="600,165 594,155 606,155" fill="#34D399" />
-
-      <rect
-        x="480"
-        y="170"
-        width="240"
-        height="45"
-        rx="8"
-        fill="#0f1a12"
-        stroke="#34D399"
-        strokeOpacity="0.5"
-      />
-      <text
-        x="600"
-        y="190"
-        textAnchor="middle"
-        fill="#6EE7B7"
-        fontSize="11"
-        fontFamily="monospace"
-      >
-        Any epress Node
-      </text>
-      <text
-        x="600"
-        y="205"
-        textAnchor="middle"
-        fill="#34D399"
+        fill="#666"
         fontSize="9"
         fontFamily="monospace"
       >
-        (self-hosted or public)
-      </text>
-
-      <line
-        x1="600"
-        y1="220"
-        x2="600"
-        y2="245"
-        stroke="#34D399"
-        strokeWidth="2"
-        filter="url(#glow)"
-      />
-      <polygon points="600,250 594,240 606,240" fill="#34D399" />
-
-      <g transform="translate(470, 255)">
-        <rect
-          x="0"
-          y="0"
-          width="260"
-          height="28"
-          rx="6"
-          fill="#0f1a12"
-          stroke="#34D399"
-          strokeOpacity="0.4"
-        />
-        <text x="15" y="18" fill="#34D399" fontSize="12">
-          ✓
-        </text>
-        <text x="35" y="18" fill="#6EE7B7" fontSize="10" fontFamily="monospace">
-          Open RSS Feeds
-        </text>
-      </g>
-
-      <g transform="translate(470, 290)">
-        <rect
-          x="0"
-          y="0"
-          width="260"
-          height="28"
-          rx="6"
-          fill="#0f1a12"
-          stroke="#34D399"
-          strokeOpacity="0.4"
-        />
-        <text x="15" y="18" fill="#34D399" fontSize="12">
-          ✓
-        </text>
-        <text x="35" y="18" fill="#6EE7B7" fontSize="10" fontFamily="monospace">
-          Open GraphQL API
-        </text>
-      </g>
-
-      <g transform="translate(470, 325)">
-        <rect
-          x="0"
-          y="0"
-          width="260"
-          height="28"
-          rx="6"
-          fill="#0f1a12"
-          stroke="#34D399"
-          strokeOpacity="0.4"
-        />
-        <text x="15" y="18" fill="#34D399" fontSize="12">
-          ✓
-        </text>
-        <text x="35" y="18" fill="#6EE7B7" fontSize="10" fontFamily="monospace">
-          No Rate Limits
-        </text>
-      </g>
-
-      <text
-        x="600"
-        y="385"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="12"
-        fontFamily="monospace"
-        opacity="0.9"
-      >
-        Agent operates freely
-      </text>
-
-      <rect
-        x="370"
-        y="170"
-        width="60"
-        height="40"
-        rx="8"
-        fill="#1a1a1a"
-        stroke="#F7931A"
-        strokeWidth="2"
-      />
-      <text
-        x="400"
-        y="195"
-        textAnchor="middle"
-        fill="#F7931A"
-        fontSize="14"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        VS
+        can fully support this vision.
       </text>
     </svg>
   )

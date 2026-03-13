@@ -1,4 +1,4 @@
-import { AgentEraVisionSvg } from "./agent-era-svg"
+import { AgentEraVisionSvg, AgentEraVisionSvgMobile } from "./agent-era-svg"
 
 export function AgentEraVision() {
   return (
@@ -13,6 +13,7 @@ export function AgentEraVision() {
         </p>
         <div className="diagram-frame">
           <AgentEraVisionSvg />
+          <AgentEraVisionSvgMobile />
         </div>
       </div>
     </section>
