@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { CopyableCode } from "@/components/shared/copy-button"
 
 export default function DocsHomePage() {
   return (
@@ -18,11 +19,10 @@ export default function DocsHomePage() {
         <p className="mt-2 text-sm text-gray-200">
           The fastest way to get started. Runs on any system with Git installed.
         </p>
-        <div className="mt-4 overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4">
-          <code className="text-sm text-primary">
-            curl -fsSL https://epress.world/install.sh | bash
-          </code>
-        </div>
+        <CopyableCode
+          code="curl -fsSL https://epress.world/install.sh | bash"
+          className="mt-4"
+        />
         <p className="mt-3 text-sm text-gray-300">
           Then open{" "}
           <code className="rounded bg-dark-bg px-1.5 py-0.5 text-primary">
@@ -56,7 +56,7 @@ export default function DocsHomePage() {
               Clone manually for development or customization.
             </p>
             <p className="mt-2 text-xs text-dark-muted">
-              Requires: Node.js v18+, Git
+              Requires: Node.js v20+, Git
             </p>
           </div>
         </div>

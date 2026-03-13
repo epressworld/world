@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { CopyableCodeBlock, CopyButton } from "@/components/shared/copy-button"
 
 const tabs = [
   { id: "curl", label: "One-line Install" },
@@ -37,52 +38,16 @@ export function InstallTabs() {
   )
 }
 
-function CodeBlock({ code }) {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(code)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
-  return (
-    <div className="relative group">
-      <pre className="overflow-x-auto rounded-lg border border-dark-border bg-dark-bg p-4 text-primary">
-        <code>{code}</code>
-      </pre>
-      <button
-        type="button"
-        onClick={handleCopy}
-        className="absolute right-2 top-2 rounded bg-dark-surface/90 px-2 py-1 text-xs text-gray-400 opacity-0 transition-opacity hover:text-white group-hover:opacity-100"
-      >
-        {copied ? "Copied!" : "Copy"}
-      </button>
-    </div>
-  )
-}
-
 function CodeLine({ label, code }) {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(code)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
   return (
     <div className="group flex items-center justify-between gap-2 rounded-lg bg-dark-bg/50 p-2">
       <span className="shrink-0 text-gray-300">{label}</span>
       <div className="flex min-w-0 items-center gap-2">
-        <code className="truncate text-primary">{code}</code>
-        <button
-          type="button"
-          onClick={handleCopy}
-          className="shrink-0 rounded px-1.5 py-0.5 text-xs text-gray-400 opacity-0 transition-opacity hover:text-white group-hover:opacity-100"
-        >
-          {copied ? "✓" : "Copy"}
-        </button>
+        <code className="truncate text-sm text-primary">{code}</code>
+        <CopyButton
+          text={code}
+          className="!rounded !border-0 !bg-transparent !p-1 opacity-0 group-hover:opacity-100"
+        />
       </div>
     </div>
   )
@@ -97,7 +62,7 @@ function CurlTab() {
           Run this command to install epress node with all dependencies:
         </p>
         <div className="mt-4">
-          <CodeBlock code="curl -fsSL https://epress.world/install.sh | bash" />
+          <CopyableCodeBlock code="curl -fsSL https://epress.world/install.sh | bash" />
         </div>
       </div>
 
@@ -128,7 +93,10 @@ function CurlTab() {
         <div className="mt-3 space-y-2 text-sm">
           <CodeLine label="Stop node" code="Ctrl+C" />
           <CodeLine label="Start node" code="cd ~/epress && npm start" />
-          <CodeLine label="Development mode" code="cd ~/epress && npm run dev" />
+          <CodeLine
+            label="Development mode"
+            code="cd ~/epress && npm run dev"
+          />
           <CodeLine
             label="Update"
             code="cd ~/epress && git pull && npm install && npm run build && npm start"
@@ -145,7 +113,7 @@ function DockerTab() {
       <div className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h3 className="text-lg font-semibold text-white">Start Container</h3>
         <div className="mt-4">
-          <CodeBlock
+          <CopyableCodeBlock
             code={`docker run -d -p 8543:8543 -p 8544:8544 -v epress-data:/app/data --restart unless-stopped --name my-epress-node ghcr.io/epressworld/epress:latest`}
           />
         </div>
@@ -154,14 +122,14 @@ function DockerTab() {
       <div className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h3 className="text-lg font-semibold text-white">View Logs</h3>
         <div className="mt-4">
-          <CodeBlock code="docker logs -f my-epress-node" />
+          <CopyableCodeBlock code="docker logs -f my-epress-node" />
         </div>
       </div>
 
       <div className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h3 className="text-lg font-semibold text-white">Stop / Start</h3>
         <div className="mt-4">
-          <CodeBlock
+          <CopyableCodeBlock
             code={`docker stop my-epress-node\ndocker start my-epress-node`}
           />
         </div>
@@ -170,7 +138,7 @@ function DockerTab() {
       <div className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h3 className="text-lg font-semibold text-white">Upgrade</h3>
         <div className="mt-4">
-          <CodeBlock
+          <CopyableCodeBlock
             code={`docker pull ghcr.io/epressworld/epress:latest\ndocker stop my-epress-node\ndocker rm my-epress-node\ndocker run -d -p 8543:8543 -p 8544:8544 -v epress-data:/app/data --restart unless-stopped --name my-epress-node ghcr.io/epressworld/epress:latest\ndocker exec my-epress-node npm run migrate`}
           />
         </div>
@@ -197,7 +165,7 @@ function SourceTab() {
       <div className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h3 className="text-lg font-semibold text-white">Clone and Build</h3>
         <div className="mt-4">
-          <CodeBlock
+          <CopyableCodeBlock
             code={`git clone https://github.com/epressworld/epress.git\ncd epress\nnpm install\nnpm run build`}
           />
         </div>
@@ -215,7 +183,7 @@ function SourceTab() {
           to customize ports or database:
         </p>
         <div className="mt-4">
-          <CodeBlock
+          <CopyableCodeBlock
             code={`EPRESS_CLIENT_PORT=8543\nEPRESS_SERVER_PORT=8544`}
           />
         </div>
@@ -234,7 +202,7 @@ function SourceTab() {
       <div className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h3 className="text-lg font-semibold text-white">Start</h3>
         <div className="mt-4">
-          <CodeBlock code="npm start" />
+          <CopyableCodeBlock code="npm start" />
         </div>
         <p className="mt-2 text-sm text-gray-300">
           For development with auto-reload:{" "}
@@ -247,7 +215,7 @@ function SourceTab() {
       <div className="rounded-xl border border-dark-border bg-dark-surface/70 p-6">
         <h3 className="text-lg font-semibold text-white">Upgrade</h3>
         <div className="mt-4">
-          <CodeBlock
+          <CopyableCodeBlock
             code={`git pull\nnpm install\nnpm run migrate\nnpm run build\nnpm start`}
           />
         </div>
