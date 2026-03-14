@@ -10,20 +10,23 @@ const config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#F7931A",
+          DEFAULT: "#e8a04a",
           50: "#FEF3E3",
           100: "#FDE6C7",
           200: "#FBCD8F",
           300: "#FAB457",
           400: "#F89B1F",
-          500: "#F7931A",
+          500: "#e8a04a",
           600: "#C67315",
           700: "#945410",
           800: "#62360A",
           900: "#311805",
         },
+        accent: {
+          green: "#4af0d4",
+        },
         dark: {
-          bg: "#0f0f0f",
+          bg: "#0a0a0a",
           surface: "#1a1a1a",
           border: "#2a2a2a",
           text: "#f5f5f5",

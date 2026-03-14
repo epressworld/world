@@ -1,11 +1,10 @@
 import { SiteFooter } from "@/components/home/site-footer"
 import { SiteNav } from "@/components/home/site-nav"
 import { AgentEraVision } from "@/components/vision/agent-era"
-import { AIContentCrisis } from "@/components/vision/ai-content-crisis"
-import { GlobalGraph } from "@/components/vision/global-graph"
-import { HomeServer } from "@/components/vision/home-server"
-import { InternetOrigins } from "@/components/vision/internet-origins"
-import { PlatformWalls } from "@/components/vision/platform-walls"
+import { InternetPromised } from "@/components/vision/internet-promised"
+import { LifetimeDeep } from "@/components/vision/lifetime-deep"
+import { NodesNetwork } from "@/components/vision/nodes-network"
+import { SovereigntyLoop } from "@/components/vision/sovereignty-loop"
 import { VisionCTA } from "@/components/vision/vision-cta"
 
 export const metadata = {
@@ -20,12 +19,11 @@ export default function VisionPage() {
       <SiteNav />
 
       <main className="flex-1">
-        <PlatformWalls />
-        <AIContentCrisis />
+        <InternetPromised />
+        <SovereigntyLoop />
+        <LifetimeDeep />
+        <NodesNetwork />
         <AgentEraVision />
-        <InternetOrigins />
-        <HomeServer />
-        <GlobalGraph />
         <VisionCTA />
       </main>
 

@@ -1,12 +1,13 @@
-import { AgentEra } from "@/components/home/agent-era"
+import { BuiltForComing } from "@/components/home/built-for-coming"
 import { CTASection } from "@/components/home/cta-section"
-import { EraComparison } from "@/components/home/era-comparison"
 import { HeroSection } from "@/components/home/hero-section"
 import { LifetimeTimeline } from "@/components/home/lifetime-timeline"
+import { OwnershipComparison } from "@/components/home/ownership-comparison"
 import { SiteFooter } from "@/components/home/site-footer"
 import { SiteNav } from "@/components/home/site-nav"
 import { SolutionComparison } from "@/components/home/solution-comparison"
 import { TechCards } from "@/components/home/tech-cards"
+import { WhatIsNode } from "@/components/home/what-is-node"
 
 export default function Home() {
   return (
@@ -15,10 +16,11 @@ export default function Home() {
 
       <main className="flex-1">
         <HeroSection />
-        <EraComparison />
-        <AgentEra />
+        <OwnershipComparison />
         <LifetimeTimeline />
+        <WhatIsNode />
         <TechCards />
+        <BuiltForComing />
         <SolutionComparison />
         <CTASection />
       </main>
