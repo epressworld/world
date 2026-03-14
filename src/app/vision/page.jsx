@@ -1,9 +1,11 @@
 import { SiteFooter } from "@/components/home/site-footer"
 import { SiteNav } from "@/components/home/site-nav"
 import { AgentEraVision } from "@/components/vision/agent-era"
+import { GlobalGraph } from "@/components/vision/global-graph"
+import { HomeServer } from "@/components/vision/home-server"
 import { InternetPromised } from "@/components/vision/internet-promised"
-import { LifetimeDeep } from "@/components/vision/lifetime-deep"
 import { NodesNetwork } from "@/components/vision/nodes-network"
+import { PlatformWalls } from "@/components/vision/platform-walls"
 import { SovereigntyLoop } from "@/components/vision/sovereignty-loop"
 import { VisionCTA } from "@/components/vision/vision-cta"
 
@@ -20,10 +22,12 @@ export default function VisionPage() {
 
       <main className="flex-1">
         <InternetPromised />
+        <PlatformWalls />
         <SovereigntyLoop />
-        <LifetimeDeep />
         <NodesNetwork />
         <AgentEraVision />
+        <HomeServer />
+        <GlobalGraph />
         <VisionCTA />
       </main>
 

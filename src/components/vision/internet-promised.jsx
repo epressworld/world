@@ -1,4 +1,4 @@
-import { InternetPromisedSvg } from "./internet-promised-svg"
+import { InternetPromisedCombinedSvg } from "./internet-promised-combined-svg"
 
 export function InternetPromised() {
   return (
@@ -8,8 +8,8 @@ export function InternetPromised() {
           The Internet We Were Promised
         </h2>
 
-        <div className="diagram-frame p-8">
-          <InternetPromisedSvg />
+        <div className="diagram-frame">
+          <InternetPromisedCombinedSvg />
         </div>
       </div>
     </section>
