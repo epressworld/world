@@ -132,6 +132,14 @@ export function LifetimeTimeline() {
             </div>
           </div>
         </div>
+
+        <div className="mt-16 max-w-3xl mx-auto text-center">
+          <p className="text-lg md:text-xl text-dark-text leading-relaxed italic">
+            Imagine your grandmother had an epress node in 1990. Her recipes,
+            her letters, her thoughts — still there. Still hers. Still yours to
+            inherit.
+          </p>
+        </div>
       </div>
     </section>
   )

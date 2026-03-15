@@ -22,8 +22,9 @@ export function HeroSection() {
             <span className="text-primary">For Life.</span>
           </h1>
           <p className="landing-subheading mb-8">
-            Not a platform account. A self-hosted node you own, inherit, and
-            pass down — like property.
+            Your posts, your friends, your memories — today they live on someone
+            else's server. epress gives you a home on the internet that no one
+            can take away.
           </p>
           <div className="flex flex-wrap gap-4 mb-4">
             <a
