@@ -304,13 +304,13 @@ export function TechCards() {
   return (
     <section className="landing-section">
       <div className="container-custom">
-        <p className="section-label">How It Works</p>
+        <p className="section-label text-center">How It Works</p>
         <h2 className="landing-heading mb-4 text-center">Three Simple Ideas</h2>
         <p className="landing-subheading text-center mx-auto mb-12">
           No technical background required.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {cards.map((card, idx) => {
             const Diagram = card.diagram
             return (
@@ -325,6 +325,12 @@ export function TechCards() {
               </div>
             )
           })}
+        </div>
+
+        <div className="flex justify-center">
+          <a href="/how-it-works" className="btn-secondary">
+            Learn how it works →
+          </a>
         </div>
       </div>
     </section>

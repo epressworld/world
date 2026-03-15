@@ -54,9 +54,14 @@ export function PainPointsSection() {
         <p className="text-sm text-dark-muted text-center italic mb-3">
           "These aren't edge cases. They're the design."
         </p>
-        <p className="text-center text-dark-text">
+        <p className="text-center text-dark-text mb-6">
           epress is built to make all three impossible.
         </p>
+        <div className="flex justify-center">
+          <a href="/whitepaper" className="btn-secondary">
+            Read the whitepaper →
+          </a>
+        </div>
       </div>
     </section>
   )

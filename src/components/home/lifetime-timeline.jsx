@@ -54,7 +54,7 @@ export function LifetimeTimeline() {
   return (
     <section className="landing-section bg-dark-surface/40">
       <div className="container-custom">
-        <p className="section-label">A New Kind of Inheritance</p>
+        <p className="section-label text-center">A New Kind of Inheritance</p>
         <h2 className="landing-heading mb-4 text-center">
           One Node. One Lifetime.
         </h2>

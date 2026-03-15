@@ -4,7 +4,7 @@ export function BuiltForAIEra() {
   return (
     <section className="landing-section bg-dark-surface/40">
       <div className="container-custom">
-        <p className="section-label">Future Ready</p>
+        <p className="section-label text-center">Future Ready</p>
         <h2 className="landing-heading mb-4 text-center">
           Built for What's Coming
         </h2>

@@ -31,11 +31,11 @@ export function SolutionComparison() {
   return (
     <section className="landing-section bg-dark-surface/40">
       <div className="container-custom">
-        <p className="section-label">The Solution</p>
-        <h2 className="landing-heading mb-4">
+        <p className="section-label text-center">The Solution</p>
+        <h2 className="landing-heading mb-4 text-center">
           Traditional Platforms vs epress
         </h2>
-        <p className="landing-subheading mb-12">
+        <p className="landing-subheading mb-12 text-center mx-auto">
           A fundamental shift in how social networks should work.
         </p>
 
