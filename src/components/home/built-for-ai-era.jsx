@@ -13,8 +13,14 @@ export function BuiltForAIEra() {
           the future, not against it.
         </p>
 
-        <div className="diagram-frame">
+        <div className="diagram-frame mb-8">
           <AgentEraSvg />
+        </div>
+
+        <div className="flex justify-center">
+          <a href="/vision" className="btn-secondary">
+            Read the vision →
+          </a>
         </div>
       </div>
     </section>
