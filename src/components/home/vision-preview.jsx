@@ -1653,13 +1653,16 @@ export function VisionPreview() {
             height: 40px;
           }
         }
-        .visual-wrapper {
-          min-height: 280px;
+        .slide-content {
+          display: grid;
+          grid-template-rows: 320px auto auto;
+          gap: 16px;
+        }
+        .slide-visual {
           display: flex;
-          flex-direction: column;
           align-items: center;
-          justify-content: flex-start;
-          padding-top: 10px;
+          justify-content: center;
+          overflow: visible;
         }
       `}</style>
 
@@ -1687,9 +1690,9 @@ export function VisionPreview() {
             <div className="embla__container">
               {cardsData.map((card) => (
                 <div key={card.id} className="embla__slide px-4">
-                  <div>
-                    <div className="visual-wrapper mb-6">{card.visual}</div>
-                    <h3 className="font-semibold text-2xl mb-2 text-center">
+                  <div className="slide-content">
+                    <div className="slide-visual">{card.visual}</div>
+                    <h3 className="font-semibold text-2xl text-center">
                       {card.title}
                     </h3>
                     <p className="text-sm text-dark-muted leading-relaxed text-center max-w-lg mx-auto">
