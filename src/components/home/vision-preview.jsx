@@ -1,6 +1,8 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import useEmblaCarousel from "embla-carousel-react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useCallback, useEffect, useRef } from "react"
 
 function MeritGraph() {
   const center = { x: 150, y: 80 }
@@ -353,25 +355,14 @@ function ProofOfSourceSvg() {
 
       <text
         x="140"
-        y="135"
-        textAnchor="middle"
-        fill="#F7931A"
-        fontSize="11"
-        fontFamily="monospace"
-        stroke="none"
-      >
-        "Proof of Source (PoS)
-      </text>
-      <text
-        x="140"
-        y="150"
+        y="142"
         textAnchor="middle"
         fill="#34D399"
         fontSize="11"
         fontFamily="monospace"
         stroke="none"
       >
-        — Cryptographically proven."
+        "Cryptographically proven."
       </text>
     </svg>
   )
@@ -939,29 +930,27 @@ const cardsData = [
 ]
 
 export function VisionPreview() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
-  const intervalRef = useRef(null)
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
   const sectionRef = useRef(null)
 
-  useEffect(() => {
-    if (isPaused) return
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi])
 
-    intervalRef.current = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % cardsData.length)
-    }, 5000)
-
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current)
-    }
-  }, [isPaused])
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi])
 
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
 
-    const handleEnter = () => setIsPaused(true)
-    const handleLeave = () => setIsPaused(false)
+    const handleEnter = () => {
+      if (emblaApi) emblaApi.plugins().autoplay?.stop()
+    }
+    const handleLeave = () => {
+      if (emblaApi) emblaApi.plugins().autoplay?.play()
+    }
 
     el.addEventListener("mouseenter", handleEnter)
     el.addEventListener("mouseleave", handleLeave)
@@ -970,11 +959,7 @@ export function VisionPreview() {
       el.removeEventListener("mouseenter", handleEnter)
       el.removeEventListener("mouseleave", handleLeave)
     }
-  }, [])
-
-  const handleTabClick = (index) => {
-    setActiveIndex(index)
-  }
+  }, [emblaApi])
 
   return (
     <section
@@ -1065,68 +1050,40 @@ export function VisionPreview() {
         .badge-gray { background: rgba(107,114,128,0.2); color: #9ca3af; }
         .badge-green { background: rgba(34,197,94,0.15); color: #4ade80; }
 
-        .carousel-container {
-          position: relative;
+        .embla {
           overflow: hidden;
+          flex: 1;
+          max-width: 800px;
         }
-        .carousel-track {
+        .embla__container {
           display: flex;
-          transition: transform 0.5s ease-out;
         }
-        .carousel-slide {
+        .embla__slide {
           flex: 0 0 100%;
-          width: 100%;
+          min-width: 0;
         }
-        .carousel-tabs {
+        .carousel-arrow {
           display: flex;
+          align-items: center;
           justify-content: center;
-          gap: 8px;
-          margin-bottom: 24px;
-          flex-wrap: wrap;
-        }
-        .carousel-tab {
-          padding: 8px 16px;
-          border-radius: 9999px;
-          font-size: 13px;
-          font-weight: 500;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: transparent;
+          border: none;
+          color: rgba(255,255,255,0.3);
           cursor: pointer;
           transition: all 0.2s ease;
-          border: 1px solid transparent;
-          background: transparent;
-          color: #a0a0a0;
+          flex-shrink: 0;
         }
-        .carousel-tab:hover {
-          background: rgba(255,255,255,0.05);
-          color: #f5f5f5;
-        }
-        .carousel-tab.active {
-          background: rgba(232,160,74,0.15);
-          border-color: rgba(232,160,74,0.5);
+        .carousel-arrow:hover {
           color: #e8a04a;
         }
-        .carousel-indicators {
-          display: flex;
-          justify-content: center;
-          gap: 8px;
-          margin-top: 20px;
-        }
-        .carousel-dot {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background: rgba(255,255,255,0.2);
-          cursor: pointer;
-          transition: all 0.2s ease;
-          border: none;
-          padding: 0;
-        }
-        .carousel-dot:hover {
-          background: rgba(255,255,255,0.4);
-        }
-        .carousel-dot.active {
-          background: #e8a04a;
-          width: 24px;
-          border-radius: 4px;
+        @media (max-width: 640px) {
+          .carousel-arrow {
+            width: 40px;
+            height: 40px;
+          }
         }
       `}</style>
 
@@ -1140,53 +1097,45 @@ export function VisionPreview() {
           larger emerges.
         </p>
 
-        <div className="carousel-tabs">
-          {cardsData.map((card, index) => (
-            <button
-              key={card.id}
-              className={`carousel-tab ${activeIndex === index ? "active" : ""}`}
-              onClick={() => handleTabClick(index)}
-              type="button"
-            >
-              {card.title}
-            </button>
-          ))}
-        </div>
-
-        <div className="carousel-container max-w-3xl mx-auto">
-          <div
-            className="carousel-track"
-            style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        <div className="flex items-center justify-center gap-4">
+          <button
+            type="button"
+            className="carousel-arrow"
+            onClick={scrollPrev}
+            aria-label="Previous slide"
           >
-            {cardsData.map((card) => (
-              <div key={card.id} className="carousel-slide px-4">
-                <div>
-                  <div className="mb-6">{card.visual}</div>
-                  <h3 className="font-semibold text-xl mb-2 text-center">
-                    {card.title}
-                  </h3>
-                  <p className="text-sm text-dark-muted leading-relaxed text-center max-w-lg mx-auto">
-                    {card.description}
-                  </p>
+            <ChevronLeft className="w-8 h-8" />
+          </button>
+
+          <div className="embla" ref={emblaRef}>
+            <div className="embla__container">
+              {cardsData.map((card) => (
+                <div key={card.id} className="embla__slide px-4">
+                  <div>
+                    <h3 className="font-semibold text-2xl mb-2 text-center">
+                      {card.title}
+                    </h3>
+                    <p className="text-sm text-dark-muted leading-relaxed text-center max-w-lg mx-auto mb-6">
+                      {card.description}
+                    </p>
+                    <div>{card.visual}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
+          <button
+            type="button"
+            className="carousel-arrow"
+            onClick={scrollNext}
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-8 h-8" />
+          </button>
         </div>
 
-        <div className="carousel-indicators">
-          {cardsData.map((_, index) => (
-            <button
-              key={index}
-              className={`carousel-dot ${activeIndex === index ? "active" : ""}`}
-              onClick={() => handleTabClick(index)}
-              type="button"
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-
-        <div className="text-center mt-8">
+        <div className="text-center mt-12">
           <a
             href="/whitepaper"
             className="text-sm text-dark-muted hover:text-primary transition-colors inline-flex items-center gap-1"
