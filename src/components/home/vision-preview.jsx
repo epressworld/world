@@ -8,15 +8,15 @@ import { useCallback, useEffect, useRef, useState } from "react"
 
 function MeritGraph() {
   const [key, setKey] = useState(0)
-  const center = { x: 150, y: 80 }
+  const center = { x: 150, y: 84 }
 
   const satellites = [
-    { x: 38, y: 22 },
-    { x: 150, y: 14 },
-    { x: 262, y: 22 },
-    { x: 278, y: 96 },
-    { x: 198, y: 148 },
-    { x: 54, y: 140 },
+    { x: 38, y: 22, label: "引用" },
+    { x: 150, y: 14, label: "引用" },
+    { x: 262, y: 22, label: "引用" },
+    { x: 278, y: 96, label: "引用" },
+    { x: 198, y: 148, label: "引用" },
+    { x: 54, y: 140, label: "引用" },
   ]
 
   const arrows = satellites.map((s) => {
@@ -28,15 +28,25 @@ function MeritGraph() {
     return {
       x1: s.x + ux * 10,
       y1: s.y + uy * 10,
-      x2: center.x - ux * 12,
-      y2: center.y - uy * 12,
+      x2: center.x - ux * 14,
+      y2: center.y - uy * 14,
     }
   })
+
+  const centerStages = [
+    { r: 12, opacity: 0.15 },
+    { r: 15, opacity: 0.2 },
+    { r: 18, opacity: 0.25 },
+    { r: 21, opacity: 0.3 },
+    { r: 24, opacity: 0.35 },
+    { r: 27, opacity: 0.4 },
+    { r: 30, opacity: 0.45 },
+  ]
 
   useEffect(() => {
     const timer = setInterval(() => {
       setKey((k) => k + 1)
-    }, 7000)
+    }, 8000)
     return () => clearInterval(timer)
   }, [])
 
@@ -45,8 +55,7 @@ function MeritGraph() {
       <svg
         viewBox="0 0 300 168"
         width="100%"
-        fill="none"
-        stroke="currentColor"
+        className="overflow-visible"
         aria-hidden="true"
       >
         {arrows.map((a, i) => (
@@ -57,78 +66,121 @@ function MeritGraph() {
               x2={a.x2}
               y2={a.y2}
               stroke="#e8a04a"
-              strokeWidth="1"
-              strokeOpacity={0.15}
+              strokeWidth="2"
+              strokeOpacity={0.4}
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ delay: 0.5 + i * 0.4, duration: 0.4 }}
+              transition={{ delay: 0.5 + i * 0.4, duration: 0.3 }}
             />
           </motion.g>
         ))}
 
         {satellites.map((s, i) => (
+          <motion.g key={`sat-${i}`}>
+            <motion.circle
+              cx={s.x}
+              cy={s.y}
+              r={10}
+              fill="#374151"
+              fillOpacity={0.3}
+              stroke="#6b7280"
+              strokeWidth="1"
+              strokeOpacity={0.5}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.text
+              x={s.x}
+              y={s.y + 24}
+              textAnchor="middle"
+              fill="#9ca3af"
+              fontSize="8"
+              fontFamily="sans-serif"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
+            >
+              {s.label}
+            </motion.text>
+          </motion.g>
+        ))}
+
+        {centerStages.map((stage, i) => (
           <motion.circle
-            key={`sat-${i}`}
-            cx={s.x}
-            cy={s.y}
-            r={10}
-            fill="#6b7280"
-            fillOpacity={0.15}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
+            key={`center-${i}`}
+            cx={center.x}
+            cy={center.y}
+            r={stage.r}
+            fill="#e8a04a"
+            fillOpacity={stage.opacity}
+            initial={{ r: 12, fillOpacity: 0.15 }}
+            animate={{ r: stage.r, fillOpacity: stage.opacity }}
+            transition={{
+              delay: i * 0.4,
+              duration: 0.3,
+              ease: "easeOut",
+            }}
+            style={{
+              display: i === 0 ? "block" : "none",
+            }}
           />
         ))}
 
         <motion.circle
           cx={center.x}
           cy={center.y}
-          r={10}
+          r={12}
           fill="#e8a04a"
-          fillOpacity={0.08}
-          initial={{ r: 10 }}
-          animate={{ r: 34 }}
-          transition={{ duration: 2.5, ease: "easeOut" }}
-        />
-
-        <motion.circle
-          cx={center.x}
-          cy={center.y}
-          r={10}
-          fill="#e8a04a"
-          fillOpacity={0.2}
-          stroke="#e8a04a"
+          fillOpacity={0.15}
+          stroke="#f59e0b"
           strokeWidth="2"
-          initial={{ r: 10, fillOpacity: 0.08 }}
+          initial={{ r: 12, fillOpacity: 0.15 }}
           animate={{
-            r: 26,
-            fillOpacity: 0.25,
+            r: [12, 15, 18, 21, 24, 27, 30],
+            fillOpacity: [0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45],
           }}
-          transition={{ duration: 2.5, ease: "easeOut" }}
+          transition={{
+            times: [0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42],
+            duration: 3,
+            ease: "easeOut",
+          }}
         />
+
+        <motion.text
+          x={center.x}
+          y={center.y + 40}
+          textAnchor="middle"
+          fill="#e8a04a"
+          fontSize="10"
+          fontWeight="600"
+          fontFamily="sans-serif"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+        >
+          原文
+        </motion.text>
 
         <motion.circle
           cx={center.x}
           cy={center.y}
-          r={10}
-          fill="#ffffff"
-          fillOpacity={0.5}
-          initial={{ scale: 1 }}
-          animate={{ scale: [1, 1.1, 1] }}
+          r={30}
+          fill="#e8a04a"
+          fillOpacity={0}
+          initial={{ scale: 1, fillOpacity: 0.3 }}
+          animate={{
+            scale: [1, 1.15, 1],
+            fillOpacity: [0.3, 0.1, 0.3],
+          }}
           transition={{
-            delay: 2.5,
+            delay: 3,
             duration: 2,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         />
       </svg>
-
-      <div className="absolute -bottom-2 left-0 right-0 text-center">
-        <span className="text-[9px] text-dark-muted/50 uppercase tracking-wider">
-          citations flow to value
-        </span>
-      </div>
     </div>
   )
 }
