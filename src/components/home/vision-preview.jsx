@@ -1654,11 +1654,12 @@ export function VisionPreview() {
           }
         }
         .visual-wrapper {
-          height: 300px;
+          min-height: 280px;
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
+          padding-top: 10px;
         }
       `}</style>
 
