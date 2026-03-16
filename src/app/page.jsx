@@ -1,4 +1,3 @@
-import { BuiltForAIEra } from "@/components/home/built-for-ai-era"
 import { CTASection } from "@/components/home/cta-section"
 import { HeroSection } from "@/components/home/hero-section"
 import { LifetimeTimeline } from "@/components/home/lifetime-timeline"
@@ -18,7 +17,6 @@ export default function Home() {
         <PainPointsSection />
         <LifetimeTimeline />
         <TechCards />
-        <BuiltForAIEra />
         <SolutionComparison />
         <CTASection />
       </main>

@@ -4,7 +4,7 @@ export function PainPointsSection() {
       <div className="container-custom">
         <p className="section-label text-center">The Problem</p>
         <h2 className="landing-heading mb-12 text-center">
-          "It Happens More Than You Think"
+          It Happens More Than You Think
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -54,14 +54,9 @@ export function PainPointsSection() {
         <p className="text-sm text-dark-muted text-center italic mb-3">
           "These aren't edge cases. They're the design."
         </p>
-        <p className="text-center text-dark-text mb-6">
+        <p className="text-center text-dark-text">
           epress is built to make all three impossible.
         </p>
-        <div className="flex justify-center">
-          <a href="/whitepaper" className="btn-secondary">
-            Read the whitepaper →
-          </a>
-        </div>
       </div>
     </section>
   )
