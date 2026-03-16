@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/home/site-footer"
 import { SiteNav } from "@/components/home/site-nav"
 import { SolutionComparison } from "@/components/home/solution-comparison"
 import { TechCards } from "@/components/home/tech-cards"
+import { VisionPreview } from "@/components/home/vision-preview"
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <LifetimeTimeline />
         <TechCards />
         <SolutionComparison />
+        <VisionPreview />
         <CTASection />
       </main>
 
