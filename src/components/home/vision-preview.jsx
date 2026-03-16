@@ -1,5 +1,6 @@
 "use client"
 
+import Autoplay from "embla-carousel-autoplay"
 import useEmblaCarousel from "embla-carousel-react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useCallback, useEffect, useRef } from "react"
@@ -930,8 +931,13 @@ const cardsData = [
 ]
 
 export function VisionPreview() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
-  const sectionRef = useRef(null)
+  const autoplayRef = useRef(
+    Autoplay({ delay: 8000, stopOnInteraction: false }),
+  )
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
+    autoplayRef.current,
+  ])
+  const carouselRef = useRef(null)
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev()
@@ -942,14 +948,14 @@ export function VisionPreview() {
   }, [emblaApi])
 
   useEffect(() => {
-    const el = sectionRef.current
+    const el = carouselRef.current
     if (!el) return
 
     const handleEnter = () => {
-      if (emblaApi) emblaApi.plugins().autoplay?.stop()
+      autoplayRef.current.stop()
     }
     const handleLeave = () => {
-      if (emblaApi) emblaApi.plugins().autoplay?.play()
+      autoplayRef.current.play()
     }
 
     el.addEventListener("mouseenter", handleEnter)
@@ -959,13 +965,10 @@ export function VisionPreview() {
       el.removeEventListener("mouseenter", handleEnter)
       el.removeEventListener("mouseleave", handleLeave)
     }
-  }, [emblaApi])
+  }, [])
 
   return (
-    <section
-      ref={sectionRef}
-      className="landing-section vision-preview-section"
-    >
+    <section className="landing-section vision-preview-section">
       <style>{`
         @keyframes vp-pulse {
           0%, 100% { opacity: 1; transform: scale(1); }
@@ -1097,7 +1100,10 @@ export function VisionPreview() {
           larger emerges.
         </p>
 
-        <div className="flex items-center justify-center gap-4">
+        <div
+          ref={carouselRef}
+          className="flex items-center justify-center gap-4"
+        >
           <button
             type="button"
             className="carousel-arrow"
@@ -1136,12 +1142,12 @@ export function VisionPreview() {
         </div>
 
         <div className="text-center mt-12">
-          <a
-            href="/whitepaper"
-            className="text-sm text-dark-muted hover:text-primary transition-colors inline-flex items-center gap-1"
-          >
-            Read the full vision in the whitepaper →
-          </a>
+          <span className="text-sm text-dark-muted">
+            explore the{" "}
+            <a href="/vision" className="text-primary hover:underline">
+              full vision →
+            </a>
+          </span>
         </div>
       </div>
     </section>
