@@ -303,7 +303,15 @@ function AIContentFloodSvg() {
         </filter>
       </defs>
 
-      <rect width="280" height="160" rx="12" fill="#1a0a0a" />
+      <rect
+        width="280"
+        height="160"
+        rx="12"
+        fill="#1a0a0a"
+        stroke="#ef4444"
+        strokeWidth="2"
+        strokeOpacity="0.5"
+      />
 
       <rect
         x="20"
@@ -403,7 +411,15 @@ function ProofOfSourceSvg() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect width="280" height="160" rx="12" fill="#0f1a12" />
+      <rect
+        width="280"
+        height="160"
+        rx="12"
+        fill="#0f1a12"
+        stroke="#34D399"
+        strokeWidth="2"
+        strokeOpacity="0.5"
+      />
 
       <text
         x="20"
