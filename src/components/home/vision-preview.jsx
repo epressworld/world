@@ -1093,11 +1093,11 @@ export function VisionPreview() {
       <div className="container-custom">
         <p className="section-label text-center">The Future</p>
         <h2 className="landing-heading mb-4 text-center">
-          A Network That Changes What&apos;s Possible
+          What the Network Makes Possible
         </h2>
         <p className="landing-subheading text-center mx-auto mb-8 max-w-xl">
-          When millions of nodes connect through an open protocol, something
-          larger emerges.
+          Open data. Verified identity. No gatekeepers. These three properties
+          unlock things that weren&apos;t possible before.
         </p>
 
         <div
