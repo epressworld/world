@@ -1660,31 +1660,21 @@ export function VisionPreview() {
         }
         .slide-visual {
           width: 100%;
-          height: 300px;
+          max-height: 320px;
           display: flex;
           align-items: center;
           justify-content: center;
-          overflow: visible;
+        }
+        .slide-visual > * {
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
         }
         .slide-text {
           width: 100%;
           text-align: center;
           margin-top: 24px;
-        }
-        .slide-content {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        .slide-visual {
-          min-height: 280px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 24px;
-        }
-        .slide-title {
-          margin-bottom: 8px;
         }
       `}</style>
 
