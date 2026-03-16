@@ -2,23 +2,22 @@
 
 import Autoplay from "embla-carousel-autoplay"
 import useEmblaCarousel from "embla-carousel-react"
+import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { useCallback, useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 function MeritGraph() {
+  const [key, setKey] = useState(0)
   const center = { x: 150, y: 80 }
-  const arrowLen = 7
-  const allNodes = [
-    { x: 38, y: 22, isCenter: false },
-    { x: 150, y: 14, isCenter: false },
-    { x: 262, y: 22, isCenter: false },
-    { x: 278, y: 96, isCenter: false },
-    { x: 198, y: 148, isCenter: false },
-    { x: 54, y: 140, isCenter: false },
-    { x: 14, y: 88, isCenter: false },
-  ]
 
-  const satellites = allNodes.filter((n) => !n.isCenter)
+  const satellites = [
+    { x: 38, y: 22 },
+    { x: 150, y: 14 },
+    { x: 262, y: 22 },
+    { x: 278, y: 96 },
+    { x: 198, y: 148 },
+    { x: 54, y: 140 },
+  ]
 
   const arrows = satellites.map((s) => {
     const dx = center.x - s.x
@@ -26,168 +25,113 @@ function MeritGraph() {
     const dist = Math.sqrt(dx * dx + dy * dy)
     const ux = dx / dist
     const uy = dy / dist
-    const x1 = s.x + ux * 10
-    const y1 = s.y + uy * 10
-    const x2 = center.x - ux * 12
-    const y2 = center.y - uy * 12
-    const px = -uy * arrowLen * 0.45
-    const py = ux * arrowLen * 0.45
-    return { x1, y1, x2, y2, px, py }
+    return {
+      x1: s.x + ux * 10,
+      y1: s.y + uy * 10,
+      x2: center.x - ux * 12,
+      y2: center.y - uy * 12,
+    }
   })
 
-  return (
-    <svg
-      viewBox="0 0 300 168"
-      width="100%"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      aria-hidden="true"
-      className="merit-graph"
-    >
-      <style>{`
-        .merit-arrow {
-          opacity: 0;
-          animation: arrow-appear 0.3s ease-out forwards;
-        }
-        .merit-arrow-line {
-          stroke-opacity: 0;
-          animation: arrow-line-appear 0.3s ease-out forwards;
-        }
-        ${arrows
-          .map(
-            (_, i) => `
-          .merit-arrow-${i} {
-            animation-delay: ${0.5 + i * 0.4}s;
-          }
-          .merit-arrow-line-${i} {
-            animation-delay: ${0.5 + i * 0.4}s;
-          }
-        `,
-          )
-          .join("")}
-        
-        @keyframes arrow-line-appear {
-          0% { stroke-opacity: 0; }
-          100% { stroke-opacity: 0.35; }
-        }
-        
-        @keyframes arrow-appear {
-          0% { opacity: 0; }
-          100% { opacity: 1; }
-        }
-        
-        .satellite-node {
-          fill-opacity: 0.08;
-          stroke-opacity: 0.3;
-        }
-        
-        .center-node {
-          animation: center-grow 2.5s ease-out forwards, center-pulse 2s ease-in-out 3s infinite;
-          transform-origin: 150px 80px;
-        }
-        
-        @keyframes center-grow {
-          0% { r: 10; fill-opacity: 0.08; }
-          100% { r: 26; fill-opacity: 0.14; }
-        }
-        
-        @keyframes center-pulse {
-          0%, 100% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.08); opacity: 0.85; }
-        }
-        
-        .center-glow {
-          animation: glow-appear 2.5s ease-out forwards, glow-pulse 2s ease-in-out 3s infinite;
-          transform-origin: 150px 80px;
-        }
-        
-        @keyframes glow-appear {
-          0% { r: 10; fill-opacity: 0; }
-          100% { r: 34; fill-opacity: 0.04; }
-        }
-        
-        @keyframes glow-pulse {
-          0%, 100% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.15); opacity: 0.7; }
-        }
-        
-        .merit-graph {
-          animation: cycle-reset 7s ease-in-out infinite;
-        }
-        
-        @keyframes cycle-reset {
-          0%, 57% { opacity: 1; }
-          60%, 63% { opacity: 0; }
-          66%, 100% { opacity: 1; }
-        }
-      `}</style>
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setKey((k) => k + 1)
+    }, 7000)
+    return () => clearInterval(timer)
+  }, [])
 
-      {arrows.map((a, i) => (
-        <line
-          key={`line-${i}`}
-          x1={a.x1}
-          y1={a.y1}
-          x2={a.x2}
-          y2={a.y2}
-          className={`merit-arrow-line merit-arrow-line-${i}`}
-          strokeWidth="1.2"
-        />
-      ))}
-      {arrows.map((a, i) => (
-        <polygon
-          key={`arrow-${i}`}
-          points={`${a.x2},${a.y2} ${a.x2 - (a.x2 - a.x1) * 0.15 + a.px},${
-            a.y2 - (a.y2 - a.y1) * 0.15 + a.py
-          } ${a.x2 - (a.x2 - a.x1) * 0.15 - a.px},${
-            a.y2 - (a.y2 - a.y1) * 0.15 - a.py
-          }`}
-          fill="currentColor"
-          fillOpacity="0.5"
-          stroke="none"
-          className={`merit-arrow merit-arrow-${i}`}
-        />
-      ))}
-      {satellites.map((s, i) => (
-        <circle
-          key={`sat-${i}`}
-          cx={s.x}
-          cy={s.y}
+  return (
+    <div key={key} className="relative">
+      <svg
+        viewBox="0 0 300 168"
+        width="100%"
+        fill="none"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        {arrows.map((a, i) => (
+          <motion.g key={`arrow-${i}`}>
+            <motion.line
+              x1={a.x1}
+              y1={a.y1}
+              x2={a.x2}
+              y2={a.y2}
+              stroke="#e8a04a"
+              strokeWidth="1"
+              strokeOpacity={0.15}
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ delay: 0.5 + i * 0.4, duration: 0.4 }}
+            />
+          </motion.g>
+        ))}
+
+        {satellites.map((s, i) => (
+          <motion.circle
+            key={`sat-${i}`}
+            cx={s.x}
+            cy={s.y}
+            r={10}
+            fill="#6b7280"
+            fillOpacity={0.15}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+        ))}
+
+        <motion.circle
+          cx={center.x}
+          cy={center.y}
           r={10}
-          fill="currentColor"
-          className="satellite-node"
-          strokeWidth="1.2"
+          fill="#e8a04a"
+          fillOpacity={0.08}
+          initial={{ r: 10 }}
+          animate={{ r: 34 }}
+          transition={{ duration: 2.5, ease: "easeOut" }}
         />
-      ))}
-      <circle
-        cx={center.x}
-        cy={center.y}
-        r={10}
-        fill="currentColor"
-        stroke="none"
-        className="center-glow"
-      />
-      <circle
-        cx={center.x}
-        cy={center.y}
-        r={10}
-        fill="currentColor"
-        strokeWidth="2"
-        className="center-node"
-      />
-      <circle
-        cx={center.x}
-        cy={center.y}
-        r={5}
-        fill="currentColor"
-        fillOpacity="0.5"
-        stroke="none"
-        className="center-dot"
-      />
-    </svg>
+
+        <motion.circle
+          cx={center.x}
+          cy={center.y}
+          r={10}
+          fill="#e8a04a"
+          fillOpacity={0.2}
+          stroke="#e8a04a"
+          strokeWidth="2"
+          initial={{ r: 10, fillOpacity: 0.08 }}
+          animate={{
+            r: 26,
+            fillOpacity: 0.25,
+          }}
+          transition={{ duration: 2.5, ease: "easeOut" }}
+        />
+
+        <motion.circle
+          cx={center.x}
+          cy={center.y}
+          r={10}
+          fill="#ffffff"
+          fillOpacity={0.5}
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{
+            delay: 2.5,
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </svg>
+
+      <div className="absolute -bottom-2 left-0 right-0 text-center">
+        <span className="text-[9px] text-dark-muted/50 uppercase tracking-wider">
+          citations flow to value
+        </span>
+      </div>
+    </div>
   )
 }
-
 const todayCards = [
   { badge: "AI?", badgeColor: "badge-red" },
   { badge: "?", badgeColor: "badge-gray" },
