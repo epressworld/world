@@ -1654,15 +1654,19 @@ export function VisionPreview() {
           }
         }
         .slide-content {
-          display: grid;
-          grid-template-rows: 320px auto auto;
-          gap: 16px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
         .slide-visual {
+          min-height: 280px;
           display: flex;
           align-items: center;
           justify-content: center;
-          overflow: visible;
+          margin-bottom: 24px;
+        }
+        .slide-title {
+          margin-bottom: 8px;
         }
       `}</style>
 
@@ -1690,14 +1694,18 @@ export function VisionPreview() {
             <div className="embla__container">
               {cardsData.map((card) => (
                 <div key={card.id} className="embla__slide px-4">
-                  <div className="slide-content">
-                    <div className="slide-visual">{card.visual}</div>
-                    <h3 className="font-semibold text-2xl text-center">
-                      {card.title}
-                    </h3>
-                    <p className="text-sm text-dark-muted leading-relaxed text-center max-w-lg mx-auto">
-                      {card.description}
-                    </p>
+                  <div className="h-full flex flex-col">
+                    <div className="flex-1 flex items-center justify-center min-h-[280px]">
+                      {card.visual}
+                    </div>
+                    <div className="mt-6">
+                      <h3 className="font-semibold text-2xl mb-2 text-center">
+                        {card.title}
+                      </h3>
+                      <p className="text-sm text-dark-muted leading-relaxed text-center max-w-lg mx-auto">
+                        {card.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}
