@@ -1620,8 +1620,7 @@ export function VisionPreview() {
 
         .embla {
           overflow: hidden;
-          flex: 1;
-          max-width: 800px;
+          width: 100%;
         }
         .embla__container {
           display: flex;
@@ -1629,6 +1628,7 @@ export function VisionPreview() {
         .embla__slide {
           flex: 0 0 100%;
           min-width: 0;
+          width: 100%;
         }
         .carousel-arrow {
           display: flex;
@@ -1680,29 +1680,29 @@ export function VisionPreview() {
           unlock things that weren&apos;t possible before.
         </p>
 
-        <div ref={carouselRef} className="relative">
+        <div className="flex items-center gap-4">
           <button
             type="button"
-            className="carousel-arrow absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-10"
+            className="carousel-arrow flex-shrink-0"
             onClick={scrollPrev}
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-8 h-8" />
           </button>
 
-          <div className="embla mx-16" ref={emblaRef}>
+          <div className="embla flex-1" ref={emblaRef}>
             <div className="embla__container">
               {cardsData.map((card) => (
                 <div key={card.id} className="embla__slide px-4">
-                  <div className="h-full flex flex-col">
-                    <div className="flex-1 flex items-center justify-center min-h-[280px]">
+                  <div className="flex flex-col items-center">
+                    <div className="w-full flex items-center justify-center min-h-[280px]">
                       {card.visual}
                     </div>
-                    <div className="mt-6">
-                      <h3 className="font-semibold text-2xl mb-2 text-center">
+                    <div className="w-full mt-6 text-center">
+                      <h3 className="font-semibold text-2xl mb-2">
                         {card.title}
                       </h3>
-                      <p className="text-sm text-dark-muted leading-relaxed text-center max-w-lg mx-auto">
+                      <p className="text-sm text-dark-muted leading-relaxed max-w-lg mx-auto">
                         {card.description}
                       </p>
                     </div>
@@ -1714,7 +1714,7 @@ export function VisionPreview() {
 
           <button
             type="button"
-            className="carousel-arrow absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-10"
+            className="carousel-arrow flex-shrink-0"
             onClick={scrollNext}
             aria-label="Next slide"
           >
