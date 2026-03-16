@@ -1431,7 +1431,7 @@ const cardsData = [
     description:
       "AI generates infinite content at zero cost. It can't fake years of signed history — or what's behind the address.",
     visual: (
-      <div>
+      <div style={{ transform: "scale(0.9)", transformOrigin: "center top" }}>
         <div className="grid grid-cols-2 gap-3 mb-4">
           <div>
             <p className="text-[10px] uppercase tracking-wider text-center text-dark-muted/60 font-semibold mb-2">
@@ -1491,7 +1491,13 @@ const cardsData = [
     title: "Your AI Agent Needs Open Networks",
     description:
       "Closed platforms are building walls exactly where AI agents need to move. epress nodes are open by default.",
-    visual: <AgentDiagram />,
+    visual: (
+      <div
+        style={{ transform: "scale(0.85)", transformOrigin: "center center" }}
+      >
+        <AgentDiagram />
+      </div>
+    ),
   },
 ]
 
@@ -1657,24 +1663,20 @@ export function VisionPreview() {
           display: flex;
           flex-direction: column;
           align-items: center;
+          min-height: 400px;
         }
         .slide-visual {
           width: 100%;
-          max-height: 320px;
+          flex: 1;
           display: flex;
           align-items: center;
           justify-content: center;
-        }
-        .slide-visual > * {
-          max-width: 100%;
-          max-height: 100%;
-          width: auto;
-          height: auto;
+          padding: 20px 0;
         }
         .slide-text {
           width: 100%;
           text-align: center;
-          margin-top: 24px;
+          padding-top: 20px;
         }
       `}</style>
 
