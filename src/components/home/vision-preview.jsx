@@ -8,50 +8,50 @@ import { useCallback, useEffect, useRef, useState } from "react"
 
 function MeritGraph() {
   const [key, setKey] = useState(0)
-  const [currentStage, setCurrentStage] = useState(0)
+  const [drawingLine, setDrawingLine] = useState(-1)
+  const [centerStage, setCenterStage] = useState(0)
   const center = { x: 150, y: 84 }
 
   const satellites = [
-    { x: 38, y: 22 },
-    { x: 150, y: 14 },
-    { x: 262, y: 22 },
-    { x: 278, y: 96 },
-    { x: 198, y: 148 },
-    { x: 54, y: 140 },
+    { x: 38, y: 22, offset: 0 },
+    { x: 150, y: 14, offset: 0.5 },
+    { x: 262, y: 22, offset: 1 },
+    { x: 278, y: 96, offset: 1.5 },
+    { x: 198, y: 148, offset: 2 },
+    { x: 54, y: 140, offset: 2.5 },
   ]
 
-  const centerStages = [
-    { r: 10, opacity: 0.1 },
-    { r: 13, opacity: 0.15 },
-    { r: 16, opacity: 0.2 },
-    { r: 19, opacity: 0.25 },
-    { r: 22, opacity: 0.3 },
-    { r: 25, opacity: 0.35 },
-    { r: 28, opacity: 0.4 },
-  ]
+  const radiusStages = [18, 20, 22, 24, 26, 28, 30]
+  const centerRadius = radiusStages[centerStage]
+  const textScale = centerRadius / 18
 
   useEffect(() => {
-    setCurrentStage(0)
-    const stages = [0, 1, 2, 3, 4, 5, 6]
-    stages.forEach((stage, index) => {
+    setDrawingLine(-1)
+    setCenterStage(0)
+
+    for (let i = 0; i < 6; i++) {
       setTimeout(
         () => {
-          setCurrentStage(stage)
+          setDrawingLine(i)
         },
-        500 + index * 400,
+        1000 + i * 1000,
       )
-    })
+
+      setTimeout(
+        () => {
+          setCenterStage(i + 1)
+        },
+        1400 + i * 1000,
+      )
+    }
   }, [key])
 
   useEffect(() => {
     const timer = setInterval(() => {
       setKey((k) => k + 1)
-    }, 8000)
+    }, 10000)
     return () => clearInterval(timer)
   }, [])
-
-  const currentRadius = centerStages[currentStage].r
-  const currentOpacity = centerStages[currentStage].opacity
 
   const arrows = satellites.map((s) => {
     const dx = center.x - s.x
@@ -62,8 +62,8 @@ function MeritGraph() {
     return {
       x1: s.x + ux * 10,
       y1: s.y + uy * 10,
-      x2: center.x - ux * currentRadius,
-      y2: center.y - uy * currentRadius,
+      x2: center.x - ux * centerRadius,
+      y2: center.y - uy * centerRadius,
     }
   })
 
@@ -83,32 +83,54 @@ function MeritGraph() {
               x2={a.x2}
               y2={a.y2}
               stroke="#e8a04a"
-              strokeWidth="2.5"
-              strokeOpacity={0.5}
+              strokeWidth="1"
+              strokeOpacity={0.4}
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{
-                pathLength: i <= currentStage ? 1 : 0,
-                opacity: i <= currentStage ? 1 : 0,
+                pathLength: i <= drawingLine ? 1 : 0,
+                opacity: i <= drawingLine ? 1 : 0,
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             />
           </motion.g>
         ))}
 
         {satellites.map((s, i) => (
-          <motion.g key={`sat-${i}`}>
-            <motion.circle
+          <motion.g
+            key={`sat-${i}`}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              x: [0, 2, -1, 1, 0],
+              y: [0, -1, 2, -1, 0],
+            }}
+            transition={{
+              opacity: { duration: 0.3 },
+              x: {
+                duration: 4,
+                repeat: Infinity,
+                repeatType: "loop",
+                delay: s.offset,
+                ease: "easeInOut",
+              },
+              y: {
+                duration: 3.5,
+                repeat: Infinity,
+                repeatType: "loop",
+                delay: s.offset,
+                ease: "easeInOut",
+              },
+            }}
+          >
+            <circle
               cx={s.x}
               cy={s.y}
               r={10}
               fill="#374151"
-              fillOpacity={0.3}
+              fillOpacity={0.25}
               stroke="#6b7280"
               strokeWidth="1"
-              strokeOpacity={0.5}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
+              strokeOpacity={0.4}
             />
             <motion.text
               x={s.x}
@@ -116,14 +138,14 @@ function MeritGraph() {
               dy="0.35em"
               textAnchor="middle"
               fill="#9ca3af"
-              fontSize="7"
-              fontWeight="500"
+              fontSize="6"
+              fontWeight="400"
               fontFamily="sans-serif"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.3 }}
             >
-              Cites
+              cites
             </motion.text>
           </motion.g>
         ))}
@@ -131,12 +153,12 @@ function MeritGraph() {
         <motion.circle
           cx={center.x}
           cy={center.y}
-          r={currentRadius}
+          r={centerRadius}
           fill="#e8a04a"
-          fillOpacity={currentOpacity}
+          fillOpacity={0.15}
           stroke="#f59e0b"
-          strokeWidth="2"
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          strokeWidth="1.5"
+          transition={{ duration: 0.4, ease: "easeOut" }}
         />
 
         <motion.text
@@ -145,27 +167,30 @@ function MeritGraph() {
           dy="0.35em"
           textAnchor="middle"
           fill="#fbbf24"
-          fontSize="9"
-          fontWeight="600"
+          fontSize="7"
+          fontWeight="400"
           fontFamily="sans-serif"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: textScale }}
+          transition={{
+            opacity: { delay: 0.3, duration: 0.4 },
+            scale: { duration: 0.4, ease: "easeOut" },
+          }}
         >
-          Original
+          original
         </motion.text>
 
-        {currentStage === 6 && (
+        {centerStage === 6 && (
           <motion.circle
             cx={center.x}
             cy={center.y}
-            r={currentRadius}
+            r={centerRadius}
             fill="#e8a04a"
             fillOpacity={0}
-            initial={{ scale: 1, fillOpacity: 0.3 }}
+            initial={{ scale: 1, fillOpacity: 0.25 }}
             animate={{
-              scale: [1, 1.2, 1],
-              fillOpacity: [0.3, 0.1, 0.3],
+              scale: [1, 1.15, 1],
+              fillOpacity: [0.25, 0.08, 0.25],
             }}
             transition={{
               duration: 2,
@@ -928,7 +953,7 @@ const cardsData = [
     id: "human",
     title: "Human Voices Stand Out Again",
     description:
-      "Every post carries a verified identity with history. Accounts built over time — and backed by real assets — can't be faked at scale.",
+      "Every epress post carries a verified identity with accumulated history. An address with years of published work — and real assets behind it — signals authenticity that no AI farm can replicate at scale.",
     visual: (
       <div>
         <div className="grid grid-cols-2 gap-3 mb-4">
@@ -987,7 +1012,7 @@ const cardsData = [
   },
   {
     id: "agent",
-    title: "Your AI Agent Works Here",
+    title: "Your AI Agent Needs Open Networks",
     description:
       "Closed platforms are building walls exactly where AI agents need to move. epress nodes are open by default.",
     visual: <AgentDiagram />,
