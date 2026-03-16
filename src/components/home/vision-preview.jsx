@@ -8,16 +8,50 @@ import { useCallback, useEffect, useRef, useState } from "react"
 
 function MeritGraph() {
   const [key, setKey] = useState(0)
+  const [currentStage, setCurrentStage] = useState(0)
   const center = { x: 150, y: 84 }
 
   const satellites = [
-    { x: 38, y: 22, label: "引用" },
-    { x: 150, y: 14, label: "引用" },
-    { x: 262, y: 22, label: "引用" },
-    { x: 278, y: 96, label: "引用" },
-    { x: 198, y: 148, label: "引用" },
-    { x: 54, y: 140, label: "引用" },
+    { x: 38, y: 22 },
+    { x: 150, y: 14 },
+    { x: 262, y: 22 },
+    { x: 278, y: 96 },
+    { x: 198, y: 148 },
+    { x: 54, y: 140 },
   ]
+
+  const centerStages = [
+    { r: 10, opacity: 0.1 },
+    { r: 13, opacity: 0.15 },
+    { r: 16, opacity: 0.2 },
+    { r: 19, opacity: 0.25 },
+    { r: 22, opacity: 0.3 },
+    { r: 25, opacity: 0.35 },
+    { r: 28, opacity: 0.4 },
+  ]
+
+  useEffect(() => {
+    setCurrentStage(0)
+    const stages = [0, 1, 2, 3, 4, 5, 6]
+    stages.forEach((stage, index) => {
+      setTimeout(
+        () => {
+          setCurrentStage(stage)
+        },
+        500 + index * 400,
+      )
+    })
+  }, [key])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setKey((k) => k + 1)
+    }, 8000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const currentRadius = centerStages[currentStage].r
+  const currentOpacity = centerStages[currentStage].opacity
 
   const arrows = satellites.map((s) => {
     const dx = center.x - s.x
@@ -28,27 +62,10 @@ function MeritGraph() {
     return {
       x1: s.x + ux * 10,
       y1: s.y + uy * 10,
-      x2: center.x - ux * 14,
-      y2: center.y - uy * 14,
+      x2: center.x - ux * currentRadius,
+      y2: center.y - uy * currentRadius,
     }
   })
-
-  const centerStages = [
-    { r: 12, opacity: 0.15 },
-    { r: 15, opacity: 0.2 },
-    { r: 18, opacity: 0.25 },
-    { r: 21, opacity: 0.3 },
-    { r: 24, opacity: 0.35 },
-    { r: 27, opacity: 0.4 },
-    { r: 30, opacity: 0.45 },
-  ]
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setKey((k) => k + 1)
-    }, 8000)
-    return () => clearInterval(timer)
-  }, [])
 
   return (
     <div key={key} className="relative">
@@ -66,11 +83,14 @@ function MeritGraph() {
               x2={a.x2}
               y2={a.y2}
               stroke="#e8a04a"
-              strokeWidth="2"
-              strokeOpacity={0.4}
+              strokeWidth="2.5"
+              strokeOpacity={0.5}
               initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ delay: 0.5 + i * 0.4, duration: 0.3 }}
+              animate={{
+                pathLength: i <= currentStage ? 1 : 0,
+                opacity: i <= currentStage ? 1 : 0,
+              }}
+              transition={{ duration: 0.3 }}
             />
           </motion.g>
         ))}
@@ -86,100 +106,74 @@ function MeritGraph() {
               stroke="#6b7280"
               strokeWidth="1"
               strokeOpacity={0.5}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             />
             <motion.text
               x={s.x}
-              y={s.y + 24}
+              y={s.y}
+              dy="0.35em"
               textAnchor="middle"
               fill="#9ca3af"
-              fontSize="8"
+              fontSize="7"
+              fontWeight="500"
               fontFamily="sans-serif"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.3 }}
             >
-              {s.label}
+              Cites
             </motion.text>
           </motion.g>
         ))}
 
-        {centerStages.map((stage, i) => (
-          <motion.circle
-            key={`center-${i}`}
-            cx={center.x}
-            cy={center.y}
-            r={stage.r}
-            fill="#e8a04a"
-            fillOpacity={stage.opacity}
-            initial={{ r: 12, fillOpacity: 0.15 }}
-            animate={{ r: stage.r, fillOpacity: stage.opacity }}
-            transition={{
-              delay: i * 0.4,
-              duration: 0.3,
-              ease: "easeOut",
-            }}
-            style={{
-              display: i === 0 ? "block" : "none",
-            }}
-          />
-        ))}
-
         <motion.circle
           cx={center.x}
           cy={center.y}
-          r={12}
+          r={currentRadius}
           fill="#e8a04a"
-          fillOpacity={0.15}
+          fillOpacity={currentOpacity}
           stroke="#f59e0b"
           strokeWidth="2"
-          initial={{ r: 12, fillOpacity: 0.15 }}
-          animate={{
-            r: [12, 15, 18, 21, 24, 27, 30],
-            fillOpacity: [0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45],
-          }}
-          transition={{
-            times: [0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42],
-            duration: 3,
-            ease: "easeOut",
-          }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         />
 
         <motion.text
           x={center.x}
-          y={center.y + 40}
+          y={center.y}
+          dy="0.35em"
           textAnchor="middle"
-          fill="#e8a04a"
-          fontSize="10"
+          fill="#fbbf24"
+          fontSize="9"
           fontWeight="600"
           fontFamily="sans-serif"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
         >
-          原文
+          Original
         </motion.text>
 
-        <motion.circle
-          cx={center.x}
-          cy={center.y}
-          r={30}
-          fill="#e8a04a"
-          fillOpacity={0}
-          initial={{ scale: 1, fillOpacity: 0.3 }}
-          animate={{
-            scale: [1, 1.15, 1],
-            fillOpacity: [0.3, 0.1, 0.3],
-          }}
-          transition={{
-            delay: 3,
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+        {currentStage === 6 && (
+          <motion.circle
+            cx={center.x}
+            cy={center.y}
+            r={currentRadius}
+            fill="#e8a04a"
+            fillOpacity={0}
+            initial={{ scale: 1, fillOpacity: 0.3 }}
+            animate={{
+              scale: [1, 1.2, 1],
+              fillOpacity: [0.3, 0.1, 0.3],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        )}
       </svg>
     </div>
   )
