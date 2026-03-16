@@ -988,240 +988,233 @@ const cardsData = [
       </>
     ),
     visual: (
-      <div
-        style={{
-          height: "300px",
-          display: "flex",
-          gap: "20px",
-          maxWidth: "700px",
-          margin: "0 auto",
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            minWidth: "300px",
-            borderRadius: "14px",
-            padding: "22px 24px",
-            background:
-              "linear-gradient(135deg, rgba(40,40,50,1) 0%, rgba(25,25,32,1) 100%)",
-            border: "1px solid rgba(255,255,255,0.1)",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
-          <div>
-            <div
-              style={{
-                fontSize: "9px",
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                color: "rgba(255,255,255,0.25)",
-                marginBottom: "8px",
-              }}
-            >
-              PLATFORM ACCOUNT
-            </div>
-            <div
-              style={{
-                fontSize: "18px",
-                fontWeight: 700,
-                color: "rgba(255,255,255,0.85)",
-              }}
-            >
-              @alice
-            </div>
-          </div>
-          <div style={{ display: "flex", gap: "28px", marginTop: "16px" }}>
+      <div className="reputation-comparison">
+        <div className="reputation-cards flex flex-col md:flex-row gap-3 md:gap-5 max-w-full md:max-w-[700px] mx-auto">
+          <div
+            className="reputation-card flex-1 min-w-0 md:min-w-[280px]"
+            style={{
+              borderRadius: "14px",
+              padding: "16px 20px",
+              background:
+                "linear-gradient(135deg, rgba(40,40,50,1) 0%, rgba(25,25,32,1) 100%)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
             <div>
               <div
                 style={{
-                  fontSize: "20px",
+                  fontSize: "8px",
                   fontWeight: 700,
-                  color: "rgba(255,255,255,0.8)",
+                  letterSpacing: "0.1em",
+                  color: "rgba(255,255,255,0.25)",
+                  marginBottom: "6px",
                 }}
               >
-                4.2K
+                PLATFORM ACCOUNT
               </div>
               <div
+                style={{
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  color: "rgba(255,255,255,0.85)",
+                }}
+              >
+                @alice
+              </div>
+            </div>
+            <div style={{ display: "flex", gap: "20px", marginTop: "12px" }}>
+              <div>
+                <div
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: 700,
+                    color: "rgba(255,255,255,0.8)",
+                  }}
+                >
+                  4.2K
+                </div>
+                <div
+                  style={{
+                    fontSize: "8px",
+                    color: "rgba(255,255,255,0.3)",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  followers
+                </div>
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: 700,
+                    color: "rgba(255,255,255,0.8)",
+                  }}
+                >
+                  847
+                </div>
+                <div
+                  style={{
+                    fontSize: "8px",
+                    color: "rgba(255,255,255,0.3)",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  posts
+                </div>
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                marginTop: "10px",
+                padding: "6px 10px",
+                borderRadius: "6px",
+                background: "rgba(239,68,68,0.08)",
+                border: "1px solid rgba(239,68,68,0.15)",
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <div
+                style={{
+                  width: "5px",
+                  height: "5px",
+                  borderRadius: "50%",
+                  background: "rgba(251,191,36,0.7)",
+                  flexShrink: 0,
+                }}
+              />
+              <span
                 style={{
                   fontSize: "9px",
                   color: "rgba(255,255,255,0.3)",
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
+                  fontFamily: "monospace",
+                  whiteSpace: "nowrap",
                 }}
               >
-                followers
-              </div>
-            </div>
-            <div>
-              <div
-                style={{
-                  fontSize: "20px",
-                  fontWeight: 700,
-                  color: "rgba(255,255,255,0.8)",
-                }}
-              >
-                847
-              </div>
-              <div
-                style={{
-                  fontSize: "9px",
-                  color: "rgba(255,255,255,0.3)",
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                }}
-              >
-                posts
-              </div>
+                Valid until platform decides otherwise
+              </span>
             </div>
           </div>
           <div
+            className="reputation-card flex-1 min-w-0 md:min-w-[280px]"
             style={{
-              width: "100%",
-              marginTop: "12px",
-              padding: "8px 12px",
-              borderRadius: "8px",
-              background: "rgba(239,68,68,0.08)",
-              border: "1px solid rgba(239,68,68,0.15)",
+              borderRadius: "14px",
+              padding: "16px 20px",
+              background:
+                "linear-gradient(135deg, rgba(10,28,18,1) 0%, rgba(8,20,14,1) 100%)",
+              border: "1px solid rgba(52,211,153,0.2)",
               display: "flex",
-              alignItems: "center",
-              gap: "8px",
+              flexDirection: "column",
+              justifyContent: "space-between",
             }}
           >
-            <div
-              style={{
-                width: "6px",
-                height: "6px",
-                borderRadius: "50%",
-                background: "rgba(251,191,36,0.7)",
-                flexShrink: 0,
-              }}
-            />
-            <span
-              style={{
-                fontSize: "10px",
-                color: "rgba(255,255,255,0.3)",
-                fontFamily: "monospace",
-              }}
-            >
-              Valid until platform decides otherwise
-            </span>
-          </div>
-        </div>
-        <div
-          style={{
-            flex: 1,
-            minWidth: "300px",
-            borderRadius: "14px",
-            padding: "22px 24px",
-            background:
-              "linear-gradient(135deg, rgba(10,28,18,1) 0%, rgba(8,20,14,1) 100%)",
-            border: "1px solid rgba(52,211,153,0.2)",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
-          <div>
-            <div
-              style={{
-                fontSize: "9px",
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                color: "rgba(52,211,153,0.45)",
-                marginBottom: "8px",
-              }}
-            >
-              EPRESS IDENTITY
-            </div>
-            <div
-              style={{
-                fontSize: "15px",
-                fontWeight: 700,
-                color: "rgba(110,231,183,0.9)",
-                fontFamily: "monospace",
-              }}
-            >
-              0x742d...f9a3
-            </div>
-          </div>
-          <div style={{ display: "flex", gap: "28px", marginTop: "16px" }}>
             <div>
               <div
                 style={{
-                  fontSize: "20px",
+                  fontSize: "8px",
                   fontWeight: 700,
-                  color: "rgba(110,231,183,0.85)",
+                  letterSpacing: "0.1em",
+                  color: "rgba(52,211,153,0.45)",
+                  marginBottom: "6px",
                 }}
               >
-                4.2K
+                EPRESS IDENTITY
               </div>
               <div
                 style={{
-                  fontSize: "9px",
-                  color: "rgba(110,231,183,0.35)",
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
+                  fontSize: "13px",
+                  fontWeight: 700,
+                  color: "rgba(110,231,183,0.9)",
+                  fontFamily: "monospace",
                 }}
               >
-                cited by
+                0x742d...f9a3
               </div>
             </div>
-            <div>
-              <div
-                style={{
-                  fontSize: "20px",
-                  fontWeight: 700,
-                  color: "rgba(110,231,183,0.85)",
-                }}
-              >
-                847
+            <div style={{ display: "flex", gap: "20px", marginTop: "12px" }}>
+              <div>
+                <div
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: 700,
+                    color: "rgba(110,231,183,0.85)",
+                  }}
+                >
+                  4.2K
+                </div>
+                <div
+                  style={{
+                    fontSize: "8px",
+                    color: "rgba(110,231,183,0.35)",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  cited by
+                </div>
               </div>
-              <div
-                style={{
-                  fontSize: "9px",
-                  color: "rgba(110,231,183,0.35)",
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                }}
-              >
-                signed posts
+              <div>
+                <div
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: 700,
+                    color: "rgba(110,231,183,0.85)",
+                  }}
+                >
+                  847
+                </div>
+                <div
+                  style={{
+                    fontSize: "8px",
+                    color: "rgba(110,231,183,0.35)",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  signed posts
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            style={{
-              width: "100%",
-              marginTop: "12px",
-              padding: "8px 12px",
-              borderRadius: "8px",
-              background: "rgba(52,211,153,0.07)",
-              border: "1px solid rgba(52,211,153,0.18)",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-            }}
-          >
             <div
               style={{
-                width: "6px",
-                height: "6px",
-                borderRadius: "50%",
-                background: "rgba(52,211,153,0.8)",
-                flexShrink: 0,
-              }}
-            />
-            <span
-              style={{
-                fontSize: "10px",
-                color: "rgba(110,231,183,0.6)",
-                fontFamily: "monospace",
+                width: "100%",
+                marginTop: "10px",
+                padding: "6px 10px",
+                borderRadius: "6px",
+                background: "rgba(52,211,153,0.07)",
+                border: "1px solid rgba(52,211,153,0.18)",
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
               }}
             >
-              Valid forever. Verifiable by anyone.
-            </span>
+              <div
+                style={{
+                  width: "5px",
+                  height: "5px",
+                  borderRadius: "50%",
+                  background: "rgba(52,211,153,0.8)",
+                  flexShrink: 0,
+                }}
+              />
+              <span
+                style={{
+                  fontSize: "9px",
+                  color: "rgba(110,231,183,0.6)",
+                  fontFamily: "monospace",
+                }}
+              >
+                Valid forever. Verifiable by anyone.
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -1305,6 +1298,7 @@ export function VisionPreview() {
     autoplayRef.current,
   ])
   const carouselRef = useRef(null)
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev()
@@ -1313,6 +1307,27 @@ export function VisionPreview() {
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext()
   }, [emblaApi])
+
+  const scrollTo = useCallback(
+    (index) => {
+      if (emblaApi) emblaApi.scrollTo(index)
+    },
+    [emblaApi],
+  )
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (!emblaApi) return
+    onSelect()
+    emblaApi.on("select", onSelect)
+    return () => {
+      emblaApi.off("select", onSelect)
+    }
+  }, [emblaApi, onSelect])
 
   useEffect(() => {
     const el = carouselRef.current
@@ -1449,10 +1464,39 @@ export function VisionPreview() {
         .carousel-arrow:hover {
           color: #e8a04a;
         }
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .carousel-arrow {
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
+          }
+          .carousel-arrow svg {
+            width: 18px;
+            height: 18px;
+          }
+          .embla__slide {
+            padding-left: 8px;
+            padding-right: 8px;
+          }
+          .slide-text {
+            margin-top: 16px;
+            padding: 12px 8px;
+          }
+          .slide-text h3 {
+            font-size: 1.125rem;
+          }
+          .slide-text p {
+            font-size: 0.75rem;
+          }
+          .reputation-comparison {
+            height: auto !important;
+          }
+          .reputation-cards {
+            flex-direction: column !important;
+            gap: 12px !important;
+          }
+          .reputation-card {
+            min-width: unset !important;
+            width: 100%;
           }
         }
         .slide-card {
@@ -1491,54 +1535,70 @@ export function VisionPreview() {
         </p>
 
         <article
-          className="flex items-center gap-4"
+          className="flex flex-col items-center gap-4"
           onMouseEnter={() => autoplayRef.current.stop()}
           onMouseLeave={() => autoplayRef.current.play()}
         >
-          <button
-            type="button"
-            className="carousel-arrow flex-shrink-0"
-            onClick={scrollPrev}
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="w-8 h-8" />
-          </button>
+          <div className="flex items-center gap-4 w-full">
+            <button
+              type="button"
+              className="carousel-arrow flex-shrink-0 hidden md:flex"
+              onClick={scrollPrev}
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+            </button>
 
-          <div className="embla flex-1" ref={emblaRef}>
-            <div className="embla__container">
-              {cardsData.map((card) => (
-                <div key={card.id} className="embla__slide px-4">
-                  <div className="slide-card">
-                    <div className="slide-visual">{card.visual}</div>
-                    <div className="slide-text">
-                      <h3 className="font-semibold text-2xl mb-2">
-                        {card.title}
-                      </h3>
-                      <p className="text-sm text-dark-muted leading-relaxed max-w-lg mx-auto">
-                        {card.description}
-                      </p>
+            <div className="embla flex-1 w-full" ref={emblaRef}>
+              <div className="embla__container">
+                {cardsData.map((card) => (
+                  <div key={card.id} className="embla__slide px-2 md:px-4">
+                    <div className="slide-card">
+                      <div className="slide-visual">{card.visual}</div>
+                      <div className="slide-text">
+                        <h3 className="font-semibold text-xl md:text-2xl mb-2">
+                          {card.title}
+                        </h3>
+                        <p className="text-xs md:text-sm text-dark-muted leading-relaxed max-w-lg mx-auto px-2">
+                          {card.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
+            <button
+              type="button"
+              className="carousel-arrow flex-shrink-0 hidden md:flex"
+              onClick={scrollNext}
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+            </button>
           </div>
 
-          <button
-            type="button"
-            className="carousel-arrow flex-shrink-0"
-            onClick={scrollNext}
-            aria-label="Next slide"
-          >
-            <ChevronRight className="w-8 h-8" />
-          </button>
+          <div className="flex md:hidden items-center gap-2 mt-2">
+            {cardsData.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => scrollTo(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === selectedIndex ? "bg-primary w-4" : "bg-white/20"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </article>
 
         <div className="text-center mt-12">
           <span className="text-sm text-dark-muted">
-            explore the{" "}
+            Want the full picture?{" "}
             <a href="/vision" className="text-primary hover:underline">
-              full vision →
+              See what's possible →
             </a>
           </span>
         </div>
