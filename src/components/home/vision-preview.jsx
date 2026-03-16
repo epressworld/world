@@ -467,7 +467,7 @@ function ProofOfSourceSvg() {
 function AgentDiagram() {
   return (
     <svg
-      viewBox="0 0 800 420"
+      viewBox="0 0 400 520"
       width="100%"
       fill="none"
       stroke="currentColor"
@@ -493,11 +493,11 @@ function AgentDiagram() {
       </defs>
 
       <rect
-        x="40"
-        y="30"
-        width="320"
-        height="340"
-        rx="16"
+        x="20"
+        y="10"
+        width="360"
+        height="220"
+        rx="12"
         fill="url(#closedGrad)"
         stroke="#ef4444"
         strokeWidth="2"
@@ -505,10 +505,10 @@ function AgentDiagram() {
       />
       <text
         x="200"
-        y="65"
+        y="38"
         textAnchor="middle"
         fill="#ef4444"
-        fontSize="16"
+        fontSize="14"
         fontFamily="sans-serif"
         fontWeight="600"
         stroke="none"
@@ -517,21 +517,21 @@ function AgentDiagram() {
       </text>
 
       <rect
-        x="80"
-        y="90"
-        width="240"
-        height="40"
-        rx="8"
+        x="50"
+        y="55"
+        width="300"
+        height="32"
+        rx="6"
         fill="#1a1a1a"
         stroke="#ef4444"
         strokeOpacity="0.3"
       />
       <text
         x="200"
-        y="115"
+        y="76"
         textAnchor="middle"
         fill="#fca5a5"
-        fontSize="12"
+        fontSize="11"
         fontFamily="monospace"
         stroke="none"
       >
@@ -540,31 +540,31 @@ function AgentDiagram() {
 
       <line
         x1="200"
-        y1="135"
+        y1="92"
         x2="200"
-        y2="160"
+        y2="108"
         stroke="#666"
         strokeWidth="2"
         strokeDasharray="4,4"
       />
-      <polygon points="200,165 194,155 206,155" fill="#666" stroke="none" />
+      <polygon points="200,112 195,104 205,104" fill="#666" stroke="none" />
 
       <rect
-        x="80"
-        y="170"
-        width="240"
-        height="45"
-        rx="8"
+        x="50"
+        y="118"
+        width="300"
+        height="38"
+        rx="6"
         fill="#151515"
         stroke="#666"
         strokeOpacity="0.5"
       />
       <text
         x="200"
-        y="190"
+        y="136"
         textAnchor="middle"
         fill="#888"
-        fontSize="11"
+        fontSize="10"
         fontFamily="monospace"
         stroke="none"
       >
@@ -572,46 +572,35 @@ function AgentDiagram() {
       </text>
       <text
         x="200"
-        y="205"
+        y="149"
         textAnchor="middle"
         fill="#666"
-        fontSize="9"
+        fontSize="8"
         fontFamily="monospace"
         stroke="none"
       >
         (walled gardens)
       </text>
 
-      <line
-        x1="200"
-        y1="220"
-        x2="200"
-        y2="245"
-        stroke="#666"
-        strokeWidth="2"
-        strokeDasharray="4,4"
-      />
-      <polygon points="200,250 194,240 206,240" fill="#666" stroke="none" />
-
-      <g transform="translate(70, 255)">
+      <g transform="translate(40, 165)">
         <rect
           x="0"
           y="0"
-          width="260"
-          height="28"
-          rx="6"
+          width="105"
+          height="22"
+          rx="4"
           fill="#1a0f0f"
           stroke="#ef4444"
           strokeOpacity="0.4"
         />
-        <text x="15" y="18" fill="#ef4444" fontSize="12" stroke="none">
+        <text x="8" y="15" fill="#ef4444" fontSize="10" stroke="none">
           ✗
         </text>
         <text
-          x="35"
-          y="18"
+          x="22"
+          y="15"
           fill="#fca5a5"
-          fontSize="10"
+          fontSize="9"
           fontFamily="monospace"
           stroke="none"
         >
@@ -619,25 +608,25 @@ function AgentDiagram() {
         </text>
       </g>
 
-      <g transform="translate(70, 290)">
+      <g transform="translate(150, 165)">
         <rect
           x="0"
           y="0"
-          width="260"
-          height="28"
-          rx="6"
+          width="85"
+          height="22"
+          rx="4"
           fill="#1a0f0f"
           stroke="#ef4444"
           strokeOpacity="0.4"
         />
-        <text x="15" y="18" fill="#ef4444" fontSize="12" stroke="none">
+        <text x="8" y="15" fill="#ef4444" fontSize="10" stroke="none">
           ✗
         </text>
         <text
-          x="35"
-          y="18"
+          x="22"
+          y="15"
           fill="#fca5a5"
-          fontSize="10"
+          fontSize="9"
           fontFamily="monospace"
           stroke="none"
         >
@@ -645,25 +634,25 @@ function AgentDiagram() {
         </text>
       </g>
 
-      <g transform="translate(70, 325)">
+      <g transform="translate(240, 165)">
         <rect
           x="0"
           y="0"
-          width="260"
-          height="28"
-          rx="6"
+          width="100"
+          height="22"
+          rx="4"
           fill="#1a0f0f"
           stroke="#ef4444"
           strokeOpacity="0.4"
         />
-        <text x="15" y="18" fill="#ef4444" fontSize="12" stroke="none">
+        <text x="8" y="15" fill="#ef4444" fontSize="10" stroke="none">
           ✗
         </text>
         <text
-          x="35"
-          y="18"
+          x="22"
+          y="15"
           fill="#fca5a5"
-          fontSize="10"
+          fontSize="9"
           fontFamily="monospace"
           stroke="none"
         >
@@ -673,10 +662,10 @@ function AgentDiagram() {
 
       <text
         x="200"
-        y="385"
+        y="208"
         textAnchor="middle"
         fill="#ef4444"
-        fontSize="12"
+        fontSize="10"
         fontFamily="monospace"
         opacity="0.9"
         stroke="none"
@@ -685,22 +674,22 @@ function AgentDiagram() {
       </text>
 
       <rect
-        x="440"
-        y="30"
-        width="320"
-        height="340"
-        rx="16"
+        x="20"
+        y="250"
+        width="360"
+        height="220"
+        rx="12"
         fill="url(#openGrad)"
         stroke="#34D399"
         strokeWidth="2"
         strokeOpacity="0.5"
       />
       <text
-        x="600"
-        y="65"
+        x="200"
+        y="278"
         textAnchor="middle"
         fill="#34D399"
-        fontSize="16"
+        fontSize="14"
         fontFamily="sans-serif"
         fontWeight="600"
         stroke="none"
@@ -709,21 +698,21 @@ function AgentDiagram() {
       </text>
 
       <rect
-        x="480"
-        y="90"
-        width="240"
-        height="40"
-        rx="8"
+        x="50"
+        y="295"
+        width="300"
+        height="32"
+        rx="6"
         fill="#1a2a1a"
         stroke="#34D399"
         strokeOpacity="0.3"
       />
       <text
-        x="600"
-        y="115"
+        x="200"
+        y="316"
         textAnchor="middle"
         fill="#6EE7B7"
-        fontSize="12"
+        fontSize="11"
         fontFamily="monospace"
         stroke="none"
       >
@@ -731,79 +720,68 @@ function AgentDiagram() {
       </text>
 
       <line
-        x1="600"
-        y1="135"
-        x2="600"
-        y2="160"
+        x1="200"
+        y1="332"
+        x2="200"
+        y2="348"
         stroke="#34D399"
         strokeWidth="2"
         filter="url(#glow)"
       />
-      <polygon points="600,165 594,155 606,155" fill="#34D399" stroke="none" />
+      <polygon points="200,352 195,344 205,344" fill="#34D399" stroke="none" />
 
       <rect
-        x="480"
-        y="170"
-        width="240"
-        height="45"
-        rx="8"
+        x="50"
+        y="358"
+        width="300"
+        height="38"
+        rx="6"
         fill="#0f1a12"
         stroke="#34D399"
         strokeOpacity="0.5"
       />
       <text
-        x="600"
-        y="190"
+        x="200"
+        y="376"
         textAnchor="middle"
         fill="#6EE7B7"
-        fontSize="11"
+        fontSize="10"
         fontFamily="monospace"
         stroke="none"
       >
         Any epress Node
       </text>
       <text
-        x="600"
-        y="205"
+        x="200"
+        y="389"
         textAnchor="middle"
         fill="#34D399"
-        fontSize="9"
+        fontSize="8"
         fontFamily="monospace"
         stroke="none"
       >
         (self-hosted or public)
       </text>
 
-      <line
-        x1="600"
-        y1="220"
-        x2="600"
-        y2="245"
-        stroke="#34D399"
-        strokeWidth="2"
-        filter="url(#glow)"
-      />
-      <polygon points="600,250 594,240 606,240" fill="#34D399" stroke="none" />
-
-      <g transform="translate(470, 255)">
+      <g transform="translate(40, 405)">
         <rect
           x="0"
           y="0"
-          width="260"
-          height="28"
-          rx="6"
+          width="85"
+          height="22"
+          rx="4"
           fill="#0f1a12"
           stroke="#34D399"
           strokeOpacity="0.4"
         />
-        <text x="15" y="18" fill="#34D399" fontSize="12" stroke="none">
+        <text x="8" y="15" fill="#34D399" fontSize="10" stroke="none">
           ✓
         </text>
         <text
-          x="35"
-          y="18"
+          x="22"
+          y="15"
           fill="#6EE7B7"
-          fontSize="10"
+          fontSize="9"
           fontFamily="monospace"
           stroke="none"
         >
@@ -811,25 +789,25 @@ function AgentDiagram() {
         </text>
       </g>
 
-      <g transform="translate(470, 290)">
+      <g transform="translate(135, 405)">
         <rect
           x="0"
           y="0"
-          width="260"
-          height="28"
-          rx="6"
+          width="85"
+          height="22"
+          rx="4"
           fill="#0f1a12"
           stroke="#34D399"
           strokeOpacity="0.4"
         />
-        <text x="15" y="18" fill="#34D399" fontSize="12" stroke="none">
+        <text x="8" y="15" fill="#34D399" fontSize="10" stroke="none">
           ✓
         </text>
         <text
-          x="35"
-          y="18"
+          x="22"
+          y="15"
           fill="#6EE7B7"
-          fontSize="10"
+          fontSize="9"
           fontFamily="monospace"
           stroke="none"
         >
@@ -837,25 +815,25 @@ function AgentDiagram() {
         </text>
       </g>
 
-      <g transform="translate(470, 325)">
+      <g transform="translate(230, 405)">
         <rect
           x="0"
           y="0"
-          width="260"
-          height="28"
-          rx="6"
+          width="110"
+          height="22"
+          rx="4"
           fill="#0f1a12"
           stroke="#34D399"
           strokeOpacity="0.4"
         />
-        <text x="15" y="18" fill="#34D399" fontSize="12" stroke="none">
+        <text x="8" y="15" fill="#34D399" fontSize="10" stroke="none">
           ✓
         </text>
         <text
-          x="35"
-          y="18"
+          x="22"
+          y="15"
           fill="#6EE7B7"
-          fontSize="10"
+          fontSize="9"
           fontFamily="monospace"
           stroke="none"
         >
@@ -864,11 +842,11 @@ function AgentDiagram() {
       </g>
 
       <text
-        x="600"
-        y="385"
+        x="200"
+        y="453"
         textAnchor="middle"
         fill="#34D399"
-        fontSize="12"
+        fontSize="10"
         fontFamily="monospace"
         opacity="0.9"
         stroke="none"
@@ -877,21 +855,21 @@ function AgentDiagram() {
       </text>
 
       <rect
-        x="370"
-        y="170"
+        x="170"
+        y="235"
         width="60"
-        height="40"
-        rx="8"
+        height="28"
+        rx="6"
         fill="#1a1a1a"
         stroke="#F7931A"
         strokeWidth="2"
       />
       <text
-        x="400"
-        y="195"
+        x="200"
+        y="254"
         textAnchor="middle"
         fill="#F7931A"
-        fontSize="14"
+        fontSize="12"
         fontFamily="monospace"
         fontWeight="bold"
         stroke="none"
@@ -1491,13 +1469,7 @@ const cardsData = [
     title: "Your AI Agent Needs Open Networks",
     description:
       "Closed platforms are building walls exactly where AI agents need to move. epress nodes are open by default.",
-    visual: (
-      <div
-        style={{ transform: "scale(0.85)", transformOrigin: "center center" }}
-      >
-        <AgentDiagram />
-      </div>
-    ),
+    visual: <AgentDiagram />,
   },
 ]
 
