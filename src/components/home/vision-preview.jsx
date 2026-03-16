@@ -1673,20 +1673,17 @@ export function VisionPreview() {
           unlock things that weren&apos;t possible before.
         </p>
 
-        <div
-          ref={carouselRef}
-          className="flex items-center justify-center gap-4"
-        >
+        <div ref={carouselRef} className="relative">
           <button
             type="button"
-            className="carousel-arrow"
+            className="carousel-arrow absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-10"
             onClick={scrollPrev}
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-8 h-8" />
           </button>
 
-          <div className="embla" ref={emblaRef}>
+          <div className="embla mx-16" ref={emblaRef}>
             <div className="embla__container">
               {cardsData.map((card) => (
                 <div key={card.id} className="embla__slide px-4">
@@ -1706,7 +1703,7 @@ export function VisionPreview() {
 
           <button
             type="button"
-            className="carousel-arrow"
+            className="carousel-arrow absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-10"
             onClick={scrollNext}
             aria-label="Next slide"
           >
