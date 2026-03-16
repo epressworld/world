@@ -314,6 +314,31 @@ function AIContentFloodSvg() {
       />
 
       <rect
+        x="230"
+        y="8"
+        width="42"
+        height="18"
+        rx="4"
+        fill="#ef4444"
+        fillOpacity="0.2"
+        stroke="#ef4444"
+        strokeWidth="1"
+        strokeOpacity="0.6"
+      />
+      <text
+        x="251"
+        y="20"
+        textAnchor="middle"
+        fill="#fca5a5"
+        fontSize="9"
+        fontFamily="monospace"
+        fontWeight="600"
+        stroke="none"
+      >
+        POST
+      </text>
+
+      <rect
         x="20"
         y="20"
         width="200"
@@ -420,6 +445,31 @@ function ProofOfSourceSvg() {
         strokeWidth="2"
         strokeOpacity="0.5"
       />
+
+      <rect
+        x="230"
+        y="8"
+        width="42"
+        height="18"
+        rx="4"
+        fill="#34D399"
+        fillOpacity="0.15"
+        stroke="#34D399"
+        strokeWidth="1"
+        strokeOpacity="0.6"
+      />
+      <text
+        x="251"
+        y="20"
+        textAnchor="middle"
+        fill="#6EE7B7"
+        fontSize="9"
+        fontFamily="monospace"
+        fontWeight="600"
+        stroke="none"
+      >
+        POST
+      </text>
 
       <text
         x="20"
