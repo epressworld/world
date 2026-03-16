@@ -68,15 +68,11 @@ function MeritGraph() {
   })
 
   return (
-    <div
-      key={key}
-      className="relative"
-      style={{ width: "100%", maxWidth: "480px" }}
-    >
+    <div key={key} className="relative" style={{ width: "100%" }}>
       <svg
         viewBox="0 0 300 168"
         width="100%"
-        height="100%"
+        height="auto"
         preserveAspectRatio="xMidYMid meet"
         className="overflow-visible"
         aria-hidden="true"
@@ -971,18 +967,20 @@ function ReputationCardFlip() {
   }
 
   return (
-    <div style={{ width: "100%", maxWidth: "340px", margin: "0 auto" }}>
+    <div style={{ width: "100%" }}>
       <button
         type="button"
         style={{
           perspective: "1000px",
           width: "100%",
-          height: "220px",
+          height: "260px",
           cursor: "pointer",
           background: "none",
           border: "none",
           padding: 0,
           display: "block",
+          margin: "0 auto",
+          maxWidth: "400px",
         }}
         onClick={() => setFlipped(!flipped)}
         aria-label={flipped ? "Show platform account" : "Show epress identity"}
@@ -1409,7 +1407,7 @@ const cardsData = [
     description:
       "AI generates infinite content at zero cost. It can't fake years of signed history — or what's behind the address.",
     visual: (
-      <div style={{ transform: "scale(0.9)", transformOrigin: "center top" }}>
+      <div>
         <div className="grid grid-cols-2 gap-3 mb-4">
           <div>
             <p className="text-[10px] uppercase tracking-wider text-center text-dark-muted/60 font-semibold mb-2">
@@ -1635,20 +1633,20 @@ export function VisionPreview() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          min-height: 400px;
         }
         .slide-visual {
           width: 100%;
-          flex: 1;
+          min-height: 200px;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           justify-content: center;
           padding: 20px 0;
+          overflow: visible;
         }
         .slide-text {
           width: 100%;
           text-align: center;
-          padding-top: 20px;
+          margin-top: 24px;
         }
       `}</style>
 
