@@ -71,7 +71,7 @@ function MeritGraph() {
     <div
       key={key}
       className="relative"
-      style={{ width: "100%", maxWidth: "480px" }}
+      style={{ width: "100%", height: "300px" }}
     >
       <svg
         viewBox="0 0 300 168"
@@ -469,10 +469,12 @@ function AgentDiagram() {
     <svg
       viewBox="0 0 800 420"
       width="100%"
+      height="300px"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
       aria-hidden="true"
+      preserveAspectRatio="xMidYMid meet"
     >
       <defs>
         <linearGradient id="closedGrad" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -993,18 +995,20 @@ function ReputationCardFlip() {
   }
 
   return (
-    <div style={{ width: "100%", maxWidth: "340px", margin: "0 auto" }}>
+    <div style={{ width: "100%" }}>
       <button
         type="button"
         style={{
           perspective: "1000px",
           width: "100%",
-          height: "220px",
+          height: "300px",
           cursor: "pointer",
           background: "none",
           border: "none",
           padding: 0,
           display: "block",
+          margin: "0 auto",
+          maxWidth: "400px",
         }}
         onClick={() => setFlipped(!flipped)}
         aria-label={flipped ? "Show platform account" : "Show epress identity"}
@@ -1431,7 +1435,7 @@ const cardsData = [
     description:
       "AI generates infinite content at zero cost. It can't fake years of signed history — or what's behind the address.",
     visual: (
-      <div>
+      <div style={{ height: "300px" }}>
         <div className="grid grid-cols-2 gap-3 mb-4">
           <div>
             <p className="text-[10px] uppercase tracking-wider text-center text-dark-muted/60 font-semibold mb-2">
@@ -1660,21 +1664,21 @@ export function VisionPreview() {
         }
         .slide-visual {
           width: 100%;
-          max-height: 320px;
           display: flex;
           align-items: center;
           justify-content: center;
-        }
-        .slide-visual > * {
-          max-width: 100%;
-          max-height: 100%;
-          width: auto;
-          height: auto;
+          position: relative;
+          z-index: 1;
         }
         .slide-text {
           width: 100%;
           text-align: center;
           margin-top: 24px;
+          position: relative;
+          z-index: 10;
+          background: rgba(10,10,10,0.85);
+          padding: 16px 0;
+          border-radius: 8px;
         }
       `}</style>
 
@@ -1688,7 +1692,11 @@ export function VisionPreview() {
           unlock things that weren&apos;t possible before.
         </p>
 
-        <div className="flex items-center gap-4">
+        <article
+          className="flex items-center gap-4"
+          onMouseEnter={() => autoplayRef.current.stop()}
+          onMouseLeave={() => autoplayRef.current.play()}
+        >
           <button
             type="button"
             className="carousel-arrow flex-shrink-0"
@@ -1726,7 +1734,7 @@ export function VisionPreview() {
           >
             <ChevronRight className="w-8 h-8" />
           </button>
-        </div>
+        </article>
 
         <div className="text-center mt-12">
           <span className="text-sm text-dark-muted">
