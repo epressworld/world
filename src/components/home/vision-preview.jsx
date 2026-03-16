@@ -969,512 +969,6 @@ function AgentDiagram() {
     </svg>
   )
 }
-
-function ReputationCardFlip() {
-  const [flipped, setFlipped] = useState(false)
-  const [prefersReduced, setPrefersReduced] = useState(false)
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
-    setPrefersReduced(mq.matches)
-
-    const handleChange = (e) => setPrefersReduced(e.matches)
-    mq.addEventListener("change", handleChange)
-    return () => mq.removeEventListener("change", handleChange)
-  }, [])
-
-  if (prefersReduced) {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-        <div
-          style={{
-            borderRadius: "14px",
-            padding: "16px 20px",
-            background:
-              "linear-gradient(135deg, rgba(40,40,50,1) 0%, rgba(25,25,32,1) 100%)",
-            border: "1px solid rgba(255,255,255,0.1)",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "9px",
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-              color: "rgba(255,255,255,0.25)",
-              marginBottom: "4px",
-            }}
-          >
-            PLATFORM ACCOUNT
-          </div>
-          <div
-            style={{
-              fontSize: "16px",
-              fontWeight: 700,
-              color: "rgba(255,255,255,0.85)",
-            }}
-          >
-            @alice
-          </div>
-        </div>
-        <div
-          style={{
-            textAlign: "center",
-            color: "rgba(255,255,255,0.2)",
-            fontSize: "14px",
-          }}
-        >
-          ↓
-        </div>
-        <div
-          style={{
-            borderRadius: "14px",
-            padding: "16px 20px",
-            background:
-              "linear-gradient(135deg, rgba(10,28,18,1) 0%, rgba(8,20,14,1) 100%)",
-            border: "1px solid rgba(52,211,153,0.2)",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "9px",
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-              color: "rgba(52,211,153,0.45)",
-              marginBottom: "4px",
-            }}
-          >
-            EPRESS IDENTITY
-          </div>
-          <div
-            style={{
-              fontSize: "13px",
-              fontWeight: 700,
-              color: "rgba(110,231,183,0.9)",
-              fontFamily: "monospace",
-            }}
-          >
-            0x742d...f9a3
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div style={{ width: "100%" }}>
-      <button
-        type="button"
-        style={{
-          perspective: "1000px",
-          width: "100%",
-          height: "300px",
-          cursor: "pointer",
-          background: "none",
-          border: "none",
-          padding: 0,
-          display: "block",
-          margin: "0 auto",
-          maxWidth: "400px",
-        }}
-        onClick={() => setFlipped(!flipped)}
-        aria-label={flipped ? "Show platform account" : "Show epress identity"}
-      >
-        <motion.div
-          animate={{ rotateY: flipped ? 180 : 0 }}
-          transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            transformStyle: "preserve-3d",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              backfaceVisibility: "hidden",
-              WebkitBackfaceVisibility: "hidden",
-              borderRadius: "14px",
-              padding: "22px 24px",
-              background:
-                "linear-gradient(135deg, rgba(40,40,50,1) 0%, rgba(25,25,32,1) 100%)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-              }}
-            >
-              <div>
-                <div
-                  style={{
-                    fontSize: "9px",
-                    fontWeight: 700,
-                    letterSpacing: "0.1em",
-                    color: "rgba(255,255,255,0.25)",
-                    marginBottom: "8px",
-                  }}
-                >
-                  PLATFORM ACCOUNT
-                </div>
-                <div
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: 700,
-                    color: "rgba(255,255,255,0.85)",
-                  }}
-                >
-                  @alice
-                </div>
-              </div>
-              <div
-                style={{
-                  width: "36px",
-                  height: "36px",
-                  borderRadius: "8px",
-                  background: "rgba(255,255,255,0.07)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "14px",
-                    color: "rgba(255,255,255,0.2)",
-                    fontWeight: 700,
-                  }}
-                >
-                  P
-                </span>
-              </div>
-            </div>
-
-            <div style={{ display: "flex", gap: "28px", marginTop: "16px" }}>
-              <div>
-                <div
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: 700,
-                    color: "rgba(255,255,255,0.8)",
-                  }}
-                >
-                  4.2K
-                </div>
-                <div
-                  style={{
-                    fontSize: "9px",
-                    color: "rgba(255,255,255,0.3)",
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  followers
-                </div>
-              </div>
-              <div>
-                <div
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: 700,
-                    color: "rgba(255,255,255,0.8)",
-                  }}
-                >
-                  847
-                </div>
-                <div
-                  style={{
-                    fontSize: "9px",
-                    color: "rgba(255,255,255,0.3)",
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  posts
-                </div>
-              </div>
-              <div>
-                <div
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: 700,
-                    color: "rgba(255,255,255,0.8)",
-                  }}
-                >
-                  6 yrs
-                </div>
-                <div
-                  style={{
-                    fontSize: "9px",
-                    color: "rgba(255,255,255,0.3)",
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  joined
-                </div>
-              </div>
-            </div>
-
-            <div
-              style={{
-                width: "100%",
-                padding: "8px 12px",
-                borderRadius: "8px",
-                background: "rgba(239,68,68,0.08)",
-                border: "1px solid rgba(239,68,68,0.15)",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-              }}
-            >
-              <div
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  background: "rgba(251,191,36,0.7)",
-                  flexShrink: 0,
-                }}
-              />
-              <span
-                style={{
-                  fontSize: "10px",
-                  color: "rgba(255,255,255,0.3)",
-                  fontFamily: "monospace",
-                }}
-              >
-                Valid until platform decides otherwise
-              </span>
-            </div>
-          </div>
-
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              backfaceVisibility: "hidden",
-              WebkitBackfaceVisibility: "hidden",
-              transform: "rotateY(180deg)",
-              borderRadius: "14px",
-              padding: "22px 24px",
-              background:
-                "linear-gradient(135deg, rgba(10,28,18,1) 0%, rgba(8,20,14,1) 100%)",
-              border: "1px solid rgba(52,211,153,0.2)",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-              }}
-            >
-              <div>
-                <div
-                  style={{
-                    fontSize: "9px",
-                    fontWeight: 700,
-                    letterSpacing: "0.1em",
-                    color: "rgba(52,211,153,0.45)",
-                    marginBottom: "8px",
-                  }}
-                >
-                  EPRESS IDENTITY
-                </div>
-                <div
-                  style={{
-                    fontSize: "15px",
-                    fontWeight: 700,
-                    color: "rgba(110,231,183,0.9)",
-                    fontFamily: "monospace",
-                  }}
-                >
-                  0x742d...f9a3
-                </div>
-              </div>
-              <div
-                style={{
-                  width: "36px",
-                  height: "36px",
-                  borderRadius: "8px",
-                  background: "rgba(52,211,153,0.1)",
-                  border: "1px solid rgba(52,211,153,0.3)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "16px",
-                    color: "rgba(52,211,153,0.9)",
-                    fontWeight: 700,
-                  }}
-                >
-                  ✓
-                </span>
-              </div>
-            </div>
-
-            <div style={{ display: "flex", gap: "28px", marginTop: "16px" }}>
-              <div>
-                <div
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: 700,
-                    color: "rgba(110,231,183,0.85)",
-                  }}
-                >
-                  4.2K
-                </div>
-                <div
-                  style={{
-                    fontSize: "9px",
-                    color: "rgba(110,231,183,0.35)",
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  cited by
-                </div>
-              </div>
-              <div>
-                <div
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: 700,
-                    color: "rgba(110,231,183,0.85)",
-                  }}
-                >
-                  847
-                </div>
-                <div
-                  style={{
-                    fontSize: "9px",
-                    color: "rgba(110,231,183,0.35)",
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  signed posts
-                </div>
-              </div>
-              <div>
-                <div
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: 700,
-                    color: "rgba(110,231,183,0.85)",
-                  }}
-                >
-                  6 yrs
-                </div>
-                <div
-                  style={{
-                    fontSize: "9px",
-                    color: "rgba(110,231,183,0.35)",
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  on-chain history
-                </div>
-              </div>
-            </div>
-
-            <div
-              style={{
-                width: "100%",
-                padding: "8px 12px",
-                borderRadius: "8px",
-                background: "rgba(52,211,153,0.07)",
-                border: "1px solid rgba(52,211,153,0.18)",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-              }}
-            >
-              <div
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  background: "rgba(52,211,153,0.8)",
-                  flexShrink: 0,
-                }}
-              />
-              <span
-                style={{
-                  fontSize: "10px",
-                  color: "rgba(110,231,183,0.6)",
-                  fontFamily: "monospace",
-                }}
-              >
-                Valid forever. Verifiable by anyone.
-              </span>
-            </div>
-          </div>
-        </motion.div>
-      </button>
-
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: "12px",
-          gap: "6px",
-        }}
-      >
-        <div
-          style={{
-            width: "5px",
-            height: "5px",
-            borderRadius: "50%",
-            background: flipped
-              ? "rgba(255,255,255,0.08)"
-              : "rgba(255,255,255,0.25)",
-            transition: "background 0.3s ease",
-          }}
-        />
-        <div
-          style={{
-            width: "5px",
-            height: "5px",
-            borderRadius: "50%",
-            background: flipped
-              ? "rgba(52,211,153,0.6)"
-              : "rgba(255,255,255,0.08)",
-            transition: "background 0.3s ease",
-          }}
-        />
-        <span
-          style={{
-            fontSize: "9px",
-            color: flipped ? "rgba(52,211,153,0.5)" : "rgba(251,191,36,0.5)",
-            marginLeft: "8px",
-            transition: "all 0.3s ease",
-          }}
-        >
-          {flipped ? "click to return" : "click to see the difference"}
-        </span>
-      </div>
-    </div>
-  )
-}
-
 const cardsData = [
   {
     id: "merit",
@@ -1493,7 +987,245 @@ const cardsData = [
         epress reputation: a cryptographic fact no one can alter.
       </>
     ),
-    visual: <ReputationCardFlip />,
+    visual: (
+      <div
+        style={{
+          height: "300px",
+          display: "flex",
+          gap: "20px",
+          maxWidth: "700px",
+          margin: "0 auto",
+        }}
+      >
+        <div
+          style={{
+            flex: 1,
+            minWidth: "300px",
+            borderRadius: "14px",
+            padding: "22px 24px",
+            background:
+              "linear-gradient(135deg, rgba(40,40,50,1) 0%, rgba(25,25,32,1) 100%)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <div>
+            <div
+              style={{
+                fontSize: "9px",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                color: "rgba(255,255,255,0.25)",
+                marginBottom: "8px",
+              }}
+            >
+              PLATFORM ACCOUNT
+            </div>
+            <div
+              style={{
+                fontSize: "18px",
+                fontWeight: 700,
+                color: "rgba(255,255,255,0.85)",
+              }}
+            >
+              @alice
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: "28px", marginTop: "16px" }}>
+            <div>
+              <div
+                style={{
+                  fontSize: "20px",
+                  fontWeight: 700,
+                  color: "rgba(255,255,255,0.8)",
+                }}
+              >
+                4.2K
+              </div>
+              <div
+                style={{
+                  fontSize: "9px",
+                  color: "rgba(255,255,255,0.3)",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                }}
+              >
+                followers
+              </div>
+            </div>
+            <div>
+              <div
+                style={{
+                  fontSize: "20px",
+                  fontWeight: 700,
+                  color: "rgba(255,255,255,0.8)",
+                }}
+              >
+                847
+              </div>
+              <div
+                style={{
+                  fontSize: "9px",
+                  color: "rgba(255,255,255,0.3)",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                }}
+              >
+                posts
+              </div>
+            </div>
+          </div>
+          <div
+            style={{
+              width: "100%",
+              marginTop: "12px",
+              padding: "8px 12px",
+              borderRadius: "8px",
+              background: "rgba(239,68,68,0.08)",
+              border: "1px solid rgba(239,68,68,0.15)",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
+            <div
+              style={{
+                width: "6px",
+                height: "6px",
+                borderRadius: "50%",
+                background: "rgba(251,191,36,0.7)",
+                flexShrink: 0,
+              }}
+            />
+            <span
+              style={{
+                fontSize: "10px",
+                color: "rgba(255,255,255,0.3)",
+                fontFamily: "monospace",
+              }}
+            >
+              Valid until platform decides otherwise
+            </span>
+          </div>
+        </div>
+        <div
+          style={{
+            flex: 1,
+            minWidth: "300px",
+            borderRadius: "14px",
+            padding: "22px 24px",
+            background:
+              "linear-gradient(135deg, rgba(10,28,18,1) 0%, rgba(8,20,14,1) 100%)",
+            border: "1px solid rgba(52,211,153,0.2)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <div>
+            <div
+              style={{
+                fontSize: "9px",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                color: "rgba(52,211,153,0.45)",
+                marginBottom: "8px",
+              }}
+            >
+              EPRESS IDENTITY
+            </div>
+            <div
+              style={{
+                fontSize: "15px",
+                fontWeight: 700,
+                color: "rgba(110,231,183,0.9)",
+                fontFamily: "monospace",
+              }}
+            >
+              0x742d...f9a3
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: "28px", marginTop: "16px" }}>
+            <div>
+              <div
+                style={{
+                  fontSize: "20px",
+                  fontWeight: 700,
+                  color: "rgba(110,231,183,0.85)",
+                }}
+              >
+                4.2K
+              </div>
+              <div
+                style={{
+                  fontSize: "9px",
+                  color: "rgba(110,231,183,0.35)",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                }}
+              >
+                cited by
+              </div>
+            </div>
+            <div>
+              <div
+                style={{
+                  fontSize: "20px",
+                  fontWeight: 700,
+                  color: "rgba(110,231,183,0.85)",
+                }}
+              >
+                847
+              </div>
+              <div
+                style={{
+                  fontSize: "9px",
+                  color: "rgba(110,231,183,0.35)",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                }}
+              >
+                signed posts
+              </div>
+            </div>
+          </div>
+          <div
+            style={{
+              width: "100%",
+              marginTop: "12px",
+              padding: "8px 12px",
+              borderRadius: "8px",
+              background: "rgba(52,211,153,0.07)",
+              border: "1px solid rgba(52,211,153,0.18)",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
+            <div
+              style={{
+                width: "6px",
+                height: "6px",
+                borderRadius: "50%",
+                background: "rgba(52,211,153,0.8)",
+                flexShrink: 0,
+              }}
+            />
+            <span
+              style={{
+                fontSize: "10px",
+                color: "rgba(110,231,183,0.6)",
+                fontFamily: "monospace",
+              }}
+            >
+              Valid forever. Verifiable by anyone.
+            </span>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     id: "human",
