@@ -2,7 +2,7 @@
 
 import Autoplay from "embla-carousel-autoplay"
 import useEmblaCarousel from "embla-carousel-react"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useCallback, useEffect, useRef, useState } from "react"
 
@@ -68,10 +68,16 @@ function MeritGraph() {
   })
 
   return (
-    <div key={key} className="relative">
+    <div
+      key={key}
+      className="relative"
+      style={{ width: "100%", maxWidth: "480px" }}
+    >
       <svg
         viewBox="0 0 300 168"
         width="100%"
+        height="100%"
+        preserveAspectRatio="xMidYMid meet"
         className="overflow-visible"
         aria-hidden="true"
       >
@@ -896,26 +902,9 @@ function AgentDiagram() {
   )
 }
 
-function ReputationVisual() {
-  const [blurStep, setBlurStep] = useState(0)
-  const [showRevoked, setShowRevoked] = useState(false)
+function ReputationCardFlip() {
+  const [flipped, setFlipped] = useState(false)
   const [prefersReduced, setPrefersReduced] = useState(false)
-
-  const leftLines = [
-    "a thought from 2019...",
-    "that essay I wrote...",
-    "500 followers built...",
-    "4 years of posts...",
-    "everything I made...",
-  ]
-
-  const rightLines = [
-    "first post, Jan 2024",
-    "essay · 847 readers",
-    "2,400 followers",
-    "3 years of work",
-    "still here. always.",
-  ]
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -926,266 +915,491 @@ function ReputationVisual() {
     return () => mq.removeEventListener("change", handleChange)
   }, [])
 
-  useEffect(() => {
-    if (prefersReduced) {
-      setBlurStep(5)
-      setShowRevoked(true)
-      return
-    }
-
-    setBlurStep(0)
-    setShowRevoked(false)
-
-    const interval = setInterval(() => {
-      setBlurStep((prev) => {
-        if (prev >= 5) {
-          return prev
-        }
-        return prev + 1
-      })
-    }, 900)
-
-    return () => clearInterval(interval)
-  }, [prefersReduced])
-
-  useEffect(() => {
-    if (blurStep >= 5 && !prefersReduced) {
-      const timer = setTimeout(() => {
-        setShowRevoked(true)
-      }, 500)
-      return () => clearTimeout(timer)
-    }
-  }, [blurStep, prefersReduced])
-
-  useEffect(() => {
-    if (showRevoked && !prefersReduced) {
-      const timer = setTimeout(() => {
-        setBlurStep(0)
-        setShowRevoked(false)
-      }, 1800)
-      return () => clearTimeout(timer)
-    }
-  }, [showRevoked, prefersReduced])
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.18,
-        delayChildren: 0.1,
-      },
-    },
-  }
-
-  const lineVariants = {
-    hidden: { opacity: 0, y: 8 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4, ease: "easeOut" },
-    },
-  }
-
-  return (
-    <div
-      style={{
-        background: "rgba(255,255,255,0.03)",
-        borderRadius: "12px",
-        padding: "24px 20px",
-      }}
-    >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "24px",
-        }}
-      >
-        <div>
+  if (prefersReduced) {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+        <div
+          style={{
+            borderRadius: "14px",
+            padding: "16px 20px",
+            background:
+              "linear-gradient(135deg, rgba(40,40,50,1) 0%, rgba(25,25,32,1) 100%)",
+            border: "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
           <div
             style={{
               fontSize: "9px",
               fontWeight: 700,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: "rgba(248,113,113,0.55)",
-              marginBottom: "14px",
+              letterSpacing: "0.1em",
+              color: "rgba(255,255,255,0.25)",
+              marginBottom: "4px",
             }}
           >
-            Everywhere Else
+            PLATFORM ACCOUNT
           </div>
-          {leftLines.map((line, i) => (
-            <motion.div
-              key={i}
+          <div
+            style={{
+              fontSize: "16px",
+              fontWeight: 700,
+              color: "rgba(255,255,255,0.85)",
+            }}
+          >
+            @alice
+          </div>
+        </div>
+        <div
+          style={{
+            textAlign: "center",
+            color: "rgba(255,255,255,0.2)",
+            fontSize: "14px",
+          }}
+        >
+          ↓
+        </div>
+        <div
+          style={{
+            borderRadius: "14px",
+            padding: "16px 20px",
+            background:
+              "linear-gradient(135deg, rgba(10,28,18,1) 0%, rgba(8,20,14,1) 100%)",
+            border: "1px solid rgba(52,211,153,0.2)",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "9px",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+              color: "rgba(52,211,153,0.45)",
+              marginBottom: "4px",
+            }}
+          >
+            EPRESS IDENTITY
+          </div>
+          <div
+            style={{
+              fontSize: "13px",
+              fontWeight: 700,
+              color: "rgba(110,231,183,0.9)",
+              fontFamily: "monospace",
+            }}
+          >
+            0x742d...f9a3
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ width: "100%", maxWidth: "340px", margin: "0 auto" }}>
+      <button
+        type="button"
+        style={{
+          perspective: "1000px",
+          width: "100%",
+          height: "220px",
+          cursor: "pointer",
+          background: "none",
+          border: "none",
+          padding: 0,
+          display: "block",
+        }}
+        onClick={() => setFlipped(!flipped)}
+        aria-label={flipped ? "Show platform account" : "Show epress identity"}
+      >
+        <motion.div
+          animate={{ rotateY: flipped ? 180 : 0 }}
+          transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "relative",
+            transformStyle: "preserve-3d",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+              borderRadius: "14px",
+              padding: "22px 24px",
+              background:
+                "linear-gradient(135deg, rgba(40,40,50,1) 0%, rgba(25,25,32,1) 100%)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
+            <div
               style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+              }}
+            >
+              <div>
+                <div
+                  style={{
+                    fontSize: "9px",
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    color: "rgba(255,255,255,0.25)",
+                    marginBottom: "8px",
+                  }}
+                >
+                  PLATFORM ACCOUNT
+                </div>
+                <div
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: 700,
+                    color: "rgba(255,255,255,0.85)",
+                  }}
+                >
+                  @alice
+                </div>
+              </div>
+              <div
+                style={{
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "8px",
+                  background: "rgba(255,255,255,0.07)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "14px",
+                    color: "rgba(255,255,255,0.2)",
+                    fontWeight: 700,
+                  }}
+                >
+                  P
+                </span>
+              </div>
+            </div>
+
+            <div style={{ display: "flex", gap: "28px", marginTop: "16px" }}>
+              <div>
+                <div
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: 700,
+                    color: "rgba(255,255,255,0.8)",
+                  }}
+                >
+                  4.2K
+                </div>
+                <div
+                  style={{
+                    fontSize: "9px",
+                    color: "rgba(255,255,255,0.3)",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  followers
+                </div>
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: 700,
+                    color: "rgba(255,255,255,0.8)",
+                  }}
+                >
+                  847
+                </div>
+                <div
+                  style={{
+                    fontSize: "9px",
+                    color: "rgba(255,255,255,0.3)",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  posts
+                </div>
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: 700,
+                    color: "rgba(255,255,255,0.8)",
+                  }}
+                >
+                  6 yrs
+                </div>
+                <div
+                  style={{
+                    fontSize: "9px",
+                    color: "rgba(255,255,255,0.3)",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  joined
+                </div>
+              </div>
+            </div>
+
+            <div
+              style={{
+                width: "100%",
+                padding: "8px 12px",
+                borderRadius: "8px",
+                background: "rgba(239,68,68,0.08)",
+                border: "1px solid rgba(239,68,68,0.15)",
                 display: "flex",
                 alignItems: "center",
                 gap: "8px",
-                marginBottom: "10px",
               }}
-              animate={
-                prefersReduced
-                  ? { opacity: 0.14, filter: "blur(3px)" }
-                  : blurStep > i
-                    ? { opacity: 0.14, filter: "blur(3px)" }
-                    : { opacity: 1, filter: "blur(0px)" }
-              }
-              transition={{ duration: 0.55, ease: "easeInOut" }}
             >
               <div
                 style={{
-                  width: "14px",
-                  height: "14px",
+                  width: "6px",
+                  height: "6px",
                   borderRadius: "50%",
-                  background: "rgba(255,255,255,0.1)",
+                  background: "rgba(251,191,36,0.7)",
                   flexShrink: 0,
                 }}
               />
               <span
                 style={{
-                  fontSize: "11px",
+                  fontSize: "10px",
+                  color: "rgba(255,255,255,0.3)",
                   fontFamily: "monospace",
-                  textDecoration:
-                    prefersReduced || blurStep > i ? "line-through" : "none",
-                  transition: "text-decoration 0.3s ease",
                 }}
               >
-                {line}
-              </span>
-            </motion.div>
-          ))}
-          <AnimatePresence>
-            {showRevoked && (
-              <motion.div
-                key="revoked"
-                initial={
-                  prefersReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }
-                }
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -4 }}
-                transition={{ duration: 0.35 }}
-                style={{
-                  fontFamily: "monospace",
-                  fontSize: "12px",
-                  fontWeight: 700,
-                  color: "#f87171",
-                  marginTop: "6px",
-                }}
-              >
-                ✗ Access revoked.
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        <div>
-          <div
-            style={{
-              fontSize: "9px",
-              fontWeight: 700,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: "rgba(74,222,128,0.65)",
-              marginBottom: "14px",
-            }}
-          >
-            epress
-          </div>
-          {prefersReduced ? (
-            <div>
-              {rightLines.map((line, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "14px",
-                      height: "14px",
-                      borderRadius: "50%",
-                      background: "rgba(74,222,128,0.15)",
-                      border: "1px solid rgba(74,222,128,0.3)",
-                      flexShrink: 0,
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontSize: "11px",
-                      fontFamily: "monospace",
-                      color: "rgba(255,255,255,0.72)",
-                    }}
-                  >
-                    {line}
-                  </span>
-                </div>
-              ))}
-              <span
-                style={{
-                  color: "rgba(74,222,128,0.55)",
-                  fontSize: "16px",
-                  marginLeft: "2px",
-                }}
-              >
-                ▌
+                Valid until platform decides otherwise
               </span>
             </div>
-          ) : (
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
+          </div>
+
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+              transform: "rotateY(180deg)",
+              borderRadius: "14px",
+              padding: "22px 24px",
+              background:
+                "linear-gradient(135deg, rgba(10,28,18,1) 0%, rgba(8,20,14,1) 100%)",
+              border: "1px solid rgba(52,211,153,0.2)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+              }}
             >
-              {rightLines.map((line, i) => (
-                <motion.div
-                  key={i}
-                  variants={lineVariants}
+              <div>
+                <div
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    marginBottom: "10px",
+                    fontSize: "9px",
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    color: "rgba(52,211,153,0.45)",
+                    marginBottom: "8px",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "14px",
-                      height: "14px",
-                      borderRadius: "50%",
-                      background: "rgba(74,222,128,0.15)",
-                      border: "1px solid rgba(74,222,128,0.3)",
-                      flexShrink: 0,
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontSize: "11px",
-                      fontFamily: "monospace",
-                      color: "rgba(255,255,255,0.72)",
-                    }}
-                  >
-                    {line}
-                  </span>
-                </motion.div>
-              ))}
-              <motion.span
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
+                  EPRESS IDENTITY
+                </div>
+                <div
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: 700,
+                    color: "rgba(110,231,183,0.9)",
+                    fontFamily: "monospace",
+                  }}
+                >
+                  0x742d...f9a3
+                </div>
+              </div>
+              <div
                 style={{
-                  color: "rgba(74,222,128,0.55)",
-                  fontSize: "16px",
-                  marginLeft: "2px",
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "8px",
+                  background: "rgba(52,211,153,0.1)",
+                  border: "1px solid rgba(52,211,153,0.3)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                ▌
-              </motion.span>
-            </motion.div>
-          )}
-        </div>
+                <span
+                  style={{
+                    fontSize: "16px",
+                    color: "rgba(52,211,153,0.9)",
+                    fontWeight: 700,
+                  }}
+                >
+                  ✓
+                </span>
+              </div>
+            </div>
+
+            <div style={{ display: "flex", gap: "28px", marginTop: "16px" }}>
+              <div>
+                <div
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: 700,
+                    color: "rgba(110,231,183,0.85)",
+                  }}
+                >
+                  4.2K
+                </div>
+                <div
+                  style={{
+                    fontSize: "9px",
+                    color: "rgba(110,231,183,0.35)",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  cited by
+                </div>
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: 700,
+                    color: "rgba(110,231,183,0.85)",
+                  }}
+                >
+                  847
+                </div>
+                <div
+                  style={{
+                    fontSize: "9px",
+                    color: "rgba(110,231,183,0.35)",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  signed posts
+                </div>
+              </div>
+              <div>
+                <div
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: 700,
+                    color: "rgba(110,231,183,0.85)",
+                  }}
+                >
+                  6 yrs
+                </div>
+                <div
+                  style={{
+                    fontSize: "9px",
+                    color: "rgba(110,231,183,0.35)",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  on-chain history
+                </div>
+              </div>
+            </div>
+
+            <div
+              style={{
+                width: "100%",
+                padding: "8px 12px",
+                borderRadius: "8px",
+                background: "rgba(52,211,153,0.07)",
+                border: "1px solid rgba(52,211,153,0.18)",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <div
+                style={{
+                  width: "6px",
+                  height: "6px",
+                  borderRadius: "50%",
+                  background: "rgba(52,211,153,0.8)",
+                  flexShrink: 0,
+                }}
+              />
+              <span
+                style={{
+                  fontSize: "10px",
+                  color: "rgba(110,231,183,0.6)",
+                  fontFamily: "monospace",
+                }}
+              >
+                Valid forever. Verifiable by anyone.
+              </span>
+            </div>
+          </div>
+        </motion.div>
+      </button>
+
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: "12px",
+          gap: "6px",
+        }}
+      >
+        <div
+          style={{
+            width: "5px",
+            height: "5px",
+            borderRadius: "50%",
+            background: flipped
+              ? "rgba(255,255,255,0.08)"
+              : "rgba(255,255,255,0.25)",
+            transition: "background 0.3s ease",
+          }}
+        />
+        <div
+          style={{
+            width: "5px",
+            height: "5px",
+            borderRadius: "50%",
+            background: flipped
+              ? "rgba(52,211,153,0.6)"
+              : "rgba(255,255,255,0.08)",
+            transition: "background 0.3s ease",
+          }}
+        />
+        <span
+          style={{
+            fontSize: "9px",
+            color: flipped ? "rgba(52,211,153,0.5)" : "rgba(251,191,36,0.5)",
+            marginLeft: "8px",
+            transition: "all 0.3s ease",
+          }}
+        >
+          {flipped ? "click to return" : "click to see the difference"}
+        </span>
       </div>
     </div>
   )
@@ -1202,15 +1416,20 @@ const cardsData = [
   {
     id: "reputation",
     title: "Your Reputation Is Yours",
-    description:
-      "Your posts, followers, and reputation live on platforms you don't own. One policy change, one shutdown — and years of work disappear. On epress, your history is cryptographically yours. No one can take it away.",
-    visual: <ReputationVisual />,
+    description: (
+      <>
+        Platform reputation: a number in their database.
+        <br />
+        epress reputation: a cryptographic fact no one can alter.
+      </>
+    ),
+    visual: <ReputationCardFlip />,
   },
   {
     id: "human",
     title: "Human Voices Stand Out Again",
     description:
-      "Every epress post carries a verified identity with accumulated history. An address with years of published work — and real assets behind it — signals authenticity that no AI farm can replicate at scale.",
+      "AI generates infinite content at zero cost. It can't fake years of signed history — or what's behind the address.",
     visual: (
       <div>
         <div className="grid grid-cols-2 gap-3 mb-4">
@@ -1434,6 +1653,13 @@ export function VisionPreview() {
             height: 40px;
           }
         }
+        .visual-wrapper {
+          height: 300px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
       `}</style>
 
       <div className="container-custom">
@@ -1464,13 +1690,13 @@ export function VisionPreview() {
               {cardsData.map((card) => (
                 <div key={card.id} className="embla__slide px-4">
                   <div>
+                    <div className="visual-wrapper mb-6">{card.visual}</div>
                     <h3 className="font-semibold text-2xl mb-2 text-center">
                       {card.title}
                     </h3>
-                    <p className="text-sm text-dark-muted leading-relaxed text-center max-w-lg mx-auto mb-6">
+                    <p className="text-sm text-dark-muted leading-relaxed text-center max-w-lg mx-auto">
                       {card.description}
                     </p>
-                    <div>{card.visual}</div>
                   </div>
                 </div>
               ))}
