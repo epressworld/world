@@ -2,7 +2,7 @@
 
 import Autoplay from "embla-carousel-autoplay"
 import useEmblaCarousel from "embla-carousel-react"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useCallback, useEffect, useRef, useState } from "react"
 
@@ -896,6 +896,301 @@ function AgentDiagram() {
   )
 }
 
+function ReputationVisual() {
+  const [blurStep, setBlurStep] = useState(0)
+  const [showRevoked, setShowRevoked] = useState(false)
+  const [prefersReduced, setPrefersReduced] = useState(false)
+
+  const leftLines = [
+    "a thought from 2019...",
+    "that essay I wrote...",
+    "500 followers built...",
+    "4 years of posts...",
+    "everything I made...",
+  ]
+
+  const rightLines = [
+    "first post, Jan 2024",
+    "essay · 847 readers",
+    "2,400 followers",
+    "3 years of work",
+    "still here. always.",
+  ]
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
+    setPrefersReduced(mq.matches)
+
+    const handleChange = (e) => setPrefersReduced(e.matches)
+    mq.addEventListener("change", handleChange)
+    return () => mq.removeEventListener("change", handleChange)
+  }, [])
+
+  useEffect(() => {
+    if (prefersReduced) {
+      setBlurStep(5)
+      setShowRevoked(true)
+      return
+    }
+
+    setBlurStep(0)
+    setShowRevoked(false)
+
+    const interval = setInterval(() => {
+      setBlurStep((prev) => {
+        if (prev >= 5) {
+          return prev
+        }
+        return prev + 1
+      })
+    }, 900)
+
+    return () => clearInterval(interval)
+  }, [prefersReduced])
+
+  useEffect(() => {
+    if (blurStep >= 5 && !prefersReduced) {
+      const timer = setTimeout(() => {
+        setShowRevoked(true)
+      }, 500)
+      return () => clearTimeout(timer)
+    }
+  }, [blurStep, prefersReduced])
+
+  useEffect(() => {
+    if (showRevoked && !prefersReduced) {
+      const timer = setTimeout(() => {
+        setBlurStep(0)
+        setShowRevoked(false)
+      }, 1800)
+      return () => clearTimeout(timer)
+    }
+  }, [showRevoked, prefersReduced])
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.18,
+        delayChildren: 0.1,
+      },
+    },
+  }
+
+  const lineVariants = {
+    hidden: { opacity: 0, y: 8 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: "easeOut" },
+    },
+  }
+
+  return (
+    <div
+      style={{
+        background: "rgba(255,255,255,0.03)",
+        borderRadius: "12px",
+        padding: "24px 20px",
+      }}
+    >
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "24px",
+        }}
+      >
+        <div>
+          <div
+            style={{
+              fontSize: "9px",
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "rgba(248,113,113,0.55)",
+              marginBottom: "14px",
+            }}
+          >
+            Everywhere Else
+          </div>
+          {leftLines.map((line, i) => (
+            <motion.div
+              key={i}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                marginBottom: "10px",
+              }}
+              animate={
+                prefersReduced
+                  ? { opacity: 0.14, filter: "blur(3px)" }
+                  : blurStep > i
+                    ? { opacity: 0.14, filter: "blur(3px)" }
+                    : { opacity: 1, filter: "blur(0px)" }
+              }
+              transition={{ duration: 0.55, ease: "easeInOut" }}
+            >
+              <div
+                style={{
+                  width: "14px",
+                  height: "14px",
+                  borderRadius: "50%",
+                  background: "rgba(255,255,255,0.1)",
+                  flexShrink: 0,
+                }}
+              />
+              <span
+                style={{
+                  fontSize: "11px",
+                  fontFamily: "monospace",
+                  textDecoration:
+                    prefersReduced || blurStep > i ? "line-through" : "none",
+                  transition: "text-decoration 0.3s ease",
+                }}
+              >
+                {line}
+              </span>
+            </motion.div>
+          ))}
+          <AnimatePresence>
+            {showRevoked && (
+              <motion.div
+                key="revoked"
+                initial={
+                  prefersReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }
+                }
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.35 }}
+                style={{
+                  fontFamily: "monospace",
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  color: "#f87171",
+                  marginTop: "6px",
+                }}
+              >
+                ✗ Access revoked.
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        <div>
+          <div
+            style={{
+              fontSize: "9px",
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "rgba(74,222,128,0.65)",
+              marginBottom: "14px",
+            }}
+          >
+            epress
+          </div>
+          {prefersReduced ? (
+            <div>
+              {rightLines.map((line, i) => (
+                <div
+                  key={i}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "14px",
+                      height: "14px",
+                      borderRadius: "50%",
+                      background: "rgba(74,222,128,0.15)",
+                      border: "1px solid rgba(74,222,128,0.3)",
+                      flexShrink: 0,
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      fontFamily: "monospace",
+                      color: "rgba(255,255,255,0.72)",
+                    }}
+                  >
+                    {line}
+                  </span>
+                </div>
+              ))}
+              <span
+                style={{
+                  color: "rgba(74,222,128,0.55)",
+                  fontSize: "16px",
+                  marginLeft: "2px",
+                }}
+              >
+                ▌
+              </span>
+            </div>
+          ) : (
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              {rightLines.map((line, i) => (
+                <motion.div
+                  key={i}
+                  variants={lineVariants}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "14px",
+                      height: "14px",
+                      borderRadius: "50%",
+                      background: "rgba(74,222,128,0.15)",
+                      border: "1px solid rgba(74,222,128,0.3)",
+                      flexShrink: 0,
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      fontFamily: "monospace",
+                      color: "rgba(255,255,255,0.72)",
+                    }}
+                  >
+                    {line}
+                  </span>
+                </motion.div>
+              ))}
+              <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
+                style={{
+                  color: "rgba(74,222,128,0.55)",
+                  fontSize: "16px",
+                  marginLeft: "2px",
+                }}
+              >
+                ▌
+              </motion.span>
+            </motion.div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const cardsData = [
   {
     id: "merit",
@@ -907,47 +1202,9 @@ const cardsData = [
   {
     id: "reputation",
     title: "Your Reputation Is Yours",
-    description: "No platform can revoke what the math has already proven.",
-    visual: (
-      <div>
-        <div
-          className="rounded-lg p-3 mb-2"
-          style={{
-            background: "rgba(239,68,68,0.06)",
-            border: "1px solid rgba(239,68,68,0.12)",
-          }}
-        >
-          <p
-            className="text-[10px] uppercase tracking-wider font-semibold mb-1"
-            style={{ color: "rgba(248,113,113,0.7)" }}
-          >
-            Every platform you&apos;ve ever used
-          </p>
-          <p className="text-xs text-dark-muted">
-            Your followers, posts, reputation — stored in their database. Gone
-            the day they&apos;re gone.
-          </p>
-        </div>
-        <div
-          className="rounded-lg p-3"
-          style={{
-            background: "rgba(34,197,94,0.06)",
-            border: "1px solid rgba(34,197,94,0.14)",
-          }}
-        >
-          <p
-            className="text-[10px] uppercase tracking-wider font-semibold mb-1"
-            style={{ color: "rgba(74,222,128,0.8)" }}
-          >
-            epress
-          </p>
-          <p className="text-xs text-dark-text">
-            Your contribution history is cryptographically bound to your
-            identity. Portable. Permanent. Provably yours.
-          </p>
-        </div>
-      </div>
-    ),
+    description:
+      "Your posts, followers, and reputation live on platforms you don't own. One policy change, one shutdown — and years of work disappear. On epress, your history is cryptographically yours. No one can take it away.",
+    visual: <ReputationVisual />,
   },
   {
     id: "human",
