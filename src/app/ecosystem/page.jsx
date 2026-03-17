@@ -190,23 +190,23 @@ function RadialDiagramSvg() {
   const toRad = (deg) => (deg * Math.PI) / 180
   const centerR = 36
   const satR = 22
-  const distance = 110
+  const distance = 100
 
   return (
     <svg
-      viewBox="0 0 340 260"
+      viewBox="0 0 340 280"
       className="w-full max-w-[340px] mx-auto block"
       aria-hidden="true"
     >
       {satellites.map((sat, i) => {
         const rad = toRad(sat.angle)
         const cx = 170 + Math.cos(rad) * distance
-        const cy = 130 + Math.sin(rad) * distance
+        const cy = 140 + Math.sin(rad) * distance
         return (
           <g key={i}>
             <line
               x1={170 + Math.cos(rad) * centerR}
-              y1={130 + Math.sin(rad) * centerR}
+              y1={140 + Math.sin(rad) * centerR}
               x2={cx - Math.cos(rad) * satR}
               y2={cy - Math.sin(rad) * satR}
               stroke="currentColor"
@@ -220,7 +220,7 @@ function RadialDiagramSvg() {
       {satellites.map((sat, i) => {
         const rad = toRad(sat.angle)
         const cx = 170 + Math.cos(rad) * distance
-        const cy = 130 + Math.sin(rad) * distance
+        const cy = 140 + Math.sin(rad) * distance
         const lines = sat.label.split("\n")
         return (
           <g key={`sat-${i}`}>
@@ -253,7 +253,7 @@ function RadialDiagramSvg() {
       })}
       <circle
         cx="170"
-        cy="130"
+        cy="140"
         r={centerR}
         fill="currentColor"
         fillOpacity="0.12"
@@ -263,7 +263,7 @@ function RadialDiagramSvg() {
       />
       <text
         x="170"
-        y="127"
+        y="137"
         fontSize="11"
         fontWeight="700"
         textAnchor="middle"
@@ -275,7 +275,7 @@ function RadialDiagramSvg() {
       </text>
       <text
         x="170"
-        y="140"
+        y="150"
         fontSize="8"
         textAnchor="middle"
         fill="currentColor"
@@ -402,8 +402,8 @@ function CostFlowSvg() {
         />
         <circle
           cx="140"
-          cy="55"
-          r="28"
+          cy="70"
+          r="24"
           fill="currentColor"
           fillOpacity="0.1"
           stroke="currentColor"
@@ -411,7 +411,7 @@ function CostFlowSvg() {
         />
         <text
           x="140"
-          y="59"
+          y="73"
           fontSize="11"
           fontWeight="700"
           textAnchor="middle"
@@ -424,21 +424,21 @@ function CostFlowSvg() {
 
         {[
           { angle: -135, label: "CDN" },
-          { angle: -90, label: "Sponsors" },
-          { angle: -45, label: "Subscribers" },
-          { angle: 45, label: "Mirrors" },
+          { angle: -45, label: "Sponsors" },
+          { angle: 45, label: "Subscribers" },
+          { angle: 135, label: "Mirrors" },
         ].map((partner, i) => {
           const rad = (partner.angle * Math.PI) / 180
-          const dist = 70
+          const dist = 48
           const cx = 140 + Math.cos(rad) * dist
-          const cy = 55 + Math.sin(rad) * dist
+          const cy = 70 + Math.sin(rad) * dist
           return (
             <g key={i}>
               <line
-                x1={140 + Math.cos(rad) * 28}
-                y1={55 + Math.sin(rad) * 28}
-                x2={cx - Math.cos(rad) * 16}
-                y2={cy - Math.sin(rad) * 16}
+                x1={140 + Math.cos(rad) * 24}
+                y1={70 + Math.sin(rad) * 24}
+                x2={cx - Math.cos(rad) * 14}
+                y2={cy - Math.sin(rad) * 14}
                 stroke="currentColor"
                 strokeOpacity="0.25"
                 strokeWidth="1"
@@ -446,14 +446,14 @@ function CostFlowSvg() {
               <circle
                 cx={cx}
                 cy={cy}
-                r="16"
+                r="14"
                 fill="currentColor"
                 fillOpacity="0.08"
               />
               <text
                 x={cx}
-                y={cy + 3}
-                fontSize="7"
+                y={cy + 2}
+                fontSize="6"
                 textAnchor="middle"
                 fill="currentColor"
                 fillOpacity="0.5"
