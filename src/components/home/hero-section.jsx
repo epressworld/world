@@ -104,19 +104,39 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            Sovereign Territory in the Digital World.
+            Your Digital Home.
+            <br />
+            <span className="text-primary">For Life.</span>
           </motion.h1>
 
-          <motion.p
-            className="text-lg md:text-xl text-white/70 leading-relaxed mb-10 max-w-2xl"
+          <motion.div
+            className="mb-10 max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Not a platform. Not a rental space. epress is a decentralized
-            protocol where your identity, social graph, and content belong
-            entirely to you, secured by cryptography, forever.
-          </motion.p>
+            <p
+              className="text-xl md:text-2xl mb-3"
+              style={{
+                color: "rgba(255,255,255,0.65)",
+                fontWeight: 500,
+              }}
+            >
+              Not a platform account. Not a rental space.
+            </p>
+            <p
+              className="text-base md:text-lg leading-relaxed"
+              style={{
+                color: "rgba(255,255,255,0.45)",
+                fontWeight: 400,
+                lineHeight: 1.6,
+              }}
+            >
+              A self-hosted node where your identity, content, and social graph
+              are secured by cryptography — yours to keep, inherit, and pass
+              down.
+            </p>
+          </motion.div>
 
           <motion.div
             className="flex flex-wrap gap-4"

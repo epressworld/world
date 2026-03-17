@@ -651,16 +651,16 @@ export default function VisionPage() {
             </div>
 
             <svg
-              viewBox="0 0 560 130"
-              className="w-full max-w-[560px] mx-auto block mt-10 mb-4"
+              viewBox="0 0 680 160"
+              className="w-full max-w-[680px] mx-auto block mt-10 mb-4"
               fill="none"
               stroke="currentColor"
             >
               <rect
-                x="20"
-                y="32"
-                width="520"
-                height="36"
+                x="24"
+                y="30"
+                width="632"
+                height="40"
                 rx="8"
                 fill="currentColor"
                 fillOpacity="0.06"
@@ -669,9 +669,9 @@ export default function VisionPage() {
                 strokeWidth="1"
               />
               <text
-                x="38"
+                x="46"
                 y="55"
-                fontSize="12"
+                fontSize="14"
                 fontWeight="700"
                 fill="currentColor"
                 fillOpacity="0.6"
@@ -681,24 +681,24 @@ export default function VisionPage() {
                 HTTPS
               </text>
               <line
-                x1="100"
+                x1="121"
                 y1="50"
-                x2="140"
+                x2="170"
                 y2="50"
                 stroke="currentColor"
                 strokeOpacity="0.3"
                 strokeWidth="1.2"
               />
               <polygon
-                points="140,50 136,47 136,53"
+                points="170,50 165,47 165,53"
                 fill="currentColor"
                 fillOpacity="0.3"
                 stroke="none"
               />
               <text
-                x="152"
+                x="185"
                 y="55"
-                fontSize="11"
+                fontSize="12"
                 fill="currentColor"
                 fillOpacity="0.45"
                 stroke="none"
@@ -709,9 +709,9 @@ export default function VisionPage() {
               </text>
 
               <rect
-                x="16"
-                y="78"
-                width="528"
+                x="19"
+                y="90"
+                width="642"
                 height="44"
                 rx="10"
                 fill="currentColor"
@@ -719,48 +719,47 @@ export default function VisionPage() {
                 stroke="none"
               />
               <rect
-                x="20"
-                y="82"
-                width="520"
-                height="36"
+                x="24"
+                y="94"
+                width="632"
+                height="40"
                 rx="8"
                 fill="currentColor"
-                fillOpacity="0.09"
+                fillOpacity="0.13"
                 stroke="currentColor"
-                strokeOpacity="0.35"
+                strokeOpacity="0.5"
                 strokeWidth="1.2"
               />
               <text
-                x="38"
-                y="105"
-                fontSize="12"
+                x="46"
+                y="120"
+                fontSize="14"
                 fontWeight="700"
-                fill="currentColor"
-                fillOpacity="0.8"
+                fill="#e8a04a"
                 stroke="none"
                 fontFamily="monospace"
               >
                 PoS
               </text>
               <line
-                x1="100"
-                y1="100"
-                x2="140"
-                y2="100"
+                x1="121"
+                y1="114"
+                x2="170"
+                y2="114"
                 stroke="currentColor"
                 strokeOpacity="0.3"
                 strokeWidth="1.2"
               />
               <polygon
-                points="140,100 136,97 136,103"
+                points="170,114 165,111 165,117"
                 fill="currentColor"
                 fillOpacity="0.3"
                 stroke="none"
               />
               <text
-                x="152"
-                y="105"
-                fontSize="11"
+                x="185"
+                y="120"
+                fontSize="12"
                 fill="currentColor"
                 fillOpacity="0.7"
                 stroke="none"
@@ -1006,23 +1005,19 @@ export default function VisionPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                Every node makes the network more real.
+                Every Node Makes the Network More Real.
               </motion.h2>
 
-              <motion.div
-                className="mb-10"
+              <motion.p
+                className="landing-subheading mx-auto mb-10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.1 }}
               >
-                <p className="text-[15px] text-white/45 mb-1">
-                  The internet described on this page doesn't exist yet.
-                </p>
-                <p className="text-[15px] text-white/65">
-                  It gets built one node at a time.
-                </p>
-              </motion.div>
+                The internet described on this page doesn't exist yet. It gets
+                built one node at a time — starting with yours.
+              </motion.p>
 
               <motion.div
                 className="flex flex-col items-center gap-3"
@@ -1063,14 +1058,12 @@ export default function VisionPage() {
                   How It Works
                 </Link>
                 <span className="text-white/20">·</span>
-                <a
-                  href="https://t.me/+mZMgNSIVy1MwMmVl"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/ecosystem"
                   className="hover:text-primary transition-colors duration-200"
                 >
-                  Join the Community
-                </a>
+                  Explore Ecosystem
+                </Link>
               </motion.div>
             </div>
           </div>

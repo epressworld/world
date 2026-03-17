@@ -1,10 +1,11 @@
 "use client"
 
-import { ArrowRight, Github } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { CopyableCode } from "@/components/shared/copy-button"
 
-const INSTALL_COMMAND = "curl -fsSL https://epress.world/install.sh | bash"
+const DOCKER_COMMAND = `docker run -d -p 8543:8543 \\
+  -v epress-data:/app/data \\
+  ghcr.io/epressworld/epress`
 
 export function PageFooterCTA() {
   return (
@@ -17,31 +18,44 @@ export function PageFooterCTA() {
             <span className="text-primary">epress Node</span>
           </h2>
           <p className="landing-subheading mx-auto mb-8">
-            One command to join the decentralized network. Your node, your data,
-            your rules.
+            Your node, your data, your rules.
           </p>
 
-          <CopyableCode code={INSTALL_COMMAND} className="mb-6" />
+          <div className="grid md:grid-cols-2 gap-6 text-left">
+            <div className="landing-card p-6">
+              <p className="text-[10px] uppercase tracking-wider text-white/40 mb-4">
+                Ready to Deploy?
+              </p>
+              <div className="bg-black/40 rounded-lg p-4 font-mono text-xs text-white/60 mb-4 overflow-x-auto">
+                <pre className="whitespace-pre-wrap break-all">
+                  {DOCKER_COMMAND}
+                </pre>
+              </div>
+              <Link
+                href="/docs/getting-started"
+                className="btn-primary w-full text-center inline-flex items-center justify-center"
+              >
+                Deploy Your Node →
+              </Link>
+            </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <a
-              href="https://github.com/epressworld/epress"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary text-lg px-8 py-4"
-            >
-              <Github className="w-5 h-5 mr-2" />
-              Star on GitHub
-            </a>
-          </div>
-
-          <div className="flex flex-wrap gap-6 justify-center text-sm">
-            <Link
-              href="/docs/getting-started"
-              className="text-dark-muted hover:text-primary transition-colors inline-flex items-center"
-            >
-              Full Deployment Guide <ArrowRight className="w-4 h-4 ml-1" />
-            </Link>
+            <div className="landing-card p-6">
+              <p className="text-[10px] uppercase tracking-wider text-white/40 mb-4">
+                Want to Try First?
+              </p>
+              <p className="text-sm text-dark-muted mb-4 leading-relaxed">
+                Browse blog.epress.world — a real epress node running live on
+                the network. No account needed.
+              </p>
+              <a
+                href="https://blog.epress.world"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary w-full text-center inline-flex items-center justify-center"
+              >
+                See a live node →
+              </a>
+            </div>
           </div>
         </div>
       </div>

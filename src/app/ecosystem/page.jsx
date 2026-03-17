@@ -21,54 +21,106 @@ function EcoDivider({ number, label }) {
 }
 
 function HeroSvg() {
-  const arcPositions = [
-    { r: 320, opacity: 0.04 },
-    { r: 480, opacity: 0.03 },
-    { r: 640, opacity: 0.02 },
-  ]
-
-  const dots = [
-    { cx: 600, cy: 250 },
-    { cx: 650, cy: 280 },
-    { cx: 700, cy: 240 },
-    { cx: 550, cy: 270 },
-    { cx: 480, cy: 290 },
-    { cx: 420, cy: 300 },
-    { cx: 750, cy: 220 },
-    { cx: 800, cy: 260 },
-    { cx: 850, cy: 230 },
-    { cx: 900, cy: 250 },
-    { cx: 950, cy: 220 },
-    { cx: 1000, cy: 240 },
+  const lines = [
+    { angle: -70, endX: 74, endY: 388, delay: "0s" },
+    { angle: -50, endX: 171, endY: 220, delay: "0.4s" },
+    { angle: -35, endX: 279, endY: 121, delay: "0.8s" },
+    { angle: -18, endX: 427, endY: 47, delay: "1.2s" },
+    { angle: 18, endX: 773, endY: 47, delay: "0.6s" },
+    { angle: 35, endX: 921, endY: 121, delay: "1.0s" },
+    { angle: 50, endX: 1029, endY: 220, delay: "1.4s" },
+    { angle: 70, endX: 1126, endY: 388, delay: "0.2s" },
   ]
 
   return (
     <svg
-      viewBox="0 0 1200 500"
+      viewBox="0 0 1200 560"
       className="absolute inset-0 w-full h-full pointer-events-none"
       aria-hidden="true"
       fill="none"
       stroke="currentColor"
+      style={{ zIndex: 0 }}
     >
-      {arcPositions.map((arc, i) => (
-        <circle
-          key={i}
-          cx="600"
-          cy="500"
-          r={arc.r}
-          strokeOpacity={arc.opacity}
-          strokeWidth="1"
-        />
-      ))}
-      {dots.map((dot, i) => (
-        <circle
-          key={i}
-          cx={dot.cx}
-          cy={dot.cy}
-          r="2"
-          fill="currentColor"
-          fillOpacity="0.06"
-        />
+      <defs>
+        <radialGradient
+          id="eco-hero-fade"
+          cx="50%"
+          cy="100%"
+          r="70%"
+          fx="50%"
+          fy="100%"
+        >
+          <stop offset="0%" stopColor="currentColor" stopOpacity="0.12" />
+          <stop offset="60%" stopColor="currentColor" stopOpacity="0.05" />
+          <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      <circle
+        cx="600"
+        cy="580"
+        r="28"
+        fill="currentColor"
+        fillOpacity="0.06"
+        stroke="currentColor"
+        strokeOpacity="0.12"
+        strokeWidth="1.5"
+      />
+      <circle
+        cx="600"
+        cy="580"
+        r="14"
+        fill="currentColor"
+        fillOpacity="0.08"
+        stroke="none"
+      />
+
+      {lines.map((line, i) => (
+        <g key={i}>
+          <line
+            x1="600"
+            y1="580"
+            x2={line.endX}
+            y2={line.endY}
+            stroke="currentColor"
+            strokeWidth="1"
+            strokeOpacity="0.07"
+          />
+          <circle
+            cx={600 + (line.endX - 600) * 0.3}
+            cy={580 + (line.endY - 580) * 0.3}
+            r="3"
+            fill="currentColor"
+            fillOpacity="0.08"
+            stroke="none"
+          />
+          <circle
+            cx={600 + (line.endX - 600) * 0.55}
+            cy={580 + (line.endY - 580) * 0.55}
+            r="3"
+            fill="currentColor"
+            fillOpacity="0.08"
+            stroke="none"
+          />
+          <circle
+            cx={600 + (line.endX - 600) * 0.8}
+            cy={580 + (line.endY - 580) * 0.8}
+            r="3"
+            fill="currentColor"
+            fillOpacity="0.08"
+            stroke="none"
+          />
+          <circle
+            cx={600 + (line.endX - 600) * 0.45}
+            cy={580 + (line.endY - 580) * 0.45}
+            r="2.5"
+            fill="currentColor"
+            fillOpacity="0.12"
+            stroke="none"
+            className="eco-dot"
+            style={{ animationDelay: line.delay }}
+          />
+        </g>
       ))}
     </svg>
   )
@@ -580,10 +632,31 @@ export default function EcosystemPage() {
             transform: translateY(0);
           }
         }
+        @keyframes eco-radiate {
+          0% {
+            opacity: 0;
+          }
+          20% {
+            opacity: 0.5;
+          }
+          80% {
+            opacity: 0.5;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+        .eco-dot {
+          animation: eco-radiate 3s ease-in-out infinite;
+        }
         @media (prefers-reduced-motion: reduce) {
           * {
             animation: none !important;
             transition: none !important;
+          }
+          .eco-dot {
+            animation: none;
+            opacity: 0.1;
           }
         }
       `}</style>
@@ -994,26 +1067,30 @@ export default function EcosystemPage() {
           <div className="container-custom">
             <div className="max-w-2xl mx-auto text-center">
               <motion.h2
-                className="landing-heading mb-6"
+                className="landing-heading mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                The Economics Work. The Ecosystem Is Starting.
+                The Ecosystem Starts With One Node.
               </motion.h2>
 
-              <motion.p
-                className="text-lg text-white/55 mb-8"
+              <motion.div
+                className="mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                Early node operators aren&apos;t just early adopters.
-                They&apos;re founders of the ecosystem that serves everyone who
-                follows.
-              </motion.p>
+                <p className="text-[15px] text-white/45 mb-2">
+                  Every service provider, theme designer, and infrastructure
+                  partner in this ecosystem
+                </p>
+                <p className="text-[15px] text-white/65">
+                  needs a network to exist. That network starts here.
+                </p>
+              </motion.div>
 
               <motion.div
                 className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
@@ -1022,11 +1099,14 @@ export default function EcosystemPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <Link href="/docs" className="btn-primary px-8 py-3">
-                  Deploy Your Node
+                <Link
+                  href="/docs/getting-started"
+                  className="btn-primary px-8 py-3"
+                >
+                  Deploy Your Node →
                 </Link>
-                <Link href="/how-it-works" className="btn-secondary px-8 py-3">
-                  How It Works
+                <Link href="#" className="btn-secondary px-8 py-3">
+                  Request a Trial Node
                 </Link>
               </motion.div>
 
@@ -1048,17 +1128,15 @@ export default function EcosystemPage() {
                   href="/vision"
                   className="hover:text-primary transition-colors"
                 >
-                  The Vision
+                  Back to Vision
                 </Link>
                 <span className="text-white/15">·</span>
-                <a
-                  href="https://github.com/epressworld/epress"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/how-it-works"
                   className="hover:text-primary transition-colors"
                 >
-                  GitHub
-                </a>
+                  How It Works
+                </Link>
               </motion.div>
             </div>
           </div>
