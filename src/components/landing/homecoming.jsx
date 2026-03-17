@@ -27,7 +27,7 @@ function EvolutionDiagram() {
       </text>
 
       <rect
-        x="50"
+        x="55"
         y="18"
         width="72"
         height="40"
@@ -37,7 +37,7 @@ function EvolutionDiagram() {
         strokeOpacity="0.25"
       />
       <rect
-        x="54"
+        x="59"
         y="22"
         width="64"
         height="6"
@@ -46,10 +46,10 @@ function EvolutionDiagram() {
         fillOpacity="0.1"
         stroke="none"
       />
-      <line x1="54" y1="33" x2="110" y2="33" strokeOpacity="0.15" />
-      <line x1="54" y1="40" x2="95" y2="40" strokeOpacity="0.1" />
+      <line x1="59" y1="33" x2="115" y2="33" strokeOpacity="0.15" />
+      <line x1="59" y1="40" x2="100" y2="40" strokeOpacity="0.1" />
       <text
-        x="86"
+        x="91"
         y="65"
         fontSize="8"
         textAnchor="middle"
@@ -61,7 +61,7 @@ function EvolutionDiagram() {
       </text>
 
       <rect
-        x="218"
+        x="213"
         y="18"
         width="72"
         height="40"
@@ -71,7 +71,7 @@ function EvolutionDiagram() {
         strokeOpacity="0.25"
       />
       <rect
-        x="222"
+        x="217"
         y="22"
         width="64"
         height="6"
@@ -80,10 +80,10 @@ function EvolutionDiagram() {
         fillOpacity="0.1"
         stroke="none"
       />
-      <line x1="222" y1="33" x2="278" y2="33" strokeOpacity="0.15" />
-      <line x1="222" y1="40" x2="263" y2="40" strokeOpacity="0.1" />
+      <line x1="217" y1="33" x2="273" y2="33" strokeOpacity="0.15" />
+      <line x1="217" y1="40" x2="258" y2="40" strokeOpacity="0.1" />
       <text
-        x="254"
+        x="249"
         y="65"
         fontSize="8"
         textAnchor="middle"
@@ -94,9 +94,9 @@ function EvolutionDiagram() {
         friend&apos;s site
       </text>
 
-      <line x1="122" y1="38" x2="218" y2="38" strokeOpacity="0.3" />
+      <line x1="127" y1="38" x2="213" y2="38" strokeOpacity="0.3" />
       <polygon
-        points="218,38 212,35 212,41"
+        points="213,38 207,35 207,41"
         fill="currentColor"
         fillOpacity="0.3"
         stroke="none"
@@ -252,7 +252,7 @@ function EvolutionDiagram() {
       </text>
 
       <circle
-        cx="72"
+        cx="91"
         cy="200"
         r="22"
         fill="currentColor"
@@ -261,7 +261,7 @@ function EvolutionDiagram() {
         strokeWidth="1.8"
       />
       <text
-        x="72"
+        x="91"
         y="228"
         fontSize="7"
         textAnchor="middle"
@@ -274,7 +274,7 @@ function EvolutionDiagram() {
       </text>
 
       <circle
-        cx="230"
+        cx="249"
         cy="200"
         r="22"
         fill="currentColor"
@@ -283,7 +283,7 @@ function EvolutionDiagram() {
         strokeWidth="1.8"
       />
       <text
-        x="230"
+        x="249"
         y="228"
         fontSize="7"
         textAnchor="middle"
@@ -296,29 +296,29 @@ function EvolutionDiagram() {
       </text>
 
       <line
-        x1="95"
+        x1="113"
         y1="200"
-        x2="207"
+        x2="227"
         y2="200"
         strokeOpacity="0.35"
         strokeWidth="1.2"
       />
 
       <polygon
-        points="95,200 101,197 101,203"
+        points="113,200 107,197 107,203"
         fill="currentColor"
         fillOpacity="0.4"
         stroke="none"
       />
       <polygon
-        points="207,200 201,197 201,203"
+        points="227,200 221,197 221,203"
         fill="currentColor"
         fillOpacity="0.4"
         stroke="none"
       />
 
       <rect
-        x="97"
+        x="115"
         y="197"
         width="10"
         height="6"
@@ -330,7 +330,7 @@ function EvolutionDiagram() {
       />
 
       <text
-        x="151"
+        x="170"
         y="192"
         fontSize="7"
         textAnchor="middle"
