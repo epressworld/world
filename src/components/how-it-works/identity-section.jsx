@@ -1,261 +1,196 @@
-import { ComparisonCard } from "@/components/shared/comparison-card"
-import { MiniDiagram } from "@/components/shared/mini-diagram"
+"use client"
 
-function IdentityDiagram() {
+import { AlertTriangle, Check, Key, Link2, Shield, X } from "lucide-react"
+
+function PlatformAccountCard() {
   return (
-    <svg
-      viewBox="0 0 700 280"
-      className="w-full h-auto"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      className="rounded-2xl overflow-hidden relative"
+      style={{
+        background:
+          "linear-gradient(145deg, rgba(30,12,12,1) 0%, rgba(20,8,8,1) 100%)",
+        border: "1px solid rgba(239,68,68,0.2)",
+      }}
     >
-      <defs>
-        <linearGradient id="identityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#F7931A" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="#F7931A" stopOpacity="0.05" />
-        </linearGradient>
-      </defs>
+      <div
+        className="h-9 flex items-center px-3.5 gap-1.5"
+        style={{
+          background: "rgba(255,255,255,0.03)",
+          borderBottom: "1px solid rgba(255,255,255,0.05)",
+        }}
+      >
+        <div
+          className="w-2 h-2 rounded-full"
+          style={{ background: "rgba(239,68,68,0.5)" }}
+        />
+        <div
+          className="w-2 h-2 rounded-full"
+          style={{ background: "rgba(251,191,36,0.5)" }}
+        />
+        <div
+          className="w-2 h-2 rounded-full"
+          style={{ background: "rgba(34,197,94,0.5)" }}
+        />
+      </div>
 
-      <rect
-        x="40"
-        y="50"
-        width="120"
-        height="90"
-        rx="10"
-        fill="#1a1a1a"
-        stroke="#444"
-        strokeWidth="1.5"
-      />
-      <text
-        x="100"
-        y="85"
-        textAnchor="middle"
-        fill="#888"
-        fontSize="12"
-        fontFamily="monospace"
-      >
-        Private Key
-      </text>
-      <text
-        x="100"
-        y="105"
-        textAnchor="middle"
-        fill="#666"
-        fontSize="10"
-        fontFamily="monospace"
-      >
-        (secret)
-      </text>
-      <text x="100" y="125" textAnchor="middle" fontSize="20">
-        🔑
-      </text>
+      <div className="p-5">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-9 h-9 rounded-full bg-red-500/20 flex items-center justify-center">
+            <AlertTriangle className="w-4 h-4 text-red-400" />
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-white">Platform Account</p>
+            <p className="text-xs text-white/40">The fragile identity</p>
+          </div>
+        </div>
 
-      <line
-        x1="165"
-        y1="95"
-        x2="215"
-        y2="95"
-        stroke="#F7931A"
-        strokeWidth="3"
-      />
-      <polygon points="215,95 205,89 205,101" fill="#F7931A" />
+        <div className="space-y-3 mb-5">
+          <div className="flex items-center gap-2.5 text-sm text-white/50">
+            <X className="w-4 h-4 text-red-400/70 flex-shrink-0" />
+            <span>Issued by the platform</span>
+          </div>
+          <div className="flex items-center gap-2.5 text-sm text-white/50">
+            <X className="w-4 h-4 text-red-400/70 flex-shrink-0" />
+            <span>Can be revoked at any time</span>
+          </div>
+          <div className="flex items-center gap-2.5 text-sm text-white/50">
+            <X className="w-4 h-4 text-red-400/70 flex-shrink-0" />
+            <span>Lost if platform shuts down</span>
+          </div>
+          <div className="flex items-center gap-2.5 text-sm text-white/50">
+            <X className="w-4 h-4 text-red-400/70 flex-shrink-0" />
+            <span>Cannot be transferred</span>
+          </div>
+        </div>
 
-      <rect
-        x="220"
-        y="50"
-        width="160"
-        height="90"
-        rx="10"
-        fill="#1a1a1a"
-        stroke="#F7931A"
-        strokeWidth="1.5"
-      />
-      <text
-        x="300"
-        y="85"
-        textAnchor="middle"
-        fill="#F7931A"
-        fontSize="12"
-        fontFamily="monospace"
-      >
-        Sign Message
-      </text>
-      <text
-        x="300"
-        y="105"
-        textAnchor="middle"
-        fill="#666"
-        fontSize="10"
-        fontFamily="monospace"
-      >
-        SIWE
-      </text>
-      <text x="300" y="125" textAnchor="middle" fontSize="20">
-        ✍️
-      </text>
-
-      <line
-        x1="385"
-        y1="95"
-        x2="435"
-        y2="95"
-        stroke="#F7931A"
-        strokeWidth="3"
-      />
-      <polygon points="435,95 425,89 425,101" fill="#F7931A" />
-
-      <rect
-        x="440"
-        y="40"
-        width="200"
-        height="110"
-        rx="12"
-        fill="url(#identityGrad)"
-        stroke="#F7931A"
-        strokeWidth="2.5"
-      />
-      <text
-        x="540"
-        y="75"
-        textAnchor="middle"
-        fill="#F7931A"
-        fontSize="13"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        Ethereum Address
-      </text>
-      <text
-        x="540"
-        y="100"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="11"
-        fontFamily="monospace"
-      >
-        0x742d...f9
-      </text>
-      <text x="540" y="130" textAnchor="middle" fontSize="22">
-        🆔
-      </text>
-
-      <text
-        x="540"
-        y="185"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="22"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        = Your Identity
-      </text>
-
-      <rect
-        x="40"
-        y="220"
-        width="620"
-        height="40"
-        rx="8"
-        fill="transparent"
-        stroke="#34D399"
-        strokeWidth="1.5"
-        strokeDasharray="6 3"
-      />
-      <text
-        x="350"
-        y="245"
-        textAnchor="middle"
-        fill="#34D399"
-        fontSize="11"
-        fontFamily="monospace"
-      >
-        No password required — just prove you own the private key
-      </text>
-    </svg>
+        <div className="bg-red-500/10 rounded-lg p-3 border border-red-500/20">
+          <p className="text-xs text-red-300/80 leading-relaxed">
+            Your username, followers, reputation — all borrowed, never owned.
+          </p>
+        </div>
+      </div>
+    </div>
   )
 }
 
-function TraditionalVsSIWE() {
+function SelfSovereignCard() {
   return (
-    <div className="grid md:grid-cols-2 gap-6">
-      <ComparisonCard variant="warning" title="Traditional Account">
-        <div className="space-y-3 text-sm">
-          <div className="flex items-center gap-2">
-            <span className="text-red-400">✗</span>
-            <span className="text-dark-muted">Username + Password</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-red-400">✗</span>
-            <span className="text-dark-muted">Stored on company servers</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-red-400">✗</span>
-            <span className="text-dark-muted">Can be deleted or banned</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-red-400">✗</span>
-            <span className="text-dark-muted">Password resets required</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-red-400">✗</span>
-            <span className="text-dark-muted">Data breach exposure</span>
-          </div>
-        </div>
-      </ComparisonCard>
+    <div
+      className="rounded-2xl overflow-hidden relative"
+      style={{
+        background:
+          "linear-gradient(145deg, rgba(12,30,20,1) 0%, rgba(8,20,14,1) 100%)",
+        border: "1px solid rgba(16,185,129,0.2)",
+      }}
+    >
+      <div
+        className="h-9 flex items-center px-3.5 gap-1.5"
+        style={{
+          background: "rgba(255,255,255,0.03)",
+          borderBottom: "1px solid rgba(255,255,255,0.05)",
+        }}
+      >
+        <div
+          className="w-2 h-2 rounded-full"
+          style={{ background: "rgba(239,68,68,0.5)" }}
+        />
+        <div
+          className="w-2 h-2 rounded-full"
+          style={{ background: "rgba(251,191,36,0.5)" }}
+        />
+        <div
+          className="w-2 h-2 rounded-full"
+          style={{ background: "rgba(34,197,94,0.5)" }}
+        />
+      </div>
 
-      <ComparisonCard variant="success" title="Sign-In with Ethereum">
-        <div className="space-y-3 text-sm">
-          <div className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            <span className="text-dark-muted">Your wallet = your identity</span>
+      <div className="p-5">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-9 h-9 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <Shield className="w-4 h-4 text-emerald-400" />
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            <span className="text-dark-muted">No central server stores it</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            <span className="text-dark-muted">Cannot be deleted by anyone</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            <span className="text-dark-muted">No password to forget</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-primary">✓</span>
-            <span className="text-dark-muted">Cryptographic proof</span>
+          <div>
+            <p className="text-sm font-semibold text-white">
+              Self-Sovereign Identity
+            </p>
+            <p className="text-xs text-white/40">The robust identity</p>
           </div>
         </div>
-      </ComparisonCard>
+
+        <div className="space-y-3 mb-5">
+          <div className="flex items-center gap-2.5 text-sm text-white/50">
+            <Check className="w-4 h-4 text-emerald-400/70 flex-shrink-0" />
+            <span>Generated by you, owned by you</span>
+          </div>
+          <div className="flex items-center gap-2.5 text-sm text-white/50">
+            <Check className="w-4 h-4 text-emerald-400/70 flex-shrink-0" />
+            <span>Impossible to revoke</span>
+          </div>
+          <div className="flex items-center gap-2.5 text-sm text-white/50">
+            <Check className="w-4 h-4 text-emerald-400/70 flex-shrink-0" />
+            <span>Works across all platforms</span>
+          </div>
+          <div className="flex items-center gap-2.5 text-sm text-white/50">
+            <Check className="w-4 h-4 text-emerald-400/70 flex-shrink-0" />
+            <span>Fully portable & transferable</span>
+          </div>
+        </div>
+
+        <div className="bg-emerald-500/10 rounded-lg p-3 border border-emerald-500/20">
+          <p className="text-xs text-emerald-300/80 leading-relaxed">
+            Your identity exists independently. No platform can take it away.
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function IdentityFeatureCard({ icon: Icon, title, description }) {
+  return (
+    <div className="bg-dark-surface/50 rounded-xl p-5 border border-white/5">
+      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+        <Icon className="w-5 h-5 text-primary" />
+      </div>
+      <h4 className="text-sm font-semibold text-white mb-1.5">{title}</h4>
+      <p className="text-xs text-white/50 leading-relaxed">{description}</p>
     </div>
   )
 }
 
 export function IdentitySection() {
   return (
-    <section id="identity" className="landing-section">
+    <section id="identity" className="landing-section bg-dark-surface/30">
       <div className="container-custom">
         <p className="section-label">Foundation</p>
         <h2 className="landing-heading mb-4">Decentralized Identity</h2>
-        <p className="landing-subheading mb-12">
-          Your Ethereum address is your identity. No usernames, no passwords, no
-          central authority. You prove who you are by signing a message with
-          your private key.
+        <p className="max-w-2xl text-dark-muted text-base leading-relaxed mb-12">
+          Your identity on epress is your Ethereum address — a cryptographic key
+          pair you generate yourself. No platform issued it. No platform can
+          revoke it. It is mathematically yours.
         </p>
 
-        <MiniDiagram className="mb-8">
-          <IdentityDiagram />
-        </MiniDiagram>
+        <div className="max-w-3xl mx-auto mb-16 grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <PlatformAccountCard />
+          <SelfSovereignCard />
+        </div>
 
-        <TraditionalVsSIWE />
-
-        <div className="mt-8 p-6 rounded-xl border border-dark-border bg-dark-surface/50">
-          <p className="text-dark-muted leading-relaxed">
-            When you sign in to epress, you&apos;re not creating an account on
-            our servers. You&apos;re proving ownership of an Ethereum address.
-            This identity is portable — use it across any epress node or any
-            other service that supports SIWE (EIP-4361).
-          </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <IdentityFeatureCard
+            icon={Key}
+            title="Cryptographic Ownership"
+            description="Your private key never leaves your device. You sign, you prove, you control."
+          />
+          <IdentityFeatureCard
+            icon={Link2}
+            title="Universal Portability"
+            description="Take your identity to any EWP-compatible platform. Your reputation travels with you."
+          />
+          <IdentityFeatureCard
+            icon={Shield}
+            title="Censorship Resistant"
+            description="No central authority can suspend or delete your account. Your voice cannot be silenced."
+          />
         </div>
       </div>
     </section>

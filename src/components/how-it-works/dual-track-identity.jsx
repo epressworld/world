@@ -156,10 +156,10 @@ export function DualTrackIdentity() {
   const [showTechnical, setShowTechnical] = useState(false)
 
   return (
-    <section id="identity" className="landing-section">
+    <section id="proof-of-source" className="landing-section">
       <div className="container-custom">
-        <p className="section-label">Foundation</p>
-        <h2 className="landing-heading mb-4">Identity & Proof of Source</h2>
+        <p className="section-label">Verification</p>
+        <h2 className="landing-heading mb-4">Proof of Source</h2>
         <p className="landing-subheading mb-8 max-w-3xl">
           Every piece of content is cryptographically signed by your Ethereum
           identity. Simple to use, mathematically impossible to forge.

@@ -2,6 +2,7 @@ import { SiteFooter } from "@/components/home/site-footer"
 import { SiteNav } from "@/components/home/site-nav"
 import { ContentFlowSection } from "@/components/how-it-works/content-flow-section"
 import { DualTrackIdentity } from "@/components/how-it-works/dual-track-identity"
+import { IdentitySection } from "@/components/how-it-works/identity-section"
 import { NodesProtocolSection } from "@/components/how-it-works/nodes-protocol-section"
 import { NotifyPullSection } from "@/components/how-it-works/notify-pull-section"
 import { PageFooterCTA } from "@/components/how-it-works/page-footer-cta"
@@ -22,6 +23,7 @@ export default function HowItWorksPage() {
       <StickyNav />
 
       <main className="flex-1">
+        <IdentitySection />
         <DualTrackIdentity />
         <NotifyPullSection />
         <NodesProtocolSection />
