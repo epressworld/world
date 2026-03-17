@@ -843,6 +843,88 @@ export default function EcosystemPage() {
                 </motion.div>
               ))}
             </div>
+
+            <motion.div
+              className="max-w-3xl mx-auto mt-14 pt-12 border-t border-white/[0.06]"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <h3 className="text-xl font-bold mb-3 text-white/80">
+                Security Works the Same Way.
+              </h3>
+              <p className="text-sm text-white/40 mb-10 leading-relaxed">
+                Self-hosted nodes face the same security questions as any
+                website — and the internet has spent 30 years developing mature,
+                affordable answers.
+              </p>
+
+              <div className="rounded-xl overflow-hidden border border-white/[0.07]">
+                <div className="grid grid-cols-[1.8fr_1fr_1fr] bg-white/[0.03] border-b border-white/[0.07] px-5 py-2.5">
+                  <span className="text-[10px] font-bold tracking-wider uppercase text-white/25">
+                    Concern
+                  </span>
+                  <span className="text-[10px] font-bold tracking-wider uppercase text-red-400/45">
+                    Centralized Platform
+                  </span>
+                  <span className="text-[10px] font-bold tracking-wider uppercase text-green-400/50">
+                    epress Node
+                  </span>
+                </div>
+
+                {[
+                  {
+                    concern: "DDoS attacks",
+                    platform: "platform absorbs (you never see it)",
+                    epress: "Cloudflare / CDN — one DNS change",
+                  },
+                  {
+                    concern: "Malicious traffic",
+                    platform: "platform's WAF, not your choice",
+                    epress: "WAF services from $5/mo, you choose",
+                  },
+                  {
+                    concern: "Security patches",
+                    platform: "platform decides timing",
+                    epress: "you update when ready (or auto-update)",
+                  },
+                  {
+                    concern: "Attack blast radius",
+                    platform: "your data on shared infrastructure",
+                    epress: "only your node — others unaffected",
+                  },
+                ].map((row, i) => (
+                  <motion.div
+                    key={i}
+                    className="grid grid-cols-[1.8fr_1fr_1fr] px-5 py-3.5 border-b border-white/[0.04] last:border-b-0 hover:bg-white/[0.015] transition-colors duration-150"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: i * 0.06 }}
+                  >
+                    <span className="text-sm text-white/65 font-medium">
+                      {row.concern}
+                    </span>
+                    <span className="text-xs text-white/35 font-mono">
+                      {row.platform}
+                    </span>
+                    <span
+                      className="text-xs font-mono"
+                      style={{ color: "rgba(110, 231, 183, 0.65)" }}
+                    >
+                      {row.epress}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+
+              <p className="mt-5 text-xs text-white/30 italic text-center">
+                The cost moves from hidden (paid in data) to visible (paid in
+                money). Visible costs have competitive markets. Competitive
+                markets drive prices down.
+              </p>
+            </motion.div>
           </div>
         </section>
 

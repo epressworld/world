@@ -8,6 +8,7 @@ import { SolutionComparison } from "@/components/home/solution-comparison"
 import { TechCards } from "@/components/home/tech-cards"
 import { VisionPreview } from "@/components/home/vision-preview"
 import { EcosystemPreview } from "@/components/landing/ecosystem-preview"
+import { Homecoming } from "@/components/landing/homecoming"
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <HeroSection />
         <PainPointsSection />
         <LifetimeTimeline />
+        <Homecoming />
         <TechCards />
         <SolutionComparison />
         <VisionPreview />
