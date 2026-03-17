@@ -12,240 +12,326 @@ function VisionMeritGraph() {
   const nodes = [
     {
       id: "center",
-      cx: 350,
-      cy: 160,
-      r: 34,
-      label: "Original Insight",
+      cx: 280,
+      cy: 140,
+      r: 40,
+      label: "High-Value Idea",
       sublabel: "cited 3,200 times",
     },
     {
       id: "A",
-      cx: 120,
+      cx: 80,
       cy: 60,
-      r: 16,
+      r: 18,
       label: "Researcher",
       sublabel: "847 posts",
+      rep: 92,
     },
     {
       id: "B",
-      cx: 420,
-      cy: 38,
-      r: 14,
+      cx: 340,
+      cy: 30,
+      r: 16,
       label: "Journalist",
       sublabel: "1.2k posts",
+      rep: 78,
     },
     {
       id: "C",
-      cx: 610,
-      cy: 100,
-      r: 18,
+      cx: 500,
+      cy: 80,
+      r: 20,
       label: "Professor",
       sublabel: "2,100 posts",
+      rep: 95,
     },
     {
       id: "D",
-      cx: 580,
-      cy: 260,
-      r: 13,
+      cx: 480,
+      cy: 220,
+      r: 15,
       label: "Engineer",
       sublabel: "634 posts",
+      rep: 64,
     },
     {
       id: "E",
-      cx: 180,
-      cy: 280,
-      r: 15,
+      cx: 140,
+      cy: 240,
+      r: 17,
       label: "Writer",
       sublabel: "980 posts",
+      rep: 71,
     },
     {
       id: "F",
-      cx: 60,
-      cy: 200,
-      r: 12,
+      cx: 40,
+      cy: 180,
+      r: 14,
       label: "Analyst",
       sublabel: "445 posts",
+      rep: 58,
     },
-    { id: "G", cx: 490, cy: 290, r: 8, silent: true },
-    { id: "H", cx: 260, cy: 30, r: 8, silent: true },
   ]
 
   const citingNodes = ["A", "B", "C", "D", "E", "F"]
-  const centerRadius = 34 + step * 2.33
-  const centerOpacity = 0.1 + step * 0.025
+  const centerRadius = 40 + step * 2
+  const centerOpacity = 0.12 + step * 0.02
+
+  const calculateValue = () => {
+    const baseValue = 100
+    const citationBoost = step * 45
+    const reputationFactor = step * 12
+    return baseValue + citationBoost + reputationFactor
+  }
 
   useEffect(() => {
     const timer = setInterval(() => {
       setStep((prev) => {
         if (prev >= 6) {
-          setTimeout(() => setStep(0), 3000)
+          setTimeout(() => setStep(0), 4000)
           return prev
         }
         return prev + 1
       })
-    }, 600)
+    }, 800)
 
     return () => clearInterval(timer)
   }, [])
 
   const getArrowCoords = (fromNode) => {
-    const dx = 350 - fromNode.cx
-    const dy = 160 - fromNode.cy
+    const dx = 280 - fromNode.cx
+    const dy = 140 - fromNode.cy
     const dist = Math.sqrt(dx * dx + dy * dy)
     const ux = dx / dist
     const uy = dy / dist
     return {
       x1: fromNode.cx + ux * fromNode.r,
       y1: fromNode.cy + uy * fromNode.r,
-      x2: 350 - ux * (centerRadius + 2),
-      y2: 160 - uy * (centerRadius + 2),
+      x2: 280 - ux * (centerRadius + 4),
+      y2: 140 - uy * (centerRadius + 4),
     }
   }
 
   return (
-    <svg
-      viewBox="0 0 700 320"
-      className="w-full max-w-[700px] mx-auto block mt-12"
-      fill="none"
-      stroke="currentColor"
-      aria-hidden="true"
-    >
-      <motion.circle
-        cx={350}
-        cy={160}
-        r={centerRadius + 14}
-        fill="currentColor"
-        fillOpacity={0.03 + step * 0.008}
-        stroke="none"
-        initial={false}
-        animate={{ r: centerRadius + 14 }}
-        transition={{ type: "spring", stiffness: 60 }}
-      />
+    <div className="relative w-full max-w-[800px] mx-auto mt-12">
+      <svg
+        viewBox="0 0 560 320"
+        className="w-full block"
+        fill="none"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="centerGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#e8a04a" stopOpacity="0.05" />
+          </linearGradient>
+        </defs>
 
-      {citingNodes.slice(0, step).map((nodeId) => {
-        const fromNode = nodes.find((n) => n.id === nodeId)
-        const coords = getArrowCoords(fromNode)
-        return (
-          <motion.g key={nodeId}>
-            <motion.line
-              x1={coords.x1}
-              y1={coords.y1}
-              x2={coords.x2}
-              y2={coords.y2}
-              stroke="currentColor"
-              strokeWidth="1.2"
-              strokeOpacity="0.4"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            />
-            <motion.polygon
-              points={`${coords.x2},${coords.y2} ${coords.x2 - 6},${coords.y2 - 3} ${coords.x2 - 6},${coords.y2 + 3}`}
-              fill="currentColor"
-              fillOpacity="0.4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-              style={{
-                transformOrigin: `${coords.x2}px ${coords.y2}px`,
-                transform: `rotate(${Math.atan2(160 - fromNode.cy, 350 - fromNode.cx) * (180 / Math.PI)}deg)`,
-              }}
-            />
-          </motion.g>
-        )
-      })}
+        <motion.circle
+          cx={280}
+          cy={140}
+          r={centerRadius + 20}
+          fill="url(#centerGlow)"
+          stroke="none"
+          initial={false}
+          animate={{
+            r: centerRadius + 20,
+            opacity: 0.3 + step * 0.05,
+          }}
+          transition={{ type: "spring", stiffness: 60 }}
+        />
 
-      {nodes.map((node) => {
-        const isCenter = node.id === "center"
-        const isCiting = citingNodes.includes(node.id)
-        const showLabel = step >= 6 && isCiting
-
-        return (
-          <g key={node.id}>
-            <motion.circle
-              cx={node.cx}
-              cy={node.cy}
-              r={isCenter ? centerRadius : node.r}
-              fill="currentColor"
-              fillOpacity={isCenter ? centerOpacity : node.silent ? 0.03 : 0.08}
-              stroke="currentColor"
-              strokeWidth={isCenter ? 1.5 : 1}
-              strokeOpacity={node.silent ? 0.15 : isCenter ? 0.6 : 0.35}
-              initial={false}
-              animate={{ r: isCenter ? centerRadius : node.r }}
-              transition={
-                isCenter ? { type: "spring", stiffness: 80, damping: 12 } : {}
-              }
-            />
-            {showLabel && (
-              <motion.g
+        {citingNodes.slice(0, step).map((nodeId, idx) => {
+          const fromNode = nodes.find((n) => n.id === nodeId)
+          const coords = getArrowCoords(fromNode)
+          return (
+            <motion.g key={nodeId}>
+              <motion.line
+                x1={coords.x1}
+                y1={coords.y1}
+                x2={coords.x2}
+                y2={coords.y2}
+                stroke="#e8a04a"
+                strokeWidth="2"
+                strokeOpacity="0.6"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              />
+              <motion.circle
+                cx={coords.x1}
+                cy={coords.y1}
+                r="4"
+                fill="#e8a04a"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{
+                  duration: 1.2,
+                  delay: idx * 0.1,
+                  repeat: Infinity,
+                  repeatDelay: 2,
+                }}
+              />
+              <motion.polygon
+                points={`${coords.x2},${coords.y2} ${coords.x2 - 8},${coords.y2 - 4} ${coords.x2 - 8},${coords.y2 + 4}`}
+                fill="#e8a04a"
+                fillOpacity="0.8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.4 }}
-              >
-                <text
-                  x={node.cx}
-                  y={node.cy - node.r - 8}
-                  textAnchor="middle"
-                  fill="currentColor"
-                  fillOpacity="0.85"
-                  fontSize="10"
-                  fontWeight="700"
-                  fontFamily="system-ui, sans-serif"
-                >
-                  {node.label}
-                </text>
-                <text
-                  x={node.cx}
-                  y={node.cy - node.r - 2}
-                  textAnchor="middle"
-                  fill="currentColor"
-                  fillOpacity="0.5"
-                  fontSize="8"
-                  fontFamily="monospace"
-                >
-                  {node.sublabel}
-                </text>
-              </motion.g>
-            )}
-          </g>
-        )
-      })}
+                transition={{ duration: 0.3, delay: 0.4 }}
+                style={{
+                  transformOrigin: `${coords.x2}px ${coords.y2}px`,
+                  transform: `rotate(${Math.atan2(140 - fromNode.cy, 280 - fromNode.cx) * (180 / Math.PI)}deg)`,
+                }}
+              />
+            </motion.g>
+          )
+        })}
 
-      {step >= 2 && (
-        <motion.g
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-        >
-          <text
-            x={350}
-            y={160}
-            dy="-0.2em"
-            textAnchor="middle"
-            fill="currentColor"
-            fillOpacity="0.9"
-            fontSize="11"
-            fontWeight="700"
-            fontFamily="system-ui, sans-serif"
+        {nodes.map((node) => {
+          const isCenter = node.id === "center"
+          const isCiting = citingNodes.includes(node.id)
+          const showLabel = step >= 2 && isCiting
+
+          return (
+            <g key={node.id}>
+              <motion.circle
+                cx={node.cx}
+                cy={node.cy}
+                r={isCenter ? centerRadius : node.r}
+                fill={isCenter ? "#e8a04a" : "#1a1a1a"}
+                fillOpacity={isCenter ? centerOpacity : 0.6}
+                stroke={isCenter ? "#e8a04a" : "currentColor"}
+                strokeWidth={isCenter ? 2 : 1.5}
+                strokeOpacity={isCenter ? 1 : 0.4}
+                initial={false}
+                animate={{ r: isCenter ? centerRadius : node.r }}
+                transition={
+                  isCenter ? { type: "spring", stiffness: 80, damping: 12 } : {}
+                }
+              />
+              {showLabel && (
+                <motion.g
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <text
+                    x={node.cx}
+                    y={node.cy - node.r - 10}
+                    textAnchor="middle"
+                    fill="currentColor"
+                    fillOpacity="0.9"
+                    fontSize="9"
+                    fontWeight="700"
+                    fontFamily="system-ui, sans-serif"
+                  >
+                    {node.label}
+                  </text>
+                  <text
+                    x={node.cx}
+                    y={node.cy - node.r - 2}
+                    textAnchor="middle"
+                    fill="currentColor"
+                    fillOpacity="0.5"
+                    fontSize="7"
+                    fontFamily="monospace"
+                  >
+                    {node.sublabel}
+                  </text>
+                </motion.g>
+              )}
+            </g>
+          )
+        })}
+
+        {step >= 1 && (
+          <motion.g
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
           >
-            Original Insight
-          </text>
-          <text
-            x={350}
-            y={160}
-            dy="1em"
-            textAnchor="middle"
-            fill="currentColor"
-            fillOpacity="0.5"
-            fontSize="9"
-            fontFamily="monospace"
-          >
-            cited 3,200×
-          </text>
-        </motion.g>
-      )}
-    </svg>
+            <text
+              x={280}
+              y={135}
+              textAnchor="middle"
+              fill="#e8a04a"
+              fillOpacity="0.95"
+              fontSize="10"
+              fontWeight="700"
+              fontFamily="system-ui, sans-serif"
+            >
+              High-Value Idea
+            </text>
+            <text
+              x={280}
+              y={150}
+              textAnchor="middle"
+              fill="#e8a04a"
+              fillOpacity="0.6"
+              fontSize="8"
+              fontFamily="monospace"
+            >
+              cited {step * 534 + 1200}×
+            </text>
+          </motion.g>
+        )}
+      </svg>
+
+      <motion.div
+        className="absolute top-4 right-4 bg-dark-surface/90 backdrop-blur-sm rounded-xl border border-white/10 p-4 w-48"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 0.8 }}
+      >
+        <p className="text-[10px] uppercase tracking-wider text-white/40 mb-2 font-mono">
+          IdeaRank Calculation
+        </p>
+        <div className="space-y-2">
+          <div className="flex justify-between text-xs">
+            <span className="text-white/50">Base Value</span>
+            <span className="text-white/80 font-mono">100</span>
+          </div>
+          <div className="flex justify-between text-xs">
+            <span className="text-white/50">Citations</span>
+            <motion.span
+              className="text-primary font-mono"
+              key={step}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              +{step * 45}
+            </motion.span>
+          </div>
+          <div className="flex justify-between text-xs">
+            <span className="text-white/50">Reputation</span>
+            <motion.span
+              className="text-primary font-mono"
+              key={`rep-${step}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              +{step * 12}
+            </motion.span>
+          </div>
+          <div className="h-px bg-white/10 my-2" />
+          <div className="flex justify-between text-sm font-semibold">
+            <span className="text-white">Value</span>
+            <motion.span
+              className="text-primary font-mono"
+              key={`total-${step}`}
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 200 }}
+            >
+              {calculateValue()}
+            </motion.span>
+          </div>
+        </div>
+      </motion.div>
+    </div>
   )
 }
 
@@ -430,32 +516,28 @@ export default function VisionPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
               {[
                 {
-                  year: "2041",
                   icon: "🔑",
-                  title: "A Reputation Decades in the Making",
+                  title: "Your Ethereum Wallet is Your Passport",
                   scene:
-                    "You've been publishing on the same node for 18 years. Every post signed. Every citation traceable. Your reputation isn't stored in anyone's database — it's mathematically proven.",
+                    "No usernames. No passwords. No central registries. Your cryptographic identity works everywhere, controlled by you alone.",
                 },
                 {
-                  year: "2028",
                   icon: "✍️",
-                  title: "Your Writing, Your Terms",
+                  title: "Every Post, an Immutable Asset",
                   scene:
-                    "You wrote something that still gets cited today. You set a reading fee. Every citation earns — directly, with no platform in the middle taking a cut.",
+                    "Cryptographically bound to your identity, un-deletable by any third party. Your content is yours forever, with a permanent chain of attribution.",
                 },
                 {
-                  year: "2027",
                   icon: "🔗",
-                  title: "Your Followers Follow You",
+                  title: "A Persistent Social Graph",
                   scene:
-                    "You decide a platform isn't for you anymore. You leave. Your 40,000 followers come with you. They were always following you — not the platform.",
+                    "When you move, your audience moves with you. The connection is permanent. No platform can sever the bonds between you and your followers.",
                 },
                 {
-                  year: "2064",
                   icon: "🏛️",
-                  title: "A Digital Estate Worth Inheriting",
+                  title: "A Digital Estate Worth Preserving",
                   scene:
-                    "Your grandmother kept a node from 2026. Her recipes, her letters, her decades of thought — still there. Still hers. Now yours to read.",
+                    "Decades of thought, writing, and connection — cryptographically preserved. Pass it down. Archive it. It remains accessible as long as the internet exists.",
                 },
               ].map((card, i) => (
                 <motion.div
@@ -467,9 +549,6 @@ export default function VisionPage() {
                   }}
                   transition={{ duration: 0.25 }}
                 >
-                  <div className="absolute -bottom-2 right-2 text-[72px] font-black leading-none text-white/[0.035] pointer-events-none select-none font-mono z-0">
-                    {card.year}
-                  </div>
                   <div className="relative z-10">
                     <div className="text-2xl mb-2">{card.icon}</div>
                     <h3 className="font-semibold text-lg mb-2">{card.title}</h3>

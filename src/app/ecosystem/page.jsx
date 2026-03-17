@@ -597,35 +597,33 @@ export default function EcosystemPage() {
               className="section-label mb-5"
               style={{ animation: "eco-fade-up 0.6s ease both" }}
             >
-              THE ECOSYSTEM ARGUMENT
+              THE OPPORTUNITY
             </p>
             <h1
               className="landing-heading text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight max-w-4xl mx-auto mb-7"
               style={{ animation: "eco-fade-up 0.6s ease both 0.1s" }}
             >
-              Every Transformative Technology Looked Impractical Until the
-              Ecosystem Caught Up.
+              A New Economy Built on Sovereign Infrastructure.
             </h1>
             <div className="max-w-2xl mx-auto space-y-2">
               <p
                 className="text-lg md:text-xl text-white/65"
                 style={{ animation: "eco-fade-up 0.6s ease both 0.2s" }}
               >
-                Self-hosting sounds hard. Running a node sounds technical.
-                Bandwidth sounds expensive.
+                Decentralized protocols create entirely new markets for
+                infrastructure providers, developers, and service operators.
               </p>
               <p
                 className="text-lg md:text-xl text-white/55"
                 style={{ animation: "eco-fade-up 0.6s ease both 0.3s" }}
               >
-                The same was true for email servers, home routers, and personal
-                websites.
+                Early ecosystems rewarded early participants disproportionately.
               </p>
               <p
                 className="text-lg md:text-xl text-primary font-semibold"
                 style={{ animation: "eco-fade-up 0.6s ease both 0.4s" }}
               >
-                Then ecosystems made them accessible.
+                The epress ecosystem is forming now.
               </p>
             </div>
 
@@ -633,18 +631,20 @@ export default function EcosystemPage() {
           </div>
         </section>
 
-        <EcoDivider number="01" label="Self-Hosting Myth" />
+        <EcoDivider number="01" label="Infrastructure Economy" />
 
         <section className="landing-section">
           <div className="container-custom">
             <div className="text-center mb-10">
-              <p className="section-label">THE COMPLEXITY CURVE</p>
+              <p className="section-label">THE ECOSYSTEM EMERGES</p>
               <h2 className="landing-heading mb-4">
-                &ldquo;Self-Hosting Is Too Technical&rdquo;
+                The "Digital Plumber" Economy is Here
               </h2>
               <p className="landing-subheading mx-auto">
-                Everything starts hard. Then ecosystems form. Here&apos;s the
-                trajectory.
+                You don&apos;t need to build a car to drive one. The epress
+                ecosystem naturally incentivizes a new class of service
+                providers: 1-click node hosts, specialized storage providers,
+                and independent developers.
               </p>
             </div>
 
@@ -665,10 +665,11 @@ export default function EcosystemPage() {
               transition={{ duration: 0.8 }}
             >
               <p className="text-xl md:text-2xl font-light italic text-white/60 leading-relaxed">
-                &ldquo;Neither was anyone who owns a router.&rdquo;
+                &ldquo;Every major technology started as 'too technical' until
+                the ecosystem matured around it.&rdquo;
               </p>
               <p className="text-sm text-white/35 mt-3">
-                — The answer to &ldquo;who sets up their own network?&rdquo;
+                The opportunity is in being early to the inevitable.
               </p>
             </motion.blockquote>
 
@@ -782,18 +783,22 @@ export default function EcosystemPage() {
           </div>
         </section>
 
-        <EcoDivider number="03" label="Bandwidth Economy" />
+        <EcoDivider number="03" label="Value Economics" />
 
         <section className="landing-section">
           <div className="container-custom">
             <div className="text-center mb-10">
-              <p className="section-label">COST DISTRIBUTION</p>
+              <p className="section-label">COST AS INVESTMENT</p>
               <h2 className="landing-heading mb-4">
-                &ldquo;Bandwidth Costs Will Bankrupt Creators&rdquo;
+                Influence is an Asset. Infrastructure is the Cost.
               </h2>
               <p className="landing-subheading mx-auto">
-                In centralized platforms, bandwidth is a hidden cost. In epress,
-                it becomes a visible, marketable asset.
+                In Web2, platforms internalize your hosting costs in exchange
+                for absolute control over your audience and monetization. In
+                epress, the economics are transparent. Low-traffic nodes cost
+                nearly zero. Massive reach requires proportional bandwidth
+                investment—but in return, you retain 100% of the value you
+                create.
               </p>
             </div>
 
