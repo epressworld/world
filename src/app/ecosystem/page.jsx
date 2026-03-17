@@ -34,7 +34,8 @@ function HeroSvg() {
 
   return (
     <svg
-      viewBox="0 0 1200 560"
+      viewBox="0 0 1200 700"
+      preserveAspectRatio="xMidYMax slice"
       className="absolute inset-0 w-full h-full pointer-events-none"
       aria-hidden="true"
       fill="none"
