@@ -144,7 +144,7 @@ function EvolutionDiagram() {
       </text>
 
       <rect
-        x="10"
+        x="30"
         y="92"
         width="280"
         height="52"
@@ -154,7 +154,7 @@ function EvolutionDiagram() {
         strokeOpacity="0.2"
       />
       <text
-        x="20"
+        x="40"
         y="108"
         fontSize="8"
         fill="currentColor"
@@ -165,7 +165,7 @@ function EvolutionDiagram() {
       </text>
 
       <circle
-        cx="80"
+        cx="100"
         cy="118"
         r="14"
         fill="currentColor"
@@ -173,7 +173,7 @@ function EvolutionDiagram() {
         strokeOpacity="0.25"
       />
       <circle
-        cx="220"
+        cx="240"
         cy="118"
         r="14"
         fill="currentColor"
@@ -182,16 +182,16 @@ function EvolutionDiagram() {
       />
 
       <line
-        x1="94"
+        x1="114"
         y1="118"
-        x2="206"
+        x2="226"
         y2="118"
         strokeOpacity="0.2"
         strokeDasharray="2 2"
       />
 
       <circle
-        cx="150"
+        cx="170"
         cy="116"
         r="5"
         fill="currentColor"
@@ -199,7 +199,7 @@ function EvolutionDiagram() {
         strokeOpacity="0.3"
       />
       <rect
-        x="147"
+        x="167"
         y="118"
         width="6"
         height="5"
@@ -210,7 +210,7 @@ function EvolutionDiagram() {
       />
 
       <text
-        x="155"
+        x="170"
         y="155"
         fontSize="8"
         textAnchor="middle"
