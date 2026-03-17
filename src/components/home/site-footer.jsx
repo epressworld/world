@@ -1,6 +1,5 @@
-import { Github } from "lucide-react"
+import { Github, Send } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 
 export function SiteFooter() {
   return (
@@ -38,24 +37,15 @@ export function SiteFooter() {
               <Github className="w-4 h-4" />
               GitHub
             </a>
-            <Link
-              href="/whitepaper"
-              className="text-dark-muted hover:text-dark-text transition-colors"
+            <a
+              href="https://t.me/+mZMgNSIVy1MwMmVl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-dark-muted hover:text-dark-text transition-colors flex items-center gap-1"
             >
-              Whitepaper
-            </Link>
-            <Link
-              href="/docs"
-              className="text-dark-muted hover:text-dark-text transition-colors"
-            >
-              Docs
-            </Link>
-            <Link
-              href="/#why-agent"
-              className="text-dark-muted hover:text-dark-text transition-colors"
-            >
-              How It Works
-            </Link>
+              <Send className="w-4 h-4" />
+              Telegram
+            </a>
           </div>
         </div>
       </div>
