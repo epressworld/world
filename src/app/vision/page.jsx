@@ -13,7 +13,7 @@ function VisionMeritGraph() {
     {
       id: "center",
       cx: 280,
-      cy: 140,
+      cy: 160,
       r: 40,
       label: "High-Value Idea",
       sublabel: "cited 3,200 times",
@@ -21,7 +21,7 @@ function VisionMeritGraph() {
     {
       id: "A",
       cx: 80,
-      cy: 60,
+      cy: 80,
       r: 18,
       label: "Researcher",
       sublabel: "847 posts",
@@ -30,7 +30,7 @@ function VisionMeritGraph() {
     {
       id: "B",
       cx: 340,
-      cy: 30,
+      cy: 50,
       r: 16,
       label: "Journalist",
       sublabel: "1.2k posts",
@@ -39,7 +39,7 @@ function VisionMeritGraph() {
     {
       id: "C",
       cx: 500,
-      cy: 80,
+      cy: 100,
       r: 20,
       label: "Professor",
       sublabel: "2,100 posts",
@@ -48,7 +48,7 @@ function VisionMeritGraph() {
     {
       id: "D",
       cx: 480,
-      cy: 220,
+      cy: 240,
       r: 15,
       label: "Engineer",
       sublabel: "634 posts",
@@ -57,7 +57,7 @@ function VisionMeritGraph() {
     {
       id: "E",
       cx: 140,
-      cy: 240,
+      cy: 260,
       r: 17,
       label: "Writer",
       sublabel: "980 posts",
@@ -66,7 +66,7 @@ function VisionMeritGraph() {
     {
       id: "F",
       cx: 40,
-      cy: 180,
+      cy: 200,
       r: 14,
       label: "Analyst",
       sublabel: "445 posts",
@@ -101,22 +101,22 @@ function VisionMeritGraph() {
 
   const getArrowCoords = (fromNode) => {
     const dx = 280 - fromNode.cx
-    const dy = 140 - fromNode.cy
+    const dy = 160 - fromNode.cy
     const dist = Math.sqrt(dx * dx + dy * dy)
     const ux = dx / dist
     const uy = dy / dist
     return {
       x1: fromNode.cx + ux * fromNode.r,
       y1: fromNode.cy + uy * fromNode.r,
-      x2: 280 - ux * (centerRadius + 4),
-      y2: 140 - uy * (centerRadius + 4),
+      x2: 280 - ux * centerRadius,
+      y2: 160 - uy * centerRadius,
     }
   }
 
   return (
     <div className="relative w-full max-w-[800px] mx-auto mt-12">
       <svg
-        viewBox="0 0 560 320"
+        viewBox="0 0 560 340"
         className="w-full block"
         fill="none"
         stroke="currentColor"
@@ -131,7 +131,7 @@ function VisionMeritGraph() {
 
         <motion.circle
           cx={280}
-          cy={140}
+          cy={160}
           r={centerRadius + 20}
           fill="url(#centerGlow)"
           stroke="none"
@@ -183,7 +183,7 @@ function VisionMeritGraph() {
                 transition={{ duration: 0.3, delay: 0.4 }}
                 style={{
                   transformOrigin: `${coords.x2}px ${coords.y2}px`,
-                  transform: `rotate(${Math.atan2(140 - fromNode.cy, 280 - fromNode.cx) * (180 / Math.PI)}deg)`,
+                  transform: `rotate(${Math.atan2(160 - fromNode.cy, 280 - fromNode.cx) * (180 / Math.PI)}deg)`,
                 }}
               />
             </motion.g>
@@ -255,7 +255,7 @@ function VisionMeritGraph() {
           >
             <text
               x={280}
-              y={135}
+              y={155}
               textAnchor="middle"
               fill="#e8a04a"
               fillOpacity="0.95"
@@ -267,7 +267,7 @@ function VisionMeritGraph() {
             </text>
             <text
               x={280}
-              y={150}
+              y={170}
               textAnchor="middle"
               fill="#e8a04a"
               fillOpacity="0.6"

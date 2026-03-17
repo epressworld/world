@@ -3,89 +3,19 @@
 import { motion } from "framer-motion"
 import { ArrowRight, BookOpen } from "lucide-react"
 import Link from "next/link"
-
-function GradientMeshBackground() {
-  return (
-    <div className="absolute inset-0 overflow-hidden">
-      {/* Base gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-dark-bg via-dark-bg to-[#1a1510]" />
-
-      <motion.div
-        className="absolute w-[800px] h-[800px] rounded-full opacity-20"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(232,160,74,0.4) 0%, transparent 70%)",
-          filter: "blur(80px)",
-          left: "-10%",
-          top: "-20%",
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        className="absolute w-[600px] h-[600px] rounded-full opacity-15"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(232,160,74,0.3) 0%, transparent 70%)",
-          filter: "blur(60px)",
-          right: "-5%",
-          bottom: "-10%",
-        }}
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2,
-        }}
-      />
-
-      <motion.div
-        className="absolute w-[400px] h-[400px] rounded-full opacity-10"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%)",
-          filter: "blur(40px)",
-          left: "40%",
-          top: "30%",
-        }}
-        animate={{
-          x: [0, 30, 0],
-          y: [0, -20, 0],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(232,160,74,0.5) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(232,160,74,0.5) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
-    </div>
-  )
-}
+import { HeroNetworkCanvas } from "./hero-network-canvas"
+import { HeroNetworkSvg } from "./hero-network-svg"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      <GradientMeshBackground />
+    <section className="relative min-h-[80vh] flex items-center overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-bg via-transparent to-dark-bg z-10" />
+        <div className="relative w-full h-full">
+          <HeroNetworkSvg />
+          <HeroNetworkCanvas />
+        </div>
+      </div>
 
       <div className="container-custom relative z-20 py-20 md:py-32">
         <div className="max-w-4xl">
@@ -162,7 +92,6 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark-bg to-transparent pointer-events-none" />
     </section>
   )

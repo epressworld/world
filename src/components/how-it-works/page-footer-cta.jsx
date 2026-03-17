@@ -2,10 +2,9 @@
 
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { CopyableCode } from "@/components/shared/copy-button"
 
-const DOCKER_COMMAND = `docker run -d -p 8543:8543 \\
-  -v epress-data:/app/data \\
-  ghcr.io/epressworld/epress`
+const INSTALL_COMMAND = "curl -fsSL https://epress.world/install.sh | bash"
 
 export function PageFooterCTA() {
   return (
@@ -26,11 +25,7 @@ export function PageFooterCTA() {
               <p className="text-[10px] uppercase tracking-wider text-white/40 mb-4">
                 Ready to Deploy?
               </p>
-              <div className="bg-black/40 rounded-lg p-4 font-mono text-xs text-white/60 mb-4 overflow-x-auto">
-                <pre className="whitespace-pre-wrap break-all">
-                  {DOCKER_COMMAND}
-                </pre>
-              </div>
+              <CopyableCode code={INSTALL_COMMAND} className="mb-4" />
               <Link
                 href="/docs/getting-started"
                 className="btn-primary w-full text-center inline-flex items-center justify-center"
