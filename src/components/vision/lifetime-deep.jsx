@@ -50,11 +50,11 @@ const comparisonData = [
   },
 ]
 
-export function LifetimeTimeline() {
+export function LifetimeDeep() {
   return (
-    <section className="landing-section bg-dark-surface/40">
+    <section className="landing-section">
       <div className="container-custom">
-        <p className="section-label text-center">A New Kind of Inheritance</p>
+        <p className="section-label">A New Kind of Inheritance</p>
         <h2 className="landing-heading mb-4 text-center">
           One Node. One Lifetime.
         </h2>
@@ -81,7 +81,7 @@ export function LifetimeTimeline() {
                 </span>
               </div>
               <div className="text-center bg-[rgba(74,240,212,0.05)] rounded-lg py-2 -mx-2">
-                <span className="text-sm font-mono font-semibold text-[#4af0d4]">
+                <span className="text-sm font-mono font-semibold text-accent-green">
                   epress Node
                 </span>
               </div>
@@ -117,7 +117,7 @@ export function LifetimeTimeline() {
                     </span>
                   </div>
                   <div className="text-center bg-[rgba(74,240,212,0.05)] rounded-lg py-2 -mx-2">
-                    <span className="text-sm font-mono text-[#4af0d4]">
+                    <span className="text-sm font-mono text-accent-green">
                       {row.epress.icon}{" "}
                       <span className="hidden md:inline">
                         {row.epress.text}
@@ -133,12 +133,30 @@ export function LifetimeTimeline() {
           </div>
         </div>
 
-        <div className="mt-16 max-w-3xl mx-auto text-center">
-          <p className="text-lg md:text-xl text-dark-text leading-relaxed italic">
-            Imagine your grandmother had an epress node in 1990. Her recipes,
-            her letters, her thoughts — still there. Still hers. Still yours to
-            inherit.
-          </p>
+        <div className="mt-16 max-w-3xl mx-auto">
+          <h3 className="font-sans text-2xl md:text-3xl font-bold text-white mb-8 text-center">
+            A New Category of Asset
+          </h3>
+
+          <div className="space-y-6 text-center">
+            <p className="text-sm font-mono text-dark-muted leading-relaxed">
+              Current platforms lock your digital life on servers that don't
+              belong to you. When you die, that decade of work exists in a legal
+              gray zone.
+            </p>
+
+            <p className="text-sm font-mono text-dark-muted leading-relaxed">
+              An epress node is legally your property — the same as a house or a
+              bank account. Include it in a will. Put it in a trust. Transfer it
+              by handing over a private key.
+            </p>
+
+            <p className="text-sm font-mono text-accent-green leading-relaxed">
+              No platform permission required.
+              <br />
+              No appeals process. No expiration date.
+            </p>
+          </div>
         </div>
       </div>
     </section>

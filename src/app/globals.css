@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #f7931a;
+  --color-primary: #e8a04a;
 }
 
 @layer base {
@@ -135,5 +135,13 @@
 
   .section-label {
     @apply text-xs font-mono uppercase tracking-widest text-dark-muted mb-4;
+  }
+
+  .fade-in-section {
+    @apply opacity-0 translate-y-4 transition-all duration-700 ease-out;
+  }
+
+  .fade-in-section.visible {
+    @apply opacity-100 translate-y-0;
   }
 }

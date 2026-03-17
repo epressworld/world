@@ -1,4 +1,4 @@
-import { Github } from "lucide-react"
+import { Calendar, Rocket } from "lucide-react"
 import Link from "next/link"
 import { HeroNetworkCanvas } from "./hero-network-canvas"
 import { HeroNetworkSvg } from "./hero-network-svg"
@@ -22,22 +22,19 @@ export function HeroSection() {
             <span className="text-primary">For Life.</span>
           </h1>
           <p className="landing-subheading mb-8">
-            Not a platform account. A self-hosted node you own, inherit, and
-            pass down — like property.
+            Your posts, your friends, your memories — today they live on someone
+            else's server. epress gives you a home on the internet that no one
+            can take away.
           </p>
           <div className="flex flex-wrap gap-4 mb-4">
-            <a
-              href="https://github.com/epressworld/epress"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              <Github className="w-5 h-5 mr-2" />
-              Star on GitHub
-            </a>
-            <Link href="/vision" className="btn-secondary">
-              Read the Vision →
+            <Link href="/docs" className="btn-primary">
+              <Rocket className="w-5 h-5 mr-2" />
+              Deploy Your Node
             </Link>
+            <button type="button" className="btn-secondary">
+              <Calendar className="w-5 h-5 mr-2" />
+              Request a Demo
+            </button>
           </div>
           <p className="text-sm font-mono text-[#888] hover:text-[#aaa] transition-colors">
             See it live →{" "}
