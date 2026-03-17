@@ -1466,12 +1466,7 @@ export function VisionPreview() {
         }
         @media (max-width: 768px) {
           .carousel-arrow {
-            width: 32px;
-            height: 32px;
-          }
-          .carousel-arrow svg {
-            width: 18px;
-            height: 18px;
+            display: none;
           }
           .embla__slide {
             padding-left: 8px;
