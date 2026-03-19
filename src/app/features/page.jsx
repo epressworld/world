@@ -1688,25 +1688,149 @@ export default function FeaturesPage() {
       <SiteNav />
 
       <main className="flex-1">
-        <section className="container-custom pt-24 pb-16 text-center">
-          <div className="section-label">FEATURES</div>
-          <h1 className="landing-heading">See the Real Thing.</h1>
-          <p className="landing-subheading max-w-xl mx-auto mb-6">
-            Six key interactions — shown with the actual epress interface, not
-            illustrations.
-          </p>
-          <p className="text-sm italic" style={{ color: UI.textMuted }}>
-            Real nodes are running now at{" "}
-            <a
-              href="https://blog.epress.world"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-primary transition-colors"
+        <section className="pt-24 pb-0 text-center overflow-hidden relative">
+          <div className="container-custom max-w-3xl mx-auto pb-12">
+            <div className="section-label mb-4">FEATURES</div>
+            <h1 className="landing-heading mb-4">See the Real Thing.</h1>
+            <p className="landing-subheading max-w-lg mx-auto mb-3">
+              Six key interactions — shown with the actual epress interface.
+            </p>
+            <p
+              className="text-[13px] italic mb-0"
+              style={{ color: "rgba(255,255,255,0.3)" }}
             >
-              blog.epress.world
-            </a>
-          </p>
+              Live node:{" "}
+              <a
+                href="https://blog.epress.world"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                blog.epress.world →
+              </a>
+            </p>
+          </div>
+
+          <motion.div
+            className="container-custom max-w-[1000px] mx-auto px-6 relative"
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-40px" }}
+          >
+            <div
+              className="screenshot-frame relative rounded-[14px] overflow-hidden"
+              style={{
+                border: "1px solid rgba(255,255,255,0.1)",
+                boxShadow:
+                  "0 0 0 1px rgba(255,255,255,0.05), 0 32px 80px rgba(0,0,0,0.65), 0 8px 24px rgba(0,0,0,0.4)",
+                transform: "perspective(1400px) rotateX(4deg)",
+                transformOrigin: "center top",
+              }}
+            >
+              <div
+                className="flex items-center px-3.5 gap-1.5"
+                style={{
+                  height: "38px",
+                  background: "#1e1e1e",
+                  borderBottom: "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                <div
+                  className="w-2.5 h-2.5 rounded-full"
+                  style={{ background: "#ff5f57" }}
+                />
+                <div
+                  className="w-2.5 h-2.5 rounded-full"
+                  style={{ background: "#ffbd2e" }}
+                />
+                <div
+                  className="w-2.5 h-2.5 rounded-full"
+                  style={{ background: "#28c840" }}
+                />
+                <div className="flex-1 flex items-center justify-center ml-2.5">
+                  <div
+                    className="flex items-center gap-1.5 px-2.5 rounded-md"
+                    style={{
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      height: "22px",
+                      maxWidth: "320px",
+                    }}
+                  >
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 12 14"
+                      fill="none"
+                      style={{ color: "rgba(255,255,255,0.3)" }}
+                    >
+                      <rect
+                        x="2"
+                        y="5"
+                        width="8"
+                        height="7"
+                        rx="1.5"
+                        stroke="currentColor"
+                        strokeWidth="1.2"
+                      />
+                      <path
+                        d="M4 5V3.5a2 2 0 014 0V5"
+                        stroke="currentColor"
+                        strokeWidth="1.2"
+                      />
+                    </svg>
+                    <span
+                      className="text-[11px] font-mono"
+                      style={{ color: "rgba(255,255,255,0.4)" }}
+                    >
+                      blog.epress.world
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <img
+                src="/official-node-screenshot.png"
+                alt="Real epress node — blog.epress.world"
+                style={{
+                  display: "block",
+                  width: "100%",
+                  height: "auto",
+                  imageRendering: "auto",
+                }}
+              />
+
+              <div
+                className="absolute bottom-0 left-0 right-0 pointer-events-none"
+                style={{
+                  height: "120px",
+                  background:
+                    "linear-gradient(to bottom, transparent 0%, rgba(10,10,10,0.7) 60%, rgba(10,10,10,1) 100%)",
+                }}
+              />
+            </div>
+          </motion.div>
         </section>
+
+        <div className="mt-14 container-custom text-center">
+          <div className="flex items-center gap-4 max-w-[400px] mx-auto">
+            <div
+              className="flex-1 h-px"
+              style={{ background: "rgba(255,255,255,0.07)" }}
+            />
+            <span
+              className="text-[11px] font-semibold tracking-widest uppercase whitespace-nowrap"
+              style={{ color: "rgba(255,255,255,0.2)" }}
+            >
+              SIX FEATURES EXPLAINED BELOW
+            </span>
+            <div
+              className="flex-1 h-px"
+              style={{ background: "rgba(255,255,255,0.07)" }}
+            />
+          </div>
+        </div>
 
         <section className="container-custom py-16">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -2136,6 +2260,9 @@ export default function FeaturesPage() {
             animation-duration: 0.01ms !important;
             animation-iteration-count: 1 !important;
             transition-duration: 0.01ms !important;
+          }
+          .screenshot-frame {
+            transform: none !important;
           }
         }
       `}</style>
