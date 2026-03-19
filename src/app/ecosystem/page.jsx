@@ -663,7 +663,7 @@ export default function EcosystemPage() {
       `}</style>
 
       <main className="flex-1">
-        <section className="relative min-h-[60vh] flex flex-col items-center justify-center text-center overflow-hidden">
+        <section className="relative min-h-[80vh] flex flex-col items-center justify-center text-center overflow-hidden">
           <HeroSvg />
 
           <div className="relative z-10 container-custom">
