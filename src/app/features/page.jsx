@@ -1688,7 +1688,7 @@ export default function FeaturesPage() {
       <SiteNav />
 
       <main className="flex-1">
-        <section className="pt-24 pb-0 text-center overflow-hidden relative">
+        <section className="pt-24 pb-0 text-center relative">
           <div className="container-custom max-w-3xl mx-auto pb-12">
             <div className="section-label mb-4">FEATURES</div>
             <h1 className="landing-heading mb-4">See the Real Thing.</h1>
