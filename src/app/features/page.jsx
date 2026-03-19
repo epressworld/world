@@ -527,45 +527,6 @@ function MetaMaskSigningModal({ onClose }) {
   )
 }
 
-function FollowPopover({ inputValue, onFollow, onCancel }) {
-  return (
-    <div
-      className="absolute top-[108px] right-4 z-10 w-[240px] rounded-lg p-3"
-      style={{
-        background: UI.popoverBg,
-        boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-      }}
-    >
-      <div className="text-[12px] font-medium text-gray-800 mb-2">
-        Follow a Node
-      </div>
-      <input
-        type="text"
-        value={inputValue}
-        readOnly
-        className="w-full text-[11px] px-2 py-1.5 rounded border border-gray-300 mb-3 text-gray-700"
-      />
-      <div className="flex gap-2">
-        <button
-          type="button"
-          onClick={onCancel}
-          className="flex-1 text-[11px] font-medium py-1.5 rounded bg-gray-200 text-gray-700 hover:bg-gray-300"
-        >
-          Cancel
-        </button>
-        <button
-          type="button"
-          onClick={onFollow}
-          className="flex-1 text-[11px] font-medium py-1.5 rounded text-white"
-          style={{ background: UI.orange }}
-        >
-          Follow
-        </button>
-      </div>
-    </div>
-  )
-}
-
 function Act1NodeHomepage() {
   return (
     <NodeChrome
@@ -938,94 +899,648 @@ function Act4PublishAnimation() {
 
 function Act5FollowAnimation() {
   const [state, setState] = useState(0)
+  const [typedUrl, setTypedUrl] = useState("")
   const containerRef = useRef(null)
   const isInView = useInView(containerRef, { once: false, margin: "-60px" })
+
+  const fullUrl = "bob.epress.world"
 
   useEffect(() => {
     if (!isInView) {
       setState(0)
+      setTypedUrl("")
       return
     }
 
-    const timers = [
-      setTimeout(() => setState(1), 2000),
-      setTimeout(() => setState(2), 5000),
-      setTimeout(() => setState(0), 7000),
-    ]
+    const timers = []
+
+    if (state === 0) {
+      timers.push(setTimeout(() => setState(1), 1800))
+    }
+
+    if (state === 1) {
+      timers.push(setTimeout(() => setState(2), 900))
+    }
+
+    if (state === 2) {
+      let idx = 0
+      const typeInterval = setInterval(() => {
+        if (idx < fullUrl.length) {
+          setTypedUrl(fullUrl.slice(0, idx + 1))
+          idx++
+        } else {
+          clearInterval(typeInterval)
+        }
+      }, 55)
+      timers.push(setTimeout(() => setState(3), 2200))
+      return () => {
+        clearInterval(typeInterval)
+        timers.forEach(clearTimeout)
+      }
+    }
+
+    if (state === 3) {
+      timers.push(setTimeout(() => setState(4), 1800))
+    }
+
+    if (state === 4) {
+      timers.push(setTimeout(() => setState(5), 1400))
+    }
+
+    if (state === 5) {
+      timers.push(setTimeout(() => setState(6), 2500))
+    }
+
+    if (state === 6) {
+      timers.push(
+        setTimeout(() => {
+          setState(0)
+          setTypedUrl("")
+        }, 1500),
+      )
+    }
 
     return () => timers.forEach(clearTimeout)
   }, [isInView, state])
 
-  return (
-    <div ref={containerRef}>
-      <NodeChrome
-        nodeUrl="garbin.epress.world"
-        nodeName="garbin"
-        nodeTagline="Building decentralized tools"
-        avatarLetter="G"
-        navState="logged-in"
-        walletAddress="0x62...37E0"
-        activeTab="contents"
-        overlayContent={
-          state === 1 ? (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+  const renderFollowButton = () => {
+    if (state === 5) {
+      return (
+        <div className="flex items-center gap-2">
+          <div
+            className="flex items-center gap-1.5 px-2 py-1 rounded-md"
+            style={{ background: "rgba(34,197,94,0.15)" }}
+          >
+            <div
+              className="w-2 h-2 rounded-full"
+              style={{ background: "#22c55e" }}
+            />
+            <span
+              className="text-[10px] font-mono"
+              style={{ color: "rgba(255,255,255,0.60)" }}
             >
-              <FollowPopover
-                inputValue="alice.epress.world"
-                onFollow={() => setState(2)}
-                onCancel={() => setState(0)}
-              />
-            </motion.div>
-          ) : null
-        }
+              0xa2...f91c
+            </span>
+          </div>
+          <button
+            type="button"
+            className="text-[11px] font-medium px-3 py-1.5 rounded-md flex items-center gap-1.5"
+            style={{
+              background: "rgba(232,115,42,0.15)",
+              border: "1px solid rgba(232,115,42,0.35)",
+              color: "#e8732a",
+            }}
+          >
+            <span
+              className="w-3 h-3 rounded-full border-2"
+              style={{
+                borderColor: "#e8732a",
+                borderTopColor: "transparent",
+                animation: "feat-spinner 0.6s linear infinite",
+              }}
+            />
+            Connecting...
+          </button>
+        </div>
+      )
+    }
+
+    if (state === 6) {
+      return (
+        <div className="flex items-center gap-2">
+          <div
+            className="flex items-center gap-1.5 px-2 py-1 rounded-md"
+            style={{ background: "rgba(34,197,94,0.15)" }}
+          >
+            <div
+              className="w-2 h-2 rounded-full"
+              style={{ background: "#22c55e" }}
+            />
+            <span
+              className="text-[10px] font-mono"
+              style={{ color: "rgba(255,255,255,0.60)" }}
+            >
+              0xa2...f91c
+            </span>
+          </div>
+          <button
+            type="button"
+            className="text-[11px] font-medium px-3 py-1.5 rounded-md"
+            style={{
+              background: "transparent",
+              border: "1px solid rgba(255,255,255,0.12)",
+              color: "rgba(255,255,255,0.50)",
+            }}
+          >
+            Unfollow
+          </button>
+        </div>
+      )
+    }
+
+    return (
+      <div className="flex items-center gap-2">
+        <div
+          className="flex items-center gap-1.5 px-2 py-1 rounded-md"
+          style={{ background: "rgba(34,197,94,0.15)" }}
+        >
+          <div
+            className="w-2 h-2 rounded-full"
+            style={{ background: "#22c55e" }}
+          />
+          <span
+            className="text-[10px] font-mono"
+            style={{ color: "rgba(255,255,255,0.60)" }}
+          >
+            0xa2...f91c
+          </span>
+        </div>
+        <motion.button
+          type="button"
+          className="text-[11px] font-medium px-3 py-1.5 rounded-md"
+          style={{
+            background: "#e8732a",
+            color: "#111",
+          }}
+          animate={state === 0 ? { scale: [1, 1.04, 1] } : {}}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          + Follow
+        </motion.button>
+      </div>
+    )
+  }
+
+  const renderPopover = () => {
+    if (state < 2 || state >= 4) return null
+
+    return (
+      <motion.div
+        className="absolute w-[280px] rounded-lg p-4"
+        style={{
+          background: "#1e1e1e",
+          border: "1px solid rgba(255,255,255,0.12)",
+          boxShadow: "0 8px 28px rgba(0,0,0,0.5)",
+          top: "calc(100% + 8px)",
+          right: "0",
+          zIndex: 20,
+        }}
+        initial={{ opacity: 0, y: -8, scale: 0.96 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
       >
-        <div className="p-4">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2">
-              <div
-                className="w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold"
-                style={{ background: "#6366f1", color: "#fff" }}
+        <div
+          className="text-[11px] mb-1.5 font-mono"
+          style={{ color: "rgba(255,255,255,0.28)" }}
+        >
+          Your node URL
+        </div>
+        <div
+          className="w-full rounded-lg px-3 py-2 mb-3 text-[13px] font-mono"
+          style={{
+            background: "#1a1a1a",
+            border: "1px solid rgba(255,255,255,0.08)",
+            color: typedUrl
+              ? "rgba(255,255,255,0.90)"
+              : "rgba(255,255,255,0.28)",
+          }}
+        >
+          {typedUrl || "Please enter your node URL"}
+          {state === 2 && typedUrl.length < 18 && (
+            <span
+              className="inline-block w-0.5 h-3.5 ml-0.5 align-middle"
+              style={{
+                background: "#e8732a",
+                animation: "feat-cursor-blink 0.8s step-end infinite",
+              }}
+            />
+          )}
+        </div>
+        <div className="flex gap-2 justify-end">
+          <button
+            type="button"
+            className="text-[12px] px-3 py-1.5 rounded-lg font-mono"
+            style={{
+              background: "transparent",
+              border: "1px solid rgba(255,255,255,0.08)",
+              color: "rgba(255,255,255,0.50)",
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="text-[12px] font-semibold px-3 py-1.5 rounded-lg font-mono"
+            style={{
+              background: "#2a2a2a",
+              border: "1px solid rgba(255,255,255,0.12)",
+              color: "rgba(255,255,255,0.90)",
+            }}
+          >
+            Follow
+          </button>
+        </div>
+      </motion.div>
+    )
+  }
+
+  const renderSigningModal = () => {
+    if (state !== 3) return null
+
+    return (
+      <div
+        className="absolute inset-0 flex items-center justify-center"
+        style={{ background: "rgba(0,0,0,0.6)", zIndex: 30 }}
+      >
+        <div
+          className="w-[300px] rounded-xl overflow-hidden"
+          style={{
+            background: "#2a2a2a",
+            border: "1px solid rgba(255,255,255,0.08)",
+          }}
+        >
+          <div
+            className="flex items-center gap-2 px-4 py-3 border-b"
+            style={{ borderColor: "rgba(255,255,255,0.08)" }}
+          >
+            <span className="text-[20px]">🦊</span>
+            <span
+              className="text-[14px] font-bold font-mono"
+              style={{ color: "rgba(255,255,255,0.90)" }}
+            >
+              Signature Request
+            </span>
+          </div>
+          <div className="p-4">
+            <div
+              className="text-[10px] mb-3 font-mono"
+              style={{ color: "rgba(255,255,255,0.28)" }}
+            >
+              <span style={{ color: "#e8732a" }}>alice.epress.world</span> wants
+              you to confirm:
+            </div>
+            <div
+              className="text-[10px] p-3 rounded-lg font-mono leading-relaxed mb-4"
+              style={{
+                background: "#1e1e1e",
+                color: "rgba(255,255,255,0.45)",
+              }}
+            >
+              Action: Follow request
+              <br />
+              Your node: bob.epress.world
+              <br />
+              Your address: 0xa2e1...f91c
+              <br />
+              Nonce: g4k9pQ3r
+            </div>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                className="flex-1 text-[11px] font-medium py-2 rounded-md font-mono"
+                style={{
+                  background: "transparent",
+                  color: "rgba(255,255,255,0.90)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                }}
               >
-                G
-              </div>
-              <div>
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="flex-1 text-[11px] font-medium py-2 rounded-md font-mono"
+                style={{
+                  background: "#e8732a",
+                  color: "#111",
+                }}
+              >
+                Sign
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  const renderLoading = () => {
+    if (state !== 4 && state !== 5) return null
+
+    return (
+      <div className="flex flex-col items-center justify-center p-10 gap-3">
+        <div
+          className="w-6 h-6 rounded-full"
+          style={{
+            border: "2.5px solid rgba(255,255,255,0.1)",
+            borderTopColor: "#e8732a",
+            animation: "feat-spin 0.9s linear infinite",
+          }}
+        />
+        <div
+          className="text-[13px] font-mono"
+          style={{ color: "rgba(255,255,255,0.28)" }}
+        >
+          {state === 5 ? "Connecting..." : "Establishing connection..."}
+        </div>
+        {state === 4 && (
+          <div
+            className="text-[11px] font-mono"
+            style={{ color: "rgba(255,255,255,0.18)" }}
+          >
+            Both nodes are syncing the follow record
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  const renderConnectionsPage = () => {
+    if (state !== 6) return null
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      >
+        <motion.div
+          className="mx-4 mt-4 mb-2 rounded-lg overflow-hidden"
+          style={{
+            background: "#2a2a2a",
+            border: "1px solid rgba(255,255,255,0.08)",
+          }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div
+            className="px-5 py-4 flex justify-between items-center border-b"
+            style={{ borderColor: "rgba(255,255,255,0.08)" }}
+          >
+            <span
+              className="text-[16px] font-bold font-mono"
+              style={{ color: "rgba(255,255,255,0.90)" }}
+            >
+              Followers
+            </span>
+            <span
+              className="text-[12px] font-bold px-2 py-0.5 rounded-md font-mono"
+              style={{ background: "#16a34a", color: "#fff" }}
+            >
+              1
+            </span>
+          </div>
+          <div className="px-5 py-4 flex items-center gap-3.5">
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center text-[16px] font-bold"
+              style={{ background: "#e8732a", color: "rgba(0,0,0,0.7)" }}
+            >
+              B
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span
+                className="text-[15px] font-semibold cursor-pointer font-mono"
+                style={{ color: "#e8732a" }}
+              >
+                bob
+              </span>
+              <span
+                className="text-[11px] font-mono"
+                style={{ color: "rgba(255,255,255,0.28)" }}
+              >
+                0xCe821a6355fa1790E2941d74D7E6f270d9e32a4c
+              </span>
+              <span
+                className="text-[12px] mt-0.5 font-mono"
+                style={{ color: "rgba(255,255,255,0.50)" }}
+              >
+                Decentralization enthusiast.
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="mx-4 mb-2 rounded-lg overflow-hidden"
+          style={{
+            background: "#2a2a2a",
+            border: "1px solid rgba(255,255,255,0.08)",
+          }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.15 }}
+        >
+          <div
+            className="px-5 py-4 flex justify-between items-center border-b"
+            style={{ borderColor: "rgba(255,255,255,0.08)" }}
+          >
+            <span
+              className="text-[16px] font-bold font-mono"
+              style={{ color: "rgba(255,255,255,0.90)" }}
+            >
+              Following
+            </span>
+            <span
+              className="text-[12px] font-bold px-2 py-0.5 rounded-md font-mono"
+              style={{ background: "#16a34a", color: "#fff" }}
+            >
+              1
+            </span>
+          </div>
+          <div className="px-5 py-4 flex items-center gap-3.5">
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center text-[16px] font-bold"
+              style={{ background: "#e8732a", color: "rgba(0,0,0,0.7)" }}
+            >
+              B
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span
+                className="text-[15px] font-semibold cursor-pointer font-mono"
+                style={{ color: "#e8732a" }}
+              >
+                bob
+              </span>
+              <span
+                className="text-[11px] font-mono"
+                style={{ color: "rgba(255,255,255,0.28)" }}
+              >
+                0xa2e1b3c4d5e6f7890a1b2c3d4e5f6
+              </span>
+              <span
+                className="text-[12px] mt-0.5 font-mono"
+                style={{ color: "rgba(255,255,255,0.50)" }}
+              >
+                Decentralization enthusiast.
+              </span>
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    )
+  }
+
+  const aliceAvatar = "#22c55e"
+
+  return (
+    <div
+      ref={containerRef}
+      className="w-full rounded-[16px] overflow-hidden relative"
+      style={{
+        background: "#111",
+        border: "1px solid rgba(255,255,255,0.08)",
+        boxShadow: "0 24px 60px rgba(0,0,0,0.6)",
+        fontFamily: "monospace",
+      }}
+    >
+      <div
+        className="flex items-center justify-between px-4"
+        style={{
+          height: "80px",
+          background: "#1a1a1a",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+        }}
+      >
+        <div className="flex items-center gap-3">
+          <div
+            className="w-[52px] h-[52px] rounded-full flex items-center justify-center text-[20px] font-bold"
+            style={{ background: aliceAvatar, color: "#fff" }}
+          >
+            A
+          </div>
+          <div>
+            <div
+              className="text-[18px] font-bold"
+              style={{ color: "rgba(255,255,255,0.90)" }}
+            >
+              alice
+            </div>
+            <div
+              className="text-[12px]"
+              style={{ color: "rgba(255,255,255,0.28)" }}
+            >
+              Writing about cities and code.
+            </div>
+          </div>
+        </div>
+        <div style={{ position: "relative" }}>
+          {renderFollowButton()}
+          {renderPopover()}
+        </div>
+      </div>
+
+      <div
+        className="flex items-center border-b"
+        style={{
+          height: "44px",
+          background: "#1a1a1a",
+          borderColor: "rgba(255,255,255,0.08)",
+        }}
+      >
+        {["contents", "connections"].map((tab) => {
+          const isActive =
+            (tab === "contents" && state < 6) ||
+            (tab === "connections" && state === 6)
+          return (
+            <button
+              type="button"
+              key={tab}
+              className="text-[11px] font-medium px-4 py-2 capitalize relative font-mono"
+              style={{
+                color: isActive ? "#e8732a" : "rgba(255,255,255,0.50)",
+              }}
+            >
+              {tab}
+              {isActive && (
                 <div
-                  className="text-[13px] font-medium"
-                  style={{ color: UI.textPrimary }}
+                  className="absolute bottom-0 left-0 right-0 h-[2px]"
+                  style={{ background: "#e8732a" }}
+                />
+              )}
+            </button>
+          )
+        })}
+      </div>
+
+      <div
+        style={{ background: "#111", minHeight: "280px", position: "relative" }}
+      >
+        {renderSigningModal()}
+
+        {state === 6 ? (
+          renderConnectionsPage()
+        ) : state === 4 || state === 5 ? (
+          renderLoading()
+        ) : (
+          <div className="p-4">
+            <div
+              className="relative p-3 rounded-lg"
+              style={{
+                background: "#2a2a2a",
+                border: "1px solid rgba(255,255,255,0.08)",
+                opacity: state >= 2 ? 0.4 : 1,
+                transition: "opacity 0.3s",
+              }}
+            >
+              <SignedRibbon signed />
+              <div className="flex items-center gap-2 mb-2">
+                <div
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-bold"
+                  style={{ background: aliceAvatar, color: "#fff" }}
                 >
-                  garbin
+                  A
                 </div>
-                <div className="text-[10px]" style={{ color: UI.textMuted }}>
-                  Building decentralized tools
+                <div className="flex-1 min-w-0">
+                  <div
+                    className="text-[13px] font-medium"
+                    style={{ color: "rgba(255,255,255,0.90)" }}
+                  >
+                    alice
+                  </div>
+                  <div
+                    className="text-[10px] font-mono"
+                    style={{ color: "rgba(255,255,255,0.28)" }}
+                  >
+                    0x3f2a...8c4d
+                  </div>
                 </div>
+              </div>
+              <div
+                className="text-[12px] leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.90)" }}
+              >
+                Just deployed my own epress node. The future of personal content
+                ownership is here.
+              </div>
+              <div
+                className="text-[11px]"
+                style={{ color: "rgba(255,255,255,0.28)" }}
+              >
+                1 hour ago
               </div>
             </div>
-            {state === 2 && (
-              <motion.button
-                type="button"
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="text-[11px] font-medium px-3 py-1.5 rounded-md text-white"
-                style={{ background: UI.green }}
-              >
-                Following ✓
-              </motion.button>
-            )}
           </div>
+        )}
+      </div>
 
-          <PostCard
-            authorName="garbin"
-            authorAddress="0x4d7e...2a1f"
-            timeAgo="2 days ago"
-            content="Just shipped a new feature for epress. Decentralized identity is finally becoming a reality."
-            signed
-            showActions={false}
-          />
+      <div
+        className="flex items-center justify-between px-4"
+        style={{ height: "40px", background: "#1a1a1a" }}
+      >
+        <div
+          className="text-[10px] font-mono"
+          style={{ color: "rgba(255,255,255,0.28)" }}
+        >
+          epress
         </div>
-      </NodeChrome>
+        <div
+          className="flex items-center gap-4 text-[10px] font-mono"
+          style={{ color: "rgba(255,255,255,0.28)" }}
+        >
+          <span>Visitors: 1,234</span>
+          <span>Online: 142 days</span>
+        </div>
+      </div>
     </div>
   )
 }
@@ -1447,19 +1962,20 @@ export default function FeaturesPage() {
                   color: UI.orange,
                 }}
               >
-                05 — FOLLOW
+                05
               </div>
               <h2
                 className="text-2xl font-bold mb-4"
                 style={{ color: UI.textPrimary }}
               >
-                Follow Other Nodes Directly
+                Follow From Their Node, Not Yours
               </h2>
               <p className="text-sm mb-4" style={{ color: UI.textSecondary }}>
-                Following is a direct connection between nodes. No central
-                server tracks your follows. You subscribe to another node&apos;s
-                content feed, and they notify you when something new is
-                published.
+                To follow alice&apos;s node, bob visits alice.epress.world and
+                connects his own wallet. Since he&apos;s a visitor — not the
+                node owner — he sees a Follow button instead of Login. He clicks
+                Follow, enters his own node URL, and signs with his wallet. Both
+                nodes record the connection simultaneously.
               </p>
               <div
                 className="p-3 rounded-lg border-l-2"
@@ -1472,8 +1988,9 @@ export default function FeaturesPage() {
                   <strong style={{ color: UI.textPrimary }}>
                     Key insight:
                   </strong>{" "}
-                  Following creates a verified relationship — you know exactly
-                  whose content you&apos;re receiving.
+                  After a successful follow, the Follow button becomes Unfollow.
+                  Both nodes&apos; Connections pages update — bob appears in
+                  alice&apos;s Followers, alice appears in bob&apos;s Following.
                 </p>
               </div>
             </motion.div>
