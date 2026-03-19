@@ -33,8 +33,7 @@ const EXPLORE_MENU_ITEMS = [
     href: "/features",
     label: "Features",
     description: "What epress can do today",
-    badge: "soon",
-    disabled: true,
+    disabled: false,
   },
 ]
 
