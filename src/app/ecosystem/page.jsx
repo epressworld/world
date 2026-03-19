@@ -21,105 +21,127 @@ function EcoDivider({ number, label }) {
 }
 
 function HeroSvg() {
-  const lines = [
-    { angle: -70, endX: 74, endY: 388, delay: "0s" },
-    { angle: -50, endX: 171, endY: 220, delay: "0.4s" },
-    { angle: -35, endX: 279, endY: 121, delay: "0.8s" },
-    { angle: -18, endX: 427, endY: 47, delay: "1.2s" },
-    { angle: 18, endX: 773, endY: 47, delay: "0.6s" },
-    { angle: 35, endX: 921, endY: 121, delay: "1.0s" },
-    { angle: 50, endX: 1029, endY: 220, delay: "1.4s" },
-    { angle: 70, endX: 1126, endY: 388, delay: "0.2s" },
+  const nodes = [
+    { cx: 600, cy: 180, label: "Creator" },
+    { cx: 840, cy: 320, label: "Developer" },
+    { cx: 760, cy: 540, label: "Host" },
+    { cx: 440, cy: 540, label: "Service" },
+    { cx: 360, cy: 320, label: "User" },
   ]
+
+  const connections = [
+    { from: 0, to: 1 },
+    { from: 1, to: 2 },
+    { from: 2, to: 3 },
+    { from: 3, to: 4 },
+    { from: 4, to: 0 },
+  ]
+
+  const getArrowPath = (from, to) => {
+    const f = nodes[from]
+    const t = nodes[to]
+    const dx = t.cx - f.cx
+    const dy = t.cy - f.cy
+    const dist = Math.sqrt(dx * dx + dy * dy)
+    const ux = dx / dist
+    const uy = dy / dist
+    const startX = f.cx + ux * 20
+    const startY = f.cy + uy * 20
+    const endX = t.cx - ux * 20
+    const endY = t.cy - uy * 20
+    return { startX, startY, endX, endY, ux, uy }
+  }
 
   return (
     <svg
       viewBox="0 0 1200 700"
-      preserveAspectRatio="xMidYMax slice"
+      preserveAspectRatio="xMidYMid slice"
       className="absolute inset-0 w-full h-full pointer-events-none"
       aria-hidden="true"
-      fill="none"
-      stroke="currentColor"
-      style={{ zIndex: 0 }}
     >
       <defs>
-        <radialGradient
-          id="eco-hero-fade"
-          cx="50%"
-          cy="100%"
-          r="70%"
-          fx="50%"
-          fy="100%"
+        <linearGradient
+          id="eco-flow-gradient"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="0%"
         >
-          <stop offset="0%" stopColor="currentColor" stopOpacity="0.12" />
-          <stop offset="60%" stopColor="currentColor" stopOpacity="0.05" />
-          <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-        </radialGradient>
+          <stop offset="0%" stopColor="#e8a04a" stopOpacity="0" />
+          <stop offset="50%" stopColor="#e8a04a" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="#e8a04a" stopOpacity="0" />
+        </linearGradient>
+        <marker
+          id="eco-arrow"
+          markerWidth="6"
+          markerHeight="6"
+          refX="5"
+          refY="3"
+          orient="auto"
+        >
+          <polygon points="0,0 6,3 0,6" fill="#e8a04a" fillOpacity="0.4" />
+        </marker>
       </defs>
 
-      <circle
-        cx="600"
-        cy="580"
-        r="28"
-        fill="currentColor"
-        fillOpacity="0.06"
-        stroke="currentColor"
-        strokeOpacity="0.12"
-        strokeWidth="1.5"
-      />
-      <circle
-        cx="600"
-        cy="580"
-        r="14"
-        fill="currentColor"
-        fillOpacity="0.08"
-        stroke="none"
-      />
+      {connections.map((conn, i) => {
+        const { startX, startY, endX, endY } = getArrowPath(conn.from, conn.to)
+        return (
+          <g key={i}>
+            <line
+              x1={startX}
+              y1={startY}
+              x2={endX}
+              y2={endY}
+              stroke="#e8a04a"
+              strokeOpacity="0.15"
+              strokeWidth="1"
+              markerEnd="url(#eco-arrow)"
+            />
+          </g>
+        )
+      })}
 
-      {lines.map((line, i) => (
+      <g className="eco-flow-dot">
+        <animateMotion
+          dur="8s"
+          repeatCount="indefinite"
+          path="M 600,180 L 840,320 L 760,540 L 440,540 L 360,320 Z"
+        />
+        <circle r="4" fill="#e8a04a" fillOpacity="0.7">
+          <animate
+            attributeName="r"
+            values="3;5;3"
+            dur="2s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle r="8" fill="#e8a04a" fillOpacity="0.2">
+          <animate
+            attributeName="r"
+            values="6;10;6"
+            dur="2s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+
+      {nodes.map((node, i) => (
         <g key={i}>
-          <line
-            x1="600"
-            y1="580"
-            x2={line.endX}
-            y2={line.endY}
-            stroke="currentColor"
+          <circle
+            cx={node.cx}
+            cy={node.cy}
+            r="16"
+            fill="#0f0f0f"
+            stroke="#e8a04a"
+            strokeOpacity="0.25"
             strokeWidth="1"
-            strokeOpacity="0.07"
           />
           <circle
-            cx={600 + (line.endX - 600) * 0.3}
-            cy={580 + (line.endY - 580) * 0.3}
-            r="3"
-            fill="currentColor"
-            fillOpacity="0.08"
-            stroke="none"
-          />
-          <circle
-            cx={600 + (line.endX - 600) * 0.55}
-            cy={580 + (line.endY - 580) * 0.55}
-            r="3"
-            fill="currentColor"
-            fillOpacity="0.08"
-            stroke="none"
-          />
-          <circle
-            cx={600 + (line.endX - 600) * 0.8}
-            cy={580 + (line.endY - 580) * 0.8}
-            r="3"
-            fill="currentColor"
-            fillOpacity="0.08"
-            stroke="none"
-          />
-          <circle
-            cx={600 + (line.endX - 600) * 0.45}
-            cy={580 + (line.endY - 580) * 0.45}
-            r="2.5"
-            fill="currentColor"
-            fillOpacity="0.12"
-            stroke="none"
-            className="eco-dot"
-            style={{ animationDelay: line.delay }}
+            cx={node.cx}
+            cy={node.cy}
+            r="6"
+            fill="#e8a04a"
+            fillOpacity="0.35"
           />
         </g>
       ))}
@@ -633,31 +655,13 @@ export default function EcosystemPage() {
             transform: translateY(0);
           }
         }
-        @keyframes eco-radiate {
-          0% {
-            opacity: 0;
-          }
-          20% {
-            opacity: 0.5;
-          }
-          80% {
-            opacity: 0.5;
-          }
-          100% {
-            opacity: 0;
-          }
-        }
-        .eco-dot {
-          animation: eco-radiate 3s ease-in-out infinite;
-        }
         @media (prefers-reduced-motion: reduce) {
           * {
             animation: none !important;
             transition: none !important;
           }
-          .eco-dot {
-            animation: none;
-            opacity: 0.1;
+          .eco-flow-dot {
+            display: none;
           }
         }
       `}</style>

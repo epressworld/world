@@ -362,8 +362,16 @@ export default function VisionPage() {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(4px); }
         }
+        @keyframes vp-dawn-breathe {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+        .dawn-pulse {
+          animation: vp-dawn-breathe 4s ease-in-out infinite;
+        }
         @media (prefers-reduced-motion: reduce) {
           * { animation: none !important; transition: none !important; }
+          .dawn-pulse { animation: none; opacity: 1; }
         }
       `}</style>
 
@@ -371,74 +379,44 @@ export default function VisionPage() {
         <section className="relative min-h-[80vh] flex flex-col items-center justify-center text-center overflow-hidden">
           <svg
             viewBox="0 0 1200 600"
-            className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]"
+            className="absolute inset-0 w-full h-full pointer-events-none"
             aria-hidden="true"
           >
-            {[
-              [80, 120],
-              [200, 60],
-              [380, 140],
-              [520, 80],
-              [700, 110],
-              [850, 55],
-              [980, 130],
-              [1100, 90],
-              [1150, 200],
-              [950, 280],
-              [1080, 350],
-              [800, 400],
-              [650, 320],
-              [480, 380],
-              [300, 300],
-              [150, 350],
-              [60, 280],
-              [250, 480],
-              [500, 520],
-              [720, 490],
-              [900, 510],
-              [1050, 460],
-            ].map(([cx, cy], i) => (
-              <circle
-                key={i}
-                cx={cx}
-                cy={cy}
-                r="2.5"
-                fill="currentColor"
-                fillOpacity="0.08"
-              />
-            ))}
-            {[
-              [80, 120, 200, 60],
-              [200, 60, 380, 140],
-              [380, 140, 520, 80],
-              [520, 80, 700, 110],
-              [700, 110, 850, 55],
-              [850, 55, 980, 130],
-              [980, 130, 1100, 90],
-              [1100, 90, 1150, 200],
-              [1150, 200, 950, 280],
-              [950, 280, 1080, 350],
-              [1080, 350, 800, 400],
-              [800, 400, 650, 320],
-              [650, 320, 480, 380],
-              [480, 380, 300, 300],
-              [300, 300, 150, 350],
-              [150, 350, 60, 280],
-              [60, 280, 80, 120],
-              [700, 110, 650, 320],
-              [980, 130, 800, 400],
-            ].map(([x1, y1, x2, y2], i) => (
-              <line
-                key={i}
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke="currentColor"
-                strokeOpacity="0.04"
-                strokeWidth="1"
-              />
-            ))}
+            <defs>
+              <linearGradient id="dawnGlow" x1="50%" y1="100%" x2="50%" y2="0%">
+                <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.18" />
+                <stop offset="40%" stopColor="#e8a04a" stopOpacity="0.08" />
+                <stop offset="100%" stopColor="#e8a04a" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="dawnRay1" x1="50%" y1="100%" x2="30%" y2="0%">
+                <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.12" />
+                <stop offset="60%" stopColor="#e8a04a" stopOpacity="0.03" />
+                <stop offset="100%" stopColor="#e8a04a" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="dawnRay2" x1="50%" y1="100%" x2="70%" y2="0%">
+                <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.12" />
+                <stop offset="60%" stopColor="#e8a04a" stopOpacity="0.03" />
+                <stop offset="100%" stopColor="#e8a04a" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="dawnRay3" x1="50%" y1="100%" x2="15%" y2="0%">
+                <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.06" />
+                <stop offset="50%" stopColor="#e8a04a" stopOpacity="0.02" />
+                <stop offset="100%" stopColor="#e8a04a" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="dawnRay4" x1="50%" y1="100%" x2="85%" y2="0%">
+                <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.06" />
+                <stop offset="50%" stopColor="#e8a04a" stopOpacity="0.02" />
+                <stop offset="100%" stopColor="#e8a04a" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+
+            <g className="dawn-pulse">
+              <polygon points="600,600 200,0 380,0" fill="url(#dawnRay3)" />
+              <polygon points="600,600 820,0 1000,0" fill="url(#dawnRay4)" />
+              <polygon points="600,600 350,0 550,0" fill="url(#dawnRay1)" />
+              <polygon points="600,600 650,0 850,0" fill="url(#dawnRay2)" />
+              <polygon points="600,600 450,0 750,0" fill="url(#dawnGlow)" />
+            </g>
           </svg>
 
           <div className="relative z-10 container-custom">
