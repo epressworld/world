@@ -755,7 +755,7 @@ function Act4PublishAnimation() {
   const showSuccessStrip = state === 4
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className="h-[520px]">
       <NodeChrome
         nodeUrl="blog.epress.world"
         nodeName="epress"
@@ -1385,7 +1385,7 @@ function Act5FollowAnimation() {
   return (
     <div
       ref={containerRef}
-      className="w-full rounded-[16px] overflow-hidden relative"
+      className="w-full rounded-[16px] overflow-hidden relative h-[480px] flex flex-col"
       style={{
         background: "#111",
         border: "1px solid rgba(255,255,255,0.08)",
@@ -1463,7 +1463,8 @@ function Act5FollowAnimation() {
       </div>
 
       <div
-        style={{ background: "#111", minHeight: "280px", position: "relative" }}
+        className="flex-1 min-h-0"
+        style={{ background: "#111", position: "relative" }}
       >
         {renderSigningModal()}
 
@@ -1962,7 +1963,7 @@ export default function FeaturesPage() {
                   color: UI.orange,
                 }}
               >
-                05
+                05 — FOLLOW
               </div>
               <h2
                 className="text-2xl font-bold mb-4"
