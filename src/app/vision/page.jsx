@@ -12,240 +12,320 @@ function VisionMeritGraph() {
   const nodes = [
     {
       id: "center",
-      cx: 350,
-      cy: 160,
-      r: 34,
-      label: "Original Insight",
+      cx: 560,
+      cy: 320,
+      r: 80,
+      label: "High-Value Idea",
       sublabel: "cited 3,200 times",
     },
     {
       id: "A",
-      cx: 120,
-      cy: 60,
-      r: 16,
+      cx: 160,
+      cy: 160,
+      r: 36,
       label: "Researcher",
       sublabel: "847 posts",
+      rep: 92,
     },
     {
       id: "B",
-      cx: 420,
-      cy: 38,
-      r: 14,
+      cx: 680,
+      cy: 100,
+      r: 32,
       label: "Journalist",
       sublabel: "1.2k posts",
+      rep: 78,
     },
     {
       id: "C",
-      cx: 610,
-      cy: 100,
-      r: 18,
+      cx: 1000,
+      cy: 200,
+      r: 40,
       label: "Professor",
       sublabel: "2,100 posts",
+      rep: 95,
     },
     {
       id: "D",
-      cx: 580,
-      cy: 260,
-      r: 13,
+      cx: 960,
+      cy: 480,
+      r: 30,
       label: "Engineer",
       sublabel: "634 posts",
+      rep: 64,
     },
     {
       id: "E",
-      cx: 180,
-      cy: 280,
-      r: 15,
+      cx: 280,
+      cy: 520,
+      r: 34,
       label: "Writer",
       sublabel: "980 posts",
+      rep: 71,
     },
     {
       id: "F",
-      cx: 60,
-      cy: 200,
-      r: 12,
+      cx: 80,
+      cy: 400,
+      r: 28,
       label: "Analyst",
       sublabel: "445 posts",
+      rep: 58,
     },
-    { id: "G", cx: 490, cy: 290, r: 8, silent: true },
-    { id: "H", cx: 260, cy: 30, r: 8, silent: true },
   ]
 
   const citingNodes = ["A", "B", "C", "D", "E", "F"]
-  const centerRadius = 34 + step * 2.33
-  const centerOpacity = 0.1 + step * 0.025
+  const centerRadius = 80 + step * 4
+  const centerOpacity = 0.12 + step * 0.02
+  const springConfig = { type: "spring", stiffness: 100, damping: 20 }
+
+  const calculateValue = () => {
+    const baseValue = 100
+    const citationBoost = step * 45
+    const reputationFactor = step * 12
+    return baseValue + citationBoost + reputationFactor
+  }
 
   useEffect(() => {
     const timer = setInterval(() => {
       setStep((prev) => {
         if (prev >= 6) {
-          setTimeout(() => setStep(0), 3000)
+          setTimeout(() => setStep(0), 4000)
           return prev
         }
         return prev + 1
       })
-    }, 600)
+    }, 800)
 
     return () => clearInterval(timer)
   }, [])
 
   const getArrowCoords = (fromNode) => {
-    const dx = 350 - fromNode.cx
-    const dy = 160 - fromNode.cy
+    const dx = 560 - fromNode.cx
+    const dy = 320 - fromNode.cy
     const dist = Math.sqrt(dx * dx + dy * dy)
     const ux = dx / dist
     const uy = dy / dist
     return {
       x1: fromNode.cx + ux * fromNode.r,
       y1: fromNode.cy + uy * fromNode.r,
-      x2: 350 - ux * (centerRadius + 2),
-      y2: 160 - uy * (centerRadius + 2),
+      x2: 560 - ux * centerRadius,
+      y2: 320 - uy * centerRadius,
+      angle: Math.atan2(dy, dx) * (180 / Math.PI),
     }
   }
 
   return (
-    <svg
-      viewBox="0 0 700 320"
-      className="w-full max-w-[700px] mx-auto block mt-12"
-      fill="none"
-      stroke="currentColor"
-      aria-hidden="true"
-    >
-      <motion.circle
-        cx={350}
-        cy={160}
-        r={centerRadius + 14}
-        fill="currentColor"
-        fillOpacity={0.03 + step * 0.008}
-        stroke="none"
-        initial={false}
-        animate={{ r: centerRadius + 14 }}
-        transition={{ type: "spring", stiffness: 60 }}
-      />
+    <div className="relative w-full max-w-[800px] mx-auto mt-12">
+      <svg
+        viewBox="0 0 1120 680"
+        className="w-full block"
+        fill="none"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="centerGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#e8a04a" stopOpacity="0.05" />
+          </linearGradient>
+          <linearGradient id="nodeGradA" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#34D399" stopOpacity="0.15" />
+            <stop offset="100%" stopColor="#34D399" stopOpacity="0.05" />
+          </linearGradient>
+        </defs>
 
-      {citingNodes.slice(0, step).map((nodeId) => {
-        const fromNode = nodes.find((n) => n.id === nodeId)
-        const coords = getArrowCoords(fromNode)
-        return (
-          <motion.g key={nodeId}>
-            <motion.line
-              x1={coords.x1}
-              y1={coords.y1}
-              x2={coords.x2}
-              y2={coords.y2}
-              stroke="currentColor"
-              strokeWidth="1.2"
-              strokeOpacity="0.4"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            />
-            <motion.polygon
-              points={`${coords.x2},${coords.y2} ${coords.x2 - 6},${coords.y2 - 3} ${coords.x2 - 6},${coords.y2 + 3}`}
-              fill="currentColor"
-              fillOpacity="0.4"
+        <motion.circle
+          cx={560}
+          cy={320}
+          animate={{ r: centerRadius + 40, opacity: 0.3 + step * 0.05 }}
+          transition={springConfig}
+          fill="url(#centerGlow)"
+          stroke="none"
+        />
+
+        {citingNodes.slice(0, step).map((nodeId, idx) => {
+          const fromNode = nodes.find((n) => n.id === nodeId)
+          const coords = getArrowCoords(fromNode)
+
+          return (
+            <g key={nodeId}>
+              <motion.line
+                x1={coords.x1}
+                y1={coords.y1}
+                animate={{ x2: coords.x2, y2: coords.y2 }}
+                transition={springConfig}
+                stroke="#e8a04a"
+                strokeWidth="1.5"
+                strokeOpacity="0.5"
+              />
+              <motion.circle
+                cx={coords.x1}
+                cy={coords.y1}
+                r="6"
+                fill="#e8a04a"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{
+                  duration: 1.2,
+                  delay: idx * 0.1,
+                  repeat: Infinity,
+                  repeatDelay: 2,
+                }}
+              />
+              <motion.g
+                initial={{ x: coords.x2, y: coords.y2 }}
+                animate={{ x: coords.x2, y: coords.y2 }}
+                transition={springConfig}
+              >
+                <polygon
+                  points="-12,-7 0,0 -12,7"
+                  fill="#e8a04a"
+                  fillOpacity="0.8"
+                  transform={`rotate(${coords.angle})`}
+                />
+              </motion.g>
+            </g>
+          )
+        })}
+
+        {nodes.map((node) => {
+          const isCenter = node.id === "center"
+          const isCiting = citingNodes.includes(node.id)
+          const showLabel = step >= 2 && isCiting
+
+          return (
+            <g key={node.id}>
+              <motion.circle
+                cx={node.cx}
+                cy={node.cy}
+                animate={{ r: isCenter ? centerRadius : node.r }}
+                transition={springConfig}
+                fill={isCenter ? "#e8a04a" : "url(#nodeGradA)"}
+                fillOpacity={isCenter ? centerOpacity : 0.8}
+                stroke={isCenter ? "#e8a04a" : "#34D399"}
+                strokeWidth={1}
+                strokeOpacity={isCenter ? 1 : 0.4}
+              />
+              {showLabel && (
+                <motion.g
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <text
+                    x={node.cx}
+                    y={node.cy - node.r - 16}
+                    textAnchor="middle"
+                    fill="#34D399"
+                    fillOpacity="0.9"
+                    fontSize="16"
+                    fontWeight="600"
+                    fontFamily="system-ui, sans-serif"
+                  >
+                    {node.label}
+                  </text>
+                  <text
+                    x={node.cx}
+                    y={node.cy - node.r + 2}
+                    textAnchor="middle"
+                    fill="#34D399"
+                    fillOpacity="0.5"
+                    fontSize="12"
+                    fontFamily="monospace"
+                  >
+                    {node.sublabel}
+                  </text>
+                </motion.g>
+              )}
+            </g>
+          )
+        })}
+
+        {step >= 1 && (
+          <motion.g
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            <text
+              x={560}
+              y={310}
+              textAnchor="middle"
+              fill="#e8a04a"
+              fillOpacity="0.95"
+              fontSize="18"
+              fontWeight="600"
+              fontFamily="system-ui, sans-serif"
+            >
+              High-Value Idea
+            </text>
+            <text
+              x={560}
+              y={336}
+              textAnchor="middle"
+              fill="#e8a04a"
+              fillOpacity="0.6"
+              fontSize="14"
+              fontFamily="monospace"
+            >
+              cited {step * 534 + 1200}×
+            </text>
+          </motion.g>
+        )}
+      </svg>
+
+      <motion.div
+        className="absolute top-4 right-4 bg-dark-surface/90 backdrop-blur-sm rounded-xl border border-white/10 p-5 w-56"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 0.8 }}
+      >
+        <p className="text-xs uppercase tracking-wider text-white/40 mb-3 font-mono">
+          IdeaRank Calculation
+        </p>
+        <div className="space-y-3">
+          <div className="flex justify-between text-sm">
+            <span className="text-white/50">Base Value</span>
+            <span className="text-white/80 font-mono">100</span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-white/50">Citations</span>
+            <motion.span
+              className="text-primary font-mono"
+              key={step}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-              style={{
-                transformOrigin: `${coords.x2}px ${coords.y2}px`,
-                transform: `rotate(${Math.atan2(160 - fromNode.cy, 350 - fromNode.cx) * (180 / Math.PI)}deg)`,
-              }}
-            />
-          </motion.g>
-        )
-      })}
-
-      {nodes.map((node) => {
-        const isCenter = node.id === "center"
-        const isCiting = citingNodes.includes(node.id)
-        const showLabel = step >= 6 && isCiting
-
-        return (
-          <g key={node.id}>
-            <motion.circle
-              cx={node.cx}
-              cy={node.cy}
-              r={isCenter ? centerRadius : node.r}
-              fill="currentColor"
-              fillOpacity={isCenter ? centerOpacity : node.silent ? 0.03 : 0.08}
-              stroke="currentColor"
-              strokeWidth={isCenter ? 1.5 : 1}
-              strokeOpacity={node.silent ? 0.15 : isCenter ? 0.6 : 0.35}
-              initial={false}
-              animate={{ r: isCenter ? centerRadius : node.r }}
-              transition={
-                isCenter ? { type: "spring", stiffness: 80, damping: 12 } : {}
-              }
-            />
-            {showLabel && (
-              <motion.g
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4 }}
-              >
-                <text
-                  x={node.cx}
-                  y={node.cy - node.r - 8}
-                  textAnchor="middle"
-                  fill="currentColor"
-                  fillOpacity="0.85"
-                  fontSize="10"
-                  fontWeight="700"
-                  fontFamily="system-ui, sans-serif"
-                >
-                  {node.label}
-                </text>
-                <text
-                  x={node.cx}
-                  y={node.cy - node.r - 2}
-                  textAnchor="middle"
-                  fill="currentColor"
-                  fillOpacity="0.5"
-                  fontSize="8"
-                  fontFamily="monospace"
-                >
-                  {node.sublabel}
-                </text>
-              </motion.g>
-            )}
-          </g>
-        )
-      })}
-
-      {step >= 2 && (
-        <motion.g
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-        >
-          <text
-            x={350}
-            y={160}
-            dy="-0.2em"
-            textAnchor="middle"
-            fill="currentColor"
-            fillOpacity="0.9"
-            fontSize="11"
-            fontWeight="700"
-            fontFamily="system-ui, sans-serif"
-          >
-            Original Insight
-          </text>
-          <text
-            x={350}
-            y={160}
-            dy="1em"
-            textAnchor="middle"
-            fill="currentColor"
-            fillOpacity="0.5"
-            fontSize="9"
-            fontFamily="monospace"
-          >
-            cited 3,200×
-          </text>
-        </motion.g>
-      )}
-    </svg>
+            >
+              +{step * 45}
+            </motion.span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-white/50">Reputation</span>
+            <motion.span
+              className="text-primary font-mono"
+              key={`rep-${step}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              +{step * 12}
+            </motion.span>
+          </div>
+          <div className="h-px bg-white/10 my-2" />
+          <div className="flex justify-between text-base font-semibold">
+            <span className="text-white">Value</span>
+            <motion.span
+              className="text-primary font-mono"
+              key={`total-${step}`}
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 200 }}
+            >
+              {calculateValue()}
+            </motion.span>
+          </div>
+        </div>
+      </motion.div>
+    </div>
   )
 }
 
@@ -282,8 +362,16 @@ export default function VisionPage() {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(4px); }
         }
+        @keyframes vp-dawn-breathe {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+        .dawn-pulse {
+          animation: vp-dawn-breathe 4s ease-in-out infinite;
+        }
         @media (prefers-reduced-motion: reduce) {
           * { animation: none !important; transition: none !important; }
+          .dawn-pulse { animation: none; opacity: 1; }
         }
       `}</style>
 
@@ -291,74 +379,44 @@ export default function VisionPage() {
         <section className="relative min-h-[80vh] flex flex-col items-center justify-center text-center overflow-hidden">
           <svg
             viewBox="0 0 1200 600"
-            className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]"
+            className="absolute inset-0 w-full h-full pointer-events-none"
             aria-hidden="true"
           >
-            {[
-              [80, 120],
-              [200, 60],
-              [380, 140],
-              [520, 80],
-              [700, 110],
-              [850, 55],
-              [980, 130],
-              [1100, 90],
-              [1150, 200],
-              [950, 280],
-              [1080, 350],
-              [800, 400],
-              [650, 320],
-              [480, 380],
-              [300, 300],
-              [150, 350],
-              [60, 280],
-              [250, 480],
-              [500, 520],
-              [720, 490],
-              [900, 510],
-              [1050, 460],
-            ].map(([cx, cy], i) => (
-              <circle
-                key={i}
-                cx={cx}
-                cy={cy}
-                r="2.5"
-                fill="currentColor"
-                fillOpacity="0.08"
-              />
-            ))}
-            {[
-              [80, 120, 200, 60],
-              [200, 60, 380, 140],
-              [380, 140, 520, 80],
-              [520, 80, 700, 110],
-              [700, 110, 850, 55],
-              [850, 55, 980, 130],
-              [980, 130, 1100, 90],
-              [1100, 90, 1150, 200],
-              [1150, 200, 950, 280],
-              [950, 280, 1080, 350],
-              [1080, 350, 800, 400],
-              [800, 400, 650, 320],
-              [650, 320, 480, 380],
-              [480, 380, 300, 300],
-              [300, 300, 150, 350],
-              [150, 350, 60, 280],
-              [60, 280, 80, 120],
-              [700, 110, 650, 320],
-              [980, 130, 800, 400],
-            ].map(([x1, y1, x2, y2], i) => (
-              <line
-                key={i}
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke="currentColor"
-                strokeOpacity="0.04"
-                strokeWidth="1"
-              />
-            ))}
+            <defs>
+              <linearGradient id="dawnGlow" x1="50%" y1="100%" x2="50%" y2="0%">
+                <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.18" />
+                <stop offset="40%" stopColor="#e8a04a" stopOpacity="0.08" />
+                <stop offset="100%" stopColor="#e8a04a" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="dawnRay1" x1="50%" y1="100%" x2="30%" y2="0%">
+                <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.12" />
+                <stop offset="60%" stopColor="#e8a04a" stopOpacity="0.03" />
+                <stop offset="100%" stopColor="#e8a04a" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="dawnRay2" x1="50%" y1="100%" x2="70%" y2="0%">
+                <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.12" />
+                <stop offset="60%" stopColor="#e8a04a" stopOpacity="0.03" />
+                <stop offset="100%" stopColor="#e8a04a" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="dawnRay3" x1="50%" y1="100%" x2="15%" y2="0%">
+                <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.06" />
+                <stop offset="50%" stopColor="#e8a04a" stopOpacity="0.02" />
+                <stop offset="100%" stopColor="#e8a04a" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="dawnRay4" x1="50%" y1="100%" x2="85%" y2="0%">
+                <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.06" />
+                <stop offset="50%" stopColor="#e8a04a" stopOpacity="0.02" />
+                <stop offset="100%" stopColor="#e8a04a" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+
+            <g className="dawn-pulse">
+              <polygon points="600,600 200,0 380,0" fill="url(#dawnRay3)" />
+              <polygon points="600,600 820,0 1000,0" fill="url(#dawnRay4)" />
+              <polygon points="600,600 350,0 550,0" fill="url(#dawnRay1)" />
+              <polygon points="600,600 650,0 850,0" fill="url(#dawnRay2)" />
+              <polygon points="600,600 450,0 750,0" fill="url(#dawnGlow)" />
+            </g>
           </svg>
 
           <div className="relative z-10 container-custom">
@@ -430,32 +488,28 @@ export default function VisionPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
               {[
                 {
-                  year: "2041",
                   icon: "🔑",
-                  title: "A Reputation Decades in the Making",
+                  title: "Your Ethereum Wallet is Your Passport",
                   scene:
-                    "You've been publishing on the same node for 18 years. Every post signed. Every citation traceable. Your reputation isn't stored in anyone's database — it's mathematically proven.",
+                    "No usernames. No passwords. No central registries. Your cryptographic identity works everywhere, controlled by you alone.",
                 },
                 {
-                  year: "2028",
                   icon: "✍️",
-                  title: "Your Writing, Your Terms",
+                  title: "Every Post, an Immutable Asset",
                   scene:
-                    "You wrote something that still gets cited today. You set a reading fee. Every citation earns — directly, with no platform in the middle taking a cut.",
+                    "Cryptographically bound to your identity, un-deletable by any third party. Your content is yours forever, with a permanent chain of attribution.",
                 },
                 {
-                  year: "2027",
                   icon: "🔗",
-                  title: "Your Followers Follow You",
+                  title: "A Persistent Social Graph",
                   scene:
-                    "You decide a platform isn't for you anymore. You leave. Your 40,000 followers come with you. They were always following you — not the platform.",
+                    "When you move, your audience moves with you. The connection is permanent. No platform can sever the bonds between you and your followers.",
                 },
                 {
-                  year: "2064",
                   icon: "🏛️",
-                  title: "A Digital Estate Worth Inheriting",
+                  title: "A Digital Estate Worth Preserving",
                   scene:
-                    "Your grandmother kept a node from 2026. Her recipes, her letters, her decades of thought — still there. Still hers. Now yours to read.",
+                    "Decades of thought, writing, and connection — cryptographically preserved. Pass it down. Archive it. It remains accessible as long as the internet exists.",
                 },
               ].map((card, i) => (
                 <motion.div
@@ -467,9 +521,6 @@ export default function VisionPage() {
                   }}
                   transition={{ duration: 0.25 }}
                 >
-                  <div className="absolute -bottom-2 right-2 text-[72px] font-black leading-none text-white/[0.035] pointer-events-none select-none font-mono z-0">
-                    {card.year}
-                  </div>
                   <div className="relative z-10">
                     <div className="text-2xl mb-2">{card.icon}</div>
                     <h3 className="font-semibold text-lg mb-2">{card.title}</h3>
@@ -572,57 +623,75 @@ export default function VisionPage() {
             </div>
 
             <svg
-              viewBox="0 0 560 130"
-              className="w-full max-w-[560px] mx-auto block mt-10 mb-4"
+              viewBox="0 0 1360 320"
+              className="w-full max-w-[680px] mx-auto block mt-10 mb-4"
               fill="none"
-              stroke="currentColor"
             >
+              <defs>
+                <linearGradient
+                  id="httpsGrad"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.08" />
+                  <stop offset="100%" stopColor="#ffffff" stopOpacity="0.02" />
+                </linearGradient>
+                <linearGradient
+                  id="posGrad"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.15" />
+                  <stop offset="100%" stopColor="#e8a04a" stopOpacity="0.05" />
+                </linearGradient>
+              </defs>
+
               <rect
-                x="20"
-                y="32"
-                width="520"
-                height="36"
-                rx="8"
-                fill="currentColor"
-                fillOpacity="0.06"
-                stroke="currentColor"
-                strokeOpacity="0.2"
+                x="48"
+                y="60"
+                width="1264"
+                height="80"
+                rx="16"
+                fill="url(#httpsGrad)"
+                stroke="#ffffff"
+                strokeOpacity="0.15"
                 strokeWidth="1"
               />
               <text
-                x="38"
-                y="55"
-                fontSize="12"
-                fontWeight="700"
-                fill="currentColor"
+                x="92"
+                y="110"
+                fontSize="28"
+                fontWeight="600"
+                fill="#ffffff"
                 fillOpacity="0.6"
-                stroke="none"
                 fontFamily="monospace"
               >
                 HTTPS
               </text>
               <line
-                x1="100"
-                y1="50"
-                x2="140"
-                y2="50"
-                stroke="currentColor"
-                strokeOpacity="0.3"
-                strokeWidth="1.2"
+                x1="242"
+                y1="100"
+                x2="340"
+                y2="100"
+                stroke="#ffffff"
+                strokeOpacity="0.25"
+                strokeWidth="1"
               />
               <polygon
-                points="140,50 136,47 136,53"
-                fill="currentColor"
-                fillOpacity="0.3"
-                stroke="none"
+                points="340,100 330,94 330,106"
+                fill="#ffffff"
+                fillOpacity="0.25"
               />
               <text
-                x="152"
-                y="55"
-                fontSize="11"
-                fill="currentColor"
+                x="370"
+                y="108"
+                fontSize="24"
+                fill="#ffffff"
                 fillOpacity="0.45"
-                stroke="none"
                 fontFamily="system-ui, sans-serif"
               >
                 guarantees: you're talking to the right server, nothing
@@ -630,61 +699,46 @@ export default function VisionPage() {
               </text>
 
               <rect
-                x="16"
-                y="78"
-                width="528"
-                height="44"
-                rx="10"
-                fill="currentColor"
-                fillOpacity="0.04"
-                stroke="none"
-              />
-              <rect
-                x="20"
-                y="82"
-                width="520"
-                height="36"
-                rx="8"
-                fill="currentColor"
-                fillOpacity="0.09"
-                stroke="currentColor"
-                strokeOpacity="0.35"
-                strokeWidth="1.2"
+                x="38"
+                y="180"
+                width="1284"
+                height="88"
+                rx="20"
+                fill="url(#posGrad)"
+                stroke="#e8a04a"
+                strokeOpacity="0.4"
+                strokeWidth="1"
               />
               <text
-                x="38"
-                y="105"
-                fontSize="12"
-                fontWeight="700"
-                fill="currentColor"
-                fillOpacity="0.8"
-                stroke="none"
+                x="92"
+                y="240"
+                fontSize="28"
+                fontWeight="600"
+                fill="#e8a04a"
                 fontFamily="monospace"
               >
                 PoS
               </text>
               <line
-                x1="100"
-                y1="100"
-                x2="140"
-                y2="100"
-                stroke="currentColor"
-                strokeOpacity="0.3"
-                strokeWidth="1.2"
+                x1="242"
+                y1="228"
+                x2="340"
+                y2="228"
+                stroke="#e8a04a"
+                strokeOpacity="0.4"
+                strokeWidth="1"
               />
               <polygon
-                points="140,100 136,97 136,103"
-                fill="currentColor"
-                fillOpacity="0.3"
-                stroke="none"
+                points="340,228 330,222 330,234"
+                fill="#e8a04a"
+                fillOpacity="0.6"
               />
               <text
-                x="152"
-                y="105"
-                fontSize="11"
-                fill="currentColor"
+                x="370"
+                y="236"
+                fontSize="24"
+                fill="#ffffff"
                 fillOpacity="0.7"
-                stroke="none"
                 fontFamily="system-ui, sans-serif"
               >
                 guarantees: this content came from this identity, unchanged, at
@@ -927,23 +981,19 @@ export default function VisionPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                Every node makes the network more real.
+                Every Node Makes the Network More Real.
               </motion.h2>
 
-              <motion.div
-                className="mb-10"
+              <motion.p
+                className="landing-subheading mx-auto mb-10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.1 }}
               >
-                <p className="text-[15px] text-white/45 mb-1">
-                  The internet described on this page doesn't exist yet.
-                </p>
-                <p className="text-[15px] text-white/65">
-                  It gets built one node at a time.
-                </p>
-              </motion.div>
+                The internet described on this page doesn't exist yet. It gets
+                built one node at a time — starting with yours.
+              </motion.p>
 
               <motion.div
                 className="flex flex-col items-center gap-3"
@@ -984,14 +1034,12 @@ export default function VisionPage() {
                   How It Works
                 </Link>
                 <span className="text-white/20">·</span>
-                <a
-                  href="https://t.me/+mZMgNSIVy1MwMmVl"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/ecosystem"
                   className="hover:text-primary transition-colors duration-200"
                 >
-                  Join the Community
-                </a>
+                  Explore Ecosystem
+                </Link>
               </motion.div>
             </div>
           </div>

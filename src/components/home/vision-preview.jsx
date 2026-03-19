@@ -1456,7 +1456,7 @@ export function VisionPreview() {
           border-radius: 50%;
           background: transparent;
           border: none;
-          color: rgba(255,255,255,0.3);
+          color: rgba(255,255,255,0.32);
           cursor: pointer;
           transition: all 0.2s ease;
           flex-shrink: 0;
@@ -1574,18 +1574,31 @@ export function VisionPreview() {
             </button>
           </div>
 
-          <div className="flex md:hidden items-center gap-2 mt-2">
-            {cardsData.map((_, index) => (
-              <button
-                key={index}
-                type="button"
-                onClick={() => scrollTo(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === selectedIndex ? "bg-primary w-4" : "bg-white/20"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+          <div className="flex flex-col items-center gap-2 mt-2">
+            <p
+              className="text-[10px] uppercase text-center mb-2"
+              style={{
+                color: "rgba(255,255,255,0.18)",
+                letterSpacing: "0.06em",
+              }}
+            >
+              {`${selectedIndex + 1} of ${cardsData.length} — swipe or use arrows`}
+            </p>
+            <div className="flex items-center gap-2">
+              {cardsData.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => scrollTo(index)}
+                  className={`rounded-full transition-all duration-300 ${
+                    index === selectedIndex
+                      ? "bg-primary w-4 h-2"
+                      : "bg-white/20 w-2 h-2"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </article>
 

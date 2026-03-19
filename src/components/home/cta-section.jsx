@@ -1,4 +1,4 @@
-import { Github, Rocket } from "lucide-react"
+import { ArrowRight, Rocket } from "lucide-react"
 import Link from "next/link"
 
 export function CTASection() {
@@ -9,26 +9,29 @@ export function CTASection() {
           <h2 className="landing-heading mb-4">
             The Direction is Right.
             <br />
-            <span className="text-primary">Help Us Build It.</span>
+            <span className="text-primary">Start Building.</span>
           </h2>
           <p className="landing-subheading mx-auto mb-10">
-            epress is open source and early. Join us.
+            epress is open source and early. Your node is the network.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <Link
-              href="/docs"
+              href="/docs/getting-started"
               className="btn-primary text-base px-7 py-3 inline-flex items-center justify-center"
             >
               <Rocket className="w-5 h-5 mr-2" />
-              Deploy Your Node
+              Deploy Your Node →
             </Link>
-            <Link
-              href="/vision"
+            <a
+              href="https://blog.epress.world"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-secondary text-base px-7 py-3 inline-flex items-center justify-center"
             >
-              Read the Vision →
-            </Link>
+              See a live node
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
           </div>
 
           <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center text-sm text-dark-muted">
@@ -39,15 +42,16 @@ export function CTASection() {
               Read Whitepaper
             </Link>
             <span className="opacity-30">·</span>
-            <a
-              href="https://github.com/epressworld/epress"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-primary transition-colors inline-flex items-center"
+            <Link
+              href="/how-it-works"
+              className="hover:text-primary transition-colors"
             >
-              <Github className="w-3.5 h-3.5 mr-1" />
-              Star on GitHub
-            </a>
+              How It Works
+            </Link>
+            <span className="opacity-30">·</span>
+            <Link href="/docs" className="hover:text-primary transition-colors">
+              Deployment Guide
+            </Link>
           </div>
         </div>
       </div>

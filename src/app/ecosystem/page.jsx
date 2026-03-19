@@ -21,54 +21,129 @@ function EcoDivider({ number, label }) {
 }
 
 function HeroSvg() {
-  const arcPositions = [
-    { r: 320, opacity: 0.04 },
-    { r: 480, opacity: 0.03 },
-    { r: 640, opacity: 0.02 },
+  const nodes = [
+    { cx: 600, cy: 180, label: "Creator" },
+    { cx: 840, cy: 320, label: "Developer" },
+    { cx: 760, cy: 540, label: "Host" },
+    { cx: 440, cy: 540, label: "Service" },
+    { cx: 360, cy: 320, label: "User" },
   ]
 
-  const dots = [
-    { cx: 600, cy: 250 },
-    { cx: 650, cy: 280 },
-    { cx: 700, cy: 240 },
-    { cx: 550, cy: 270 },
-    { cx: 480, cy: 290 },
-    { cx: 420, cy: 300 },
-    { cx: 750, cy: 220 },
-    { cx: 800, cy: 260 },
-    { cx: 850, cy: 230 },
-    { cx: 900, cy: 250 },
-    { cx: 950, cy: 220 },
-    { cx: 1000, cy: 240 },
+  const connections = [
+    { from: 0, to: 1 },
+    { from: 1, to: 2 },
+    { from: 2, to: 3 },
+    { from: 3, to: 4 },
+    { from: 4, to: 0 },
   ]
+
+  const getArrowPath = (from, to) => {
+    const f = nodes[from]
+    const t = nodes[to]
+    const dx = t.cx - f.cx
+    const dy = t.cy - f.cy
+    const dist = Math.sqrt(dx * dx + dy * dy)
+    const ux = dx / dist
+    const uy = dy / dist
+    const startX = f.cx + ux * 20
+    const startY = f.cy + uy * 20
+    const endX = t.cx - ux * 20
+    const endY = t.cy - uy * 20
+    return { startX, startY, endX, endY, ux, uy }
+  }
 
   return (
     <svg
-      viewBox="0 0 1200 500"
+      viewBox="0 0 1200 700"
+      preserveAspectRatio="xMidYMid slice"
       className="absolute inset-0 w-full h-full pointer-events-none"
       aria-hidden="true"
-      fill="none"
-      stroke="currentColor"
     >
-      {arcPositions.map((arc, i) => (
-        <circle
-          key={i}
-          cx="600"
-          cy="500"
-          r={arc.r}
-          strokeOpacity={arc.opacity}
-          strokeWidth="1"
+      <defs>
+        <linearGradient
+          id="eco-flow-gradient"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="0%"
+        >
+          <stop offset="0%" stopColor="#e8a04a" stopOpacity="0" />
+          <stop offset="50%" stopColor="#e8a04a" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="#e8a04a" stopOpacity="0" />
+        </linearGradient>
+        <marker
+          id="eco-arrow"
+          markerWidth="6"
+          markerHeight="6"
+          refX="5"
+          refY="3"
+          orient="auto"
+        >
+          <polygon points="0,0 6,3 0,6" fill="#e8a04a" fillOpacity="0.4" />
+        </marker>
+      </defs>
+
+      {connections.map((conn, i) => {
+        const { startX, startY, endX, endY } = getArrowPath(conn.from, conn.to)
+        return (
+          <g key={i}>
+            <line
+              x1={startX}
+              y1={startY}
+              x2={endX}
+              y2={endY}
+              stroke="#e8a04a"
+              strokeOpacity="0.15"
+              strokeWidth="1"
+              markerEnd="url(#eco-arrow)"
+            />
+          </g>
+        )
+      })}
+
+      <g className="eco-flow-dot">
+        <animateMotion
+          dur="8s"
+          repeatCount="indefinite"
+          path="M 600,180 L 840,320 L 760,540 L 440,540 L 360,320 Z"
         />
-      ))}
-      {dots.map((dot, i) => (
-        <circle
-          key={i}
-          cx={dot.cx}
-          cy={dot.cy}
-          r="2"
-          fill="currentColor"
-          fillOpacity="0.06"
-        />
+        <circle r="4" fill="#e8a04a" fillOpacity="0.7">
+          <animate
+            attributeName="r"
+            values="3;5;3"
+            dur="2s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle r="8" fill="#e8a04a" fillOpacity="0.2">
+          <animate
+            attributeName="r"
+            values="6;10;6"
+            dur="2s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+
+      {nodes.map((node, i) => (
+        <g key={i}>
+          <circle
+            cx={node.cx}
+            cy={node.cy}
+            r="16"
+            fill="#0f0f0f"
+            stroke="#e8a04a"
+            strokeOpacity="0.25"
+            strokeWidth="1"
+          />
+          <circle
+            cx={node.cx}
+            cy={node.cy}
+            r="6"
+            fill="#e8a04a"
+            fillOpacity="0.35"
+          />
+        </g>
       ))}
     </svg>
   )
@@ -585,11 +660,14 @@ export default function EcosystemPage() {
             animation: none !important;
             transition: none !important;
           }
+          .eco-flow-dot {
+            display: none;
+          }
         }
       `}</style>
 
       <main className="flex-1">
-        <section className="relative min-h-[60vh] flex flex-col items-center justify-center text-center overflow-hidden">
+        <section className="relative min-h-[80vh] flex flex-col items-center justify-center text-center overflow-hidden">
           <HeroSvg />
 
           <div className="relative z-10 container-custom">
@@ -597,35 +675,33 @@ export default function EcosystemPage() {
               className="section-label mb-5"
               style={{ animation: "eco-fade-up 0.6s ease both" }}
             >
-              THE ECOSYSTEM ARGUMENT
+              THE OPPORTUNITY
             </p>
             <h1
               className="landing-heading text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight max-w-4xl mx-auto mb-7"
               style={{ animation: "eco-fade-up 0.6s ease both 0.1s" }}
             >
-              Every Transformative Technology Looked Impractical Until the
-              Ecosystem Caught Up.
+              A New Economy Built on Sovereign Infrastructure.
             </h1>
             <div className="max-w-2xl mx-auto space-y-2">
               <p
                 className="text-lg md:text-xl text-white/65"
                 style={{ animation: "eco-fade-up 0.6s ease both 0.2s" }}
               >
-                Self-hosting sounds hard. Running a node sounds technical.
-                Bandwidth sounds expensive.
+                Decentralized protocols create entirely new markets for
+                infrastructure providers, developers, and service operators.
               </p>
               <p
                 className="text-lg md:text-xl text-white/55"
                 style={{ animation: "eco-fade-up 0.6s ease both 0.3s" }}
               >
-                The same was true for email servers, home routers, and personal
-                websites.
+                Early ecosystems rewarded early participants disproportionately.
               </p>
               <p
                 className="text-lg md:text-xl text-primary font-semibold"
                 style={{ animation: "eco-fade-up 0.6s ease both 0.4s" }}
               >
-                Then ecosystems made them accessible.
+                The epress ecosystem is forming now.
               </p>
             </div>
 
@@ -633,18 +709,20 @@ export default function EcosystemPage() {
           </div>
         </section>
 
-        <EcoDivider number="01" label="Self-Hosting Myth" />
+        <EcoDivider number="01" label="Infrastructure Economy" />
 
         <section className="landing-section">
           <div className="container-custom">
             <div className="text-center mb-10">
-              <p className="section-label">THE COMPLEXITY CURVE</p>
+              <p className="section-label">THE ECOSYSTEM EMERGES</p>
               <h2 className="landing-heading mb-4">
-                &ldquo;Self-Hosting Is Too Technical&rdquo;
+                The "Digital Plumber" Economy is Here
               </h2>
               <p className="landing-subheading mx-auto">
-                Everything starts hard. Then ecosystems form. Here&apos;s the
-                trajectory.
+                You don&apos;t need to build a car to drive one. The epress
+                ecosystem naturally incentivizes a new class of service
+                providers: 1-click node hosts, specialized storage providers,
+                and independent developers.
               </p>
             </div>
 
@@ -665,10 +743,11 @@ export default function EcosystemPage() {
               transition={{ duration: 0.8 }}
             >
               <p className="text-xl md:text-2xl font-light italic text-white/60 leading-relaxed">
-                &ldquo;Neither was anyone who owns a router.&rdquo;
+                &ldquo;Every major technology started as 'too technical' until
+                the ecosystem matured around it.&rdquo;
               </p>
               <p className="text-sm text-white/35 mt-3">
-                — The answer to &ldquo;who sets up their own network?&rdquo;
+                The opportunity is in being early to the inevitable.
               </p>
             </motion.blockquote>
 
@@ -782,18 +861,22 @@ export default function EcosystemPage() {
           </div>
         </section>
 
-        <EcoDivider number="03" label="Bandwidth Economy" />
+        <EcoDivider number="03" label="Value Economics" />
 
         <section className="landing-section">
           <div className="container-custom">
             <div className="text-center mb-10">
-              <p className="section-label">COST DISTRIBUTION</p>
+              <p className="section-label">COST AS INVESTMENT</p>
               <h2 className="landing-heading mb-4">
-                &ldquo;Bandwidth Costs Will Bankrupt Creators&rdquo;
+                Influence is an Asset. Infrastructure is the Cost.
               </h2>
               <p className="landing-subheading mx-auto">
-                In centralized platforms, bandwidth is a hidden cost. In epress,
-                it becomes a visible, marketable asset.
+                In Web2, platforms internalize your hosting costs in exchange
+                for absolute control over your audience and monetization. In
+                epress, the economics are transparent. Low-traffic nodes cost
+                nearly zero. Massive reach requires proportional bandwidth
+                investment—but in return, you retain 100% of the value you
+                create.
               </p>
             </div>
 
@@ -989,26 +1072,30 @@ export default function EcosystemPage() {
           <div className="container-custom">
             <div className="max-w-2xl mx-auto text-center">
               <motion.h2
-                className="landing-heading mb-6"
+                className="landing-heading mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                The Economics Work. The Ecosystem Is Starting.
+                The Ecosystem Starts With One Node.
               </motion.h2>
 
-              <motion.p
-                className="text-lg text-white/55 mb-8"
+              <motion.div
+                className="mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                Early node operators aren&apos;t just early adopters.
-                They&apos;re founders of the ecosystem that serves everyone who
-                follows.
-              </motion.p>
+                <p className="text-[15px] text-white/45 mb-2">
+                  Every service provider, theme designer, and infrastructure
+                  partner in this ecosystem
+                </p>
+                <p className="text-[15px] text-white/65">
+                  needs a network to exist. That network starts here.
+                </p>
+              </motion.div>
 
               <motion.div
                 className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
@@ -1017,11 +1104,14 @@ export default function EcosystemPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <Link href="/docs" className="btn-primary px-8 py-3">
-                  Deploy Your Node
+                <Link
+                  href="/docs/getting-started"
+                  className="btn-primary px-8 py-3"
+                >
+                  Deploy Your Node →
                 </Link>
-                <Link href="/how-it-works" className="btn-secondary px-8 py-3">
-                  How It Works
+                <Link href="#" className="btn-secondary px-8 py-3">
+                  Request a Trial Node
                 </Link>
               </motion.div>
 
@@ -1043,17 +1133,15 @@ export default function EcosystemPage() {
                   href="/vision"
                   className="hover:text-primary transition-colors"
                 >
-                  The Vision
+                  Back to Vision
                 </Link>
                 <span className="text-white/15">·</span>
-                <a
-                  href="https://github.com/epressworld/epress"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/how-it-works"
                   className="hover:text-primary transition-colors"
                 >
-                  GitHub
-                </a>
+                  How It Works
+                </Link>
               </motion.div>
             </div>
           </div>
