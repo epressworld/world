@@ -1104,10 +1104,7 @@ export default function EcosystemPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <Link
-                  href="/docs/getting-started"
-                  className="btn-primary px-8 py-3"
-                >
+                <Link href="/docs" className="btn-primary px-8 py-3">
                   Deploy Your Node →
                 </Link>
                 <Link href="#" className="btn-secondary px-8 py-3">

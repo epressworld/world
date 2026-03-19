@@ -17,7 +17,7 @@ export function CTASection() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <Link
-              href="/docs/getting-started"
+              href="/docs"
               className="btn-primary text-base px-7 py-3 inline-flex items-center justify-center"
             >
               <Rocket className="w-5 h-5 mr-2" />
@@ -49,8 +49,11 @@ export function CTASection() {
               How It Works
             </Link>
             <span className="opacity-30">·</span>
-            <Link href="/docs" className="hover:text-primary transition-colors">
-              Deployment Guide
+            <Link
+              href="/features"
+              className="hover:text-primary transition-colors"
+            >
+              See It in Action
             </Link>
           </div>
         </div>

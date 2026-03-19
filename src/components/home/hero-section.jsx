@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, BookOpen } from "lucide-react"
+import { ArrowRight, MonitorPlay, Rocket } from "lucide-react"
 import Link from "next/link"
 import { HeroNetworkCanvas } from "./hero-network-canvas"
 import { HeroNetworkSvg } from "./hero-network-svg"
@@ -75,18 +75,18 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             <Link
-              href="/how-it-works"
+              href="/features"
               className="btn-primary text-base px-8 py-4 inline-flex items-center gap-2"
             >
-              See How It Works
-              <ArrowRight className="w-5 h-5" />
+              <MonitorPlay className="w-5 h-5" />
+              See It in Action
             </Link>
             <Link
-              href="/whitepaper"
+              href="/docs"
               className="btn-secondary text-base px-8 py-4 inline-flex items-center gap-2"
             >
-              <BookOpen className="w-5 h-5" />
-              Read Whitepaper
+              <Rocket className="w-5 h-5" />
+              Deploy Your Node
             </Link>
           </motion.div>
         </div>

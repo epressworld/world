@@ -1002,10 +1002,7 @@ export default function VisionPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
-                <Link
-                  href="/docs/getting-started"
-                  className="btn-primary text-base px-8 py-3"
-                >
+                <Link href="/docs" className="btn-primary text-base px-8 py-3">
                   Deploy Your Node →
                 </Link>
                 <Link href="#" className="btn-secondary text-sm px-6 py-2.5">

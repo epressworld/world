@@ -2213,7 +2213,7 @@ export default function FeaturesPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <Link href="/docs/getting-started" className="btn-primary">
+            <Link href="/docs" className="btn-primary">
               Deploy Your Node →
             </Link>
             <button type="button" className="btn-secondary">
