@@ -5,67 +5,74 @@ import { motion } from "framer-motion"
 function NodeDiagram() {
   return (
     <svg
-      viewBox="0 0 240 100"
+      viewBox="0 0 480 200"
       width="100%"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="1"
       aria-hidden="true"
     >
       <rect
-        x="20"
-        y="20"
-        width="70"
-        height="60"
-        rx="6"
+        x="40"
+        y="40"
+        width="140"
+        height="120"
+        rx="12"
         stroke="#e8a04a"
-        strokeWidth="2"
+        strokeWidth="1.5"
       />
-      <line x1="30" y1="35" x2="80" y2="35" stroke="#666" strokeWidth="1" />
-      <line x1="30" y1="45" x2="80" y2="45" stroke="#666" strokeWidth="1" />
-      <line x1="30" y1="55" x2="60" y2="55" stroke="#666" strokeWidth="1" />
-      <circle cx="55" cy="75" r="4" fill="#34D399" fillOpacity="0.8" />
-      <circle cx="70" cy="75" r="4" fill="#e8a04a" fillOpacity="0.8" />
+      <line x1="60" y1="70" x2="160" y2="70" stroke="#666" strokeWidth="1" />
+      <line x1="60" y1="90" x2="160" y2="90" stroke="#666" strokeWidth="1" />
+      <line x1="60" y1="110" x2="120" y2="110" stroke="#666" strokeWidth="1" />
+      <circle cx="110" cy="150" r="8" fill="#34D399" fillOpacity="0.8" />
+      <circle cx="140" cy="150" r="8" fill="#e8a04a" fillOpacity="0.8" />
 
-      <line x1="95" y1="50" x2="115" y2="50" stroke="#e8a04a" strokeWidth="2" />
-      <polygon points="115,50 110,46 110,54" fill="#e8a04a" />
+      <line
+        x1="190"
+        y1="100"
+        x2="230"
+        y2="100"
+        stroke="#e8a04a"
+        strokeWidth="1.5"
+      />
+      <polygon points="230,100 220,92 220,108" fill="#e8a04a" />
 
       <rect
-        x="125"
-        y="20"
-        width="95"
-        height="60"
-        rx="6"
+        x="250"
+        y="40"
+        width="190"
+        height="120"
+        rx="12"
         stroke="#34D399"
-        strokeWidth="2"
+        strokeWidth="1.5"
       />
       <text
-        x="172"
-        y="42"
+        x="344"
+        y="84"
         textAnchor="middle"
         fill="#34D399"
-        fontSize="9"
+        fontSize="16"
         fontFamily="system-ui, sans-serif"
         fontWeight="600"
       >
         Your Server
       </text>
       <text
-        x="172"
-        y="58"
+        x="344"
+        y="116"
         textAnchor="middle"
         fill="#888"
-        fontSize="8"
+        fontSize="14"
         fontFamily="system-ui, sans-serif"
       >
         Your Rules
       </text>
       <text
-        x="172"
-        y="72"
+        x="344"
+        y="144"
         textAnchor="middle"
         fill="#888"
-        fontSize="8"
+        fontSize="14"
         fontFamily="system-ui, sans-serif"
       >
         Your Data
@@ -77,28 +84,28 @@ function NodeDiagram() {
 function P2PDiagram() {
   return (
     <svg
-      viewBox="0 0 280 125"
+      viewBox="0 0 560 250"
       width="100%"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="1"
       aria-hidden="true"
     >
       <circle
-        cx="60"
-        cy="35"
-        r="12"
+        cx="120"
+        cy="70"
+        r="24"
         fill="#34D399"
         fillOpacity="0.1"
         stroke="#34D399"
-        strokeWidth="1.5"
+        strokeWidth="1"
       />
       <text
-        x="60"
-        y="38"
+        x="120"
+        y="76"
         textAnchor="middle"
         fill="#34D399"
-        fontSize="8"
+        fontSize="16"
         fontFamily="system-ui, sans-serif"
         fontWeight="600"
       >
@@ -106,20 +113,20 @@ function P2PDiagram() {
       </text>
 
       <circle
-        cx="130"
-        cy="35"
-        r="12"
+        cx="260"
+        cy="70"
+        r="24"
         fill="#34D399"
         fillOpacity="0.1"
         stroke="#34D399"
-        strokeWidth="1.5"
+        strokeWidth="1"
       />
       <text
-        x="130"
-        y="38"
+        x="260"
+        y="76"
         textAnchor="middle"
         fill="#34D399"
-        fontSize="8"
+        fontSize="16"
         fontFamily="system-ui, sans-serif"
         fontWeight="600"
       >
@@ -127,20 +134,20 @@ function P2PDiagram() {
       </text>
 
       <circle
-        cx="200"
-        cy="35"
-        r="12"
+        cx="400"
+        cy="70"
+        r="24"
         fill="#34D399"
         fillOpacity="0.1"
         stroke="#34D399"
-        strokeWidth="1.5"
+        strokeWidth="1"
       />
       <text
-        x="200"
-        y="38"
+        x="400"
+        y="76"
         textAnchor="middle"
         fill="#34D399"
-        fontSize="8"
+        fontSize="16"
         fontFamily="system-ui, sans-serif"
         fontWeight="600"
       >
@@ -148,39 +155,39 @@ function P2PDiagram() {
       </text>
 
       <line
-        x1="72"
-        y1="35"
-        x2="118"
-        y2="35"
+        x1="144"
+        y1="70"
+        x2="236"
+        y2="70"
         stroke="#34D399"
         strokeOpacity="0.5"
-        strokeWidth="1.5"
+        strokeWidth="1"
       />
       <line
-        x1="142"
-        y1="35"
-        x2="188"
-        y2="35"
+        x1="284"
+        y1="70"
+        x2="376"
+        y2="70"
         stroke="#34D399"
         strokeOpacity="0.5"
-        strokeWidth="1.5"
+        strokeWidth="1"
       />
 
       <circle
-        cx="95"
-        cy="90"
-        r="12"
+        cx="190"
+        cy="180"
+        r="24"
         fill="#34D399"
         fillOpacity="0.1"
         stroke="#34D399"
-        strokeWidth="1.5"
+        strokeWidth="1"
       />
       <text
-        x="95"
-        y="93"
+        x="190"
+        y="186"
         textAnchor="middle"
         fill="#34D399"
-        fontSize="8"
+        fontSize="16"
         fontFamily="system-ui, sans-serif"
         fontWeight="600"
       >
@@ -188,20 +195,20 @@ function P2PDiagram() {
       </text>
 
       <circle
-        cx="165"
-        cy="90"
-        r="12"
+        cx="330"
+        cy="180"
+        r="24"
         fill="#34D399"
         fillOpacity="0.1"
         stroke="#34D399"
-        strokeWidth="1.5"
+        strokeWidth="1"
       />
       <text
-        x="165"
-        y="93"
+        x="330"
+        y="186"
         textAnchor="middle"
         fill="#34D399"
-        fontSize="8"
+        fontSize="16"
         fontFamily="system-ui, sans-serif"
         fontWeight="600"
       >
@@ -209,58 +216,58 @@ function P2PDiagram() {
       </text>
 
       <line
-        x1="67"
-        y1="45"
-        x2="86"
-        y2="80"
-        stroke="#34D399"
-        strokeOpacity="0.4"
-        strokeWidth="1"
-      />
-      <line
-        x1="124"
-        y1="45"
-        x2="106"
-        y2="80"
-        stroke="#34D399"
-        strokeOpacity="0.4"
-        strokeWidth="1"
-      />
-      <line
-        x1="137"
-        y1="45"
-        x2="154"
-        y2="80"
-        stroke="#34D399"
-        strokeOpacity="0.4"
-        strokeWidth="1"
-      />
-      <line
-        x1="193"
-        y1="45"
-        x2="174"
-        y2="80"
-        stroke="#34D399"
-        strokeOpacity="0.4"
-        strokeWidth="1"
-      />
-      <line
-        x1="107"
+        x1="134"
         y1="90"
-        x2="153"
-        y2="90"
+        x2="172"
+        y2="160"
         stroke="#34D399"
         strokeOpacity="0.4"
-        strokeWidth="1.5"
+        strokeWidth="1"
+      />
+      <line
+        x1="248"
+        y1="90"
+        x2="212"
+        y2="160"
+        stroke="#34D399"
+        strokeOpacity="0.4"
+        strokeWidth="1"
+      />
+      <line
+        x1="274"
+        y1="90"
+        x2="308"
+        y2="160"
+        stroke="#34D399"
+        strokeOpacity="0.4"
+        strokeWidth="1"
+      />
+      <line
+        x1="386"
+        y1="90"
+        x2="348"
+        y2="160"
+        stroke="#34D399"
+        strokeOpacity="0.4"
+        strokeWidth="1"
+      />
+      <line
+        x1="214"
+        y1="180"
+        x2="306"
+        y2="180"
+        stroke="#34D399"
+        strokeOpacity="0.4"
+        strokeWidth="1"
       />
 
       <text
-        x="130"
-        y="115"
+        x="260"
+        y="230"
         textAnchor="middle"
         fill="#34D399"
         fillOpacity="0.7"
-        fontSize="8"
+        fontSize="14"
         fontFamily="system-ui, sans-serif"
       >
         Direct peer-to-peer connections
@@ -271,131 +278,184 @@ function P2PDiagram() {
 
 function CryptoDiagram() {
   return (
-    <svg
-      viewBox="0 0 260 100"
-      width="100%"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 600 200" width="100%" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#e8a04a" stopOpacity="0.02" />
+        </linearGradient>
+        <linearGradient id="cardGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#4af0d4" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#4af0d4" stopOpacity="0.02" />
+        </linearGradient>
+        <linearGradient id="cardGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#34D399" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#34D399" stopOpacity="0.02" />
+        </linearGradient>
+      </defs>
+
       <rect
-        x="20"
-        y="25"
-        width="80"
-        height="50"
-        rx="6"
+        x="30"
+        y="40"
+        width="150"
+        height="110"
+        rx="12"
+        fill="url(#cardGrad1)"
         stroke="#e8a04a"
-        strokeWidth="2"
+        strokeWidth="1"
       />
       <text
-        x="60"
-        y="45"
+        x="105"
+        y="75"
         textAnchor="middle"
-        fill="#888"
-        fontSize="8"
-        fontFamily="monospace"
+        fill="#e8a04a"
+        fontSize="13"
+        fontFamily="system-ui, sans-serif"
+        fontWeight="600"
       >
         Content
       </text>
+      <rect x="55" y="88" width="100" height="24" rx="4" fill="#0a0a0a" />
       <text
-        x="60"
-        y="58"
+        x="105"
+        y="105"
         textAnchor="middle"
         fill="#e8a04a"
-        fontSize="9"
+        fontSize="12"
         fontFamily="monospace"
-        fontWeight="600"
       >
-        0x7a3f...
+        0x7a3f...9e2b
+      </text>
+      <text
+        x="105"
+        y="135"
+        textAnchor="middle"
+        fill="#666"
+        fontSize="10"
+        fontFamily="system-ui, sans-serif"
+      >
+        SHA-256 Hash
       </text>
 
       <line
-        x1="105"
-        y1="50"
-        x2="125"
-        y2="50"
+        x1="190"
+        y1="95"
+        x2="220"
+        y2="95"
         stroke="#e8a04a"
-        strokeWidth="2"
+        strokeWidth="1.5"
+        strokeDasharray="4 2"
       />
-      <polygon points="125,50 120,46 120,54" fill="#e8a04a" />
+      <polygon points="220,95 212,90 212,100" fill="#e8a04a" />
 
       <rect
-        x="135"
-        y="20"
-        width="50"
-        height="60"
-        rx="6"
+        x="225"
+        y="40"
+        width="150"
+        height="110"
+        rx="12"
+        fill="url(#cardGrad2)"
+        stroke="#4af0d4"
+        strokeWidth="1"
+      />
+      <circle
+        cx="300"
+        cy="70"
+        r="16"
+        fill="#4af0d4"
+        fillOpacity="0.1"
+        stroke="#4af0d4"
+        strokeWidth="1"
+      />
+      <path
+        d="M292 70 L298 76 L308 64"
         stroke="#4af0d4"
         strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
       />
       <text
-        x="160"
-        y="38"
+        x="300"
+        y="105"
         textAnchor="middle"
         fill="#4af0d4"
-        fontSize="8"
+        fontSize="13"
         fontFamily="system-ui, sans-serif"
         fontWeight="600"
       >
         Sign
       </text>
       <text
-        x="160"
-        y="52"
+        x="300"
+        y="125"
         textAnchor="middle"
-        fill="#888"
-        fontSize="7"
-        fontFamily="monospace"
+        fill="#666"
+        fontSize="10"
+        fontFamily="system-ui, sans-serif"
       >
-        Private
-      </text>
-      <text
-        x="160"
-        y="63"
-        textAnchor="middle"
-        fill="#888"
-        fontSize="7"
-        fontFamily="monospace"
-      >
-        Key
+        with Private Key
       </text>
 
       <line
-        x1="190"
-        y1="50"
-        x2="210"
-        y2="50"
+        x1="385"
+        y1="95"
+        x2="415"
+        y2="95"
         stroke="#34D399"
-        strokeWidth="2"
+        strokeWidth="1.5"
+        strokeDasharray="4 2"
       />
-      <polygon points="210,50 205,46 205,54" fill="#34D399" />
+      <polygon points="415,95 407,90 407,100" fill="#34D399" />
 
       <rect
-        x="220"
-        y="25"
-        width="25"
-        height="50"
-        rx="4"
+        x="420"
+        y="40"
+        width="150"
+        height="110"
+        rx="12"
+        fill="url(#cardGrad3)"
         stroke="#34D399"
-        strokeWidth="2"
+        strokeWidth="1"
       />
+      <circle cx="495" cy="70" r="20" fill="#34D399" fillOpacity="0.15" />
       <path
-        d="M228 45 L232 52 L240 38"
+        d="M483 70 L491 78 L507 60"
         stroke="#34D399"
-        strokeWidth="2"
+        strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
       />
+      <text
+        x="495"
+        y="108"
+        textAnchor="middle"
+        fill="#34D399"
+        fontSize="13"
+        fontFamily="system-ui, sans-serif"
+        fontWeight="600"
+      >
+        Verified
+      </text>
+      <text
+        x="495"
+        y="128"
+        textAnchor="middle"
+        fill="#666"
+        fontSize="10"
+        fontFamily="system-ui, sans-serif"
+      >
+        Cryptographic Proof
+      </text>
 
       <text
-        x="130"
-        y="88"
+        x="300"
+        y="175"
         textAnchor="middle"
         fill="#34D399"
         fillOpacity="0.7"
-        fontSize="8"
+        fontSize="12"
         fontFamily="system-ui, sans-serif"
       >
         Immutable. Verifiable. Yours.
