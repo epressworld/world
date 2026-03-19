@@ -12,62 +12,62 @@ function VisionMeritGraph() {
   const nodes = [
     {
       id: "center",
-      cx: 280,
-      cy: 160,
-      r: 40,
+      cx: 560,
+      cy: 320,
+      r: 80,
       label: "High-Value Idea",
       sublabel: "cited 3,200 times",
     },
     {
       id: "A",
-      cx: 80,
-      cy: 80,
-      r: 18,
+      cx: 160,
+      cy: 160,
+      r: 36,
       label: "Researcher",
       sublabel: "847 posts",
       rep: 92,
     },
     {
       id: "B",
-      cx: 340,
-      cy: 50,
-      r: 16,
+      cx: 680,
+      cy: 100,
+      r: 32,
       label: "Journalist",
       sublabel: "1.2k posts",
       rep: 78,
     },
     {
       id: "C",
-      cx: 500,
-      cy: 100,
-      r: 20,
+      cx: 1000,
+      cy: 200,
+      r: 40,
       label: "Professor",
       sublabel: "2,100 posts",
       rep: 95,
     },
     {
       id: "D",
-      cx: 480,
-      cy: 240,
-      r: 15,
+      cx: 960,
+      cy: 480,
+      r: 30,
       label: "Engineer",
       sublabel: "634 posts",
       rep: 64,
     },
     {
       id: "E",
-      cx: 140,
-      cy: 260,
-      r: 17,
+      cx: 280,
+      cy: 520,
+      r: 34,
       label: "Writer",
       sublabel: "980 posts",
       rep: 71,
     },
     {
       id: "F",
-      cx: 40,
-      cy: 200,
-      r: 14,
+      cx: 80,
+      cy: 400,
+      r: 28,
       label: "Analyst",
       sublabel: "445 posts",
       rep: 58,
@@ -75,8 +75,9 @@ function VisionMeritGraph() {
   ]
 
   const citingNodes = ["A", "B", "C", "D", "E", "F"]
-  const centerRadius = 40 + step * 2
+  const centerRadius = 80 + step * 4
   const centerOpacity = 0.12 + step * 0.02
+  const springConfig = { type: "spring", stiffness: 100, damping: 20 }
 
   const calculateValue = () => {
     const baseValue = 100
@@ -100,26 +101,26 @@ function VisionMeritGraph() {
   }, [])
 
   const getArrowCoords = (fromNode) => {
-    const dx = 280 - fromNode.cx
-    const dy = 160 - fromNode.cy
+    const dx = 560 - fromNode.cx
+    const dy = 320 - fromNode.cy
     const dist = Math.sqrt(dx * dx + dy * dy)
     const ux = dx / dist
     const uy = dy / dist
     return {
       x1: fromNode.cx + ux * fromNode.r,
       y1: fromNode.cy + uy * fromNode.r,
-      x2: 280 - ux * centerRadius,
-      y2: 160 - uy * centerRadius,
+      x2: 560 - ux * centerRadius,
+      y2: 320 - uy * centerRadius,
+      angle: Math.atan2(dy, dx) * (180 / Math.PI),
     }
   }
 
   return (
     <div className="relative w-full max-w-[800px] mx-auto mt-12">
       <svg
-        viewBox="0 0 560 340"
+        viewBox="0 0 1120 680"
         className="w-full block"
         fill="none"
-        stroke="currentColor"
         aria-hidden="true"
       >
         <defs>
@@ -127,43 +128,40 @@ function VisionMeritGraph() {
             <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.3" />
             <stop offset="100%" stopColor="#e8a04a" stopOpacity="0.05" />
           </linearGradient>
+          <linearGradient id="nodeGradA" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#34D399" stopOpacity="0.15" />
+            <stop offset="100%" stopColor="#34D399" stopOpacity="0.05" />
+          </linearGradient>
         </defs>
 
         <motion.circle
-          cx={280}
-          cy={160}
-          r={centerRadius + 20}
+          cx={560}
+          cy={320}
+          animate={{ r: centerRadius + 40, opacity: 0.3 + step * 0.05 }}
+          transition={springConfig}
           fill="url(#centerGlow)"
           stroke="none"
-          initial={false}
-          animate={{
-            r: centerRadius + 20,
-            opacity: 0.3 + step * 0.05,
-          }}
-          transition={{ type: "spring", stiffness: 60 }}
         />
 
         {citingNodes.slice(0, step).map((nodeId, idx) => {
           const fromNode = nodes.find((n) => n.id === nodeId)
           const coords = getArrowCoords(fromNode)
+
           return (
-            <motion.g key={nodeId}>
+            <g key={nodeId}>
               <motion.line
                 x1={coords.x1}
                 y1={coords.y1}
-                x2={coords.x2}
-                y2={coords.y2}
+                animate={{ x2: coords.x2, y2: coords.y2 }}
+                transition={springConfig}
                 stroke="#e8a04a"
-                strokeWidth="2"
-                strokeOpacity="0.6"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                strokeWidth="1.5"
+                strokeOpacity="0.5"
               />
               <motion.circle
                 cx={coords.x1}
                 cy={coords.y1}
-                r="4"
+                r="6"
                 fill="#e8a04a"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 1, 0] }}
@@ -174,19 +172,19 @@ function VisionMeritGraph() {
                   repeatDelay: 2,
                 }}
               />
-              <motion.polygon
-                points={`${coords.x2},${coords.y2} ${coords.x2 - 8},${coords.y2 - 4} ${coords.x2 - 8},${coords.y2 + 4}`}
-                fill="#e8a04a"
-                fillOpacity="0.8"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.4 }}
-                style={{
-                  transformOrigin: `${coords.x2}px ${coords.y2}px`,
-                  transform: `rotate(${Math.atan2(160 - fromNode.cy, 280 - fromNode.cx) * (180 / Math.PI)}deg)`,
-                }}
-              />
-            </motion.g>
+              <motion.g
+                initial={{ x: coords.x2, y: coords.y2 }}
+                animate={{ x: coords.x2, y: coords.y2 }}
+                transition={springConfig}
+              >
+                <polygon
+                  points="-12,-7 0,0 -12,7"
+                  fill="#e8a04a"
+                  fillOpacity="0.8"
+                  transform={`rotate(${coords.angle})`}
+                />
+              </motion.g>
+            </g>
           )
         })}
 
@@ -200,17 +198,13 @@ function VisionMeritGraph() {
               <motion.circle
                 cx={node.cx}
                 cy={node.cy}
-                r={isCenter ? centerRadius : node.r}
-                fill={isCenter ? "#e8a04a" : "#1a1a1a"}
-                fillOpacity={isCenter ? centerOpacity : 0.6}
-                stroke={isCenter ? "#e8a04a" : "currentColor"}
-                strokeWidth={isCenter ? 2 : 1.5}
-                strokeOpacity={isCenter ? 1 : 0.4}
-                initial={false}
                 animate={{ r: isCenter ? centerRadius : node.r }}
-                transition={
-                  isCenter ? { type: "spring", stiffness: 80, damping: 12 } : {}
-                }
+                transition={springConfig}
+                fill={isCenter ? "#e8a04a" : "url(#nodeGradA)"}
+                fillOpacity={isCenter ? centerOpacity : 0.8}
+                stroke={isCenter ? "#e8a04a" : "#34D399"}
+                strokeWidth={1}
+                strokeOpacity={isCenter ? 1 : 0.4}
               />
               {showLabel && (
                 <motion.g
@@ -220,23 +214,23 @@ function VisionMeritGraph() {
                 >
                   <text
                     x={node.cx}
-                    y={node.cy - node.r - 10}
+                    y={node.cy - node.r - 16}
                     textAnchor="middle"
-                    fill="currentColor"
+                    fill="#34D399"
                     fillOpacity="0.9"
-                    fontSize="9"
-                    fontWeight="700"
+                    fontSize="16"
+                    fontWeight="600"
                     fontFamily="system-ui, sans-serif"
                   >
                     {node.label}
                   </text>
                   <text
                     x={node.cx}
-                    y={node.cy - node.r - 2}
+                    y={node.cy - node.r + 2}
                     textAnchor="middle"
-                    fill="currentColor"
+                    fill="#34D399"
                     fillOpacity="0.5"
-                    fontSize="7"
+                    fontSize="12"
                     fontFamily="monospace"
                   >
                     {node.sublabel}
@@ -254,24 +248,24 @@ function VisionMeritGraph() {
             transition={{ duration: 0.4 }}
           >
             <text
-              x={280}
-              y={155}
+              x={560}
+              y={310}
               textAnchor="middle"
               fill="#e8a04a"
               fillOpacity="0.95"
-              fontSize="10"
-              fontWeight="700"
+              fontSize="18"
+              fontWeight="600"
               fontFamily="system-ui, sans-serif"
             >
               High-Value Idea
             </text>
             <text
-              x={280}
-              y={170}
+              x={560}
+              y={336}
               textAnchor="middle"
               fill="#e8a04a"
               fillOpacity="0.6"
-              fontSize="8"
+              fontSize="14"
               fontFamily="monospace"
             >
               cited {step * 534 + 1200}×
@@ -281,20 +275,20 @@ function VisionMeritGraph() {
       </svg>
 
       <motion.div
-        className="absolute top-4 right-4 bg-dark-surface/90 backdrop-blur-sm rounded-xl border border-white/10 p-4 w-48"
+        className="absolute top-4 right-4 bg-dark-surface/90 backdrop-blur-sm rounded-xl border border-white/10 p-5 w-56"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.8 }}
       >
-        <p className="text-[10px] uppercase tracking-wider text-white/40 mb-2 font-mono">
+        <p className="text-xs uppercase tracking-wider text-white/40 mb-3 font-mono">
           IdeaRank Calculation
         </p>
-        <div className="space-y-2">
-          <div className="flex justify-between text-xs">
+        <div className="space-y-3">
+          <div className="flex justify-between text-sm">
             <span className="text-white/50">Base Value</span>
             <span className="text-white/80 font-mono">100</span>
           </div>
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-sm">
             <span className="text-white/50">Citations</span>
             <motion.span
               className="text-primary font-mono"
@@ -305,7 +299,7 @@ function VisionMeritGraph() {
               +{step * 45}
             </motion.span>
           </div>
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-sm">
             <span className="text-white/50">Reputation</span>
             <motion.span
               className="text-primary font-mono"
@@ -317,7 +311,7 @@ function VisionMeritGraph() {
             </motion.span>
           </div>
           <div className="h-px bg-white/10 my-2" />
-          <div className="flex justify-between text-sm font-semibold">
+          <div className="flex justify-between text-base font-semibold">
             <span className="text-white">Value</span>
             <motion.span
               className="text-primary font-mono"
@@ -651,57 +645,75 @@ export default function VisionPage() {
             </div>
 
             <svg
-              viewBox="0 0 680 160"
+              viewBox="0 0 1360 320"
               className="w-full max-w-[680px] mx-auto block mt-10 mb-4"
               fill="none"
-              stroke="currentColor"
             >
+              <defs>
+                <linearGradient
+                  id="httpsGrad"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.08" />
+                  <stop offset="100%" stopColor="#ffffff" stopOpacity="0.02" />
+                </linearGradient>
+                <linearGradient
+                  id="posGrad"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.15" />
+                  <stop offset="100%" stopColor="#e8a04a" stopOpacity="0.05" />
+                </linearGradient>
+              </defs>
+
               <rect
-                x="24"
-                y="30"
-                width="632"
-                height="40"
-                rx="8"
-                fill="currentColor"
-                fillOpacity="0.06"
-                stroke="currentColor"
-                strokeOpacity="0.2"
+                x="48"
+                y="60"
+                width="1264"
+                height="80"
+                rx="16"
+                fill="url(#httpsGrad)"
+                stroke="#ffffff"
+                strokeOpacity="0.15"
                 strokeWidth="1"
               />
               <text
-                x="46"
-                y="55"
-                fontSize="14"
-                fontWeight="700"
-                fill="currentColor"
+                x="92"
+                y="110"
+                fontSize="28"
+                fontWeight="600"
+                fill="#ffffff"
                 fillOpacity="0.6"
-                stroke="none"
                 fontFamily="monospace"
               >
                 HTTPS
               </text>
               <line
-                x1="121"
-                y1="50"
-                x2="170"
-                y2="50"
-                stroke="currentColor"
-                strokeOpacity="0.3"
-                strokeWidth="1.2"
+                x1="242"
+                y1="100"
+                x2="340"
+                y2="100"
+                stroke="#ffffff"
+                strokeOpacity="0.25"
+                strokeWidth="1"
               />
               <polygon
-                points="170,50 165,47 165,53"
-                fill="currentColor"
-                fillOpacity="0.3"
-                stroke="none"
+                points="340,100 330,94 330,106"
+                fill="#ffffff"
+                fillOpacity="0.25"
               />
               <text
-                x="185"
-                y="55"
-                fontSize="12"
-                fill="currentColor"
+                x="370"
+                y="108"
+                fontSize="24"
+                fill="#ffffff"
                 fillOpacity="0.45"
-                stroke="none"
                 fontFamily="system-ui, sans-serif"
               >
                 guarantees: you're talking to the right server, nothing
@@ -709,60 +721,46 @@ export default function VisionPage() {
               </text>
 
               <rect
-                x="19"
-                y="90"
-                width="642"
-                height="44"
-                rx="10"
-                fill="currentColor"
-                fillOpacity="0.04"
-                stroke="none"
-              />
-              <rect
-                x="24"
-                y="94"
-                width="632"
-                height="40"
-                rx="8"
-                fill="currentColor"
-                fillOpacity="0.13"
-                stroke="currentColor"
-                strokeOpacity="0.5"
-                strokeWidth="1.2"
+                x="38"
+                y="180"
+                width="1284"
+                height="88"
+                rx="20"
+                fill="url(#posGrad)"
+                stroke="#e8a04a"
+                strokeOpacity="0.4"
+                strokeWidth="1"
               />
               <text
-                x="46"
-                y="120"
-                fontSize="14"
-                fontWeight="700"
+                x="92"
+                y="240"
+                fontSize="28"
+                fontWeight="600"
                 fill="#e8a04a"
-                stroke="none"
                 fontFamily="monospace"
               >
                 PoS
               </text>
               <line
-                x1="121"
-                y1="114"
-                x2="170"
-                y2="114"
-                stroke="currentColor"
-                strokeOpacity="0.3"
-                strokeWidth="1.2"
+                x1="242"
+                y1="228"
+                x2="340"
+                y2="228"
+                stroke="#e8a04a"
+                strokeOpacity="0.4"
+                strokeWidth="1"
               />
               <polygon
-                points="170,114 165,111 165,117"
-                fill="currentColor"
-                fillOpacity="0.3"
-                stroke="none"
+                points="340,228 330,222 330,234"
+                fill="#e8a04a"
+                fillOpacity="0.6"
               />
               <text
-                x="185"
-                y="120"
-                fontSize="12"
-                fill="currentColor"
+                x="370"
+                y="236"
+                fontSize="24"
+                fill="#ffffff"
                 fillOpacity="0.7"
-                stroke="none"
                 fontFamily="system-ui, sans-serif"
               >
                 guarantees: this content came from this identity, unchanged, at
