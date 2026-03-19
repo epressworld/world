@@ -27,7 +27,7 @@ export function PageFooterCTA() {
               </p>
               <CopyableCode code={INSTALL_COMMAND} className="mb-4" />
               <Link
-                href="/docs/getting-started"
+                href="/docs"
                 className="btn-primary w-full text-center inline-flex items-center justify-center"
               >
                 Deploy Your Node →
