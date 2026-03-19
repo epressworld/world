@@ -1910,12 +1910,13 @@ export default function FeaturesPage() {
                   className="text-2xl font-bold mb-4"
                   style={{ color: UI.textPrimary }}
                 >
-                  Connect Your Ethereum Wallet
+                  Connect With Any Ethereum Wallet
                 </h2>
                 <p className="text-sm mb-4" style={{ color: UI.textSecondary }}>
-                  No passwords. No email verification. Your Ethereum wallet is
-                  your identity. Connect once and you&apos;re ready to interact
-                  with any epress node.
+                  Click &apos;Connect Wallet&apos; and choose your Ethereum
+                  wallet — MetaMask, Rainbow, WalletConnect, or any compatible
+                  wallet. This is the first step to proving your identity on
+                  epress.
                 </p>
                 <div
                   className="p-3 rounded-lg border-l-2"
@@ -1928,8 +1929,9 @@ export default function FeaturesPage() {
                     <strong style={{ color: UI.textPrimary }}>
                       Key insight:
                     </strong>{" "}
-                    Wallet connection is the first step — your address becomes
-                    your universal identity across the network.
+                    Don&apos;t have an Ethereum wallet yet? You&apos;ll need one
+                    to sign in. MetaMask is the most common — it&apos;s a free
+                    browser extension that takes about two minutes to set up.
                   </p>
                 </div>
               </motion.div>
@@ -1978,9 +1980,10 @@ export default function FeaturesPage() {
                 Sign In With Your Wallet
               </h2>
               <p className="text-sm mb-4" style={{ color: UI.textSecondary }}>
-                No passwords. No email verification. Your Ethereum wallet is
-                your identity. Sign a message to prove ownership — that&apos;s
-                it. Your node recognizes you instantly.
+                Your wallet signs a one-time message — proving you own this
+                Ethereum address. That&apos;s the entire login process. No
+                username. No password. No account stored on this server. Nothing
+                to forget, nothing to breach.
               </p>
               <div
                 className="p-3 rounded-lg border-l-2"
@@ -1993,8 +1996,9 @@ export default function FeaturesPage() {
                   <strong style={{ color: UI.textPrimary }}>
                     Key insight:
                   </strong>{" "}
-                  This is EIP-4361 (Sign-In with Ethereum) — the standard for
-                  wallet-based authentication.
+                  Your private key never leaves your wallet. epress only
+                  receives a mathematical proof of ownership — not the key
+                  itself.
                 </p>
               </div>
             </motion.div>
@@ -2024,14 +2028,15 @@ export default function FeaturesPage() {
                   className="text-2xl font-bold mb-4"
                   style={{ color: UI.textPrimary }}
                 >
-                  Publish First. Sign to Broadcast.
+                  Two Steps: Publish, Then Go Live
                 </h2>
                 <p className="text-sm mb-4" style={{ color: UI.textSecondary }}>
-                  Publishing a post makes it available on your node like a
-                  traditional blog — anyone with your URL can read it. But it
-                  won&apos;t appear in your followers&apos; timelines until you
-                  sign it. Signing generates a Proof of Source and broadcasts
-                  the post to the entire network.
+                  Publishing saves your post to your node — visible to anyone
+                  who visits your URL, like a traditional blog. But it
+                  won&apos;t appear in your followers&apos; timelines yet. Click
+                  the grey &apos;SIGNED&apos; badge to sign it with your wallet.
+                  Once signed, every node that follows you receives a
+                  notification and pulls your post directly.
                 </p>
                 <div
                   className="p-3 rounded-lg border-l-2"
@@ -2044,10 +2049,9 @@ export default function FeaturesPage() {
                     <strong style={{ color: UI.textPrimary }}>
                       Key insight:
                     </strong>{" "}
-                    The grey &apos;SIGNED&apos; badge means published but not
-                    yet broadcast. Click it, sign with your wallet, and it turns
-                    green — meaning every node that follows you now has a
-                    verified copy.
+                    Every signed post carries a cryptographic stamp: who wrote
+                    it, when, and proof it hasn&apos;t been changed. Anyone can
+                    verify it without contacting your node.
                   </p>
                 </div>
               </motion.div>
@@ -2093,14 +2097,15 @@ export default function FeaturesPage() {
                 className="text-2xl font-bold mb-4"
                 style={{ color: UI.textPrimary }}
               >
-                Follow From Their Node, Not Yours
+                Go to Their Node to Follow
               </h2>
               <p className="text-sm mb-4" style={{ color: UI.textSecondary }}>
-                To follow alice&apos;s node, bob visits alice.epress.world and
-                connects his own wallet. Since he&apos;s a visitor — not the
-                node owner — he sees a Follow button instead of Login. He clicks
-                Follow, enters his own node URL, and signs with his wallet. Both
-                nodes record the connection simultaneously.
+                To follow someone on epress, visit their node directly. Connect
+                your wallet there — the node sees you as a visitor with your own
+                Ethereum address. Click Follow, enter your own node&apos;s URL,
+                and sign the request with your wallet. Both nodes record the
+                connection simultaneously, with no platform coordinating the
+                handshake.
               </p>
               <div
                 className="p-3 rounded-lg border-l-2"
@@ -2113,9 +2118,9 @@ export default function FeaturesPage() {
                   <strong style={{ color: UI.textPrimary }}>
                     Key insight:
                   </strong>{" "}
-                  After a successful follow, the Follow button becomes Unfollow.
-                  Both nodes&apos; Connections pages update — bob appears in
-                  alice&apos;s Followers, alice appears in bob&apos;s Following.
+                  Your follow list lives on your node. Move to a different
+                  server? Your connections travel with you — they were never
+                  locked in anyone else&apos;s database.
                 </p>
               </div>
             </motion.div>
