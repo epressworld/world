@@ -89,6 +89,25 @@ export function HeroSection() {
               Deploy Your Node
             </Link>
           </motion.div>
+
+          <motion.p
+            className="mt-6 text-sm"
+            style={{ color: "rgba(255,255,255,0.4)" }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            See it live →{" "}
+            <a
+              href="https://blog.epress.world"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary/80 hover:text-primary transition-colors"
+            >
+              blog.epress.world
+            </a>{" "}
+            is a real node on the network
+          </motion.p>
         </div>
       </div>
 
