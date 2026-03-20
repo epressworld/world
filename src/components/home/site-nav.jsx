@@ -219,8 +219,8 @@ export function SiteNav() {
           <Image
             src="/logo-light.svg"
             alt="epress"
-            width={120}
-            height={32}
+            width={0}
+            height={0}
             className="h-8 w-auto"
           />
         </Link>

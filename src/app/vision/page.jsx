@@ -117,168 +117,224 @@ function VisionMeritGraph() {
   }
 
   return (
-    <div className="relative w-full max-w-[800px] mx-auto mt-12">
-      <svg
-        viewBox="0 0 1120 680"
-        className="w-full block"
-        fill="none"
-        aria-hidden="true"
-      >
-        <defs>
-          <linearGradient id="centerGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#e8a04a" stopOpacity="0.05" />
-          </linearGradient>
-          <linearGradient id="nodeGradA" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#34D399" stopOpacity="0.15" />
-            <stop offset="100%" stopColor="#34D399" stopOpacity="0.05" />
-          </linearGradient>
-        </defs>
+    <div className="w-full max-w-[800px] mx-auto mt-12">
+      <div className="relative">
+        <svg
+          viewBox="0 0 1120 680"
+          className="w-full block"
+          fill="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="centerGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#e8a04a" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#e8a04a" stopOpacity="0.05" />
+            </linearGradient>
+            <linearGradient id="nodeGradA" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#34D399" stopOpacity="0.15" />
+              <stop offset="100%" stopColor="#34D399" stopOpacity="0.05" />
+            </linearGradient>
+          </defs>
 
-        <motion.circle
-          cx={560}
-          cy={320}
-          animate={{ r: centerRadius + 40, opacity: 0.3 + step * 0.05 }}
-          transition={springConfig}
-          fill="url(#centerGlow)"
-          stroke="none"
-        />
+          <motion.circle
+            cx={560}
+            cy={320}
+            animate={{ r: centerRadius + 40, opacity: 0.3 + step * 0.05 }}
+            transition={springConfig}
+            fill="url(#centerGlow)"
+            stroke="none"
+          />
 
-        {citingNodes.slice(0, step).map((nodeId, idx) => {
-          const fromNode = nodes.find((n) => n.id === nodeId)
-          const coords = getArrowCoords(fromNode)
+          {citingNodes.slice(0, step).map((nodeId, idx) => {
+            const fromNode = nodes.find((n) => n.id === nodeId)
+            if (!fromNode) return null
+            const coords = getArrowCoords(fromNode)
 
-          return (
-            <g key={nodeId}>
-              <motion.line
-                x1={coords.x1}
-                y1={coords.y1}
-                animate={{ x2: coords.x2, y2: coords.y2 }}
-                transition={springConfig}
-                stroke="#e8a04a"
-                strokeWidth="1.5"
-                strokeOpacity="0.5"
-              />
-              <motion.circle
-                cx={coords.x1}
-                cy={coords.y1}
-                r="6"
-                fill="#e8a04a"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{
-                  duration: 1.2,
-                  delay: idx * 0.1,
-                  repeat: Infinity,
-                  repeatDelay: 2,
-                }}
-              />
-              <motion.g
-                initial={{ x: coords.x2, y: coords.y2 }}
-                animate={{ x: coords.x2, y: coords.y2 }}
-                transition={springConfig}
-              >
-                <polygon
-                  points="-12,-7 0,0 -12,7"
-                  fill="#e8a04a"
-                  fillOpacity="0.8"
-                  transform={`rotate(${coords.angle})`}
+            return (
+              <g key={nodeId}>
+                <motion.line
+                  x1={coords.x1}
+                  y1={coords.y1}
+                  initial={{ x2: coords.x1, y2: coords.y1 }}
+                  animate={{ x2: coords.x2, y2: coords.y2 }}
+                  transition={springConfig}
+                  stroke="#e8a04a"
+                  strokeWidth="1.5"
+                  strokeOpacity="0.5"
                 />
-              </motion.g>
-            </g>
-          )
-        })}
-
-        {nodes.map((node) => {
-          const isCenter = node.id === "center"
-          const isCiting = citingNodes.includes(node.id)
-          const showLabel = step >= 2 && isCiting
-
-          return (
-            <g key={node.id}>
-              <motion.circle
-                cx={node.cx}
-                cy={node.cy}
-                animate={{ r: isCenter ? centerRadius : node.r }}
-                transition={springConfig}
-                fill={isCenter ? "#e8a04a" : "url(#nodeGradA)"}
-                fillOpacity={isCenter ? centerOpacity : 0.8}
-                stroke={isCenter ? "#e8a04a" : "#34D399"}
-                strokeWidth={1}
-                strokeOpacity={isCenter ? 1 : 0.4}
-              />
-              {showLabel && (
-                <motion.g
+                <motion.circle
+                  cx={coords.x1}
+                  cy={coords.y1}
+                  r="6"
+                  fill="#e8a04a"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.4 }}
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{
+                    duration: 1.2,
+                    delay: idx * 0.1,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                  }}
+                />
+                <motion.g
+                  initial={{ x: coords.x2, y: coords.y2 }}
+                  animate={{ x: coords.x2, y: coords.y2 }}
+                  transition={springConfig}
                 >
-                  <text
-                    x={node.cx}
-                    y={node.cy - node.r - 16}
-                    textAnchor="middle"
-                    fill="#34D399"
-                    fillOpacity="0.9"
-                    fontSize="16"
-                    fontWeight="600"
-                    fontFamily="system-ui, sans-serif"
-                  >
-                    {node.label}
-                  </text>
-                  <text
-                    x={node.cx}
-                    y={node.cy - node.r + 2}
-                    textAnchor="middle"
-                    fill="#34D399"
-                    fillOpacity="0.5"
-                    fontSize="12"
-                    fontFamily="monospace"
-                  >
-                    {node.sublabel}
-                  </text>
+                  <polygon
+                    points="-12,-7 0,0 -12,7"
+                    fill="#e8a04a"
+                    fillOpacity="0.8"
+                    transform={`rotate(${coords.angle})`}
+                  />
                 </motion.g>
-              )}
-            </g>
-          )
-        })}
+              </g>
+            )
+          })}
 
-        {step >= 1 && (
-          <motion.g
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4 }}
-          >
-            <text
-              x={560}
-              y={310}
-              textAnchor="middle"
-              fill="#e8a04a"
-              fillOpacity="0.95"
-              fontSize="18"
-              fontWeight="600"
-              fontFamily="system-ui, sans-serif"
+          {nodes.map((node) => {
+            const isCenter = node.id === "center"
+            const isCiting = citingNodes.includes(node.id)
+            const showLabel = step >= 2 && isCiting
+
+            return (
+              <g key={node.id}>
+                <motion.circle
+                  cx={node.cx}
+                  cy={node.cy}
+                  animate={{ r: isCenter ? centerRadius : node.r }}
+                  transition={springConfig}
+                  fill={isCenter ? "#e8a04a" : "url(#nodeGradA)"}
+                  fillOpacity={isCenter ? centerOpacity : 0.8}
+                  stroke={isCenter ? "#e8a04a" : "#34D399"}
+                  strokeWidth={1}
+                  strokeOpacity={isCenter ? 1 : 0.4}
+                />
+                {showLabel && (
+                  <motion.g
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <text
+                      x={node.cx}
+                      y={node.cy - node.r - 16}
+                      textAnchor="middle"
+                      fill="#34D399"
+                      fillOpacity="0.9"
+                      fontSize="16"
+                      fontWeight="600"
+                      fontFamily="system-ui, sans-serif"
+                    >
+                      {node.label}
+                    </text>
+                    <text
+                      x={node.cx}
+                      y={node.cy - node.r + 2}
+                      textAnchor="middle"
+                      fill="#34D399"
+                      fillOpacity="0.5"
+                      fontSize="12"
+                      fontFamily="monospace"
+                    >
+                      {node.sublabel}
+                    </text>
+                  </motion.g>
+                )}
+              </g>
+            )
+          })}
+
+          {step >= 1 && (
+            <motion.g
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
             >
-              High-Value Idea
-            </text>
-            <text
-              x={560}
-              y={336}
-              textAnchor="middle"
-              fill="#e8a04a"
-              fillOpacity="0.6"
-              fontSize="14"
-              fontFamily="monospace"
-            >
-              cited {step * 534 + 1200}×
-            </text>
-          </motion.g>
-        )}
-      </svg>
+              <text
+                x={560}
+                y={310}
+                textAnchor="middle"
+                fill="#e8a04a"
+                fillOpacity="0.95"
+                fontSize="18"
+                fontWeight="600"
+                fontFamily="system-ui, sans-serif"
+              >
+                High-Value Idea
+              </text>
+              <text
+                x={560}
+                y={336}
+                textAnchor="middle"
+                fill="#e8a04a"
+                fillOpacity="0.6"
+                fontSize="14"
+                fontFamily="monospace"
+              >
+                cited {step * 534 + 1200}×
+              </text>
+            </motion.g>
+          )}
+        </svg>
+
+        <motion.div
+          className="hidden md:block absolute top-4 right-4 bg-dark-surface/90 backdrop-blur-sm rounded-xl border border-white/10 p-5 w-56"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+        >
+          <p className="text-xs uppercase tracking-wider text-white/40 mb-3 font-mono">
+            IdeaRank Calculation
+          </p>
+          <div className="space-y-3">
+            <div className="flex justify-between text-sm">
+              <span className="text-white/50">Base Value</span>
+              <span className="text-white/80 font-mono">100</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-white/50">Citations</span>
+              <motion.span
+                className="text-primary font-mono"
+                key={step}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                +{step * 45}
+              </motion.span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-white/50">Reputation</span>
+              <motion.span
+                className="text-primary font-mono"
+                key={`rep-${step}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                +{step * 12}
+              </motion.span>
+            </div>
+            <div className="h-px bg-white/10 my-2" />
+            <div className="flex justify-between text-base font-semibold">
+              <span className="text-white">Value</span>
+              <motion.span
+                className="text-primary font-mono"
+                key={`total-${step}`}
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 200 }}
+              >
+                {calculateValue()}
+              </motion.span>
+            </div>
+          </div>
+        </motion.div>
+      </div>
 
       <motion.div
-        className="absolute top-4 right-4 bg-dark-surface/90 backdrop-blur-sm rounded-xl border border-white/10 p-5 w-56"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
+        className="md:hidden bg-dark-surface/90 backdrop-blur-sm rounded-xl border border-white/10 p-4 mt-4 max-w-xs mx-auto"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.8 }}
       >
         <p className="text-xs uppercase tracking-wider text-white/40 mb-3 font-mono">
