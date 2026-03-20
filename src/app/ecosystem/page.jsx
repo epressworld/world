@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { Rocket, Users } from "lucide-react"
 import Link from "next/link"
 import { SiteFooter } from "@/components/home/site-footer"
 import { SiteNav } from "@/components/home/site-nav"
@@ -1104,12 +1105,22 @@ export default function EcosystemPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <Link href="/docs" className="btn-primary px-8 py-3">
+                <Link
+                  href="/docs"
+                  className="btn-primary px-8 py-3 inline-flex items-center justify-center"
+                >
+                  <Rocket className="w-5 h-5 mr-2" />
                   Deploy Your Node →
                 </Link>
-                <Link href="#" className="btn-secondary px-8 py-3">
-                  Request a Trial Node
-                </Link>
+                <a
+                  href="https://t.me/+mZMgNSIVy1MwMmVl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary px-8 py-3 inline-flex items-center justify-center"
+                >
+                  <Users className="w-5 h-5 mr-2" />
+                  Join Community
+                </a>
               </motion.div>
 
               <motion.div

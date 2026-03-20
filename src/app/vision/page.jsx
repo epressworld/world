@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { Rocket, Users } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { SiteFooter } from "@/components/home/site-footer"
@@ -996,18 +997,28 @@ export default function VisionPage() {
               </motion.p>
 
               <motion.div
-                className="flex flex-col items-center gap-3"
+                className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
-                <Link href="/docs" className="btn-primary text-base px-8 py-3">
+                <Link
+                  href="/docs"
+                  className="btn-primary text-base px-7 py-3 inline-flex items-center justify-center"
+                >
+                  <Rocket className="w-5 h-5 mr-2" />
                   Deploy Your Node →
                 </Link>
-                <Link href="#" className="btn-secondary text-sm px-6 py-2.5">
-                  Request a Trial Node
-                </Link>
+                <a
+                  href="https://t.me/+mZMgNSIVy1MwMmVl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-base px-7 py-3 inline-flex items-center justify-center"
+                >
+                  <Users className="w-5 h-5 mr-2" />
+                  Join Community
+                </a>
               </motion.div>
 
               <motion.div
