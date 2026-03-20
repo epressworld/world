@@ -3,9 +3,9 @@ import { DocsPrimaryNav } from "@/components/docs-primary-nav"
 import { DocsSidebar } from "@/components/docs-sidebar"
 
 export const metadata = {
-  title: "epress world Docs",
+  title: "Documentation | epress",
   description:
-    "Documentation for epress world with Node Operator Docs and Developer Docs.",
+    "Learn how to set up, configure, and operate an epress node. Documentation for node operators and developers.",
 }
 
 export default function DocsLayout({ children }) {
