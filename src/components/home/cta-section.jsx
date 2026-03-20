@@ -1,4 +1,4 @@
-import { ArrowRight, Rocket } from "lucide-react"
+import { ArrowRight, Rocket, Users } from "lucide-react"
 import Link from "next/link"
 
 export function CTASection() {
@@ -24,13 +24,13 @@ export function CTASection() {
               Deploy Your Node →
             </Link>
             <a
-              href="https://blog.epress.world"
+              href="https://t.me/+mZMgNSIVy1MwMmVl"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary text-base px-7 py-3 inline-flex items-center justify-center"
             >
-              See a live node
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <Users className="w-5 h-5 mr-2" />
+              Join Community
             </a>
           </div>
 

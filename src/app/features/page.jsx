@@ -28,7 +28,28 @@ const UI = {
   signedGreen: "#16a34a",
 }
 
-function SignedRibbon({ signed = true }) {
+function RippleEffect({ active, color = "rgba(255,255,255,0.3)" }) {
+  if (!active) return null
+  return (
+    <motion.div
+      className="absolute inset-0 pointer-events-none overflow-hidden rounded-md"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
+      <motion.div
+        className="absolute top-1/2 left-1/2 rounded-full"
+        style={{
+          background: `radial-gradient(circle, ${color} 0%, transparent 70%)`,
+        }}
+        initial={{ width: 0, height: 0, x: "-50%", y: "-50%" }}
+        animate={{ width: 200, height: 200, x: "-50%", y: "-50%" }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      />
+    </motion.div>
+  )
+}
+
+function SignedRibbon({ signed = true, clicked = false }) {
   const [showTooltip, setShowTooltip] = useState(false)
 
   const handleKeyDown = (e) => {
@@ -38,7 +59,7 @@ function SignedRibbon({ signed = true }) {
 
   return (
     <div
-      className="absolute top-0 right-0 w-[60px] h-[60px] overflow-hidden"
+      className="absolute -top-0.5 -right-0.5 w-[70px] h-[70px] overflow-hidden rounded-tr-lg"
       style={{ zIndex: 10 }}
       onMouseEnter={() => !signed && setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
@@ -47,15 +68,27 @@ function SignedRibbon({ signed = true }) {
       tabIndex={!signed ? 0 : undefined}
     >
       <motion.div
-        className="absolute top-[10px] right-[-28px] w-[100px] text-center py-0.5 text-[9px] font-bold"
+        className="absolute top-[8px] right-[-30px] w-[100px] text-center py-1 text-[9px] font-bold tracking-wide"
         style={{
           background: signed ? UI.signedGreen : "rgba(130,130,130,0.55)",
           color: signed ? "#fff" : "rgba(255,255,255,0.45)",
-          transform: "rotate(45deg)",
           cursor: signed ? "default" : "pointer",
         }}
-        animate={signed ? { scale: [1, 1.15, 1] } : {}}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
+        initial={{ rotate: 45 }}
+        animate={
+          clicked
+            ? { rotate: 45, scale: 0.9 }
+            : signed
+              ? { rotate: 45, scale: [1, 1.12, 1] }
+              : { rotate: 45 }
+        }
+        transition={
+          clicked
+            ? { duration: 0.1 }
+            : signed
+              ? { duration: 0.5, ease: "easeInOut" }
+              : {}
+        }
       >
         SIGNED
       </motion.div>
@@ -83,6 +116,7 @@ function PostCard({
   content,
   signed,
   showActions = true,
+  signedClicked = false,
 }) {
   return (
     <div
@@ -92,7 +126,9 @@ function PostCard({
         border: `1px solid ${UI.border}`,
       }}
     >
-      {signed !== undefined && <SignedRibbon signed={signed} />}
+      {signed !== undefined && (
+        <SignedRibbon signed={signed} clicked={signedClicked} />
+      )}
       <div className="flex items-center gap-2 mb-2">
         <div
           className="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-bold"
@@ -192,22 +228,30 @@ function NodeChrome({
   activeTab = "contents",
   children,
   overlayContent = null,
+  buttonClickState = null,
 }) {
   const renderWalletSection = () => {
     switch (navState) {
       case "default":
         return (
           <div className="flex items-center gap-2">
-            <button
+            <motion.button
               type="button"
-              className="text-[11px] font-medium px-3 py-1.5 rounded-md"
+              className="text-[11px] font-medium px-3 py-1.5 rounded-md relative overflow-hidden"
               style={{
                 background: UI.orange,
                 color: UI.pageBg,
               }}
+              animate={
+                buttonClickState === "connect-wallet"
+                  ? { scale: 0.95 }
+                  : { scale: 1 }
+              }
+              transition={{ duration: 0.1 }}
             >
+              <RippleEffect active={buttonClickState === "connect-wallet"} />
               Connect Wallet
-            </button>
+            </motion.button>
             <button
               type="button"
               className="text-[11px] font-medium px-3 py-1.5 rounded-md"
@@ -239,16 +283,21 @@ function NodeChrome({
                 {walletAddress || "0x62...37E0"}
               </span>
             </div>
-            <button
+            <motion.button
               type="button"
-              className="text-[11px] font-medium px-3 py-1.5 rounded-md"
+              className="text-[11px] font-medium px-3 py-1.5 rounded-md relative overflow-hidden"
               style={{
                 background: UI.orange,
                 color: UI.pageBg,
               }}
+              animate={
+                buttonClickState === "login" ? { scale: 0.95 } : { scale: 1 }
+              }
+              transition={{ duration: 0.1 }}
             >
+              <RippleEffect active={buttonClickState === "login"} />
               Login
-            </button>
+            </motion.button>
           </div>
         )
       case "logged-in":
@@ -453,7 +502,7 @@ function WalletPickerModal({ onClose }) {
   )
 }
 
-function MetaMaskSigningModal({ onClose }) {
+function MetaMaskSigningModal({ onClose, signClicked = false }) {
   return (
     <div
       className="absolute inset-0 flex items-center justify-center"
@@ -510,16 +559,19 @@ function MetaMaskSigningModal({ onClose }) {
             >
               Cancel
             </button>
-            <button
+            <motion.button
               type="button"
-              className="flex-1 text-[11px] font-medium py-2 rounded-md"
+              className="flex-1 text-[11px] font-medium py-2 rounded-md relative overflow-hidden"
               style={{
                 background: UI.orange,
                 color: UI.pageBg,
               }}
+              animate={signClicked ? { scale: 0.95 } : { scale: 1 }}
+              transition={{ duration: 0.1 }}
             >
+              <RippleEffect active={signClicked} />
               Sign
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
@@ -560,18 +612,24 @@ function Act1NodeHomepage() {
 
 function Act2WalletConnectAnimation() {
   const [state, setState] = useState(0)
+  const [buttonClicked, setButtonClicked] = useState(false)
   const containerRef = useRef(null)
   const isInView = useInView(containerRef, { once: false, margin: "-60px" })
 
   useEffect(() => {
     if (!isInView) {
       setState(0)
+      setButtonClicked(false)
       return
     }
 
     const timers = [
+      setTimeout(() => setButtonClicked(true), 1600),
       setTimeout(() => setState(1), 2000),
-      setTimeout(() => setState(2), 5000),
+      setTimeout(() => {
+        setButtonClicked(false)
+        setState(2)
+      }, 5000),
       setTimeout(() => setState(0), 7500),
     ]
 
@@ -587,6 +645,7 @@ function Act2WalletConnectAnimation() {
         navState={state === 2 ? "wallet-connected" : "default"}
         walletAddress="0x62...37E0"
         activeTab="contents"
+        buttonClickState={buttonClicked ? "connect-wallet" : null}
         overlayContent={
           state === 1 ? (
             <motion.div
@@ -616,22 +675,46 @@ function Act2WalletConnectAnimation() {
 
 function Act3SignInAnimation() {
   const [state, setState] = useState(0)
+  const [buttonClicked, setButtonClicked] = useState(false)
+  const [signClicked, setSignClicked] = useState(false)
   const containerRef = useRef(null)
   const isInView = useInView(containerRef, { once: false, margin: "-60px" })
 
   useEffect(() => {
     if (!isInView) {
       setState(0)
+      setButtonClicked(false)
+      setSignClicked(false)
       return
     }
 
-    const timers = [
-      setTimeout(() => setState(1), 2000),
-      setTimeout(() => setState(2), 4500),
-      setTimeout(() => setState(0), 6500),
-    ]
+    if (state === 0) {
+      setButtonClicked(false)
+      const t1 = setTimeout(() => setButtonClicked(true), 1600)
+      const t2 = setTimeout(() => setState(1), 2000)
+      return () => {
+        clearTimeout(t1)
+        clearTimeout(t2)
+      }
+    }
 
-    return () => timers.forEach(clearTimeout)
+    if (state === 1) {
+      setButtonClicked(false)
+      const t1 = setTimeout(() => setSignClicked(true), 1800)
+      const t2 = setTimeout(() => {
+        setSignClicked(false)
+        setState(2)
+      }, 2500)
+      return () => {
+        clearTimeout(t1)
+        clearTimeout(t2)
+      }
+    }
+
+    if (state === 2) {
+      const t1 = setTimeout(() => setState(0), 2000)
+      return () => clearTimeout(t1)
+    }
   }, [isInView, state])
 
   return (
@@ -640,9 +723,10 @@ function Act3SignInAnimation() {
         nodeUrl="blog.epress.world"
         nodeName="epress"
         nodeTagline="Rebuild the entire internet."
-        navState={state === 0 ? "wallet-connected" : "owner"}
+        navState={state < 2 ? "wallet-connected" : "owner"}
         walletAddress="0x62...37E0"
         activeTab="contents"
+        buttonClickState={buttonClicked ? "login" : null}
         overlayContent={
           state === 1 ? (
             <motion.div
@@ -650,7 +734,10 @@ function Act3SignInAnimation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <MetaMaskSigningModal onClose={() => setState(2)} />
+              <MetaMaskSigningModal
+                onClose={() => setState(2)}
+                signClicked={signClicked}
+              />
             </motion.div>
           ) : null
         }
@@ -697,6 +784,9 @@ function Act3SignInAnimation() {
 function Act4PublishAnimation() {
   const [state, setState] = useState(0)
   const [typedText, setTypedText] = useState("")
+  const [publishClicked, setPublishClicked] = useState(false)
+  const [signClicked, setSignClicked] = useState(false)
+  const [signedRibbonClicked, setSignedRibbonClicked] = useState(false)
   const containerRef = useRef(null)
   const isInView = useInView(containerRef, { once: false, margin: "-60px" })
 
@@ -704,6 +794,9 @@ function Act4PublishAnimation() {
     if (!isInView) {
       setState(0)
       setTypedText("")
+      setPublishClicked(false)
+      setSignClicked(false)
+      setSignedRibbonClicked(false)
       return
     }
 
@@ -724,6 +817,7 @@ function Act4PublishAnimation() {
           clearInterval(interval)
         }
       }, 55)
+      timers.push(setTimeout(() => setPublishClicked(true), 2000))
       timers.push(setTimeout(() => setState(2), 2200))
       return () => {
         clearInterval(interval)
@@ -732,11 +826,20 @@ function Act4PublishAnimation() {
     }
 
     if (state === 2) {
-      timers.push(setTimeout(() => setState(3), 2000))
+      setPublishClicked(false)
+      timers.push(setTimeout(() => setSignedRibbonClicked(true), 1200))
+      timers.push(setTimeout(() => setState(3), 1600))
     }
 
     if (state === 3) {
-      timers.push(setTimeout(() => setState(4), 1800))
+      timers.push(setTimeout(() => setSignClicked(true), 1400))
+      timers.push(
+        setTimeout(() => {
+          setSignClicked(false)
+          setSignedRibbonClicked(false)
+          setState(4)
+        }, 1800),
+      )
     }
 
     if (state === 4) {
@@ -770,7 +873,10 @@ function Act4PublishAnimation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <MetaMaskSigningModal onClose={() => setState(4)} />
+              <MetaMaskSigningModal
+                onClose={() => setState(4)}
+                signClicked={signClicked}
+              />
             </motion.div>
           ) : null
         }
@@ -827,16 +933,19 @@ function Act4PublishAnimation() {
             </button>
             <div className="flex-1" />
             {state === 1 && (
-              <button
+              <motion.button
                 type="button"
-                className="text-[11px] font-medium px-3 py-1.5 rounded flex items-center gap-1.5"
+                className="text-[11px] font-medium px-3 py-1.5 rounded flex items-center gap-1.5 relative overflow-hidden"
                 style={{
                   background: UI.orange,
                   color: UI.pageBg,
                 }}
+                animate={publishClicked ? { scale: 0.95 } : { scale: 1 }}
+                transition={{ duration: 0.1 }}
               >
+                <RippleEffect active={publishClicked} />
                 Publish
-              </button>
+              </motion.button>
             )}
           </div>
 
@@ -879,6 +988,7 @@ function Act4PublishAnimation() {
                 content="The internet used to feel personal"
                 signed={state === 4}
                 showActions={false}
+                signedClicked={state >= 2 && state <= 3 && signedRibbonClicked}
               />
             </motion.div>
           )}
@@ -900,6 +1010,9 @@ function Act4PublishAnimation() {
 function Act5FollowAnimation() {
   const [state, setState] = useState(0)
   const [typedUrl, setTypedUrl] = useState("")
+  const [followClicked, setFollowClicked] = useState(false)
+  const [popoverFollowClicked, setPopoverFollowClicked] = useState(false)
+  const [signClicked, setSignClicked] = useState(false)
   const containerRef = useRef(null)
   const isInView = useInView(containerRef, { once: false, margin: "-60px" })
 
@@ -909,16 +1022,22 @@ function Act5FollowAnimation() {
     if (!isInView) {
       setState(0)
       setTypedUrl("")
+      setFollowClicked(false)
+      setPopoverFollowClicked(false)
+      setSignClicked(false)
       return
     }
 
     const timers = []
 
     if (state === 0) {
+      setFollowClicked(false)
+      timers.push(setTimeout(() => setFollowClicked(true), 1400))
       timers.push(setTimeout(() => setState(1), 1800))
     }
 
     if (state === 1) {
+      setFollowClicked(false)
       timers.push(setTimeout(() => setState(2), 900))
     }
 
@@ -932,6 +1051,7 @@ function Act5FollowAnimation() {
           clearInterval(typeInterval)
         }
       }, 55)
+      timers.push(setTimeout(() => setPopoverFollowClicked(true), 2000))
       timers.push(setTimeout(() => setState(3), 2200))
       return () => {
         clearInterval(typeInterval)
@@ -940,7 +1060,14 @@ function Act5FollowAnimation() {
     }
 
     if (state === 3) {
-      timers.push(setTimeout(() => setState(4), 1800))
+      setPopoverFollowClicked(false)
+      timers.push(setTimeout(() => setSignClicked(true), 1400))
+      timers.push(
+        setTimeout(() => {
+          setSignClicked(false)
+          setState(4)
+        }, 1800),
+      )
     }
 
     if (state === 4) {
@@ -1057,15 +1184,16 @@ function Act5FollowAnimation() {
         </div>
         <motion.button
           type="button"
-          className="text-[11px] font-medium px-3 py-1.5 rounded-md"
+          className="text-[11px] font-medium px-3 py-1.5 rounded-md relative overflow-hidden"
           style={{
             background: "#e8732a",
             color: "#111",
           }}
-          animate={state === 0 ? { scale: [1, 1.04, 1] } : {}}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          animate={followClicked ? { scale: 0.95 } : { scale: 1 }}
+          transition={{ duration: 0.1 }}
         >
-          + Follow
+          <RippleEffect active={followClicked} color="rgba(0,0,0,0.2)" />+
+          Follow
         </motion.button>
       </div>
     )
@@ -1128,17 +1256,20 @@ function Act5FollowAnimation() {
           >
             Cancel
           </button>
-          <button
+          <motion.button
             type="button"
-            className="text-[12px] font-semibold px-3 py-1.5 rounded-lg font-mono"
+            className="text-[12px] font-semibold px-3 py-1.5 rounded-lg font-mono relative overflow-hidden"
             style={{
               background: "#2a2a2a",
               border: "1px solid rgba(255,255,255,0.12)",
               color: "rgba(255,255,255,0.90)",
             }}
+            animate={popoverFollowClicked ? { scale: 0.95 } : { scale: 1 }}
+            transition={{ duration: 0.1 }}
           >
+            <RippleEffect active={popoverFollowClicked} />
             Follow
-          </button>
+          </motion.button>
         </div>
       </motion.div>
     )
@@ -1206,16 +1337,19 @@ function Act5FollowAnimation() {
               >
                 Cancel
               </button>
-              <button
+              <motion.button
                 type="button"
-                className="flex-1 text-[11px] font-medium py-2 rounded-md font-mono"
+                className="flex-1 text-[11px] font-medium py-2 rounded-md font-mono relative overflow-hidden"
                 style={{
                   background: "#e8732a",
                   color: "#111",
                 }}
+                animate={signClicked ? { scale: 0.95 } : { scale: 1 }}
+                transition={{ duration: 0.1 }}
               >
+                <RippleEffect active={signClicked} color="rgba(0,0,0,0.2)" />
                 Sign
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
