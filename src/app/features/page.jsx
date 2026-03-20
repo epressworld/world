@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { Rocket, Users } from "lucide-react"
+import { Check, Copy, Rocket, Users } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { SiteFooter } from "@/components/home/site-footer"
@@ -27,6 +27,63 @@ const UI = {
   border: "rgba(255,255,255,0.08)",
   borderMed: "rgba(255,255,255,0.12)",
   signedGreen: "#16a34a",
+}
+
+function TerminalBlock({ command, comment }) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(command)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <div
+      className="max-w-lg mx-auto text-left rounded-lg overflow-hidden"
+      style={{
+        background: UI.cardBg,
+        border: `1px solid ${UI.border}`,
+      }}
+    >
+      <div
+        className="px-3 py-2 flex items-center justify-between"
+        style={{
+          background: UI.inputBg,
+          borderBottom: `1px solid ${UI.border}`,
+        }}
+      >
+        <span
+          className="text-[10px] font-medium"
+          style={{ color: UI.textMuted }}
+        >
+          Terminal
+        </span>
+        <button
+          type="button"
+          onClick={handleCopy}
+          className="p-1 rounded transition-colors hover:bg-white/10"
+          aria-label="Copy command"
+        >
+          {copied ? (
+            <Check className="w-3.5 h-3.5 text-green-500" />
+          ) : (
+            <Copy className="w-3.5 h-3.5" style={{ color: UI.textMuted }} />
+          )}
+        </button>
+      </div>
+      <pre
+        className="p-4 text-[12px] font-mono overflow-x-auto"
+        style={{ color: UI.textPrimary }}
+      >
+        <span style={{ color: UI.textMuted }}>$ </span>
+        <span style={{ color: UI.textMuted }}># {comment}</span>
+        {"\n\n"}
+        <span style={{ color: UI.textMuted }}>$ </span>
+        {command}
+      </pre>
+    </div>
+  )
 }
 
 function RippleEffect({ active, color = "rgba(255,255,255,0.3)" }) {
@@ -2312,38 +2369,12 @@ export default function FeaturesPage() {
             install.
           </p>
 
-          <div
-            className="max-w-lg mx-auto mb-8 text-left rounded-lg overflow-hidden"
-            style={{
-              background: UI.cardBg,
-              border: `1px solid ${UI.border}`,
-            }}
-          >
-            <div
-              className="px-3 py-2 text-[10px] font-medium"
-              style={{
-                background: UI.inputBg,
-                borderBottom: `1px solid ${UI.border}`,
-                color: UI.textMuted,
-              }}
-            >
-              Terminal
-            </div>
-            <pre
-              className="p-4 text-[12px] font-mono overflow-x-auto"
-              style={{ color: UI.textPrimary }}
-            >
-              <span style={{ color: UI.textMuted }}>$ </span>
-              <span style={{ color: UI.textMuted }}>
-                # Install epress on your server
-              </span>
-              {"\n\n"}
-              <span style={{ color: UI.textMuted }}>$ </span>
-              curl -fsSL https://epress.world/install.sh | bash
-            </pre>
-          </div>
+          <TerminalBlock
+            command="curl -fsSL https://epress.world/install.sh | bash"
+            comment="Install epress on your server"
+          />
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 mt-8">
             <Link
               href="/docs"
               className="btn-primary text-base px-7 py-3 inline-flex items-center justify-center"
